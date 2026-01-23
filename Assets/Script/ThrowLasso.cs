@@ -13,6 +13,8 @@ public class ThrowLasso : MonoBehaviour
     [Header("Paramètres")]
     [SerializeField] private float force = 1f;
 
+    private bool hasThrown;
+
     void Start()
     {
         rb = lasso.GetComponent<Rigidbody>();
@@ -21,10 +23,22 @@ public class ThrowLasso : MonoBehaviour
 
     void Update()
     {
-        if (isFishing && Mouse.current.leftButton.isPressed)
+        if(Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            hasThrown = false;
+            rb.isKinematic = true;
+            lasso.transform.rotation = Quaternion.identity;
+        }
+        if(!hasThrown)
+        {
+            lasso.transform.position = new Vector3(transform.position.x + 0.65f, transform.position.y + 0.385f, transform.position.z + 0.24f);
+        }
+
+        
+        if (isFishing && Keyboard.current.eKey.wasPressedThisFrame)//Mouse.current.leftButton.isPressed)
         {
             rb.isKinematic = false;
-
+            hasThrown = true;
             // Raycast depuis le centre de l'écran
             Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
             RaycastHit hit;
@@ -44,7 +58,7 @@ public class ThrowLasso : MonoBehaviour
             Vector3 direction = (targetPoint - lasso.transform.position).normalized;
 
             rb.AddForce(direction * force, ForceMode.Impulse);
-            // isFishing = false;
+            //isFishing = false;
         }
     }
 
