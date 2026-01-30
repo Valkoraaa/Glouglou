@@ -14,7 +14,13 @@ public class ThrowLasso : MonoBehaviour
     [SerializeField] private float force = 1f;
 
     private bool hasThrown;
+    private bool isChild;
+    public static ThrowLasso Instance { get; private set; }
 
+    void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         rb = lasso.GetComponent<Rigidbody>();
@@ -25,18 +31,20 @@ public class ThrowLasso : MonoBehaviour
     {
         if(Keyboard.current.rKey.wasPressedThisFrame)
         {
-            hasThrown = false;
-            rb.isKinematic = true;
-            lasso.transform.rotation = Quaternion.identity;
+            hasLasso();
         }
-        if(!hasThrown)
+        if(!hasThrown && !isChild)
         {
-            lasso.transform.position = new Vector3(transform.position.x + 0.65f, transform.position.y + 0.385f, transform.position.z + 0.24f);
+            lasso.transform.SetParent(cam.transform);
+            lasso.transform.localRotation = Quaternion.identity;
+            lasso.transform.localPosition = new Vector3(0.65f, -0.2f, 0.4f);
+            isChild = true;
         }
 
         
         if (isFishing && Keyboard.current.eKey.wasPressedThisFrame)//Mouse.current.leftButton.isPressed)
         {
+            lasso.transform.SetParent(null);
             rb.isKinematic = false;
             hasThrown = true;
             // Raycast depuis le centre de l'écran
@@ -60,6 +68,13 @@ public class ThrowLasso : MonoBehaviour
             rb.AddForce(direction * force, ForceMode.Impulse);
             //isFishing = false;
         }
+    }
+
+    public void hasLasso()
+    {
+        hasThrown = false;
+        rb.isKinematic = true;
+        isChild = false;
     }
 
     void OnDrawGizmos()
