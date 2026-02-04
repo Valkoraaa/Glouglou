@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5887620841687861568}
   - component: {fileID: 5367691969015914110}
   - component: {fileID: 7897661876952842904}
+  - component: {fileID: 1843448021662082062}
+  - component: {fileID: 223672868654650827}
   m_Layer: 0
   m_Name: LegendaryFish
   m_TagString: Untagged
@@ -111,3 +113,42 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1843448021662082062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7246760418614074741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a289857051f37b4590305dfa82f0f11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FishPatrol
+  fish: {fileID: 0}
+  destination: {x: 0, y: 0, z: 0}
+  walkPointSet: 0
+  WalkRange: 50
+  range: 50
+--- !u!195 &223672868654650827
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7246760418614074741}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.99999994
+  m_BaseOffset: 0.49999997
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
