@@ -9,6 +9,7 @@ public class ThrowLasso : MonoBehaviour
     [SerializeField] private GameObject lasso;
     public Rigidbody rb;
     [SerializeField] private Camera cam;
+    private BoxCollider boxCollider;
 
     [Header("Paramètres")]
     public float force = 15f;
@@ -26,6 +27,7 @@ public class ThrowLasso : MonoBehaviour
     {
         rb = lasso.GetComponent<Rigidbody>();
         rb.isKinematic = true;
+        boxCollider = lasso.GetComponent<BoxCollider>();
     }
 
     void Update()
@@ -40,6 +42,7 @@ public class ThrowLasso : MonoBehaviour
             lasso.transform.localRotation = Quaternion.identity;
             lasso.transform.localPosition = new Vector3(0.65f, -0.2f, 0.4f);
             isChild = true;
+            boxCollider.enabled = false;
         }
 
         
@@ -48,6 +51,7 @@ public class ThrowLasso : MonoBehaviour
             lasso.transform.SetParent(null);
             rb.isKinematic = false;
             hasThrown = true;
+            boxCollider.enabled = true;
             // Raycast depuis le centre de l'écran
             Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
             RaycastHit hit;
@@ -71,8 +75,6 @@ public class ThrowLasso : MonoBehaviour
         }
     }
 
-    
-
 
     public void hasLasso()
     {
@@ -80,6 +82,7 @@ public class ThrowLasso : MonoBehaviour
         hasThrown = false;
         rb.isKinematic = true;
         isChild = false;
+        boxCollider.enabled = false;
     }
 
     void OnDrawGizmos()

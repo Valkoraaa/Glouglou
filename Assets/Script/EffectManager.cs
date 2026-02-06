@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class EffectManager : MonoBehaviour
 {
@@ -20,6 +22,11 @@ public class EffectManager : MonoBehaviour
     public bool activateWind;
     public float exhaustRange = 0.34f;
     public bool isWindy;
+    [Header("TestsCam")]
+    public Volume volume;
+
+    LensDistortion lens;
+    ChromaticAberration chroma;
 
 
 
@@ -27,13 +34,21 @@ public class EffectManager : MonoBehaviour
     {
         Instance = this;
         originalThrowForce = ThrowLasso.Instance.force;
+
+        volume.profile.TryGet(out lens);
+        volume.profile.TryGet(out chroma);
     }
 
-    public void Update()
+    public void Update() //temp
     {
         if (activateExhaust) { Exhaust(true); }
         if (desactivateExhaust) { Exhaust(false); }
         if (activateWind) { Wind(true); }
+
+        float t = Time.time;
+
+        lens.intensity.value = Mathf.Sin(t * 0.7f) * 10f;
+        chroma.intensity.value = Mathf.Abs(Mathf.Sin(t * 0.9f)) * 1f;
     }
 
     void FixedUpdate()

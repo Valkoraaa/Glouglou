@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
@@ -13,6 +14,10 @@ public class Rope : MonoBehaviour
     [SerializeField] private float waveFrequency = 2f;
     [SerializeField] private float waveSpeed = 5f;
 
+    [SerializeField] private float alignSpeed = 8f;
+    [SerializeField] private float alignThreshold = 0.01f;
+    private bool canRecall;
+
     private LineRenderer line;
 
     void Awake()
@@ -21,10 +26,11 @@ public class Rope : MonoBehaviour
         line.positionCount = segments;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if(ThrowLasso.Instance.hasThrown && !ThrowLasso.Instance.recallRope){ DrawRope(); }
-        else if (ThrowLasso.Instance.hasThrown && ThrowLasso.Instance.recallRope) { RecallRope(); }
+        if(ThrowLasso.Instance.hasThrown && !ThrowLasso.Instance.recallRope){ DrawRope(); canRecall = false; }
+        else if (ThrowLasso.Instance.hasThrown && ThrowLasso.Instance.recallRope && !canRecall) { AlignRope(); }
+        else if (ThrowLasso.Instance.hasThrown && ThrowLasso.Instance.recallRope && canRecall) { RecallRope(); }
         else { line.enabled = false; }
     }
 
@@ -77,5 +83,30 @@ public class Rope : MonoBehaviour
             Vector3 point = Vector3.Lerp(start, end, t);
             line.SetPosition(i, point);
         }
+    }
+
+    void AlignRope()
+    {
+        Vector3 start = startPoint.position;
+        Vector3 end = endPoint.position;
+
+        bool isStraightEnough = true;
+
+        for (int i = 0; i < segments; i++)
+        {
+            float t = i / (float)(segments - 1);
+
+            Vector3 current = line.GetPosition(i);
+            Vector3 target = Vector3.Lerp(start, end, t);
+
+            Vector3 aligned = Vector3.Lerp(current, target, Time.deltaTime * alignSpeed);
+            line.SetPosition(i, aligned);
+
+            if (Vector3.Distance(aligned, target) > alignThreshold)
+                isStraightEnough = false;
+        }
+
+        if (isStraightEnough)
+            canRecall = true;
     }
 }

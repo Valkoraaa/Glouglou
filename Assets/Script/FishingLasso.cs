@@ -10,7 +10,7 @@ public class FishingLasso : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
 
-        if(collision.gameObject.tag == "water")
+        if(collision.gameObject.tag == "water") //activate anyway when smth hit?
         {
             StartCoroutine(MissedThrow());
         }
