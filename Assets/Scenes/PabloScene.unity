@@ -412,12 +412,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3a7ce7728a06454fab3f1b11e499a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnFish
-  commonFish: {fileID: 4793472864302734125, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
-  rareFish: {fileID: 1259611958527942740, guid: ca0386b58e133c14fa21b0f541baeb2d, type: 3}
-  epicFish: {fileID: 8044563188608038775, guid: 463d6d0f11fa34440be72012b6bbc2e1, type: 3}
+  commonFish1: {fileID: 4793472864302734125, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
+  commonFish2: {fileID: 3765543044247362864, guid: e5d4f3f5b99a7cb49b8f47f7d46f2540, type: 3}
+  commonFish3: {fileID: 5288516919597875969, guid: 08b24a1b1f36ed94ca84ca5eb9aaca0c, type: 3}
+  commonFish4: {fileID: 4011523794154013005, guid: 83b7e4b570785824c9ce5a08ad0dc22d, type: 3}
+  commonFish5: {fileID: 2563742091275682165, guid: 7782a8e4f0328df4d94d0afe1d4846a1, type: 3}
+  commonFish6: {fileID: 1610945459139760225, guid: 55b78b30c2e8b584ebb1cb2d091a3a29, type: 3}
+  commonFish7: {fileID: 8856981883305166439, guid: 23316031f6c135a46a3eee7731f3c9d2, type: 3}
+  rareFish1: {fileID: 1259611958527942740, guid: ca0386b58e133c14fa21b0f541baeb2d, type: 3}
+  rareFish2: {fileID: 8254841777200695204, guid: 1e4653db3e72fd24aa401ab3decc586f, type: 3}
+  rareFish3: {fileID: 1157543124818378292, guid: a75e40397b0f35e48bbd23c48574ec3e, type: 3}
+  rareFish4: {fileID: 2919735462105482555, guid: e36d07a4e29acdd43963f73f95b668e0, type: 3}
+  epicFish1: {fileID: 8044563188608038775, guid: 463d6d0f11fa34440be72012b6bbc2e1, type: 3}
+  epicFish2: {fileID: 8690286421214058567, guid: 0b9e1463d44451644906dbcca2280ecd, type: 3}
+  epicFish3: {fileID: 1978642547991598950, guid: db02a9d8d0bad7248a395ff842b45566, type: 3}
   legendaryFish: {fileID: 7246760418614074741, guid: fbcbc2a1e8b98054a8c422256aa657d1, type: 3}
-  zoneSize: {x: 155.8, y: 3, z: 27.96}
-  fishNumber: 100
+  zoneSize: {x: 86.9, y: 3, z: 27.96}
+  fishNumber: 50
 --- !u!4 &1222344570
 Transform:
   m_ObjectHideFlags: 0
@@ -428,7 +439,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1.52, z: 18.8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.55, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1609969950}

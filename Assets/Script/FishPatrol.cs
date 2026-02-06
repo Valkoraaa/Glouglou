@@ -5,8 +5,6 @@ public class FishPatrol : MonoBehaviour
 {
 
     public NavMeshAgent fish;
-
-
     public Vector3 destination;
     public bool walkPointSet;
     [SerializeField]
