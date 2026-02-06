@@ -11,11 +11,16 @@ public class ThrowLasso : MonoBehaviour
     [SerializeField] private Camera cam;
 
     [Header("Paramètres")]
-    [SerializeField] private float force = 1f;
+    public float force = 15f;
 
     private bool hasThrown;
     private bool isChild;
     public static ThrowLasso Instance { get; private set; }
+
+    [Header("Modificateurs")]
+    public bool isWindy;
+    [SerializeField] private Vector3 windDirection = Vector3.right;
+    [SerializeField] private float windStrength = 2f;
 
     void Awake()
     {
@@ -69,6 +74,13 @@ public class ThrowLasso : MonoBehaviour
             //isFishing = false;
         }
     }
+
+    void FixedUpdate()
+    {
+        if (!isWindy) return;
+        rb.AddForce(windDirection * windStrength, ForceMode.Force);
+    }
+
 
     public void hasLasso()
     {
