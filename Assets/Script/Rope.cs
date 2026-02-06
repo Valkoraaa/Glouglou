@@ -5,6 +5,7 @@ public class Rope : MonoBehaviour
 {
     [SerializeField] private Transform startPoint;
     [SerializeField] private Transform endPoint;
+    
 
     [Header("Rope Settings")]
     [SerializeField] private int segments = 25;
@@ -22,11 +23,15 @@ public class Rope : MonoBehaviour
 
     void Update()
     {
-        DrawRope();
+        if(ThrowLasso.Instance.hasThrown && !ThrowLasso.Instance.recallRope){ DrawRope(); }
+        else if (ThrowLasso.Instance.hasThrown && ThrowLasso.Instance.recallRope) { RecallRope(); }
+        else { line.enabled = false; }
     }
 
     void DrawRope()
     {
+        line.enabled = true;
+        
         Vector3 start = startPoint.position;
         Vector3 end = endPoint.position;
 
@@ -47,7 +52,7 @@ public class Rope : MonoBehaviour
                        * waveAmplitude
                        * Mathf.Sin(t * Mathf.PI);
 
-            // Direction pseudo-aléatoire, douce
+            // Direction pseudo-alï¿½atoire, douce
             float noise = Mathf.PerlinNoise(t * 2f, Time.time * 0.5f);
             float angle = noise * Mathf.PI * 2f;
 
@@ -57,6 +62,19 @@ public class Rope : MonoBehaviour
 
             point += randomDir * wave;
 
+            line.SetPosition(i, point);
+        }
+    }
+
+    void RecallRope()
+    {
+        Vector3 start = startPoint.position;
+        Vector3 end = endPoint.position;
+
+        for (int i = 0; i < segments; i++)
+        {
+            float t = i / (float)(segments - 1);
+            Vector3 point = Vector3.Lerp(start, end, t);
             line.SetPosition(i, point);
         }
     }

@@ -23,6 +23,8 @@ public class FishingLasso : MonoBehaviour
         float duration = 1f;
         float elapsedTime = 0f;
 
+        ThrowLasso.Instance.recallRope = true;
+        
         Vector3 fishStartPos = fish.transform.position;
         Vector3 thisStartPos = transform.position;
         Vector3 targetPos = player.transform.position;
@@ -47,6 +49,8 @@ public class FishingLasso : MonoBehaviour
     {
         float duration = 1f;
         float elapsedTime = 0f;
+
+        ThrowLasso.Instance.recallRope = true;
 
         Vector3 thisStartPos = transform.position;
         Vector3 targetPos = player.transform.position;

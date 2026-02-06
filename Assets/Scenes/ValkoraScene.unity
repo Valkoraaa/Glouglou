@@ -703,9 +703,8 @@ MonoBehaviour:
   rb: {fileID: 0}
   cam: {fileID: 1981427659}
   force: 15
-  isWindy: 0
-  windDirection: {x: 1, y: 0, z: 0}
-  windStrength: 3.5
+  hasThrown: 0
+  recallRope: 0
 --- !u!136 &323298034
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1313,10 +1312,13 @@ MonoBehaviour:
   upExhaust: {fileID: 277025097}
   downExhaust: {fileID: 821495496}
   player: {fileID: 323298032}
+  windDirection: {x: 1, y: 0, z: 0}
+  windStrength: 4
   activateExhaust: 0
   desactivateExhaust: 0
   activateWind: 0
   exhaustRange: -0.34
+  isWindy: 0
 --- !u!4 &735575537
 Transform:
   m_ObjectHideFlags: 0

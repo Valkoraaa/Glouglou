@@ -4,19 +4,22 @@ using UnityEngine.UI;
 
 public class EffectManager : MonoBehaviour
 {
-    [Header("Références")]
+    [Header("Rï¿½fï¿½rences")]
     [SerializeField] private RectTransform upExhaust;
     [SerializeField] private RectTransform downExhaust;
     [SerializeField] private GameObject player;
     private float originalThrowForce;
     private bool[] effects = { false, false, false, false };
     public static EffectManager Instance { get; private set; }
+    public Vector3 windDirection = Vector3.right;
+    public float windStrength = 2f;
 
     [Header("Tests")]
     public bool activateExhaust;
     public bool desactivateExhaust;
     public bool activateWind;
     public float exhaustRange = 0.34f;
+    public bool isWindy;
 
 
 
@@ -32,6 +35,13 @@ public class EffectManager : MonoBehaviour
         if (desactivateExhaust) { Exhaust(false); }
         if (activateWind) { Wind(true); }
     }
+
+    void FixedUpdate()
+    {
+        if (!isWindy) return;
+        ThrowLasso.Instance.rb.AddForce(EffectManager.Instance.windDirection * EffectManager.Instance.windStrength, ForceMode.Force);
+    }
+    
     public void ResetEffect()
     {
         for (int i = 0; i < effects.Length; i++)
@@ -89,7 +99,7 @@ public class EffectManager : MonoBehaviour
 
     private void Wind(bool wantToActivate)
     {
-        ThrowLasso.Instance.isWindy = wantToActivate;
+        isWindy = wantToActivate;
         activateWind = false;
     }
 
@@ -109,7 +119,7 @@ public class EffectManager : MonoBehaviour
     {
         if (wantToActivate) { ThrowLasso.Instance.force = ThrowLasso.Instance.force * 0.66f; }
         else { ThrowLasso.Instance.force = originalThrowForce; }
-        //léger canvas vert?
+        //lï¿½ger canvas vert?
     }
 
 
@@ -140,6 +150,6 @@ public class EffectManager : MonoBehaviour
 
         upExhaust.anchoredPosition = targetPosUp;
         downExhaust.anchoredPosition = targetPosDown;
-        //rajouter un canvas noir avec l opacité qui varie?
+        //rajouter un canvas noir avec l opacitï¿½ qui varie?
     }
 }
