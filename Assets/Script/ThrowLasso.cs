@@ -7,20 +7,16 @@ public class ThrowLasso : MonoBehaviour
 
     [Header("Références")]
     [SerializeField] private GameObject lasso;
-    [SerializeField] private Rigidbody rb;
+    public Rigidbody rb;
     [SerializeField] private Camera cam;
 
     [Header("Paramètres")]
     public float force = 15f;
 
-    private bool hasThrown;
+    public bool hasThrown;
+    public bool recallRope;
     private bool isChild;
     public static ThrowLasso Instance { get; private set; }
-
-    [Header("Modificateurs")]
-    public bool isWindy;
-    [SerializeField] private Vector3 windDirection = Vector3.right;
-    [SerializeField] private float windStrength = 2f;
 
     void Awake()
     {
@@ -75,15 +71,12 @@ public class ThrowLasso : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
-    {
-        if (!isWindy) return;
-        rb.AddForce(windDirection * windStrength, ForceMode.Force);
-    }
+    
 
 
     public void hasLasso()
     {
+        recallRope = false;
         hasThrown = false;
         rb.isKinematic = true;
         isChild = false;
