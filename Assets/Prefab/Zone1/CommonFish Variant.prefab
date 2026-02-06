@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CommonFish Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4865023056579202876, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
