@@ -1320,8 +1320,11 @@ MonoBehaviour:
   activateExhaust: 0
   desactivateExhaust: 0
   activateWind: 0
+  activateDrunk: 0
   exhaustRange: -0.34
   isWindy: 0
+  lensStrengh: 1
+  chromStrengh: 1
   volume: {fileID: 2028622959}
 --- !u!4 &735575537
 Transform:

@@ -20,8 +20,12 @@ public class EffectManager : MonoBehaviour
     public bool activateExhaust;
     public bool desactivateExhaust;
     public bool activateWind;
+    public bool activateDrunk;
     public float exhaustRange = 0.34f;
     public bool isWindy;
+    public float lensStrengh;
+    public float chromStrengh;
+    private bool checkForDrunk;
     [Header("TestsCam")]
     public Volume volume;
 
@@ -44,11 +48,10 @@ public class EffectManager : MonoBehaviour
         if (activateExhaust) { Exhaust(true); }
         if (desactivateExhaust) { Exhaust(false); }
         if (activateWind) { Wind(true); }
+        if (activateDrunk) { Drunk(true); }
 
-        float t = Time.time;
 
-        lens.intensity.value = Mathf.Sin(t * 0.7f) * 10f;
-        chroma.intensity.value = Mathf.Abs(Mathf.Sin(t * 0.9f)) * 1f;
+        if (checkForDrunk) { DrunkEffect(); }
     }
 
     void FixedUpdate()
@@ -120,7 +123,8 @@ public class EffectManager : MonoBehaviour
 
     private void Drunk (bool wantToActivate)
     {
-        //mettre un effet a la cam
+        if(wantToActivate) { checkForDrunk = true; }
+        else { checkForDrunk = false; }
     }
 
     public void Exhaust (bool wantToActivate)
@@ -134,7 +138,7 @@ public class EffectManager : MonoBehaviour
     {
         if (wantToActivate) { ThrowLasso.Instance.force = ThrowLasso.Instance.force * 0.66f; }
         else { ThrowLasso.Instance.force = originalThrowForce; }
-        //l�ger canvas vert?
+        //leger canvas vert?
     }
 
 
@@ -165,6 +169,13 @@ public class EffectManager : MonoBehaviour
 
         upExhaust.anchoredPosition = targetPosUp;
         downExhaust.anchoredPosition = targetPosDown;
-        //rajouter un canvas noir avec l opacit� qui varie?
+        //rajouter un canvas noir avec l opacite qui varie?
+    }
+
+    private void DrunkEffect()
+    {
+        float t = Time.time;
+        lens.intensity.value = Mathf.Sin(t * 0.7f) * lensStrengh;
+        chroma.intensity.value = Mathf.Abs(Mathf.Sin(t * 0.9f)) * chromStrengh;
     }
 }
