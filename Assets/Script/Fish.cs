@@ -1,17 +1,24 @@
 using UnityEngine;
 
 [System.Serializable]
-public class Fish
+public class Fish : MonoBehaviour
 {
     [Header ("Caracteritique")]
-    [SerializeField] private string name;
+    [SerializeField] private string species;
     [SerializeField] private float size;
     [SerializeField] private float weight;
     [SerializeField] private string temporaryEffect;
     [SerializeField] private string permanentEffect;
     [SerializeField] private int isPermanent;
     [SerializeField] private int speed;
+    /*private GameObject fishObject;
 
+    private void Awake()
+    {
+        fishObject = GetComponent<GameObject>();
+    }*/
+
+        
     public string Name
     {
         get { return name; }

@@ -15,16 +15,17 @@ public class FishingLasso : MonoBehaviour
             StartCoroutine(MissedThrow());
         }
         //qte ?
-        else if(collision.gameObject.tag == "fish") { StartCoroutine(getFishToPlayer(collision.gameObject)); }
+        
+        else if(collision.gameObject.tag == "fish") { StartCoroutine(getFishToPlayer(collision.gameObject.GetComponent<Fish>())); }
     }
 
-    private IEnumerator getFishToPlayer(GameObject fish)
+    private IEnumerator getFishToPlayer(Fish fish)
     {
         float duration = 1f;
         float elapsedTime = 0f;
 
         ThrowLasso.Instance.recallRope = true;
-        
+
         Vector3 fishStartPos = fish.transform.position;
         Vector3 thisStartPos = transform.position;
         Vector3 targetPos = player.transform.position;
@@ -42,7 +43,8 @@ public class FishingLasso : MonoBehaviour
 
         // raccrocher le lasso au joueur et lui donner le poissson + qte? ;; suite du code temporaire
         //EffectManager.Instance.ChooseEffect(fish.effect);
-        Destroy(fish);
+        EffectManager.Instance.ChooseEffect(fish.TemporaryEffect);
+        Destroy(fish.gameObject);
         ThrowLasso.Instance.hasLasso();
     }
     private IEnumerator MissedThrow()

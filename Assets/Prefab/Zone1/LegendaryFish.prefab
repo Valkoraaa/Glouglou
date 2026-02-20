@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7897661876952842904}
   - component: {fileID: 1843448021662082062}
   - component: {fileID: 223672868654650827}
+  - component: {fileID: 8386891196216287471}
   m_Layer: 0
   m_Name: LegendaryFish
   m_TagString: fish
@@ -149,3 +150,22 @@ NavMeshAgent:
   m_BaseOffset: 0.49999997
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8386891196216287471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7246760418614074741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af443ed027608c4f9d3da032d35f7f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Fish
+  species: 
+  size: 0
+  weight: 0
+  temporaryEffect: sick
+  permanentEffect: 
+  isPermanent: 0
+  speed: 0

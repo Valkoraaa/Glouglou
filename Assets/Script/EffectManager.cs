@@ -76,24 +76,28 @@ public class EffectManager : MonoBehaviour
                 if (Random.value <= 0.2f)
                 {
                     effects[0] = true;
+                    Debug.Log("wind");
                 }
                 break;
             case "drunk":
                 if (Random.value <= 0.2f)
                 {
                     effects[1] = true;
+                    Debug.Log("drunk");
                 }
                 break;
             case "exhaust":
                 if (Random.value <= 0.2f)
                 {
                     effects[2] = true;
+                    Debug.Log("exhaust");
                 }
                 break;
             case "sick":
                 if (Random.value <= 0.2f)
                 {
                     effects[3] = true;
+                    Debug.Log("sick");
                 }
                 break;
         }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4865023056579202876}
   - component: {fileID: -7638624895098687199}
   - component: {fileID: 2788732806996168968}
+  - component: {fileID: -7861193620136895478}
   m_Layer: 0
   m_Name: CommonFish
   m_TagString: fish
@@ -147,7 +148,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a289857051f37b4590305dfa82f0f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  fish: {fileID: -7638624895098687199}
-  destination: {x: 0, y: 0, z: 0}
-  walkPointSet: 0
   range: 10
+  fishSpeed: 3
+--- !u!114 &-7861193620136895478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4793472864302734125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af443ed027608c4f9d3da032d35f7f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Fish
+  species: 
+  size: 0
+  weight: 0
+  temporaryEffect: wind
+  permanentEffect: 
+  isPermanent: 0
+  speed: 0
