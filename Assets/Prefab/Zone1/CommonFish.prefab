@@ -150,5 +150,4 @@ MonoBehaviour:
   fish: {fileID: -7638624895098687199}
   destination: {x: 0, y: 0, z: 0}
   walkPointSet: 0
-  WalkRange: 10
   range: 10

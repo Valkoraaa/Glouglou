@@ -650,7 +650,7 @@ MonoBehaviour:
   epicFish3: {fileID: 1978642547991598950, guid: db02a9d8d0bad7248a395ff842b45566, type: 3}
   legendaryFish: {fileID: 7246760418614074741, guid: fbcbc2a1e8b98054a8c422256aa657d1, type: 3}
   zoneSize: {x: 86.9, y: 3, z: 27.96}
-  fishNumber: 50
+  fishNumber: 25
 --- !u!4 &1222344570
 Transform:
   m_ObjectHideFlags: 0

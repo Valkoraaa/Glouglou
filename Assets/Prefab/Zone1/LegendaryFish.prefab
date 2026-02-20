@@ -125,11 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a289857051f37b4590305dfa82f0f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishPatrol
-  fish: {fileID: 0}
-  destination: {x: 0, y: 0, z: 0}
-  walkPointSet: 0
-  WalkRange: 10
-  range: 10
+  range: 50
+  fishSpeed: 3
 --- !u!195 &223672868654650827
 NavMeshAgent:
   m_ObjectHideFlags: 0
