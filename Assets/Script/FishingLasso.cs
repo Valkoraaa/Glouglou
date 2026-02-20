@@ -41,7 +41,7 @@ public class FishingLasso : MonoBehaviour
         }
 
         // raccrocher le lasso au joueur et lui donner le poissson + qte? ;; suite du code temporaire
-
+        //EffectManager.Instance.ChooseEffect(fish.effect);
         Destroy(fish);
         ThrowLasso.Instance.hasLasso();
     }

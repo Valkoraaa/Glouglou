@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 public class EffectManager : MonoBehaviour
 {
-    [Header("R�f�rences")]
+    [Header("Références")]
     [SerializeField] private RectTransform upExhaust;
     [SerializeField] private RectTransform downExhaust;
     [SerializeField] private GameObject player;
@@ -96,10 +96,10 @@ public class EffectManager : MonoBehaviour
                     effects[3] = true;
                 }
                 break;
-        }   
+        }
     }
 
-    private void ApplyEffect()
+    public void ApplyEffect()
     {
         /*for (int i = 0; i < effects.Length; i++)
         {
