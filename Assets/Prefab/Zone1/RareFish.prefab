@@ -128,7 +128,6 @@ MonoBehaviour:
   fish: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   walkPointSet: 0
-  WalkRange: 10
   range: 10
 --- !u!195 &-3893963743638887425
 NavMeshAgent:
