@@ -8,6 +8,7 @@ public class DayManager : MonoBehaviour
     void Start()
     {
         //StartOfDay(); ?
+        StartCoroutine(DayPassing());
     }
 
     // Update is called once per frame
@@ -20,11 +21,13 @@ public class DayManager : MonoBehaviour
     {
         yield return new WaitForSeconds(dayLight);
         EndOfDay();
+        Debug.Log("endOfDay");
 
 
         //temp
         yield return new WaitForSeconds(10f);
         StartOfDay();
+        Debug.Log("startOfDay");
     }
 
     private void EndOfDay()
@@ -36,5 +39,6 @@ public class DayManager : MonoBehaviour
     public void StartOfDay()
     {
         EffectManager.Instance.ApplyEffect();
+        StartCoroutine(DayPassing());
     }
 }
