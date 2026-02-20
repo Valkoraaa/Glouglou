@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &856035987811948588
+--- !u!1001 &6994631134101985880
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,28 +9,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3677738515586572848, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3.557432
-      objectReference: {fileID: 0}
-    - target: {fileID: 3677738515586572848, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.37
+      value: 0.5704793
       objectReference: {fileID: 0}
     - target: {fileID: 3677738515586572848, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.4706
+      value: 2.006
       objectReference: {fileID: 0}
     - target: {fileID: 3677738515586572848, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.143
+      value: -19.24015
       objectReference: {fileID: 0}
     - target: {fileID: 3677738515586572848, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9564
+      value: -0.7413
       objectReference: {fileID: 0}
     - target: {fileID: 3677738515586572848, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.4126
+      value: 4.3402
       objectReference: {fileID: 0}
     - target: {fileID: 3677738515586572848, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -62,7 +58,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4793472864302734125, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
       propertyPath: m_Name
-      value: CommonFish (2) Variant
+      value: CommonFish (4) Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865023056579202876, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
