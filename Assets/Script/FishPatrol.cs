@@ -4,22 +4,39 @@ using UnityEngine.AI;
 public class FishPatrol : MonoBehaviour
 {
 
-    public NavMeshAgent fish;
-    public Vector3 destination;
-    public bool walkPointSet;
+    private NavMeshAgent fish;
+    private Vector3 destination;
+    private bool walkPointSet;
     [SerializeField]
-    float WalkRange;
-    public float range;
+    private float range;
+    [SerializeField]
+    private float fishSpeed = 3f;
+    private float timerIdle;
+    private bool isIdle = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         fish = GetComponent<NavMeshAgent>();
+        fish.speed = fishSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Patrol();
+        if (isIdle == false)
+        {
+            Patrol();
+        }
+        if (isIdle == true)
+        {
+            timerIdle -= Time.deltaTime;
+            if(timerIdle <= 0)
+            {
+                isIdle = false;
+                fish.isStopped = false;
+                Patrol();
+            }
+        }
     }
 
     void Patrol()
@@ -28,11 +45,17 @@ public class FishPatrol : MonoBehaviour
         {
             SearchForDest();
         }
-        if(walkPointSet)
+        if (walkPointSet)
         {
             fish.SetDestination(destination);
         }
-        if (Vector3.Distance(transform.position, destination) < 10) walkPointSet = false;
+        if (fish.remainingDistance < 0.5)
+        {
+            timerIdle = Random.Range(0, 2.5f);
+            fish.isStopped = true;
+            walkPointSet = false;
+            isIdle = true;
+        }
     }
 
     void SearchForDest()
