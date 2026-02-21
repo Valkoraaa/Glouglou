@@ -11,7 +11,7 @@ public class EffectManager : MonoBehaviour
     [SerializeField] private RectTransform downExhaust;
     [SerializeField] private GameObject player;
     private float originalThrowForce;
-    private bool[] effects = { false, false, false, false };
+    [SerializeField] private bool[] effects = { false, false, false, false };
     public static EffectManager Instance { get; private set; }
     public Vector3 windDirection = Vector3.right;
     public float windStrength = 2f;
@@ -129,6 +129,7 @@ public class EffectManager : MonoBehaviour
     {
         if(wantToActivate) { checkForDrunk = true; }
         else { checkForDrunk = false; }
+        //a ameliorer
     }
 
     public void Exhaust (bool wantToActivate)
@@ -136,6 +137,7 @@ public class EffectManager : MonoBehaviour
         StartCoroutine(EyesClosing(wantToActivate));
         activateExhaust = false;
         desactivateExhaust = false;
+        //tous les poissons sont les memes?
     }
 
     private void Sick (bool wantToActivate)
@@ -174,6 +176,7 @@ public class EffectManager : MonoBehaviour
         upExhaust.anchoredPosition = targetPosUp;
         downExhaust.anchoredPosition = targetPosDown;
         //rajouter un canvas noir avec l opacite qui varie?
+        StartCoroutine(EyesClosing(false));
     }
 
     private void DrunkEffect()

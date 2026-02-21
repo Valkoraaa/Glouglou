@@ -25,7 +25,7 @@ public class DayManager : MonoBehaviour
 
 
         //temp
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(120f);
         StartOfDay();
         Debug.Log("startOfDay");
     }
