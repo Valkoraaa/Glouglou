@@ -15,6 +15,7 @@ public class EffectManager : MonoBehaviour
     public static EffectManager Instance { get; private set; }
     public Vector3 windDirection = Vector3.right;
     public float windStrength = 2f;
+    public Coroutine exhaustEnumerator;
 
     [Header("Tests")]
     public bool activateExhaust;
@@ -66,6 +67,7 @@ public class EffectManager : MonoBehaviour
         {
             effects[i] = false;
         }
+        StopCoroutine(exhaustEnumerator);
         ApplyEffect();
     }
     public void ChooseEffect(string effect)
@@ -134,7 +136,7 @@ public class EffectManager : MonoBehaviour
 
     public void Exhaust (bool wantToActivate)
     {
-        StartCoroutine(EyesClosing(wantToActivate));
+        exhaustEnumerator = StartCoroutine(EyesClosing(wantToActivate));
         activateExhaust = false;
         desactivateExhaust = false;
         //tous les poissons sont les memes?
@@ -178,6 +180,11 @@ public class EffectManager : MonoBehaviour
         //rajouter un canvas noir avec l opacite qui varie?
         yield return new WaitForSeconds(2f);
         StartCoroutine(EyesClosing(false));
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.value * 20);
+            StartCoroutine(EyesClosing(true));
+        }
     }
 
     private void DrunkEffect() //a ameliorer
