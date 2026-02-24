@@ -11,7 +11,7 @@ public class EffectManager : MonoBehaviour
     [SerializeField] private RectTransform downExhaust;
     [SerializeField] private GameObject player;
     private float originalThrowForce;
-    [SerializeField] private bool[] effects = { false, false, false, false };
+    [SerializeField] private bool[] effects = { false, false, false, false }; //more false if more effects
     public static EffectManager Instance { get; private set; }
     public Vector3 windDirection = Vector3.right;
     public float windStrength = 2f;
@@ -39,7 +39,7 @@ public class EffectManager : MonoBehaviour
         Instance = this;
         originalThrowForce = ThrowLasso.Instance.force;
 
-        volume.profile.TryGet(out lens);
+        volume.profile.TryGet(out lens); //drunk effect test
         volume.profile.TryGet(out chroma);
     }
 
@@ -176,10 +176,11 @@ public class EffectManager : MonoBehaviour
         upExhaust.anchoredPosition = targetPosUp;
         downExhaust.anchoredPosition = targetPosDown;
         //rajouter un canvas noir avec l opacite qui varie?
+        yield return new WaitForSeconds(2f);
         StartCoroutine(EyesClosing(false));
     }
 
-    private void DrunkEffect()
+    private void DrunkEffect() //a ameliorer
     {
         float t = Time.time;
         lens.intensity.value = Mathf.Sin(t * 0.7f) * lensStrengh;

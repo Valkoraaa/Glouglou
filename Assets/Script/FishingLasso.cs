@@ -15,8 +15,12 @@ public class FishingLasso : MonoBehaviour
             StartCoroutine(MissedThrow());
         }
         //qte ?
-        
-        else if(collision.gameObject.tag == "fish") { StartCoroutine(getFishToPlayer(collision.gameObject.GetComponent<Fish>())); }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //qte ?
+        if (other.gameObject.tag == "fish") { StartCoroutine(getFishToPlayer(other.gameObject.GetComponent<Fish>())); }
     }
 
     private IEnumerator getFishToPlayer(Fish fish)

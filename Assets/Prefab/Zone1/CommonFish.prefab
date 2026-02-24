@@ -165,7 +165,7 @@ MonoBehaviour:
   species: 
   size: 0
   weight: 0
-  temporaryEffect: wind
+  temporaryEffect: exhaust
   permanentEffect: 
   isPermanent: 0
   speed: 0
