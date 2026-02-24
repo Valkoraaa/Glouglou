@@ -113,6 +113,9 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _Water_Depth: 0.03
+    - _WaveAmplitude: 5.18
+    - _WaveFrequency: 5.75
+    - _WaveSpeed: 1.78
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
