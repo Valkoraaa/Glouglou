@@ -956,7 +956,7 @@ MonoBehaviour:
   speed: 5
   gravity: -10
   cameraTransform: {fileID: 1981427660}
-  mouseSensitivity: 30
+  mouseSensitivity: 5
   fpsOffset: {x: 0, y: 1.6, z: 0}
 --- !u!143 &323298040
 CharacterController:
@@ -1858,7 +1858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4bbfe118747d37438760c2a5abd87ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayManager
-  dayLight: 10
+  dayLight: 30
 --- !u!4 &1062806978
 Transform:
   m_ObjectHideFlags: 0
@@ -2340,7 +2340,7 @@ GameObject:
   - component: {fileID: 1788030009}
   m_Layer: 4
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
