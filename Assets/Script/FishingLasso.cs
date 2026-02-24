@@ -7,7 +7,7 @@ public class FishingLasso : MonoBehaviour
     //for now lassos collider isnt trigger, can change if needed
     [SerializeField] private GameObject player;
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnCollisionEnter(Collision collision)
     {
 
         if(collision.gameObject.tag == "water") //activate anyway when smth hit?
