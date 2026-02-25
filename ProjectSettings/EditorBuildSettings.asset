@@ -11,13 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/World_Main.unity
     guid: 94ea5c4e972d57747a42759a0b6c8b8c
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/World_Environment.unity
     guid: 4637c9f62859fcd40a7c7099314aa9d4
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/WorldUI.unity
     guid: 7f729d4c2844cb346b4c96cd722b271f
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/World_Gameplay.unity
     guid: 5f3fd78595c9fe04b8983848445ad42a
   m_configObjects:

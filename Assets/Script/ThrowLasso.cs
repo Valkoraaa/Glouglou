@@ -48,6 +48,8 @@ public class ThrowLasso : MonoBehaviour
         
         if (isFishing && Keyboard.current.eKey.wasPressedThisFrame)//Mouse.current.leftButton.isPressed)
         {
+            DayManager.Instance.totalThrow -= 1;
+            DayManager.Instance.CountdownThrow();
             lasso.transform.SetParent(null);
             rb.isKinematic = false;
             hasThrown = true;
