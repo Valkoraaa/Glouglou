@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 public class SpawnFish : MonoBehaviour
@@ -47,7 +48,7 @@ public class SpawnFish : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
+        Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position, zoneSize);
     }
 
@@ -135,11 +136,20 @@ public class SpawnFish : MonoBehaviour
                 fishToInstantiate = legendaryFish;
             }
             GameObject instantiated = Instantiate(fishToInstantiate);
-            instantiated.transform.position = new Vector3(
+
+            Vector3 spawnPos = new Vector3(
                 Random.Range(transform.position.x - zoneSize.x / 2, transform.position.x + zoneSize.x / 2),
                 Random.Range(transform.position.y - zoneSize.y / 2, transform.position.y + zoneSize.y / 2),
                 Random.Range(transform.position.z - zoneSize.z / 2, transform.position.z + zoneSize.z / 2)
-                );
+            );
+
+            instantiated.transform.position = spawnPos;
+
+            NavMeshAgent agent = instantiated.GetComponent<NavMeshAgent>();
+            if (agent != null)
+            {
+                agent.Warp(spawnPos);
+            }
         }
     }
 }
