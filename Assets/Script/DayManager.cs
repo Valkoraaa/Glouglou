@@ -24,7 +24,7 @@ public class DayManager : MonoBehaviour
     {
         if (totalThrow <= 0)
         {
-            //fin de jour
+            //Dialogue fin de jour
         }
     }
 
