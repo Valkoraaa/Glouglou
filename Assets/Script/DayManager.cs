@@ -4,17 +4,28 @@ using UnityEngine;
 public class DayManager : MonoBehaviour
 {
     [SerializeField] private int dayLight;
+    public int totalThrow;
+    public static DayManager Instance { get; private set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //StartOfDay(); ?
         StartCoroutine(DayPassing());
+        Instance = this;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void CountdownThrow()
+    {
+        if (totalThrow <= 0)
+        {
+            //fin de jour
+        }
     }
 
     IEnumerator DayPassing()
