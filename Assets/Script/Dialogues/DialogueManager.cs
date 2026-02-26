@@ -14,7 +14,7 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
 
     [Header("Typing Settings")]
-    public float typingSpeed = 0.03f;
+    public float typingSpeed = 0.05f;
 
     private List<DialogueLine> currentLines;
     private int index;
@@ -92,11 +92,12 @@ public class DialogueManager : MonoBehaviour
                 /*StopCoroutine(typingCoroutine);
                 dialogueText.text = currentLines[index].text;
                 isTyping = false;*/
-                typingSpeed = 0.01f;
+                typingSpeed = 0.02f;
             }
             else
             {
                 NextLine();
+                typingSpeed = 0.05f;
             }
         }
     }

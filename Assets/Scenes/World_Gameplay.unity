@@ -806,8 +806,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 99.9
-  m_fontSizeBase: 99.9
+  m_fontSize: 85.02
+  m_fontSizeBase: 85.02
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -878,6 +878,7 @@ MonoBehaviour:
   dialoguePanel: {fileID: 1152108507}
   speakerText: {fileID: 517707916}
   dialogueText: {fileID: 1692158661}
+  typingSpeed: 0.1
 --- !u!1001 &1817030996
 PrefabInstance:
   m_ObjectHideFlags: 0
