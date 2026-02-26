@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -40,116 +41,76 @@ public class SpawnFish : MonoBehaviour
     [SerializeField]
     private GameObject legendaryFish;
 
-    [SerializeField]
-    private Vector3 zoneSize;
+    [Header("Spawn Settings")]
+    [SerializeField] private Vector3 zoneSize;
+    [SerializeField] private int fishNumber;
 
-    [SerializeField]
-    private int fishNumber;
+    [Header("NavMesh Reference")]
+    [SerializeField] private Transform navMeshSurface;
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, zoneSize);
+        Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.DrawWireCube(Vector3.zero, zoneSize);
     }
 
     private void Start()
     {
-        GameObject fishToInstantiate;
-
-        for(int i = 0; i < fishNumber; i++)
+        for (int i = 0; i < fishNumber; i++)
         {
-            int randRarity = Random.Range(0, 100);
-            if (randRarity <= 50)
-            {
-                int randFishCommon = Random.Range(0, 100);
-                switch (randFishCommon)
-                {
-                    case <= 14:
-                        fishToInstantiate = commonFish1;
-                        break;
-                    case <= 28:
-                        fishToInstantiate = commonFish2;
-                        break;
-                    case <= 42:
-                        fishToInstantiate = commonFish3;
-                        break;
-                    case <= 56:
-                        fishToInstantiate = commonFish4;
-                        break;
-                    case <= 70:
-                        fishToInstantiate = commonFish5;
-                        break;
-                    case <= 84:
-                        fishToInstantiate = commonFish6;
-                        break;
-                    case <= 98:
-                        fishToInstantiate = commonFish7;
-                        break;
-                    default:
-                        fishToInstantiate = commonFish1;
-                        break;
-                }
-            }
-            else if (randRarity <= 80)
-            {
-                int randFish = Random.Range(0, 100);
-                switch (randFish)
-                {
-                    case <= 25:
-                        fishToInstantiate = rareFish1;
-                        break;
-                    case <= 50:
-                        fishToInstantiate = rareFish2;
-                        break;
-                    case <= 75:
-                        fishToInstantiate = rareFish3;
-                        break;
-                    case <= 100:
-                        fishToInstantiate = rareFish4;
-                        break;
-                    default:
-                        fishToInstantiate = rareFish1;
-                        break;
-                }
-            }
-            else if (randRarity <= 95)
-            {
-                int randFish = Random.Range(0, 100);
-                switch (randFish)
-                {
-                    case <= 33:
-                        fishToInstantiate = epicFish1;
-                        break;
-                    case <= 66:
-                        fishToInstantiate = epicFish2;
-                        break;
-                    case <= 99:
-                        fishToInstantiate = epicFish3;
-                        break;
-                    default:
-                        fishToInstantiate = epicFish1;
-                        break;
-                }
-            }
-            else
-            {
-                fishToInstantiate = legendaryFish;
-            }
-            GameObject instantiated = Instantiate(fishToInstantiate);
+            GameObject fishToInstantiate = GetRandomFish();
 
-            Vector3 spawnPos = new Vector3(
-                Random.Range(transform.position.x - zoneSize.x / 2, transform.position.x + zoneSize.x / 2),
-                Random.Range(transform.position.y - zoneSize.y / 2, transform.position.y + zoneSize.y / 2),
-                Random.Range(transform.position.z - zoneSize.z / 2, transform.position.z + zoneSize.z / 2)
+            Vector3 randomLocalPos = new Vector3(
+                Random.Range(-zoneSize.x / 2f, zoneSize.x / 2f),
+                0f,
+                Random.Range(-zoneSize.z / 2f, zoneSize.z / 2f)
             );
 
-            instantiated.transform.position = spawnPos;
+            Vector3 spawnPos = transform.TransformPoint(randomLocalPos);
+
+            // On force la hauteur du NavMesh
+            spawnPos.y = navMeshSurface.position.y;
+
+            GameObject instantiated = Instantiate(fishToInstantiate, spawnPos, Quaternion.identity);
 
             NavMeshAgent agent = instantiated.GetComponent<NavMeshAgent>();
             if (agent != null)
             {
                 agent.Warp(spawnPos);
             }
+        }
+    }
+
+    private GameObject GetRandomFish()
+    {
+        int randRarity = Random.Range(0, 100);
+
+        if (randRarity <= 50)
+        {
+            GameObject[] commons = {
+                commonFish1, commonFish2, commonFish3,
+                commonFish4, commonFish5, commonFish6, commonFish7
+            };
+            return commons[Random.Range(0, commons.Length)];
+        }
+        else if (randRarity <= 80)
+        {
+            GameObject[] rares = {
+                rareFish1, rareFish2, rareFish3, rareFish4
+            };
+            return rares[Random.Range(0, rares.Length)];
+        }
+        else if (randRarity <= 95)
+        {
+            GameObject[] epics = {
+                epicFish1, epicFish2, epicFish3
+            };
+            return epics[Random.Range(0, epics.Length)];
+        }
+        else
+        {
+            return legendaryFish;
         }
     }
 }

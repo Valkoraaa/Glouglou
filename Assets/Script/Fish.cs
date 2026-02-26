@@ -15,23 +15,11 @@ public class Fish : MonoBehaviour
     [SerializeField] private Material baseMaterial;
     [SerializeField] private Material HookedMaterial;
 
-    [SerializeField] private Camera playerCam;
-
 
     private void OnDrawGizmos()
     {
-        Camera playerCam = Camera.main;
-        if (playerCam == null) return;
-
-        Ray ray = playerCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(ray.origin, ray.direction * 50f);
-    }
-
-    private void Start()
-    {
-        playerCam = GetComponentInChildren<Camera>();
+        Gizmos.DrawRay(transform.position, transform.up * 500f);
     }
 
 

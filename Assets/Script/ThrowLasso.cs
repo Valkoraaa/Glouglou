@@ -8,7 +8,7 @@ public class ThrowLasso : MonoBehaviour
     [Header("Références")]
     [SerializeField] private GameObject lasso;
     public Rigidbody rb;
-    [SerializeField] private Camera cam;
+    public Camera cam;
     private BoxCollider boxCollider;
 
     [Header("Paramètres")]
