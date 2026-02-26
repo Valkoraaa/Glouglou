@@ -29,6 +29,11 @@ public class Fish : MonoBehaviour
         Gizmos.DrawRay(ray.origin, ray.direction * 50f);
     }
 
+    private void Start()
+    {
+        playerCam = GetComponentInChildren<Camera>();
+    }
+
 
     public string Name
     {
