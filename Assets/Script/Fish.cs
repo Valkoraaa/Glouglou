@@ -1,6 +1,4 @@
 using UnityEngine;
-
-[System.Serializable]
 public class Fish : MonoBehaviour
 {
     [Header ("Caracteritique")]
@@ -17,22 +15,18 @@ public class Fish : MonoBehaviour
     [SerializeField] private Material baseMaterial;
     [SerializeField] private Material HookedMaterial;
 
-    /*private GameObject fishObject;
+    [SerializeField] private Camera playerCam;
 
-    private void Awake()
-    {
-        fishObject = GetComponent<GameObject>();
-    }*/
 
-    private void Update()
+    private void OnDrawGizmos()
     {
-        Physics.Raycast(Vector3.zero, Vector3.up);
-    }
-    void OnDrawGizmos()
-    {
-        //Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-        //Gizmos.color = Color.red;
-        //Gizmos.DrawRay(ray.origin, ray.direction * 50f);
+        Camera cam = Camera.main;
+        if (cam == null) return;
+
+        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(ray.origin, ray.direction * 50f);
     }
 
 

@@ -11,7 +11,7 @@ public class SceneLoader : MonoBehaviour
         if (!SceneManager.GetSceneByName("World_Gameplay").isLoaded)
             SceneManager.LoadScene("World_Gameplay", LoadSceneMode.Additive);
 
-        if (!SceneManager.GetSceneByName("World_UI").isLoaded)
-            SceneManager.LoadScene("World_UI", LoadSceneMode.Additive);
+        /*if (!SceneManager.GetSceneByName("World_UI").isLoaded)
+            SceneManager.LoadScene("World_UI", LoadSceneMode.Additive);*/
     }
 }
