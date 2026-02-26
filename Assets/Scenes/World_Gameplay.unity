@@ -281,11 +281,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5529720455534624902, guid: 1895a44e91ddc73449406df9147effd0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 80.4
       objectReference: {fileID: 0}
     - target: {fileID: 5529720455534624902, guid: 1895a44e91ddc73449406df9147effd0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1001.35
+      value: 1784
       objectReference: {fileID: 0}
     - target: {fileID: 5529720455534624902, guid: 1895a44e91ddc73449406df9147effd0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -683,11 +683,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5995406920284088990, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 171.6
+      value: 86.4
       objectReference: {fileID: 0}
     - target: {fileID: 5995406920284088990, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1185.9
+      value: 1717.4
       objectReference: {fileID: 0}
     - target: {fileID: 5995406920284088990, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: m_LocalRotation.w
@@ -878,6 +878,7 @@ MonoBehaviour:
   dialoguePanel: {fileID: 1152108507}
   speakerText: {fileID: 517707916}
   dialogueText: {fileID: 1692158661}
+  typingSpeed: 0.03
 --- !u!1001 &1817030996
 PrefabInstance:
   m_ObjectHideFlags: 0
