@@ -30,9 +30,9 @@ public class Fish : MonoBehaviour
     }
     void OnDrawGizmos()
     {
-        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(ray.origin, ray.direction * 50f);
+        //Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawRay(ray.origin, ray.direction * 50f);
     }
 
 
