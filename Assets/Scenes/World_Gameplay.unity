@@ -677,6 +677,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4436499326437563666, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
+      propertyPath: canMove
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5995406920284088990, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1718.3
@@ -878,7 +882,9 @@ MonoBehaviour:
   dialoguePanel: {fileID: 1152108507}
   speakerText: {fileID: 517707916}
   dialogueText: {fileID: 1692158661}
-  typingSpeed: 0.03
+  typingSpeed: 0.05
+  fastTypingSpeed: 0.03
+  defaultTypingSpeed: 0.05
 --- !u!1001 &1817030996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -932,8 +938,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5893804085302651769, guid: 80b53c04572427e48b436dad6481bd98, type: 3}
+      propertyPath: dialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 7e25ad0af176bbb40accf928c32bb32b, type: 2}
+    - target: {fileID: 5893804085302651769, guid: 80b53c04572427e48b436dad6481bd98, type: 3}
       propertyPath: totalThrow
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

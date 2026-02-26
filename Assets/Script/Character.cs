@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class Character : MonoBehaviour
 {
+    public static Character Instance;
+
     [Header("Physique & Mouvement")]
     [SerializeField] private float speed = 5f;
     [SerializeField] private float gravity = -20; 
@@ -20,9 +22,11 @@ public class Character : MonoBehaviour
     private Vector2 lookInput;
     private Vector3 velocity; 
     private float xRotation = 0f;
+    public bool canMove = true;
 
     private void Awake()
     {
+        Instance = this;
         controller = GetComponent<CharacterController>();
         inputActions = new PlayerInputActions();
     }
@@ -35,11 +39,15 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-        HandleRotation();
-        HandleMovement();
+        if(canMove)
+        {
+            HandleRotation();
+            HandleMovement();
 
+
+            ApplyCameraPosition();
+        }
         
-        ApplyCameraPosition();
     }
 
     private void HandleRotation()

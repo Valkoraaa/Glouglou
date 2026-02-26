@@ -6,6 +6,7 @@ public class DayManager : MonoBehaviour
     [SerializeField] private int dayLight;
     public int totalThrow;
     public static DayManager Instance { get; private set; }
+    [SerializeField] private DialogueData dialogue;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,7 +25,7 @@ public class DayManager : MonoBehaviour
     {
         if (totalThrow <= 0)
         {
-            //Dialogue fin de jour
+            EndOfDay();
         }
     }
 
@@ -45,6 +46,7 @@ public class DayManager : MonoBehaviour
     {
         //empeche le joueur de pecher et le sors de la zone
         EffectManager.Instance.ResetEffect();
+        DialogueManager.Instance.StartDialogue(dialogue);
     }
 
     public void StartOfDay()

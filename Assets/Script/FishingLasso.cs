@@ -46,10 +46,12 @@ public class FishingLasso : MonoBehaviour
         }
 
         // raccrocher le lasso au joueur et lui donner le poissson + qte? ;; suite du code temporaire
-        //EffectManager.Instance.ChooseEffect(fish.effect);
+        //animation?
         EffectManager.Instance.ChooseEffect(fish.TemporaryEffect);
         Destroy(fish.gameObject);
         ThrowLasso.Instance.hasLasso();
+        DayManager.Instance.totalThrow -= 1;
+        DayManager.Instance.CountdownThrow();
     }
     private IEnumerator MissedThrow()
     {
@@ -72,6 +74,9 @@ public class FishingLasso : MonoBehaviour
         }
 
         ThrowLasso.Instance.hasLasso();
+
+        DayManager.Instance.totalThrow -= 1;
+        DayManager.Instance.CountdownThrow();
 
         //smoother way to get the lasso back in hand?
     }
