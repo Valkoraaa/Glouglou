@@ -92,4 +92,9 @@ public class FishingLasso : MonoBehaviour
     {
         this.Strenght++;
     }
+
+    public void UpgradeNumberOfThrow()
+    {
+        DayManager.Instance.actualThrow += 5;
+    }
 }
