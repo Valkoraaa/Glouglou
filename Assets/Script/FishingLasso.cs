@@ -88,7 +88,7 @@ public class FishingLasso : MonoBehaviour
         //smoother way to get the lasso back in hand?
     }
 
-    private void UpgradeStrenght()
+    public void UpgradeStrenght()
     {
         this.Strenght++;
     }
