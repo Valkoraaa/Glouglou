@@ -15,6 +15,8 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Typing Settings")]
     public float typingSpeed = 0.05f;
+    public float fastTypingSpeed = 0.03f;
+    public float defaultTypingSpeed = 0.05f;
 
     private List<DialogueLine> currentLines;
     private int index;
@@ -30,6 +32,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(DialogueData data)
     {
+        Character.Instance.canMove = false;
         dialoguePanel.SetActive(true);
         speakerText.text = data.speakerName;
 
@@ -78,6 +81,7 @@ public class DialogueManager : MonoBehaviour
     {
         dialoguePanel.SetActive(false);
         currentLines = null;
+        Character.Instance.canMove = true;
     }
 
     private void Update()
@@ -92,12 +96,12 @@ public class DialogueManager : MonoBehaviour
                 /*StopCoroutine(typingCoroutine);
                 dialogueText.text = currentLines[index].text;
                 isTyping = false;*/
-                typingSpeed = 0.02f;
+                typingSpeed = fastTypingSpeed;
             }
             else
             {
                 NextLine();
-                typingSpeed = 0.05f;
+                typingSpeed = defaultTypingSpeed;
             }
         }
     }

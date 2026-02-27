@@ -5,12 +5,14 @@ public class DayManager : MonoBehaviour
 {
     [SerializeField] private int dayLight;
     public int totalThrow;
+    public int actualThrow;
     public static DayManager Instance { get; private set; }
+    [SerializeField] private DialogueData dialogue;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //StartOfDay(); ?
-        StartCoroutine(DayPassing());
+        //StartCoroutine(DayPassing());
         Instance = this;
     }
 
@@ -22,34 +24,36 @@ public class DayManager : MonoBehaviour
 
     public void CountdownThrow()
     {
-        if (totalThrow <= 0)
+        if (actualThrow <= 0)
         {
-            //Dialogue fin de jour
+            EndOfDay();
         }
     }
 
-    IEnumerator DayPassing()
-    {
-        yield return new WaitForSeconds(dayLight);
-        EndOfDay();
-        Debug.Log("endOfDay");
+    //IEnumerator DayPassing()
+    //{
+    //    yield return new WaitForSeconds(dayLight);
+    //    EndOfDay();
+    //    Debug.Log("endOfDay");
 
 
-        //temp
-        yield return new WaitForSeconds(120f);
-        StartOfDay();
-        Debug.Log("startOfDay");
-    }
+    //    //temp
+    //    yield return new WaitForSeconds(120f);
+    //    StartOfDay();
+    //    Debug.Log("startOfDay");
+    //}
 
     private void EndOfDay()
     {
         //empeche le joueur de pecher et le sors de la zone
         EffectManager.Instance.ResetEffect();
+        DialogueManager.Instance.StartDialogue(dialogue);
     }
 
     public void StartOfDay()
     {
+        actualThrow = totalThrow;
         EffectManager.Instance.ApplyEffect();
-        StartCoroutine(DayPassing());
+        //StartCoroutine(DayPassing());
     }
 }

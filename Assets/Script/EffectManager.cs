@@ -67,7 +67,8 @@ public class EffectManager : MonoBehaviour
         {
             effects[i] = false;
         }
-        StopCoroutine(exhaustEnumerator);
+        if(exhaustEnumerator != null)
+            StopCoroutine(exhaustEnumerator);
         ApplyEffect();
     }
     public void ChooseEffect(string effect)
