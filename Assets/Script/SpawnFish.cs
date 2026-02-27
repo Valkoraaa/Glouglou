@@ -72,8 +72,12 @@ public class SpawnFish : MonoBehaviour
             // On force la hauteur du NavMesh
             spawnPos.y = navMeshSurface.position.y;
 
-            GameObject instantiated = Instantiate(fishToInstantiate, spawnPos, Quaternion.identity);
-
+            GameObject instantiated = Instantiate(
+                fishToInstantiate,
+                spawnPos,
+                Quaternion.identity,
+                this.transform
+            );
             NavMeshAgent agent = instantiated.GetComponent<NavMeshAgent>();
             if (agent != null)
             {

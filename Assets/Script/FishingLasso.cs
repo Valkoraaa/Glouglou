@@ -88,8 +88,13 @@ public class FishingLasso : MonoBehaviour
         //smoother way to get the lasso back in hand?
     }
 
-    private void UpgradeStrenght()
+    public void UpgradeStrenght()
     {
         this.Strenght++;
+    }
+
+    public void UpgradeNumberOfThrow()
+    {
+        DayManager.Instance.actualThrow += 5;
     }
 }
