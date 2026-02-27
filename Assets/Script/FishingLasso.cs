@@ -50,7 +50,7 @@ public class FishingLasso : MonoBehaviour
         EffectManager.Instance.ChooseEffect(fish.TemporaryEffect);
         Destroy(fish.gameObject);
         ThrowLasso.Instance.hasLasso();
-        DayManager.Instance.totalThrow -= 1;
+        DayManager.Instance.actualThrow -= 1;
         DayManager.Instance.CountdownThrow();
     }
     private IEnumerator MissedThrow()
@@ -75,7 +75,7 @@ public class FishingLasso : MonoBehaviour
 
         ThrowLasso.Instance.hasLasso();
 
-        DayManager.Instance.totalThrow -= 1;
+        DayManager.Instance.actualThrow -= 1;
         DayManager.Instance.CountdownThrow();
 
         //smoother way to get the lasso back in hand?
