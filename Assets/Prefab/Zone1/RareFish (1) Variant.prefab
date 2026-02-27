@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: temporaryEffect
       value: exhaust
       objectReference: {fileID: 0}
+    - target: {fileID: -6511046390730039640, guid: ca0386b58e133c14fa21b0f541baeb2d, type: 3}
+      propertyPath: necessaryStrength
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1259611958527942740, guid: ca0386b58e133c14fa21b0f541baeb2d, type: 3}
       propertyPath: m_Name
       value: RareFish (1) Variant
@@ -100,3 +104,9 @@ MonoBehaviour:
   permanentEffect: 
   isPermanent: 0
   speed: 0
+  necessaryStrength: 0
+  price: 0
+  isFind: 0
+  isHooked: 0
+  baseMaterial: {fileID: 0}
+  HookedMaterial: {fileID: 0}
