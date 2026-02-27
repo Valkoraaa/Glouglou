@@ -24,6 +24,7 @@ public class DialogueManager : MonoBehaviour
     private Coroutine typingCoroutine;
     private bool isTyping;
     public bool isInDialogue;
+    public bool openShop;
 
     private void Awake()
     {
@@ -86,6 +87,12 @@ public class DialogueManager : MonoBehaviour
         currentLines = null;
         Character.Instance.canMove = true;
         isInDialogue = false;
+        if(openShop)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            openShop = false;
+            Shop.Instance.OpenShop(true);
+        }
     }
 
     private void Update()

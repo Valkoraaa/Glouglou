@@ -8,6 +8,7 @@ public class NPCDialogue : MonoBehaviour
     [SerializeField] private GameObject interactUI;
     private bool canInteract;
     private bool isInDialogue;
+    [SerializeField] private bool isMerchant;
 
     private void Update()
     {
@@ -15,6 +16,7 @@ public class NPCDialogue : MonoBehaviour
         {
             //test = false;
             //Interact();
+            DialogueManager.Instance.openShop = isMerchant;
             DialogueManager.Instance.StartDialogue(dialogue);
         }
     }
