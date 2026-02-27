@@ -52,8 +52,18 @@ public class DayManager : MonoBehaviour
 
     public void StartOfDay()
     {
+        DayEffect();
         actualThrow = totalThrow;
         EffectManager.Instance.ApplyEffect();
         //StartCoroutine(DayPassing());
+    }
+
+    private void DayEffect()
+    {
+        if (Random.value <= 0.2f)
+        {
+            EffectManager.Instance.effects[0] = true;
+            Debug.Log("wind");
+        }
     }
 }
