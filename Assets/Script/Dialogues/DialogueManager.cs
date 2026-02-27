@@ -14,15 +14,16 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
 
     [Header("Typing Settings")]
-    public float typingSpeed = 0.05f;
-    public float fastTypingSpeed = 0.03f;
-    public float defaultTypingSpeed = 0.05f;
+    public float typingSpeed = 0.1f;
+    public float fastTypingSpeed = 0.05f;
+    public float defaultTypingSpeed = 0.1f;
 
     private List<DialogueLine> currentLines;
     private int index;
 
     private Coroutine typingCoroutine;
     private bool isTyping;
+    public bool isInDialogue;
 
     private void Awake()
     {
@@ -32,6 +33,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(DialogueData data)
     {
+        isInDialogue = true;
+        Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         Character.Instance.canMove = false;
         dialoguePanel.SetActive(true);
         speakerText.text = data.speakerName;
@@ -82,27 +85,34 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
         currentLines = null;
         Character.Instance.canMove = true;
+        isInDialogue = false;
     }
 
     private void Update()
     {
-        if (!dialoguePanel.activeSelf)
+        if (!isInDialogue)
             return;
 
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (Keyboard.current.spaceKey.isPressed && isTyping)
         {
-            if (isTyping)
-            {
+            
                 /*StopCoroutine(typingCoroutine);
                 dialogueText.text = currentLines[index].text;
                 isTyping = false;*/
-                typingSpeed = fastTypingSpeed;
-            }
-            else
-            {
-                NextLine();
-                typingSpeed = defaultTypingSpeed;
-            }
+             typingSpeed = fastTypingSpeed;
+            
+            //else
+            //{
+            //    NextLine();
+            //    typingSpeed = defaultTypingSpeed;
+            //}
+        }
+        else { typingSpeed = defaultTypingSpeed; }
+
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && !isTyping)
+        {
+            NextLine();
+            typingSpeed = defaultTypingSpeed;
         }
     }
 }

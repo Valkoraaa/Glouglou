@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DayManager : MonoBehaviour
 {
-    [SerializeField] private int dayLight;
+    //[SerializeField] private int dayLight;
     public int totalThrow;
     public int actualThrow;
     public static DayManager Instance { get; private set; }
