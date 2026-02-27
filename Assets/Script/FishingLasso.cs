@@ -6,6 +6,10 @@ public class FishingLasso : MonoBehaviour
 {
     //for now lassos collider isnt trigger, can change if needed
     [SerializeField] private GameObject player;
+    [SerializeField] private int Strenght;
+
+    private Fish fish;
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -20,7 +24,10 @@ public class FishingLasso : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //qte ?
-        if (other.gameObject.tag == "fish") { StartCoroutine(getFishToPlayer(other.gameObject.GetComponent<Fish>())); }
+        if (other.gameObject.tag == "fish" && Strenght > other.gameObject.GetComponent<Fish>().necessaryStrength) 
+        {
+            StartCoroutine(getFishToPlayer(other.gameObject.GetComponent<Fish>())); 
+        }
     }
 
     private IEnumerator getFishToPlayer(Fish fish)
@@ -74,5 +81,10 @@ public class FishingLasso : MonoBehaviour
         ThrowLasso.Instance.hasLasso();
 
         //smoother way to get the lasso back in hand?
+    }
+
+    private void UpgradeStrenght()
+    {
+        this.Strenght++;
     }
 }
