@@ -75,7 +75,7 @@ public class EffectManager : MonoBehaviour
     {
         switch (effect)
         {
-            case "wind":
+            case "wind": //a retirer, effet random de jour
                 if (Random.value <= 0.2f)
                 {
                     effects[0] = true;
