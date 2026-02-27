@@ -11,7 +11,7 @@ public class EffectManager : MonoBehaviour
     [SerializeField] private RectTransform downExhaust;
     [SerializeField] private GameObject player;
     private float originalThrowForce;
-    [SerializeField] private bool[] effects = { false, false, false, false }; //more false if more effects
+    public bool[] effects = { false, false, false, false }; //more false if more effects
     public static EffectManager Instance { get; private set; }
     public Vector3 windDirection = Vector3.right;
     public float windStrength = 2f;
@@ -75,7 +75,7 @@ public class EffectManager : MonoBehaviour
     {
         switch (effect)
         {
-            case "wind":
+            case "wind": //a retirer, effet random de jour
                 if (Random.value <= 0.2f)
                 {
                     effects[0] = true;
