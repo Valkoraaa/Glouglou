@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: temporaryEffect
       value: sick
       objectReference: {fileID: 0}
+    - target: {fileID: -7447151795869194389, guid: 463d6d0f11fa34440be72012b6bbc2e1, type: 3}
+      propertyPath: necessaryStrength
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6617480475423059852, guid: 463d6d0f11fa34440be72012b6bbc2e1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.95207953
@@ -100,3 +104,9 @@ MonoBehaviour:
   permanentEffect: 
   isPermanent: 0
   speed: 0
+  necessaryStrength: 0
+  price: 0
+  isFind: 0
+  isHooked: 0
+  baseMaterial: {fileID: 0}
+  HookedMaterial: {fileID: 0}

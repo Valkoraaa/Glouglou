@@ -169,3 +169,9 @@ MonoBehaviour:
   permanentEffect: 
   isPermanent: 0
   speed: 0
+  necessaryStrength: 1
+  price: 0
+  isFind: 0
+  isHooked: 0
+  baseMaterial: {fileID: 0}
+  HookedMaterial: {fileID: 0}

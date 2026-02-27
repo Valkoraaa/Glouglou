@@ -24,7 +24,7 @@ public class FishingLasso : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //qte ?
-        if (other.gameObject.tag == "fish" && Strenght > other.gameObject.GetComponent<Fish>().necessaryStrength) 
+        if (other.gameObject.tag == "fish" && Strenght >= other.gameObject.GetComponent<Fish>().necessaryStrength) 
         {
             StartCoroutine(getFishToPlayer(other.gameObject.GetComponent<Fish>())); 
         }
