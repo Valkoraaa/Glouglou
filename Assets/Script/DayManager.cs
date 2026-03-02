@@ -1,0 +1,55 @@
+using System.Collections;
+using UnityEngine;
+
+public class DayManager : MonoBehaviour
+{
+    [SerializeField] private int dayLight;
+    public int totalThrow;
+    public static DayManager Instance { get; private set; }
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        //StartOfDay(); ?
+        StartCoroutine(DayPassing());
+        Instance = this;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void CountdownThrow()
+    {
+        if (totalThrow <= 0)
+        {
+            //fin de jour
+        }
+    }
+
+    IEnumerator DayPassing()
+    {
+        yield return new WaitForSeconds(dayLight);
+        EndOfDay();
+        Debug.Log("endOfDay");
+
+
+        //temp
+        yield return new WaitForSeconds(120f);
+        StartOfDay();
+        Debug.Log("startOfDay");
+    }
+
+    private void EndOfDay()
+    {
+        //empeche le joueur de pecher et le sors de la zone
+        EffectManager.Instance.ResetEffect();
+    }
+
+    public void StartOfDay()
+    {
+        EffectManager.Instance.ApplyEffect();
+        StartCoroutine(DayPassing());
+    }
+}
