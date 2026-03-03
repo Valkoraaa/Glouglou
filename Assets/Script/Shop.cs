@@ -33,7 +33,7 @@ public class Shop : MonoBehaviour
 
     public void upgradeThrowNumber()
     {
-        FishingLasso.Instance.totalThrow += 1;
+        DayManager.Instance.totalThrow += 1;
     }
 
     public void upgradeForce()

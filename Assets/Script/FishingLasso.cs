@@ -7,8 +7,7 @@ public class FishingLasso : MonoBehaviour
     //for now lassos collider isnt trigger, can change if needed
     [SerializeField] private GameObject player;
     public int strenght;
-    public int totalThrow;
-    public int actualThrow;
+    
 
     private Fish fish;
 
@@ -66,7 +65,8 @@ public class FishingLasso : MonoBehaviour
         EffectManager.Instance.ChooseEffect(fish.TemporaryEffect);
         Destroy(fish.gameObject);
         ThrowLasso.Instance.hasLasso();
-        actualThrow -= 1;
+        DayManager.Instance.actualThrow--;
+        DayManager.Instance.fishCaught++;
         DayManager.Instance.CountdownThrow();
     }
     private IEnumerator MissedThrow()
@@ -91,7 +91,7 @@ public class FishingLasso : MonoBehaviour
 
         ThrowLasso.Instance.hasLasso();
 
-        actualThrow -= 1;
+        DayManager.Instance.actualThrow --;
         DayManager.Instance.CountdownThrow();
 
         //smoother way to get the lasso back in hand?

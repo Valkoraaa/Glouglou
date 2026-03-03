@@ -23,6 +23,7 @@ public class Character : MonoBehaviour
     private Vector3 velocity; 
     private float xRotation = 0f;
     public bool canMove = true;
+    public bool canMoveCam = true;
 
     private void Awake()
     {
@@ -41,12 +42,13 @@ public class Character : MonoBehaviour
     {
         if(canMove)
         {
-            HandleRotation();
+            
             HandleMovement();
 
 
             ApplyCameraPosition();
         }
+        if(canMoveCam) { HandleRotation(); }
         
     }
 

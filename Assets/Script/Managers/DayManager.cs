@@ -7,13 +7,18 @@ public class DayManager : MonoBehaviour
     
     public static DayManager Instance { get; private set; }
     [SerializeField] private DialogueData dialogue;
+    [SerializeField] private DialogueData lostDialogue;
+    public int numberOfFishToCatch;
+    public int fishCaught;
+    public int totalThrow;
+    public int actualThrow;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //StartOfDay(); ?
         //StartCoroutine(DayPassing());
         Instance = this;
-        FishingLasso.Instance.actualThrow = FishingLasso.Instance.totalThrow;
+        actualThrow = totalThrow;
     }
 
     // Update is called once per frame
@@ -24,7 +29,7 @@ public class DayManager : MonoBehaviour
 
     public void CountdownThrow()
     {
-        if (FishingLasso.Instance.actualThrow <= 0)
+        if (actualThrow <= 0 || actualThrow <= numberOfFishToCatch /*|| fishCaught >= numberOfFishToCatch ?????*/)
         {
             EndOfDay();
         }
@@ -45,15 +50,22 @@ public class DayManager : MonoBehaviour
 
     private void EndOfDay()
     {
-        //empeche le joueur de pecher et le sors de la zone
         EffectManager.Instance.ResetEffect();
-        DialogueManager.Instance.StartDialogue(dialogue);
+        
+        if (fishCaught < numberOfFishToCatch)
+        {
+            GameOver();
+        }
+        else { DialogueManager.Instance.StartDialogue(dialogue); } //+ ouvrir la zone etc
+        
     }
 
     public void StartOfDay()
     {
         DayEffect();
-        FishingLasso.Instance.actualThrow = FishingLasso.Instance.totalThrow;
+        actualThrow = totalThrow;
+        fishCaught = 0;
+        numberOfFishToCatch = 10; // a regler
         EffectManager.Instance.ApplyEffect();
         //StartCoroutine(DayPassing());
     }
@@ -65,5 +77,10 @@ public class DayManager : MonoBehaviour
             EffectManager.Instance.effects[0] = true;
             Debug.Log("wind");
         }
+    }
+
+    private void GameOver() //a completer
+    {
+        DialogueManager.Instance.StartDialogue(lostDialogue);
     }
 }

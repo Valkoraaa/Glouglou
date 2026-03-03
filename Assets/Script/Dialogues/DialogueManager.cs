@@ -37,6 +37,7 @@ public class DialogueManager : MonoBehaviour
         isInDialogue = true;
         Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         Character.Instance.canMove = false;
+        Character.Instance.canMoveCam = true;
         dialoguePanel.SetActive(true);
         speakerText.text = data.speakerName;
 
@@ -86,7 +87,8 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
         currentLines = null;
         Character.Instance.canMove = true;
-        if(openShop)
+        Character.Instance.canMoveCam = true;
+        if (openShop)
         {
             openShop = false;
             Shop.Instance.OpenShop(true);

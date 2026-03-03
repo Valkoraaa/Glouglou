@@ -35,6 +35,8 @@ public class ThrowLasso : MonoBehaviour
         if(Keyboard.current.rKey.wasPressedThisFrame) //temp
         {
             hasLasso();
+            Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            Character.Instance.canMove = true;
         }
         if(!hasThrown && !isChild)
         {
@@ -48,6 +50,8 @@ public class ThrowLasso : MonoBehaviour
         
         if (isFishing && Keyboard.current.eKey.wasPressedThisFrame)//Mouse.current.leftButton.isPressed)
         {
+            Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            Character.Instance.canMove = false;
             lasso.transform.SetParent(null);
             rb.isKinematic = false;
             hasThrown = true;
@@ -78,6 +82,8 @@ public class ThrowLasso : MonoBehaviour
 
     public void hasLasso()
     {
+        Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        Character.Instance.canMove = true;
         recallRope = false;
         hasThrown = false;
         rb.isKinematic = true;
