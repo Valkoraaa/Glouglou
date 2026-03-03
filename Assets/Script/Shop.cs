@@ -19,5 +19,11 @@ public class Shop : MonoBehaviour
     public void OpenShop(bool open)
     {
         shopCanvas.SetActive(open);
+        Cursor.visible = open;
+        if(open)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else { Cursor.lockState = CursorLockMode.Locked; }
     }
 }

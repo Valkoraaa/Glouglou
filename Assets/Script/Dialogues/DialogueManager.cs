@@ -89,8 +89,6 @@ public class DialogueManager : MonoBehaviour
         isInDialogue = false;
         if(openShop)
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
             openShop = false;
             Shop.Instance.OpenShop(true);
         }
