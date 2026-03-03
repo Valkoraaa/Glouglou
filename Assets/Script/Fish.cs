@@ -18,12 +18,11 @@ public class Fish : MonoBehaviour
     [SerializeField] private Material HookedMaterial;
 
 
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, transform.up * 500f);
-    }
-
+    }*/
 
     public string Name
     {
