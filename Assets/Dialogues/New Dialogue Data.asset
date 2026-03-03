@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speakerName: TEST
   lines:
-  - text: dddddddddddddddddddddddddddddddddddddddddddddddd
-  - text: qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+  - text: ddd
+  - text: qqq

@@ -6,9 +6,18 @@ public class FishingLasso : MonoBehaviour
 {
     //for now lassos collider isnt trigger, can change if needed
     [SerializeField] private GameObject player;
-    [SerializeField] private int Strenght;
+    public int strenght;
+    public int totalThrow;
+    public int actualThrow;
 
     private Fish fish;
+
+    public static FishingLasso Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
 
     private void OnCollisionEnter(Collision collision)
@@ -24,7 +33,7 @@ public class FishingLasso : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //qte ?
-        if (other.gameObject.tag == "fish" && Strenght >= other.gameObject.GetComponent<Fish>().necessaryStrength) 
+        if (other.gameObject.tag == "fish" && strenght >= other.gameObject.GetComponent<Fish>().necessaryStrength) 
         {
             StartCoroutine(getFishToPlayer(other.gameObject.GetComponent<Fish>())); 
         }
@@ -57,7 +66,7 @@ public class FishingLasso : MonoBehaviour
         EffectManager.Instance.ChooseEffect(fish.TemporaryEffect);
         Destroy(fish.gameObject);
         ThrowLasso.Instance.hasLasso();
-        DayManager.Instance.actualThrow -= 1;
+        actualThrow -= 1;
         DayManager.Instance.CountdownThrow();
     }
     private IEnumerator MissedThrow()
@@ -82,19 +91,9 @@ public class FishingLasso : MonoBehaviour
 
         ThrowLasso.Instance.hasLasso();
 
-        DayManager.Instance.actualThrow -= 1;
+        actualThrow -= 1;
         DayManager.Instance.CountdownThrow();
 
         //smoother way to get the lasso back in hand?
-    }
-
-    public void UpgradeStrenght()
-    {
-        this.Strenght++;
-    }
-
-    public void UpgradeNumberOfThrow()
-    {
-        DayManager.Instance.actualThrow += 5;
     }
 }

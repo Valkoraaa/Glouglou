@@ -4,8 +4,7 @@ using UnityEngine;
 public class DayManager : MonoBehaviour
 {
     //[SerializeField] private int dayLight;
-    public int totalThrow;
-    public int actualThrow;
+    
     public static DayManager Instance { get; private set; }
     [SerializeField] private DialogueData dialogue;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -14,6 +13,7 @@ public class DayManager : MonoBehaviour
         //StartOfDay(); ?
         //StartCoroutine(DayPassing());
         Instance = this;
+        FishingLasso.Instance.actualThrow = FishingLasso.Instance.totalThrow;
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class DayManager : MonoBehaviour
 
     public void CountdownThrow()
     {
-        if (actualThrow <= 0)
+        if (FishingLasso.Instance.actualThrow <= 0)
         {
             EndOfDay();
         }
@@ -53,7 +53,7 @@ public class DayManager : MonoBehaviour
     public void StartOfDay()
     {
         DayEffect();
-        actualThrow = totalThrow;
+        FishingLasso.Instance.actualThrow = FishingLasso.Instance.totalThrow;
         EffectManager.Instance.ApplyEffect();
         //StartCoroutine(DayPassing());
     }

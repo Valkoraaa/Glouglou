@@ -86,7 +86,6 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
         currentLines = null;
         Character.Instance.canMove = true;
-        isInDialogue = false;
         if(openShop)
         {
             openShop = false;

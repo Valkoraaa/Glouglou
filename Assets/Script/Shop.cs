@@ -24,6 +24,25 @@ public class Shop : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
         }
-        else { Cursor.lockState = CursorLockMode.Locked; }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            DialogueManager.Instance.isInDialogue = false;
+        }
+    }
+
+    public void upgradeThrowNumber()
+    {
+        FishingLasso.Instance.totalThrow += 1;
+    }
+
+    public void upgradeForce()
+    {
+        FishingLasso.Instance.strenght += 1;
+    }
+
+    public void upgradeMoney()
+    {
+        //to do
     }
 }
