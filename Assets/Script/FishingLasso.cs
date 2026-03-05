@@ -63,6 +63,7 @@ public class FishingLasso : MonoBehaviour
         // raccrocher le lasso au joueur et lui donner le poissson + qte? ;; suite du code temporaire
         //animation?
         EffectManager.Instance.ChooseEffect(fish.TemporaryEffect);
+        Shop.Instance.playerMoney += fish.price;
         Destroy(fish.gameObject);
         ThrowLasso.Instance.hasLasso();
         DayManager.Instance.actualThrow--;

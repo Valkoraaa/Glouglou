@@ -37,7 +37,7 @@ public class DialogueManager : MonoBehaviour
         isInDialogue = true;
         Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         Character.Instance.canMove = false;
-        Character.Instance.canMoveCam = true;
+        Character.Instance.canMoveCam = false;
         dialoguePanel.SetActive(true);
         speakerText.text = data.speakerName;
 

@@ -10,7 +10,7 @@ public class Fish : MonoBehaviour
     [SerializeField] private int isPermanent;
     [SerializeField] private int speed;
     [SerializeField] public int necessaryStrength;
-    [SerializeField] private int price;
+    public int price;
 
     [SerializeField] private bool isFind;
     [SerializeField] private bool isHooked; 
