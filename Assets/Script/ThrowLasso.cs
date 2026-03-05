@@ -52,6 +52,7 @@ public class ThrowLasso : MonoBehaviour
         {
             Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = true;
             Character.Instance.canMove = false;
+            //Character.Instance.canMoveCam = false; ?
             lasso.transform.SetParent(null);
             rb.isKinematic = false;
             hasThrown = true;

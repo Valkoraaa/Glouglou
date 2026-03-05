@@ -9,16 +9,20 @@ public class DayManager : MonoBehaviour
     [SerializeField] private DialogueData dialogue;
     [SerializeField] private DialogueData lostDialogue;
     public int numberOfFishToCatch;
+    public int numberOfFailsAllowed;
     public int fishCaught;
-    public int totalThrow;
-    public int actualThrow;
+    public int numberOfFails;
+    //public int totalThrow;
+    //public int actualThrow;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //StartOfDay(); ?
         //StartCoroutine(DayPassing());
         Instance = this;
-        actualThrow = totalThrow;
+        //actualThrow = totalThrow;
+        numberOfFails = numberOfFailsAllowed;
     }
 
     // Update is called once per frame
@@ -29,7 +33,7 @@ public class DayManager : MonoBehaviour
 
     public void CountdownThrow()
     {
-        if (actualThrow <= 0 || actualThrow <= numberOfFishToCatch /*|| fishCaught >= numberOfFishToCatch ?????*/)
+        if (numberOfFails >= numberOfFailsAllowed /*|| fishCaught >= numberOfFishToCatch || actualThrow <= 0 ?????*/) //changer numberOfFish... en nombre de raté
         {
             EndOfDay();
         }
@@ -63,7 +67,8 @@ public class DayManager : MonoBehaviour
     public void StartOfDay()
     {
         DayEffect();
-        actualThrow = totalThrow;
+        //actualThrow = totalThrow;
+        numberOfFails = numberOfFailsAllowed;
         fishCaught = 0;
         numberOfFishToCatch = 10; // a regler
         EffectManager.Instance.ApplyEffect();
@@ -79,7 +84,7 @@ public class DayManager : MonoBehaviour
         }
     }
 
-    private void GameOver() //a completer
+    private void GameOver() //a completer //////////
     {
         DialogueManager.Instance.StartDialogue(lostDialogue);
     }

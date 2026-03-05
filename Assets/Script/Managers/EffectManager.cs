@@ -103,6 +103,9 @@ public class EffectManager : MonoBehaviour
                     Debug.Log("sick");
                 }
                 break;
+            case "none":
+                Debug.Log("no effect");
+                break;
         }
     }
 

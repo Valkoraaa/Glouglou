@@ -9,7 +9,8 @@ public class Shop : MonoBehaviour
     [SerializeField] private GameObject notEnoughMoneyCanvas;
 
 
-    public int playerMoney;
+    public float playerMoney;
+    public float moneyMultiplier = 1;
 
     //a definir
     private int priceThrow = 50;
@@ -27,7 +28,7 @@ public class Shop : MonoBehaviour
         
     }
 
-    public void OpenShop(bool open)
+    public void OpenShop(bool open) //true to open, false to close
     {
         shopCanvas.SetActive(open);
         Cursor.visible = open;
@@ -44,12 +45,15 @@ public class Shop : MonoBehaviour
 
 
     //scaling de prix et prix de base a définir //////////////////////////////////////////////////////
+
+    //upgrades
     public void upgradeThrowNumber()
     {
         if(playerMoney >= priceThrow)
         {
             playerMoney -= priceThrow;
-            DayManager.Instance.totalThrow += 1;
+            //DayManager.Instance.totalThrow += 1;
+            DayManager.Instance.numberOfFailsAllowed += 1;
             priceThrow += 50;
             OpenShop(false);
         }
@@ -70,9 +74,9 @@ public class Shop : MonoBehaviour
 
     public void upgradeMoney()
     {
-        //to do
         if(playerMoney >= priceMoney)
         {
+            moneyMultiplier += 0.1f;
             playerMoney -= priceMoney;
             priceMoney += 100;
             OpenShop(false);
