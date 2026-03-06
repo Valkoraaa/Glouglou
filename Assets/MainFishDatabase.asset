@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd0f79f0ae3c89746a922b769c61e92d, type: 3}
+  m_Name: MainFishDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::FishDatabaseSO
+  commonFish:
+  - {fileID: -7861193620136895478, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
+  - {fileID: 7215713640901499415, guid: e5d4f3f5b99a7cb49b8f47f7d46f2540, type: 3}
+  - {fileID: 1803179551096243238, guid: 08b24a1b1f36ed94ca84ca5eb9aaca0c, type: 3}
+  - {fileID: 7478635662074349162, guid: 83b7e4b570785824c9ce5a08ad0dc22d, type: 3}
+  - {fileID: 8356013461417035346, guid: 7782a8e4f0328df4d94d0afe1d4846a1, type: 3}
+  - {fileID: 5060219133880997702, guid: 55b78b30c2e8b584ebb1cb2d091a3a29, type: 3}
+  - {fileID: 3064957078644244800, guid: 23316031f6c135a46a3eee7731f3c9d2, type: 3}
+  rareFish:
+  - {fileID: -6511046390730039640, guid: ca0386b58e133c14fa21b0f541baeb2d, type: 3}
+  - {fileID: 5066551190558095704, guid: 1e4653db3e72fd24aa401ab3decc586f, type: 3}
+  - {fileID: 2652476128331595976, guid: a75e40397b0f35e48bbd23c48574ec3e, type: 3}
+  - {fileID: 2043486632786443207, guid: e36d07a4e29acdd43963f73f95b668e0, type: 3}
+  epicFish:
+  - {fileID: -7447151795869194389, guid: 463d6d0f11fa34440be72012b6bbc2e1, type: 3}
+  - {fileID: 1123780083190515803, guid: 0b9e1463d44451644906dbcca2280ecd, type: 3}
+  - {fileID: 7815976910691026810, guid: db02a9d8d0bad7248a395ff842b45566, type: 3}
+  legendaryFish:
+  - {fileID: 8386891196216287471, guid: fbcbc2a1e8b98054a8c422256aa657d1, type: 3}

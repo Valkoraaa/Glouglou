@@ -86,12 +86,15 @@ public class DialogueManager : MonoBehaviour
     {
         dialoguePanel.SetActive(false);
         currentLines = null;
-        Character.Instance.canMove = true;
-        Character.Instance.canMoveCam = true;
         if (openShop)
         {
             openShop = false;
             Shop.Instance.OpenShop(true);
+        }
+        else
+        {
+            Character.Instance.canMove = true;
+            Character.Instance.canMoveCam = true;
         }
     }
 

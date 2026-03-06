@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
@@ -6,40 +8,8 @@ using UnityEngine.InputSystem;
 
 public class SpawnFish : MonoBehaviour
 {
-    //50% to spawn
     [SerializeField]
-    private GameObject commonFish1;
-    [SerializeField]
-    private GameObject commonFish2;
-    [SerializeField]
-    private GameObject commonFish3;
-    [SerializeField]
-    private GameObject commonFish4;
-    [SerializeField]
-    private GameObject commonFish5;
-    [SerializeField]
-    private GameObject commonFish6;
-    [SerializeField]
-    private GameObject commonFish7;
-    //30% to spawn
-    [SerializeField]
-    private GameObject rareFish1;
-    [SerializeField]
-    private GameObject rareFish2;
-    [SerializeField]
-    private GameObject rareFish3;
-    [SerializeField]
-    private GameObject rareFish4;
-    //15% to spawn
-    [SerializeField]
-    private GameObject epicFish1;
-    [SerializeField]
-    private GameObject epicFish2;
-    [SerializeField]
-    private GameObject epicFish3;
-    //5% to spawn
-    [SerializeField]
-    private GameObject legendaryFish;
+    private FishDatabaseSO fishDatabase;
 
     [Header("Spawn Settings")]
     [SerializeField] private Vector3 zoneSize;
@@ -59,7 +29,7 @@ public class SpawnFish : MonoBehaviour
     {
         for (int i = 0; i < fishNumber; i++)
         {
-            GameObject fishToInstantiate = GetRandomFish();
+            Fish fishToInstantiate = GetRandomFish();
 
             Vector3 randomLocalPos = new Vector3(
                 Random.Range(-zoneSize.x / 2f, zoneSize.x / 2f),
@@ -72,7 +42,7 @@ public class SpawnFish : MonoBehaviour
             // On force la hauteur du NavMesh
             spawnPos.y = navMeshSurface.position.y;
 
-            GameObject instantiated = Instantiate(
+            Fish instantiated = Instantiate(
                 fishToInstantiate,
                 spawnPos,
                 Quaternion.identity,
@@ -86,35 +56,27 @@ public class SpawnFish : MonoBehaviour
         }
     }
 
-    private GameObject GetRandomFish()
+    private Fish GetRandomFish()
     {
         int randRarity = Random.Range(0, 100);
+        List<Fish> targetList;
 
-        if (randRarity <= 50)
+        if (randRarity < 50)
         {
-            GameObject[] commons = {
-                commonFish1, commonFish2, commonFish3,
-                commonFish4, commonFish5, commonFish6, commonFish7
-            };
-            return commons[Random.Range(0, commons.Length)];
+            targetList = fishDatabase.commonFish;
         }
-        else if (randRarity <= 80)
+        else if (randRarity < 80)
         {
-            GameObject[] rares = {
-                rareFish1, rareFish2, rareFish3, rareFish4
-            };
-            return rares[Random.Range(0, rares.Length)];
+            targetList = fishDatabase.rareFish; 
         }
-        else if (randRarity <= 95)
-        {
-            GameObject[] epics = {
-                epicFish1, epicFish2, epicFish3
-            };
-            return epics[Random.Range(0, epics.Length)];
+        else if (randRarity < 95)
+        { 
+            targetList = fishDatabase.epicFish;
         }
         else
-        {
-            return legendaryFish;
+        { 
+            targetList = fishDatabase.legendaryFish;
         }
+        return targetList[Random.Range(0, targetList.Count)];
     }
 }

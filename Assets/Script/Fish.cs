@@ -10,11 +10,15 @@ public class Fish : MonoBehaviour
     [SerializeField] private int isPermanent;
     [SerializeField] private int speed;
     [SerializeField] public int necessaryStrength;
+
+
+    [SerializeField] private bool isBadForToday;
+
     public float price; //?
 
     [SerializeField] private bool isFind;
     [SerializeField] private bool isHooked; 
-    [SerializeField] private Material baseMaterial;
+    [SerializeField] public Material baseMaterial;
     [SerializeField] private Material HookedMaterial;
 
 
@@ -30,6 +34,19 @@ public class Fish : MonoBehaviour
         get { return name; }
         set { name = value; }
     }
+
+    public string Species
+    {
+        get { return species; }
+        set { species = value; }
+    }
+
+    public bool IsBadForToday
+    {
+        get { return isBadForToday; }
+        set { isBadForToday = value; }
+    }
+
 
     public float Size
     {

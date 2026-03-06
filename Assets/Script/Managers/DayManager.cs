@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DayManager : MonoBehaviour
@@ -12,6 +13,18 @@ public class DayManager : MonoBehaviour
     public int numberOfFailsAllowed;
     public int fishCaught;
     public int numberOfFails;
+
+    [SerializeField] 
+    private FishDatabaseSO fishDatabaseSO;
+
+    [SerializeField]
+    private GameObject BadFishOneDisplay;
+    [SerializeField]
+    private GameObject BadFishTwoDisplay;
+
+
+
+    [SerializeField] private int numberOfBadFish;
     //public int totalThrow;
     //public int actualThrow;
     
@@ -22,7 +35,8 @@ public class DayManager : MonoBehaviour
         //StartCoroutine(DayPassing());
         Instance = this;
         //actualThrow = totalThrow;
-        numberOfFails = numberOfFailsAllowed;
+        numberOfFails = 0;
+        StartOfDay();
     }
 
     // Update is called once per frame
@@ -66,6 +80,7 @@ public class DayManager : MonoBehaviour
 
     public void StartOfDay()
     {
+        DefineBadFish();
         DayEffect();
         //actualThrow = totalThrow;
         numberOfFails = numberOfFailsAllowed;
@@ -87,5 +102,48 @@ public class DayManager : MonoBehaviour
     private void GameOver() //a completer //////////
     {
         DialogueManager.Instance.StartDialogue(lostDialogue);
+    }
+
+    private void DefineBadFish()
+    {
+        int chooseRarity;
+
+        for(int i = 0; i < numberOfBadFish; i++)
+        {
+            chooseRarity = Random.Range(0, 4);
+            switch (chooseRarity)
+            {
+                case 0:
+                    ChangeStatus(fishDatabaseSO.commonFish, i);
+                    break;
+                case 1:
+                    ChangeStatus(fishDatabaseSO.rareFish, i);
+                    break;
+                case 2:
+                    ChangeStatus(fishDatabaseSO.epicFish, i);
+                    break;
+                case 3:
+                    ChangeStatus(fishDatabaseSO.legendaryFish, i);
+                    break;
+            }
+            
+        }
+    }
+
+    private void ChangeStatus(List<Fish> rarityList, int i)
+    {
+        int chooseFish;
+        chooseFish = Random.Range(0, rarityList.Count);
+        rarityList[chooseFish].IsBadForToday = true;
+        Debug.Log(rarityList[chooseFish].Species);
+        //if (i % 2 == 0)
+        //{
+            BadFishOneDisplay.GetComponent<MeshRenderer>().material = rarityList[chooseFish].baseMaterial;
+        //}
+        //else
+        //{
+            BadFishTwoDisplay.GetComponent<MeshRenderer>().material = rarityList[chooseFish].baseMaterial;
+        //}
+
     }
 }

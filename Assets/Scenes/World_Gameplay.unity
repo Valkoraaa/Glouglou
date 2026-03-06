@@ -338,6 +338,10 @@ PrefabInstance:
       value: 247.2
       objectReference: {fileID: 0}
     - target: {fileID: 4363949066925832875, guid: 1895a44e91ddc73449406df9147effd0, type: 3}
+      propertyPath: fishDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: b1c07f89227da844f99c67d34ee5df2a, type: 2}
+    - target: {fileID: 4363949066925832875, guid: 1895a44e91ddc73449406df9147effd0, type: 3}
       propertyPath: navMeshSurface
       value: 
       objectReference: {fileID: 1766579420}
@@ -817,7 +821,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4436499326437563666, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: mouseSensitivity
-      value: 2
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5995406920284088990, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -861,7 +865,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8248928185420256525, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: strenght
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8248928185420256525, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: totalThrow

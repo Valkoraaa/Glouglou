@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af443ed027608c4f9d3da032d35f7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fish
-  species: 
+  species: Sardine
   size: 0
   weight: 0
   temporaryEffect: exhaust
@@ -170,8 +170,9 @@ MonoBehaviour:
   isPermanent: 0
   speed: 0
   necessaryStrength: 0
+  isBadForToday: 0
   price: 0
   isFind: 0
   isHooked: 0
-  baseMaterial: {fileID: 0}
+  baseMaterial: {fileID: 2100000, guid: 7c92914b96dca0c408ce84d2c4fa5233, type: 2}
   HookedMaterial: {fileID: 0}

@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -6511046390730039640, guid: ca0386b58e133c14fa21b0f541baeb2d, type: 3}
+      propertyPath: species
+      value: Langouste
+      objectReference: {fileID: 0}
+    - target: {fileID: -6511046390730039640, guid: ca0386b58e133c14fa21b0f541baeb2d, type: 3}
       propertyPath: necessaryStrength
       value: 1
       objectReference: {fileID: 0}
@@ -97,6 +101,7 @@ MonoBehaviour:
   isPermanent: 0
   speed: 0
   necessaryStrength: 0
+  isBadForToday: 0
   price: 0
   isFind: 0
   isHooked: 0

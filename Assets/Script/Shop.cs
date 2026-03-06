@@ -38,6 +38,8 @@ public class Shop : MonoBehaviour
         }
         else
         {
+            Character.Instance.canMove = true;
+            Character.Instance.canMoveCam = true;
             Cursor.lockState = CursorLockMode.Locked;
             DialogueManager.Instance.isInDialogue = false;
         }
