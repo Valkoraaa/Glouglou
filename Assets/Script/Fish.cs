@@ -28,13 +28,13 @@ public class Fish : MonoBehaviour
     {
         Physics.Raycast(Vector3.zero, Vector3.up);
     }
-    void OnDrawGizmos()
+   /* void OnDrawGizmos()
     {
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         Gizmos.color = Color.red;
         Gizmos.DrawRay(ray.origin, ray.direction * 50f);
-    }
-
+    } */
+    
 
     public string Name
     {
