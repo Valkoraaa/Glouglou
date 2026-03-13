@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: -7861193620136895478, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
       propertyPath: baseMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: f65b7227b02d73f48984c8f667bbc590, type: 2}
+      objectReference: {fileID: 2100000, guid: 0c2c62594ea808d48bb0aee028f545fe, type: 2}
     - target: {fileID: -7861193620136895478, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
       propertyPath: necessaryStrength
       value: 0

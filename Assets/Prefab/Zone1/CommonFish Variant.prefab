@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: -7861193620136895478, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
       propertyPath: baseMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 7ba3b685891151c4e98662d5d4fba999, type: 2}
+      objectReference: {fileID: 2100000, guid: fde51e96a5b715447bdb83c4a838b38f, type: 2}
     - target: {fileID: -7861193620136895478, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
       propertyPath: temporaryEffect
       value: exhaust

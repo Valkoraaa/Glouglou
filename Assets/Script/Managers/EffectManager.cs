@@ -140,7 +140,14 @@ public class EffectManager : MonoBehaviour
 
     public void Exhaust (bool wantToActivate)
     {
-        exhaustEnumerator = StartCoroutine(EyesClosing(wantToActivate));
+        if (upExhaust == null)
+        {
+            return;
+        }
+        else
+        {
+            exhaustEnumerator = StartCoroutine(EyesClosing(wantToActivate));
+        }
         activateExhaust = false;
         desactivateExhaust = false;
         //tous les poissons sont les memes?
@@ -157,6 +164,7 @@ public class EffectManager : MonoBehaviour
 
     private IEnumerator EyesClosing(bool opening)
     {
+
         float duration = 1f;
         float elapsed = 0f;
         float actualRange = exhaustRange;

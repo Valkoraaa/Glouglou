@@ -136,14 +136,14 @@ public class DayManager : MonoBehaviour
         chooseFish = Random.Range(0, rarityList.Count);
         rarityList[chooseFish].IsBadForToday = true;
         Debug.Log(rarityList[chooseFish].Species);
-        //if (i % 2 == 0)
-        //{
+        if (i % 2 == 0)
+        {
             BadFishOneDisplay.GetComponent<MeshRenderer>().material = rarityList[chooseFish].baseMaterial;
-        //}
-        //else
-        //{
+        }
+        else
+        {
             BadFishTwoDisplay.GetComponent<MeshRenderer>().material = rarityList[chooseFish].baseMaterial;
-        //}
+        }
 
     }
 }

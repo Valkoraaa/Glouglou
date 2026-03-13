@@ -174,5 +174,5 @@ MonoBehaviour:
   price: 0
   isFind: 0
   isHooked: 0
-  baseMaterial: {fileID: -876546973899608171, guid: 72b4859e99f6d374e9bd5c83f4bb7c29, type: 3}
+  baseMaterial: {fileID: 2100000, guid: f65b7227b02d73f48984c8f667bbc590, type: 2}
   HookedMaterial: {fileID: 0}
