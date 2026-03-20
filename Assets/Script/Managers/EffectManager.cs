@@ -16,7 +16,7 @@ public class EffectManager : MonoBehaviour
 
     [SerializeField] private GameObject player;
     private float originalThrowForce;
-    public bool[] effects = { false, false, false, false }; //more false if more effects
+    public bool[] effects = { false, false, false, false, false }; //more false if more effects
     public static EffectManager Instance { get; private set; }
     public Vector3 windDirection = Vector3.right;
     public float windStrength = 2f;
@@ -82,37 +82,20 @@ public class EffectManager : MonoBehaviour
     {
         switch (effect)
         {
-            case "depression":
-                rain.gameObject.SetActive(true);
-                depressionEffect.gameObject.SetActive(true);
-                break;
-            /*case "wind":
-                if (Random.value <= 0.2f)
-                {
-                    effects[0] = true;
-                    Debug.Log("wind");
-                }
-                break;*/
             case "drunk":
-                if (Random.value <= 0.2f)
-                {
-                    effects[1] = true;
-                    Debug.Log("drunk");
-                }
+                effects[1] = true;
+                Debug.Log("drunk");
                 break;
             case "exhaust":
-                if (Random.value <= 0.2f)
-                {
-                    effects[2] = true;
-                    Debug.Log("exhaust");
-                }
+                effects[2] = true;
+                Debug.Log("exhaust");
                 break;
             case "sick":
-                if (Random.value <= 0.2f)
-                {
-                    effects[3] = true;
-                    Debug.Log("sick");
-                }
+                effects[3] = true;
+                Debug.Log("sick");
+                break;
+            case "depression":
+                effects[4] = true;
                 break;
             case "none":
                 Debug.Log("no effect");
@@ -134,6 +117,7 @@ public class EffectManager : MonoBehaviour
         Drunk(effects[1]);
         Exhaust(effects[2]);
         Sick(effects[3]);
+        Depression(effects[4]);
     }
 
     private void Wind(bool wantToActivate)
@@ -171,6 +155,12 @@ public class EffectManager : MonoBehaviour
         //leger canvas vert?
     }
 
+
+    private void Depression(bool wantToActivate)
+    {
+        rain.gameObject.SetActive(true);
+        depressionEffect.gameObject.SetActive(true);
+    }
 
 
     private IEnumerator EyesClosing(bool opening)
