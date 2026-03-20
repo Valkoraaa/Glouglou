@@ -43,12 +43,16 @@ public class EffectManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        originalThrowForce = ThrowLasso.Instance.force;
 
         rain.gameObject.SetActive(false);
         depressionEffect.gameObject.SetActive(false);
         //volume.profile.TryGet(out lens); //drunk effect test
         //volume.profile.TryGet(out chroma);
+    }
+
+    private void Start()
+    {
+        originalThrowForce = ThrowLasso.Instance.force;
     }
 
     public void Update() //temp
