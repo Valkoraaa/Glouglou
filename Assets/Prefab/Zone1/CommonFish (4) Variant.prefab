@@ -21,6 +21,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7861193620136895478, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
+      propertyPath: temporaryEffect
+      value: depression
+      objectReference: {fileID: 0}
+    - target: {fileID: -7861193620136895478, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
       propertyPath: necessaryStrength
       value: 0
       objectReference: {fileID: 0}
