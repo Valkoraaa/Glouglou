@@ -5,7 +5,10 @@ public class Fish : MonoBehaviour
     [SerializeField] private string species;
     [SerializeField] private float size;
     [SerializeField] private float weight;
+
+    //wind, drunk, ...
     [SerializeField] private string temporaryEffect;
+    
     [SerializeField] private string permanentEffect;
     [SerializeField] private int isPermanent;
     [SerializeField] private int speed;

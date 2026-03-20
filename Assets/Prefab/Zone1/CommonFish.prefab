@@ -165,7 +165,7 @@ MonoBehaviour:
   species: Sardine
   size: 0
   weight: 0
-  temporaryEffect: exhaust
+  temporaryEffect: depression
   permanentEffect: 
   isPermanent: 0
   speed: 0

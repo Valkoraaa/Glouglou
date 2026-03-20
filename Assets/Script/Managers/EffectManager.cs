@@ -9,6 +9,11 @@ public class EffectManager : MonoBehaviour
     [Header("Références")]
     [SerializeField] private RectTransform upExhaust;
     [SerializeField] private RectTransform downExhaust;
+
+    [SerializeField] private ParticleSystem rain;
+    [SerializeField] private Volume depressionEffect;
+
+
     [SerializeField] private GameObject player;
     private float originalThrowForce;
     public bool[] effects = { false, false, false, false }; //more false if more effects
@@ -40,6 +45,8 @@ public class EffectManager : MonoBehaviour
         Instance = this;
         originalThrowForce = ThrowLasso.Instance.force;
 
+        rain.gameObject.SetActive(false);
+        depressionEffect.gameObject.SetActive(false);
         volume.profile.TryGet(out lens); //drunk effect test
         volume.profile.TryGet(out chroma);
     }
@@ -75,13 +82,17 @@ public class EffectManager : MonoBehaviour
     {
         switch (effect)
         {
-            case "wind": //a retirer, effet random de jour
+            case "depression":
+                rain.gameObject.SetActive(true);
+                depressionEffect.gameObject.SetActive(true);
+                break;
+            /*case "wind":
                 if (Random.value <= 0.2f)
                 {
                     effects[0] = true;
                     Debug.Log("wind");
                 }
-                break;
+                break;*/
             case "drunk":
                 if (Random.value <= 0.2f)
                 {

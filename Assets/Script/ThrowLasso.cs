@@ -3,13 +3,14 @@ using UnityEngine.InputSystem;
 
 public class ThrowLasso : MonoBehaviour
 {
-    public bool isFishing;
+    //public bool isFishing;
 
     [Header("Références")]
     [SerializeField] private GameObject lasso;
     public Rigidbody rb;
     public Camera cam;
     private BoxCollider boxCollider;
+    private Rigidbody rbPlayer;
 
     [Header("Paramètres")]
     public float force = 15f;
@@ -25,6 +26,8 @@ public class ThrowLasso : MonoBehaviour
     }
     void Start()
     {
+        rbPlayer = Character.Instance.gameObject.GetComponent<Rigidbody>();
+        force = 15; //usefull ? 
         rb = lasso.GetComponent<Rigidbody>();
         rb.isKinematic = true;
         boxCollider = lasso.GetComponent<BoxCollider>();
@@ -48,9 +51,9 @@ public class ThrowLasso : MonoBehaviour
         }
 
         
-        if (isFishing && Keyboard.current.eKey.wasPressedThisFrame)//Mouse.current.leftButton.isPressed)
+        if (!hasThrown && Keyboard.current.eKey.wasPressedThisFrame)//Mouse.current.leftButton.isPressed)
         {
-            Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            rbPlayer.isKinematic = true;
             Character.Instance.canMove = false;
             //Character.Instance.canMoveCam = false; ?
             lasso.transform.SetParent(null);

@@ -83,7 +83,7 @@ public class DayManager : MonoBehaviour
         DefineBadFish();
         DayEffect();
         //actualThrow = totalThrow;
-        numberOfFails = numberOfFailsAllowed;
+        numberOfFails = 0;
         fishCaught = 0;
         numberOfFishToCatch = 10; // a regler
         EffectManager.Instance.ApplyEffect();

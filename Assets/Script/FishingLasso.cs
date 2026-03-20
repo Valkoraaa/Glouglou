@@ -32,7 +32,7 @@ public class FishingLasso : MonoBehaviour
     private void OnTriggerEnter(Collider other) //to check if you hit a fish
     {
         //qte ?
-        if (other.gameObject.tag == "fish" && strenght >= other.gameObject.GetComponent<Fish>().necessaryStrength) 
+        if (other.gameObject.tag == "fish" && strenght >= other.gameObject.GetComponent<Fish>().necessaryStrength && !ThrowLasso.Instance.recallRope) 
         {
             StartCoroutine(getFishToPlayer(other.gameObject.GetComponent<Fish>())); 
         }
