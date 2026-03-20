@@ -47,8 +47,8 @@ public class EffectManager : MonoBehaviour
 
         rain.gameObject.SetActive(false);
         depressionEffect.gameObject.SetActive(false);
-        volume.profile.TryGet(out lens); //drunk effect test
-        volume.profile.TryGet(out chroma);
+        //volume.profile.TryGet(out lens); //drunk effect test
+        //volume.profile.TryGet(out chroma);
     }
 
     public void Update() //temp
@@ -99,6 +99,11 @@ public class EffectManager : MonoBehaviour
                 break;
             case "none":
                 Debug.Log("no effect");
+
+                break;
+            default:
+                Debug.Log("default");
+
                 break;
         }
     }
@@ -161,7 +166,6 @@ public class EffectManager : MonoBehaviour
         rain.gameObject.SetActive(true);
         depressionEffect.gameObject.SetActive(true);
     }
-
 
     private IEnumerator EyesClosing(bool opening)
     {

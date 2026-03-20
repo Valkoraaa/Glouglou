@@ -165,12 +165,12 @@ MonoBehaviour:
   species: Limande
   size: 0
   weight: 0
-  temporaryEffect: depression
+  temporaryEffect: 
   permanentEffect: 
   isPermanent: 0
   speed: 0
   necessaryStrength: 2
-  isBadForToday: 0
+  isBadForToday: 1
   price: 0
   isFind: 0
   isHooked: 0

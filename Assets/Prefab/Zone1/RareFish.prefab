@@ -165,7 +165,7 @@ MonoBehaviour:
   species: Hareng
   size: 0
   weight: 0
-  temporaryEffect: depression
+  temporaryEffect: 
   permanentEffect: 
   isPermanent: 0
   speed: 0
