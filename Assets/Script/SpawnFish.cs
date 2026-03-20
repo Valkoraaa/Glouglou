@@ -1,155 +1,82 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 public class SpawnFish : MonoBehaviour
 {
-    //50% to spawn
     [SerializeField]
-    private GameObject commonFish1;
-    [SerializeField]
-    private GameObject commonFish2;
-    [SerializeField]
-    private GameObject commonFish3;
-    [SerializeField]
-    private GameObject commonFish4;
-    [SerializeField]
-    private GameObject commonFish5;
-    [SerializeField]
-    private GameObject commonFish6;
-    [SerializeField]
-    private GameObject commonFish7;
-    //30% to spawn
-    [SerializeField]
-    private GameObject rareFish1;
-    [SerializeField]
-    private GameObject rareFish2;
-    [SerializeField]
-    private GameObject rareFish3;
-    [SerializeField]
-    private GameObject rareFish4;
-    //15% to spawn
-    [SerializeField]
-    private GameObject epicFish1;
-    [SerializeField]
-    private GameObject epicFish2;
-    [SerializeField]
-    private GameObject epicFish3;
-    //5% to spawn
-    [SerializeField]
-    private GameObject legendaryFish;
+    private FishDatabaseSO fishDatabase;
 
-    [SerializeField]
-    private Vector3 zoneSize;
+    [Header("Spawn Settings")]
+    [SerializeField] private Vector3 zoneSize;
+    [SerializeField] private int fishNumber;
 
-    [SerializeField]
-    private int fishNumber;
+    [Header("NavMesh Reference")]
+    [SerializeField] private Transform navMeshSurface;
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, zoneSize);
+        Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.DrawWireCube(Vector3.zero, zoneSize);
     }
 
     private void Start()
     {
-        GameObject fishToInstantiate;
-
-        for(int i = 0; i < fishNumber; i++)
+        for (int i = 0; i < fishNumber; i++)
         {
-            int randRarity = Random.Range(0, 100);
-            if (randRarity <= 50)
-            {
-                int randFishCommon = Random.Range(0, 100);
-                switch (randFishCommon)
-                {
-                    case <= 14:
-                        fishToInstantiate = commonFish1;
-                        break;
-                    case <= 28:
-                        fishToInstantiate = commonFish2;
-                        break;
-                    case <= 42:
-                        fishToInstantiate = commonFish3;
-                        break;
-                    case <= 56:
-                        fishToInstantiate = commonFish4;
-                        break;
-                    case <= 70:
-                        fishToInstantiate = commonFish5;
-                        break;
-                    case <= 84:
-                        fishToInstantiate = commonFish6;
-                        break;
-                    case <= 98:
-                        fishToInstantiate = commonFish7;
-                        break;
-                    default:
-                        fishToInstantiate = commonFish1;
-                        break;
-                }
-            }
-            else if (randRarity <= 80)
-            {
-                int randFish = Random.Range(0, 100);
-                switch (randFish)
-                {
-                    case <= 25:
-                        fishToInstantiate = rareFish1;
-                        break;
-                    case <= 50:
-                        fishToInstantiate = rareFish2;
-                        break;
-                    case <= 75:
-                        fishToInstantiate = rareFish3;
-                        break;
-                    case <= 100:
-                        fishToInstantiate = rareFish4;
-                        break;
-                    default:
-                        fishToInstantiate = rareFish1;
-                        break;
-                }
-            }
-            else if (randRarity <= 95)
-            {
-                int randFish = Random.Range(0, 100);
-                switch (randFish)
-                {
-                    case <= 33:
-                        fishToInstantiate = epicFish1;
-                        break;
-                    case <= 66:
-                        fishToInstantiate = epicFish2;
-                        break;
-                    case <= 99:
-                        fishToInstantiate = epicFish3;
-                        break;
-                    default:
-                        fishToInstantiate = epicFish1;
-                        break;
-                }
-            }
-            else
-            {
-                fishToInstantiate = legendaryFish;
-            }
-            GameObject instantiated = Instantiate(fishToInstantiate);
+            Fish fishToInstantiate = GetRandomFish();
 
-            Vector3 spawnPos = new Vector3(
-                Random.Range(transform.position.x - zoneSize.x / 2, transform.position.x + zoneSize.x / 2),
-                Random.Range(transform.position.y - zoneSize.y / 2, transform.position.y + zoneSize.y / 2),
-                Random.Range(transform.position.z - zoneSize.z / 2, transform.position.z + zoneSize.z / 2)
+            Vector3 randomLocalPos = new Vector3(
+                Random.Range(-zoneSize.x / 2f, zoneSize.x / 2f),
+                0f,
+                Random.Range(-zoneSize.z / 2f, zoneSize.z / 2f)
             );
 
-            instantiated.transform.position = spawnPos;
+            Vector3 spawnPos = transform.TransformPoint(randomLocalPos);
 
+            // On force la hauteur du NavMesh
+            spawnPos.y = navMeshSurface.position.y;
+
+            Fish instantiated = Instantiate(
+                fishToInstantiate,
+                spawnPos,
+                Quaternion.identity,
+                this.transform
+            );
             NavMeshAgent agent = instantiated.GetComponent<NavMeshAgent>();
             if (agent != null)
             {
                 agent.Warp(spawnPos);
             }
         }
+    }
+
+    private Fish GetRandomFish()
+    {
+        int randRarity = Random.Range(0, 100);
+        List<Fish> targetList;
+
+        if (randRarity < 50)
+        {
+            targetList = fishDatabase.commonFish;
+        }
+        else if (randRarity < 80)
+        {
+            targetList = fishDatabase.rareFish; 
+        }
+        else if (randRarity < 95)
+        { 
+            targetList = fishDatabase.epicFish;
+        }
+        else
+        { 
+            targetList = fishDatabase.legendaryFish;
+        }
+        return targetList[Random.Range(0, targetList.Count)];
     }
 }

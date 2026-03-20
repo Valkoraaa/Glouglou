@@ -1,46 +1,55 @@
 using UnityEngine;
-
-[System.Serializable]
 public class Fish : MonoBehaviour
 {
     [Header ("Caracteritique")]
     [SerializeField] private string species;
     [SerializeField] private float size;
     [SerializeField] private float weight;
+
+    //wind, drunk, ...
     [SerializeField] private string temporaryEffect;
+    
     [SerializeField] private string permanentEffect;
     [SerializeField] private int isPermanent;
     [SerializeField] private int speed;
+    [SerializeField] public int necessaryStrength;
+
+
+    [SerializeField] private bool isBadForToday;
+
+    public float price; //?
 
     [SerializeField] private bool isFind;
     [SerializeField] private bool isHooked; 
-    [SerializeField] private Material baseMaterial;
+    [SerializeField] public Material baseMaterial;
     [SerializeField] private Material HookedMaterial;
 
-    /*private GameObject fishObject;
 
-    private void Awake()
+    private void OnDrawGizmos()
     {
-        fishObject = GetComponent<GameObject>();
-    }*/
-
-    private void Update()
-    {
-        Physics.Raycast(Vector3.zero, Vector3.up);
-    }
-   /* void OnDrawGizmos()
-    {
-        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(ray.origin, ray.direction * 50f);
-    } */
-    
+        Gizmos.DrawRay(transform.position, transform.up * 500f);
+    }
+
 
     public string Name
     {
         get { return name; }
         set { name = value; }
     }
+
+    public string Species
+    {
+        get { return species; }
+        set { species = value; }
+    }
+
+    public bool IsBadForToday
+    {
+        get { return isBadForToday; }
+        set { isBadForToday = value; }
+    }
+
 
     public float Size
     {

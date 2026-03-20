@@ -41,6 +41,9 @@ public class FishPatrol : MonoBehaviour
 
     void Patrol()
     {
+        if (fish == null) return;
+
+        if (!fish.isOnNavMesh) return;
         if (!walkPointSet)
         {
             SearchForDest();

@@ -9,9 +9,14 @@ public class EffectManager : MonoBehaviour
     [Header("Références")]
     [SerializeField] private RectTransform upExhaust;
     [SerializeField] private RectTransform downExhaust;
+
+    [SerializeField] private ParticleSystem rain;
+    [SerializeField] private Volume depressionEffect;
+
+
     [SerializeField] private GameObject player;
     private float originalThrowForce;
-    [SerializeField] private bool[] effects = { false, false, false, false }; //more false if more effects
+    public bool[] effects = { false, false, false, false, false }; //more false if more effects
     public static EffectManager Instance { get; private set; }
     public Vector3 windDirection = Vector3.right;
     public float windStrength = 2f;
@@ -40,6 +45,8 @@ public class EffectManager : MonoBehaviour
         Instance = this;
         originalThrowForce = ThrowLasso.Instance.force;
 
+        rain.gameObject.SetActive(false);
+        depressionEffect.gameObject.SetActive(false);
         volume.profile.TryGet(out lens); //drunk effect test
         volume.profile.TryGet(out chroma);
     }
@@ -67,40 +74,31 @@ public class EffectManager : MonoBehaviour
         {
             effects[i] = false;
         }
-        StopCoroutine(exhaustEnumerator);
+        if(exhaustEnumerator != null)
+            StopCoroutine(exhaustEnumerator);
         ApplyEffect();
     }
     public void ChooseEffect(string effect)
     {
         switch (effect)
         {
-            case "wind":
-                if (Random.value <= 0.2f)
-                {
-                    effects[0] = true;
-                    Debug.Log("wind");
-                }
-                break;
             case "drunk":
-                if (Random.value <= 0.2f)
-                {
-                    effects[1] = true;
-                    Debug.Log("drunk");
-                }
+                effects[1] = true;
+                Debug.Log("drunk");
                 break;
             case "exhaust":
-                if (Random.value <= 0.2f)
-                {
-                    effects[2] = true;
-                    Debug.Log("exhaust");
-                }
+                effects[2] = true;
+                Debug.Log("exhaust");
                 break;
             case "sick":
-                if (Random.value <= 0.2f)
-                {
-                    effects[3] = true;
-                    Debug.Log("sick");
-                }
+                effects[3] = true;
+                Debug.Log("sick");
+                break;
+            case "depression":
+                effects[4] = true;
+                break;
+            case "none":
+                Debug.Log("no effect");
                 break;
         }
     }
@@ -119,6 +117,7 @@ public class EffectManager : MonoBehaviour
         Drunk(effects[1]);
         Exhaust(effects[2]);
         Sick(effects[3]);
+        Depression(effects[4]);
     }
 
     private void Wind(bool wantToActivate)
@@ -136,7 +135,14 @@ public class EffectManager : MonoBehaviour
 
     public void Exhaust (bool wantToActivate)
     {
-        exhaustEnumerator = StartCoroutine(EyesClosing(wantToActivate));
+        if (upExhaust == null)
+        {
+            return;
+        }
+        else
+        {
+            exhaustEnumerator = StartCoroutine(EyesClosing(wantToActivate));
+        }
         activateExhaust = false;
         desactivateExhaust = false;
         //tous les poissons sont les memes?
@@ -150,9 +156,16 @@ public class EffectManager : MonoBehaviour
     }
 
 
+    private void Depression(bool wantToActivate)
+    {
+        rain.gameObject.SetActive(true);
+        depressionEffect.gameObject.SetActive(true);
+    }
+
 
     private IEnumerator EyesClosing(bool opening)
     {
+
         float duration = 1f;
         float elapsed = 0f;
         float actualRange = exhaustRange;

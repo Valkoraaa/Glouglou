@@ -6,8 +6,20 @@ public class FishingLasso : MonoBehaviour
 {
     //for now lassos collider isnt trigger, can change if needed
     [SerializeField] private GameObject player;
+    public int strenght;
+    
 
-    private void OnCollisionEnter(Collision collision)
+    private Fish fish;
+
+    public static FishingLasso Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+
+    private void OnCollisionEnter(Collision collision) //to check if you miss a fish
     {
 
         if(collision.gameObject.tag == "water") //activate anyway when smth hit?
@@ -17,13 +29,16 @@ public class FishingLasso : MonoBehaviour
         //qte ?
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) //to check if you hit a fish
     {
         //qte ?
-        if (other.gameObject.tag == "fish") { StartCoroutine(getFishToPlayer(other.gameObject.GetComponent<Fish>())); }
+        if (other.gameObject.tag == "fish" && strenght >= other.gameObject.GetComponent<Fish>().necessaryStrength && !ThrowLasso.Instance.recallRope) 
+        {
+            StartCoroutine(getFishToPlayer(other.gameObject.GetComponent<Fish>())); 
+        }
     }
 
-    private IEnumerator getFishToPlayer(Fish fish)
+    private IEnumerator getFishToPlayer(Fish fish) //called when you hit a fish with lasso
     {
         float duration = 1f;
         float elapsedTime = 0f;
@@ -46,10 +61,14 @@ public class FishingLasso : MonoBehaviour
         }
 
         // raccrocher le lasso au joueur et lui donner le poissson + qte? ;; suite du code temporaire
-        //EffectManager.Instance.ChooseEffect(fish.effect);
+        //animation?
         EffectManager.Instance.ChooseEffect(fish.TemporaryEffect);
+        Shop.Instance.playerMoney += fish.price * Shop.Instance.moneyMultiplier;
         Destroy(fish.gameObject);
         ThrowLasso.Instance.hasLasso();
+        //DayManager.Instance.actualThrow--;
+        DayManager.Instance.fishCaught++;
+        DayManager.Instance.CountdownThrow();
     }
     private IEnumerator MissedThrow()
     {
@@ -72,6 +91,10 @@ public class FishingLasso : MonoBehaviour
         }
 
         ThrowLasso.Instance.hasLasso();
+
+        //DayManager.Instance.actualThrow --;
+        DayManager.Instance.numberOfFails++;
+        DayManager.Instance.CountdownThrow();
 
         //smoother way to get the lasso back in hand?
     }
