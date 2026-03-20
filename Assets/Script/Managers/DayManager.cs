@@ -35,7 +35,6 @@ public class DayManager : MonoBehaviour
         //StartCoroutine(DayPassing());
         Instance = this;
         //actualThrow = totalThrow;
-        numberOfFails = 0;
         StartOfDay();
     }
 
@@ -47,7 +46,7 @@ public class DayManager : MonoBehaviour
 
     public void CountdownThrow()
     {
-        if (numberOfFails >= numberOfFailsAllowed /*|| fishCaught >= numberOfFishToCatch || actualThrow <= 0 ?????*/) //changer numberOfFish... en nombre de raté
+        if (numberOfFails >= numberOfFailsAllowed /*|| fishCaught >= numberOfFishToCatch || actualThrow <= 0 ?????*/) //changer numberOfFish... en nombre de ratï¿½
         {
             EndOfDay();
         }
@@ -68,6 +67,7 @@ public class DayManager : MonoBehaviour
 
     private void EndOfDay()
     {
+        Debug.Log("End Of Day");
         EffectManager.Instance.ResetEffect();
         
         if (fishCaught < numberOfFishToCatch)
@@ -80,6 +80,7 @@ public class DayManager : MonoBehaviour
 
     public void StartOfDay()
     {
+        Debug.Log("Start Of Day");
         DefineBadFish();
         DayEffect();
         //actualThrow = totalThrow;

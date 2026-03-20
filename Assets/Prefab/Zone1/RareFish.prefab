@@ -170,7 +170,7 @@ MonoBehaviour:
   isPermanent: 0
   speed: 0
   necessaryStrength: 1
-  isBadForToday: 0
+  isBadForToday: 1
   price: 0
   isFind: 0
   isHooked: 0
