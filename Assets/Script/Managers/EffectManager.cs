@@ -16,7 +16,7 @@ public class EffectManager : MonoBehaviour
 
     [SerializeField] private GameObject player;
     private float originalThrowForce;
-    public bool[] effects = { false, false, false, false, false }; //more false if more effects
+    public bool[] effects; //more false if more effects
     public static EffectManager Instance { get; private set; }
     public Vector3 windDirection = Vector3.right;
     public float windStrength = 2f;
@@ -43,9 +43,9 @@ public class EffectManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-
         rain.gameObject.SetActive(false);
         depressionEffect.gameObject.SetActive(false);
+        effects = new bool[] { false, false, false, false, false };
         //volume.profile.TryGet(out lens); //drunk effect test
         //volume.profile.TryGet(out chroma);
     }
@@ -167,8 +167,11 @@ public class EffectManager : MonoBehaviour
 
     private void Depression(bool wantToActivate)
     {
-        rain.gameObject.SetActive(true);
-        depressionEffect.gameObject.SetActive(true);
+        if(wantToActivate)
+        {
+            rain.gameObject.SetActive(true);
+            depressionEffect.gameObject.SetActive(true);   
+        }
     }
 
     private IEnumerator EyesClosing(bool opening)
