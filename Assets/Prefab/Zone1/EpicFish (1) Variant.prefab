@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -7447151795869194389, guid: 463d6d0f11fa34440be72012b6bbc2e1, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: c6c3e8ba18eed324a9710daad8bb4ec0, type: 2}
+    - target: {fileID: -7447151795869194389, guid: 463d6d0f11fa34440be72012b6bbc2e1, type: 3}
       propertyPath: species
       value: Sole
       objectReference: {fileID: 0}
@@ -114,17 +118,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af443ed027608c4f9d3da032d35f7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fish
-  species: 
   size: 0
   weight: 0
   temporaryEffect: 
   permanentEffect: 
   isPermanent: 0
   speed: 0
-  necessaryStrength: 0
   isBadForToday: 0
-  price: 0
-  isFind: 0
-  isHooked: 0
   baseMaterial: {fileID: 2100000, guid: 86f008ea1b3d42748b381fcab5fe06e9, type: 2}
   HookedMaterial: {fileID: 0}
+  data: {fileID: 0}

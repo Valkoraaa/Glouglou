@@ -15,7 +15,7 @@ MonoBehaviour:
   m_Active: 1
   settings:
     material: {fileID: -876546973899608171, guid: 2024aa900dded4349ba2a61cf0f2fe3e, type: 3}
-    alpha: 0.895
+    alpha: 0.85
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
