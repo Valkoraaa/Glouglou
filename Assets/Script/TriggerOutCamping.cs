@@ -21,7 +21,7 @@ public class TriggerOutCamping : MonoBehaviour
         }
         else if (DayManager.Instance.fishCaught < DayManager.Instance.numberOfFishToCatch)
         {
-            StartCoroutine(WaitForEndOfDialogue(dialogueNotEnoughFish, new UnityEngine.Vector3(1482.33f, 180.97f, 1105.83f)));
+            StartCoroutine(WaitForEndOfDialogue(dialogueNotEnoughFish, new UnityEngine.Vector3(transform.position.x+2, transform.position.y, transform.position.z-2)));
         }
     }
 

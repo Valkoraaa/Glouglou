@@ -9,6 +9,7 @@ public class NPCDialogue : MonoBehaviour
     private bool canInteract;
     private bool isInDialogue;
     [SerializeField] private bool isMerchant;
+    [SerializeField] private bool isDirector;
 
     private void Update()
     {
@@ -18,6 +19,10 @@ public class NPCDialogue : MonoBehaviour
             //Interact();
             DialogueManager.Instance.openShop = isMerchant;
             DialogueManager.Instance.StartDialogue(dialogue);
+            if(isDirector)
+            {
+                DialogueManager.Instance.AppendText(" " + DayManager.Instance.numberOfFishToCatch.ToString() + " poissons. Bonne chance !");
+            }
         }
     }
     //public void Interact()

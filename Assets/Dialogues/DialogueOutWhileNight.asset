@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4215b2633c1f06f4fa8e2b46a201c92b, type: 3}
   m_Name: DialogueOutWhileNight
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  speakerName: 
-  lines: []
+  speakerName: Marchant
+  lines:
+  - text: "C'est la nuit ! Viens me voir avant de foncer la t\xEAte la premi\xE8re"
