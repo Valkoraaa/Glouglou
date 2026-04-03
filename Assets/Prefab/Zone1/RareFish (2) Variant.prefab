@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6511046390730039640, guid: ca0386b58e133c14fa21b0f541baeb2d, type: 3}
       propertyPath: temporaryEffect
-      value: 
+      value: depression
       objectReference: {fileID: 0}
     - target: {fileID: -6511046390730039640, guid: ca0386b58e133c14fa21b0f541baeb2d, type: 3}
       propertyPath: necessaryStrength

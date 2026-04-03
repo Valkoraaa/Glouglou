@@ -165,7 +165,7 @@ MonoBehaviour:
   species: Requin
   size: 0
   weight: 0
-  temporaryEffect: 
+  temporaryEffect: depression
   permanentEffect: 
   isPermanent: 0
   speed: 0
