@@ -86,6 +86,7 @@ public class DialogueManager : MonoBehaviour
     {
         dialoguePanel.SetActive(false);
         currentLines = null;
+        isInDialogue = false;
         if (openShop)
         {
             openShop = false;
