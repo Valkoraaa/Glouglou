@@ -1,11 +1,20 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Tent : MonoBehaviour
 {
-    [SerializeField] private GameObject uiKeyToPress;
     [SerializeField] private bool interactable;
+    private TextMeshPro txtInteract;
+    private GameObject txtObject;
+
+
+    void Start()
+    {
+        txtInteract = TextInteract.Instance.GetComponent<TextMeshPro>();
+        txtObject = TextInteract.Instance.GetComponent<GameObject>();
+    }
 
     private void Update()
     {
@@ -20,7 +29,8 @@ public class Tent : MonoBehaviour
     {
         if (other.CompareTag("Player") && DayManager.Instance.isNight)
         {
-            uiKeyToPress.SetActive(true);
+            txtInteract.text = "Appuyez sur Espace pour dormir";
+            txtObject.SetActive(true);
             interactable = true;
         }
     }
@@ -29,7 +39,7 @@ public class Tent : MonoBehaviour
     {
         if (other.CompareTag("Player") && DayManager.Instance.isNight)
         {
-            uiKeyToPress.SetActive(false);
+            txtObject.SetActive(false);
             interactable = false;
         }
     }

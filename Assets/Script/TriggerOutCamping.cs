@@ -11,6 +11,7 @@ public class TriggerOutCamping : MonoBehaviour
     [SerializeField] private Transform tpPos;
     [SerializeField] private Transform otherTp;
     [SerializeField] private bool isCampTp;
+    private bool hasToCheck = true;
     void Start()
     {
         
@@ -18,27 +19,42 @@ public class TriggerOutCamping : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("triggerEnter");
-        if (DayManager.Instance.isNight || DayManager.Instance.fishCaught < DayManager.Instance.numberOfFishToCatch)
+        if(!other.CompareTag("Player")) return;
+        if (DayManager.Instance.isNight || DayManager.Instance.fishCaught < DayManager.Instance.numberOfFishToCatch && hasToCheck)
         {
             StartCoroutine(WaitForEndOfDialogue(ChoseDialogue(), isCampTp ? otherTp.position : tpPos.position));
+            Debug.Log("1");
         }
-        // else if (DayManager.Instance.fishCaught < DayManager.Instance.numberOfFishToCatch)
-        // {
-        //     StartCoroutine(WaitForEndOfDialogue(dialogueNotEnoughFish, new UnityEngine.Vector3(transform.position.x+2, transform.position.y, transform.position.z-2)));
-        // }
+        else if (!DayManager.Instance.isNight && DayManager.Instance.fishCaught >= DayManager.Instance.numberOfFishToCatch && isCampTp)
+        {
+            DayManager.Instance.isNight = true;
+            Debug.Log("2");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(!other.CompareTag("Player")) return;
+        if(isCampTp)
+        {
+            hasToCheck = true;
+            Debug.Log("exit");
+        }
     }
 
     private DialogueData ChoseDialogue()
     {
         if(DayManager.Instance.isNight) return dialogueOutWhileNight;
-        else if (isCampTp) return dialogueGoToWork;
+        else if (isCampTp)
+        {
+            hasToCheck = false;
+            return dialogueGoToWork;
+        }
         else return dialogueNotEnoughFish;
     }
 
     private IEnumerator WaitForEndOfDialogue(DialogueData dialogue, UnityEngine.Vector3 tpPos)
     {
-        Debug.Log("Enumerator");
         DialogueManager.Instance.StartDialogue(dialogue);
         yield return new WaitUntil(() => !DialogueManager.Instance.isInDialogue);
         Debug.Log("tp");
