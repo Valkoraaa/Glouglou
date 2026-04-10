@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MoorishIdol
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   id: 5
-  species: 
+  species: MoorishIdol
   currentRarity: 0
   price: 200
   icon: {fileID: 0}

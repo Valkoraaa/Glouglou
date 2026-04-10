@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: VentreJaune
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   id: 7
-  species: 
+  species: VentreJaune
   currentRarity: 0
   price: 200
   icon: {fileID: 0}

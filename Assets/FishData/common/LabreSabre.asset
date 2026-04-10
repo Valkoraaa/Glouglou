@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LabreSabre
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   id: 4
-  species: 
+  species: LabreSabre
   currentRarity: 0
   price: 200
   icon: {fileID: 0}

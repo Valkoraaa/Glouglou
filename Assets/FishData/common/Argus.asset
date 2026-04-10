@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Argus
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   id: 1
-  species: 
+  species: Argus
   currentRarity: 0
   price: 200
   icon: {fileID: 0}

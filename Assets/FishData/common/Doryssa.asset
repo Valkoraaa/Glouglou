@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Doryssa
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   id: 3
-  species: 
+  species: Doryssa
   currentRarity: 0
   price: 200
   icon: {fileID: 0}

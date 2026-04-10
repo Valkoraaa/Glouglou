@@ -6,20 +6,14 @@ public class FishingBookManager : MonoBehaviour
     public static FishingBookManager Instance { get; private set; }
     private HashSet<int> caughtFishId = new HashSet<int>();
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [Header("Debug View")]
+    [SerializeField] private List<int> caughtFishIdDisplay = new List<int>();
+
     private void Awake()
     {
-        // On vérifie si une instance existe déjà pour éviter les doublons
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
-
-        // Optionnel : permet au manager de survivre au changement de scène
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
     public HashSet<int> getCaughtFishId()
@@ -32,6 +26,7 @@ public class FishingBookManager : MonoBehaviour
         if (!caughtFishId.Contains(id))
         {
             caughtFishId.Add(id);
+            caughtFishIdDisplay.Add(id);
             Debug.Log($"ID {id} ajouté au livre !");
         }
     }
