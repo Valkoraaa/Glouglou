@@ -19,9 +19,9 @@ public class UiFadeManager : MonoBehaviour
         
     }
 
-    public void Fade()
+    public void FadeEndDay()
     {
-        StartCoroutine(FadeInAndOut());
+        StartCoroutine(FadeInAndOutEndDay());
     }
 
     public void FadeTp(Vector3 tpPoint)
@@ -29,7 +29,7 @@ public class UiFadeManager : MonoBehaviour
         StartCoroutine(FadeInAndOut(tpPoint));
     }
 
-    IEnumerator FadeInAndOut()
+    IEnumerator FadeInAndOutEndDay()
     {
         float time = 0f;
         Color color = image.color;
@@ -50,6 +50,7 @@ public class UiFadeManager : MonoBehaviour
         color.a = 1f;
         image.color = color;
         yield return new WaitForSeconds(0.5f);
+        DayManager.Instance.StartOfDay();
         // Fade OUT (1 → 0)
         time = 0f;
 
@@ -68,6 +69,9 @@ public class UiFadeManager : MonoBehaviour
 
     IEnumerator FadeInAndOut(Vector3 tpPoint)
     {
+        Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        Character.Instance.canMove = false;
+        Character.Instance.canMoveCam = false;
         float time = 0f;
         Color color = image.color;
 
@@ -107,6 +111,9 @@ public class UiFadeManager : MonoBehaviour
 
         color.a = 0f;
         image.color = color;
+        Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        Character.Instance.canMove = true;
+        Character.Instance.canMoveCam = true;
     }
 
 }
