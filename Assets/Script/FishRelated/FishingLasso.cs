@@ -31,14 +31,21 @@ public class FishingLasso : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) //to check if you hit a fish
     {
-        //qte ?
-        if (other.gameObject.tag == "fish" && strenght >= other.gameObject.GetComponent<Fish>().necessaryStrength && !ThrowLasso.Instance.recallRope) 
+        Fish fishScript = other.gameObject.GetComponent<Fish>();
+        if (other.gameObject.CompareTag("fish") && fishScript != null && fishScript.data != null)
         {
-            StartCoroutine(getFishToPlayer(other.gameObject.GetComponent<Fish>())); 
+            int fishRarityValue = (int)fishScript.data.currentRarity;
+
+            if (strenght >= fishRarityValue && !ThrowLasso.Instance.recallRope)
+            {
+
+                StartCoroutine(getFishToPlayer(fishScript));
+                
+            }
         }
     }
 
-    private IEnumerator getFishToPlayer(Fish fish) //called when you hit a fish with lasso
+    private IEnumerator getFishToPlayer(Fish fish)
     {
         float duration = 1f;
         float elapsedTime = 0f;
@@ -63,7 +70,8 @@ public class FishingLasso : MonoBehaviour
         // raccrocher le lasso au joueur et lui donner le poissson + qte? ;; suite du code temporaire
         //animation?
         EffectManager.Instance.ChooseEffect(fish.TemporaryEffect);
-        Shop.Instance.playerMoney += fish.price * Shop.Instance.moneyMultiplier;
+        Shop.Instance.playerMoney += fish.data.price * Shop.Instance.moneyMultiplier;
+        FishingBookManager.Instance.RegisterCatch(fish.data.id);
         Destroy(fish.gameObject);
         ThrowLasso.Instance.hasLasso();
         //DayManager.Instance.actualThrow--;

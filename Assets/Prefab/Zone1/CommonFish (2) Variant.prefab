@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -7861193620136895478, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: c61cf2a72202c0c4fbd6a5c4704ab501, type: 2}
+    - target: {fileID: -7861193620136895478, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
       propertyPath: species
       value: Bar
       objectReference: {fileID: 0}
@@ -91,39 +95,5 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4793472864302734125, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -6559652688271838833}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
---- !u!1 &5288516919597875969 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4793472864302734125, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
-  m_PrefabInstance: {fileID: 856035987811948588}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &-6559652688271838833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5288516919597875969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0af443ed027608c4f9d3da032d35f7f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Fish
-  species: 
-  size: 0
-  weight: 0
-  temporaryEffect: 
-  permanentEffect: 
-  isPermanent: 0
-  speed: 0
-  necessaryStrength: 0
-  isBadForToday: 0
-  price: 0
-  isFind: 0
-  isHooked: 0
-  baseMaterial: {fileID: 0}
-  HookedMaterial: {fileID: 0}

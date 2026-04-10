@@ -2,27 +2,18 @@ using UnityEngine;
 public class Fish : MonoBehaviour
 {
     [Header ("Caracteritique")]
-    [SerializeField] private string species;
+    
     [SerializeField] private float size;
     [SerializeField] private float weight;
-
     //wind, drunk, ...
     [SerializeField] private string temporaryEffect;
-    
     [SerializeField] private string permanentEffect;
     [SerializeField] private int isPermanent;
     [SerializeField] private int speed;
-    [SerializeField] public int necessaryStrength;
-
-
     [SerializeField] private bool isBadForToday;
-
-    public float price; //?
-
-    [SerializeField] private bool isFind;
-    [SerializeField] private bool isHooked; 
     [SerializeField] public Material baseMaterial;
     [SerializeField] private Material HookedMaterial;
+    public FishData data;
 
 
     private void OnDrawGizmos()
@@ -31,18 +22,6 @@ public class Fish : MonoBehaviour
         Gizmos.DrawRay(transform.position, transform.up * 500f);
     }
 
-
-    public string Name
-    {
-        get { return name; }
-        set { name = value; }
-    }
-
-    public string Species
-    {
-        get { return species; }
-        set { species = value; }
-    }
 
     public bool IsBadForToday
     {

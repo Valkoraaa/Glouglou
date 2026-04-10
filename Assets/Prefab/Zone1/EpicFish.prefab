@@ -162,17 +162,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af443ed027608c4f9d3da032d35f7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fish
-  species: Limande
   size: 0
   weight: 0
   temporaryEffect: depression
   permanentEffect: 
   isPermanent: 0
   speed: 0
-  necessaryStrength: 2
   isBadForToday: 1
-  price: 0
-  isFind: 0
-  isHooked: 0
   baseMaterial: {fileID: 2100000, guid: f65b7227b02d73f48984c8f667bbc590, type: 2}
   HookedMaterial: {fileID: 0}
+  data: {fileID: 11400000, guid: 92ef788e6ccb6cc4cbf16135af8459b3, type: 2}

@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -6511046390730039640, guid: ca0386b58e133c14fa21b0f541baeb2d, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 468cb55f7c50be34790034bf62f2c733, type: 2}
+    - target: {fileID: -6511046390730039640, guid: ca0386b58e133c14fa21b0f541baeb2d, type: 3}
       propertyPath: species
       value: Langouste
       objectReference: {fileID: 0}
@@ -79,39 +83,5 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1259611958527942740, guid: ca0386b58e133c14fa21b0f541baeb2d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -5170182739142543991}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca0386b58e133c14fa21b0f541baeb2d, type: 3}
---- !u!1 &2919735462105482555 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1259611958527942740, guid: ca0386b58e133c14fa21b0f541baeb2d, type: 3}
-  m_PrefabInstance: {fileID: 4179324554198181231}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &-5170182739142543991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2919735462105482555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0af443ed027608c4f9d3da032d35f7f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Fish
-  species: 
-  size: 0
-  weight: 0
-  temporaryEffect: 
-  permanentEffect: 
-  isPermanent: 0
-  speed: 0
-  necessaryStrength: 0
-  isBadForToday: 0
-  price: 0
-  isFind: 0
-  isHooked: 0
-  baseMaterial: {fileID: 2100000, guid: 0c2c62594ea808d48bb0aee028f545fe, type: 2}
-  HookedMaterial: {fileID: 0}
