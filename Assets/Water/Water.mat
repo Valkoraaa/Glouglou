@@ -97,15 +97,15 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FoamAmount: 1.2
-    - _FoamCutoff: 1.42
+    - _FoamAmount: 1.5
+    - _FoamCutoff: 2
     - _FoamOffset: 0.5
-    - _FoamScale: 29.69
-    - _FoamSpeed: 0.1
+    - _FoamScale: 30
+    - _FoamSpeed: 0.05
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _GradientOffset: 0.5
+    - _GradientOffset: 46.15
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -115,13 +115,13 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Specular_Density: 7
-    - _Specular_SPeed: 2
-    - _Specular_Thickness: 5
+    - _Specular_Density: 100
+    - _Specular_SPeed: 1.5
+    - _Specular_Thickness: 1.49
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _Transparancy: 2
+    - _Transparancy: 2.72
     - _Water_Depth: 0.01
     - _WaveAmplitude: 0.02
     - _WaveFrequency: 3.8
@@ -132,13 +132,13 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Deep_Color: {r: 0.28453806, g: 0.66566634, b: 0.9166459, a: 1}
+    - _Deep_Color: {r: 0.24586153, g: 0.5787451, b: 0.8018868, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FoamColor: {r: 2.4014711, g: 3.0863352, b: 3.771199, a: 1}
-    - _GradientColor: {r: 0.7253471, g: 0.8567183, b: 0.9433962, a: 1}
-    - _Shallow_Color: {r: 0.28453806, g: 0.66566634, b: 0.9166459, a: 1}
+    - _FoamColor: {r: 2.1202986, g: 2.960488, b: 3.7773387, a: 1}
+    - _GradientColor: {r: 0.7571645, g: 0.7724001, b: 0.7830189, a: 1}
+    - _Shallow_Color: {r: 0.38470095, g: 0.69288707, b: 0.8962264, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Specular_Color: {r: 0.47267708, g: 0.7221751, b: 0.8867924, a: 1}
+    - _Specular_Color: {r: 0.29556784, g: 0.58237803, b: 0.7735849, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &4600744481372396639
