@@ -115,7 +115,7 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Specular_Density: 7
+    - _Specular_Density: 500
     - _Specular_SPeed: 2
     - _Specular_Thickness: 5
     - _SrcBlend: 1
@@ -123,9 +123,9 @@ Material:
     - _Surface: 0
     - _Transparancy: 2
     - _Water_Depth: 0.01
-    - _WaveAmplitude: 0.02
-    - _WaveFrequency: 3.8
-    - _WaveSpeed: 2.1
+    - _WaveAmplitude: 1.71
+    - _WaveFrequency: 0.84
+    - _WaveSpeed: 0.76
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
@@ -138,7 +138,7 @@ Material:
     - _GradientColor: {r: 0.7253471, g: 0.8567183, b: 0.9433962, a: 1}
     - _Shallow_Color: {r: 0.28453806, g: 0.66566634, b: 0.9166459, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Specular_Color: {r: 0.47267708, g: 0.7221751, b: 0.8867924, a: 1}
+    - _Specular_Color: {r: 0.4745098, g: 0.6478885, b: 0.8862745, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &4600744481372396639
