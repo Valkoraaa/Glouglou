@@ -7,6 +7,9 @@ public class BookGenerator : MonoBehaviour
     [SerializeField] private List<FishData> allFishes;
     [SerializeField] private Transform gridLayoutGroup;
     [SerializeField] private GameObject slotPrefab;
+
+    public static BookGenerator Instance;
+    void Awake() { Instance = this; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnEnable()
     {
