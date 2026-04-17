@@ -143,8 +143,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 3.2075386
-  m_Center: {x: 0, y: 2.2075386, z: 0}
+  m_Radius: 3.9910507
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &72077359 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5995406920284088990, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
@@ -457,7 +457,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCDialogue
   test: 0
   dialogue: {fileID: 11400000, guid: 100ef50c8450c9b4db0fcca396e24ff6, type: 2}
-  interactUI: {fileID: 609484786}
   isMerchant: 0
   isDirector: 1
 --- !u!65 &479274639
@@ -6500,7 +6499,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCDialogue
   test: 0
   dialogue: {fileID: 11400000, guid: e091dca9db2eca54eb11d600cd27916f, type: 2}
-  interactUI: {fileID: 1061884533}
   isMerchant: 1
   isDirector: 0
 --- !u!65 &1673886304

@@ -19,6 +19,8 @@ public class Tent : MonoBehaviour
         if (interactable && Keyboard.current.spaceKey.wasPressedThisFrame && DayManager.Instance.isNight)
         {
             UiFadeManager.Instance.FadeEndDay();
+            TextInteract.Instance.txtInteract.gameObject.SetActive(false);
+            interactable = false;
         }
     }
 
@@ -28,16 +30,16 @@ public class Tent : MonoBehaviour
         if (other.CompareTag("Player") && DayManager.Instance.isNight)
         {
             TextInteract.Instance.txtInteract.text = "Appuyez sur Espace pour dormir";
-            TextInteract.Instance.txtObject.SetActive(true);
+            TextInteract.Instance.txtInteract.gameObject.SetActive(true);
             interactable = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") && DayManager.Instance.isNight)
+        if (other.CompareTag("Player"))
         {
-            TextInteract.Instance.txtObject.SetActive(false);
+            TextInteract.Instance.txtInteract.gameObject.SetActive(false);
             interactable = false;
         }
     }
