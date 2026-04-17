@@ -15,7 +15,7 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Typing Settings")]
     public float typingSpeed = 0.1f;
-    public float fastTypingSpeed = 0.05f;
+    public float fastTypingSpeed = 0.03f;
     public float defaultTypingSpeed = 0.1f;
 
     private List<DialogueLine> currentLines;
@@ -86,6 +86,7 @@ public class DialogueManager : MonoBehaviour
     {
         dialoguePanel.SetActive(false);
         currentLines = null;
+        isInDialogue = false;
         if (openShop)
         {
             openShop = false;
@@ -124,5 +125,33 @@ public class DialogueManager : MonoBehaviour
             NextLine();
             typingSpeed = defaultTypingSpeed;
         }
+    }
+
+    public void AppendText(string extraText)
+    {
+        if (isTyping)
+        {
+            // on attend que la ligne actuelle ait fini
+            StartCoroutine(AppendAfterTyping(extraText));
+        }
+        else
+        {
+            // sinon on écrit directement
+            dialogueText.text += extraText;
+        }
+    }
+
+    private IEnumerator AppendAfterTyping(string extraText)
+    {
+        // attendre la fin du typing
+        yield return new WaitUntil(() => !isTyping);
+        isTyping = true;
+
+        foreach (char letter in extraText)
+        {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+        isTyping = false;
     }
 }

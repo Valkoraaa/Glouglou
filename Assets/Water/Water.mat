@@ -20,7 +20,7 @@ Material:
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
-  m_LockedProperties: _WaveAmplitude
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -97,15 +97,9 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FoamAmount: 1.2
-    - _FoamCutoff: 1.42
-    - _FoamOffset: 0.5
-    - _FoamScale: 29.69
-    - _FoamSpeed: 0.1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _GradientOffset: 0.5
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -115,30 +109,27 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Specular_Density: 500
-    - _Specular_SPeed: 2
-    - _Specular_Thickness: 5
+    - _Specular_Density: 1000
+    - _Specular_SPeed: 6.3
+    - _Specular_Thickness: 3.7
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _Transparancy: 2
     - _Water_Depth: 0.01
-    - _WaveAmplitude: 1.71
-    - _WaveFrequency: 0.84
-    - _WaveSpeed: 0.76
+    - _WaveAmplitude: 1.8
+    - _WaveFrequency: 2
+    - _WaveSpeed: 1
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Deep_Color: {r: 0.28453806, g: 0.66566634, b: 0.9166459, a: 1}
+    - _Deep_Color: {r: 0.23549305, g: 0.38846794, b: 0.7924528, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FoamColor: {r: 2.4014711, g: 3.0863352, b: 3.771199, a: 1}
-    - _GradientColor: {r: 0.7253471, g: 0.8567183, b: 0.9433962, a: 1}
-    - _Shallow_Color: {r: 0.28453806, g: 0.66566634, b: 0.9166459, a: 1}
+    - _Shallow_Color: {r: 0.10868638, g: 0.6695048, b: 0.8113208, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Specular_Color: {r: 0.4745098, g: 0.6478885, b: 0.8862745, a: 1}
+    - _Specular_Color: {r: 0.2256141, g: 0.34010816, b: 0.735849, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &4600744481372396639

@@ -21,6 +21,7 @@ public class DayManager : MonoBehaviour
     private GameObject BadFishOneDisplay;
     [SerializeField]
     private GameObject BadFishTwoDisplay;
+    public bool isNight;
 
 
 
@@ -74,7 +75,11 @@ public class DayManager : MonoBehaviour
         {
             GameOver();
         }
-        else { DialogueManager.Instance.StartDialogue(dialogue); } //+ ouvrir la zone etc
+        else
+        {
+            DialogueManager.Instance.StartDialogue(dialogue);
+            isNight = true;
+        } //+ ouvrir la zone etc
         
     }
 
@@ -89,6 +94,7 @@ public class DayManager : MonoBehaviour
         numberOfFishToCatch = 10; // a regler
         EffectManager.Instance.ApplyEffect();
         //StartCoroutine(DayPassing());
+        isNight = false;
     }
 
     private void DayEffect()
