@@ -20,11 +20,15 @@ public class TriggerOutCamping : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(!other.CompareTag("Player")) return;
-        if (DayManager.Instance.isNight || DayManager.Instance.fishCaught < DayManager.Instance.numberOfFishToCatch && hasToCheck)
+        if (DayManager.Instance.isNight)
+        {
+            StartCoroutine(WaitForEndOfDialogue(ChoseDialogue(), isCampTp ? tpPos.position : otherTp.position));
+        }
+        else if ((DayManager.Instance.fishCaught < DayManager.Instance.numberOfFishToCatch) && hasToCheck)
         {
             StartCoroutine(WaitForEndOfDialogue(ChoseDialogue(), isCampTp ? otherTp.position : tpPos.position));
-            Debug.Log("1");
         }
+        
         else if (!DayManager.Instance.isNight && DayManager.Instance.fishCaught >= DayManager.Instance.numberOfFishToCatch && isCampTp)
         {
             DayManager.Instance.isNight = true;

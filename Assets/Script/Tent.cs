@@ -6,14 +6,12 @@ using UnityEngine.InputSystem;
 public class Tent : MonoBehaviour
 {
     [SerializeField] private bool interactable;
-    private TextMeshPro txtInteract;
-    private GameObject txtObject;
+    
 
 
     void Start()
     {
-        txtInteract = TextInteract.Instance.GetComponent<TextMeshPro>();
-        txtObject = TextInteract.Instance.GetComponent<GameObject>();
+        
     }
 
     private void Update()
@@ -29,8 +27,8 @@ public class Tent : MonoBehaviour
     {
         if (other.CompareTag("Player") && DayManager.Instance.isNight)
         {
-            txtInteract.text = "Appuyez sur Espace pour dormir";
-            txtObject.SetActive(true);
+            TextInteract.Instance.txtInteract.text = "Appuyez sur Espace pour dormir";
+            TextInteract.Instance.txtObject.SetActive(true);
             interactable = true;
         }
     }
@@ -39,7 +37,7 @@ public class Tent : MonoBehaviour
     {
         if (other.CompareTag("Player") && DayManager.Instance.isNight)
         {
-            txtObject.SetActive(false);
+            TextInteract.Instance.txtObject.SetActive(false);
             interactable = false;
         }
     }
