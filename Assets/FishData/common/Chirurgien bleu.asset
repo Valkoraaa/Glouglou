@@ -16,4 +16,4 @@ MonoBehaviour:
   species: Chirurgien bleu
   currentRarity: 0
   price: 200
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 0779f31e3a310d64bade93c1bb853014, type: 3}

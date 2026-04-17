@@ -16,4 +16,4 @@ MonoBehaviour:
   species: VentreJaune
   currentRarity: 0
   price: 200
-  icon: {fileID: 0}
+  icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
