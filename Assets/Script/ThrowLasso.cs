@@ -16,6 +16,7 @@ public class ThrowLasso : MonoBehaviour
     public float force = 15f;
 
     public bool hasThrown;
+    public bool canThrow;
     public bool recallRope;
     private bool isChild;
     public static ThrowLasso Instance { get; private set; }
@@ -31,6 +32,7 @@ public class ThrowLasso : MonoBehaviour
         rb = lasso.GetComponent<Rigidbody>();
         rb.isKinematic = true;
         boxCollider = lasso.GetComponent<BoxCollider>();
+        canThrow = true;
     }
 
     void Update()
@@ -51,7 +53,7 @@ public class ThrowLasso : MonoBehaviour
         }
 
         
-        if (!hasThrown && Keyboard.current.eKey.wasPressedThisFrame)//Mouse.current.leftButton.isPressed)
+        if (!hasThrown && Keyboard.current.eKey.wasPressedThisFrame && canThrow)//Mouse.current.leftButton.isPressed)
         {
             rbPlayer.isKinematic = true;
             Character.Instance.canMove = false;
