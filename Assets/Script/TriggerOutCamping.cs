@@ -23,17 +23,21 @@ public class TriggerOutCamping : MonoBehaviour
         if (DayManager.Instance.isNight)
         {
             StartCoroutine(WaitForEndOfDialogue(ChoseDialogue(), isCampTp ? tpPos.position : otherTp.position));
+            ThrowLasso.Instance.canThrow = false;
         }
         else if ((DayManager.Instance.fishCaught < DayManager.Instance.numberOfFishToCatch) && hasToCheck)
         {
             StartCoroutine(WaitForEndOfDialogue(ChoseDialogue(), isCampTp ? otherTp.position : tpPos.position));
+            ThrowLasso.Instance.canThrow = true;
         }
         
         else if (!DayManager.Instance.isNight && DayManager.Instance.fishCaught >= DayManager.Instance.numberOfFishToCatch && isCampTp)
         {
             DayManager.Instance.isNight = true;
+            ThrowLasso.Instance.canThrow = false;
             Debug.Log("2");
         }
+        else { ThrowLasso.Instance.canThrow = true; }
     }
 
     private void OnTriggerExit(Collider other)
