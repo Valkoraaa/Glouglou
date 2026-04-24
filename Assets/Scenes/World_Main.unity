@@ -1830,6 +1830,7 @@ MonoBehaviour:
   defaultTypingSpeed: 0.08
   isInDialogue: 0
   openShop: 0
+  tutoDialogue: 0
 --- !u!114 &1707720379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1846,6 +1847,25 @@ MonoBehaviour:
   notEnoughMoneyCanvas: {fileID: 828158984}
   playerMoney: 0
   moneyMultiplier: 1
+--- !u!114 &1707720382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707720375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638f501c91c9d3f46869dbc1bf88deea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutoManager
+  tuto: 1
+  dialogueCounter: 0
+  endOfDialogue: 0
+  tutoDialogue: {fileID: 11400000, guid: 2ce06c12d7afac14c9f375cbaadb52a0, type: 2}
+  tutoDialogue2: {fileID: 11400000, guid: 04adc7593eda2ee4fa1036efdefb9a98, type: 2}
+  caughtDialogue: {fileID: 11400000, guid: 67a017fda7ae93546b2c8a44b8e095dc, type: 2}
+  tutoDialogue3: {fileID: 11400000, guid: f78f360057b91da4184c6f0b62912a3e, type: 2}
 --- !u!1001 &1716235074
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2191,6 +2211,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4610700114782015542, guid: 80b53c04572427e48b436dad6481bd98, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1707720379}
+    - targetCorrespondingSourceObject: {fileID: 4610700114782015542, guid: 80b53c04572427e48b436dad6481bd98, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1707720382}
   m_SourcePrefab: {fileID: 100100000, guid: 80b53c04572427e48b436dad6481bd98, type: 3}
 --- !u!1 &1936140070
 GameObject:

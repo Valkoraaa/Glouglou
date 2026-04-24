@@ -15,9 +15,10 @@ MonoBehaviour:
   speakerName: Marchant de poisson
   lines:
   - text: "Bien le bonjour ! Bienvenue pour ton premier jour en tant qu'employ\xE9
+      ! (TROUVER OU PARLER DU BESTIAIRE)"
+  - text: "Ton r\xF4le est d'attraper assez de poissons chaque jour.\n"
+  - text: "Attention, tu ne peux rater tes lanc\xE9s qu'un nombre limit\xE9 de fois
       !"
-  - text: "Ton r\xF4le est d'attraper assez de poissons chaque jour.\nAttention,
-      tu ne peux rater tes lanc\xE9s qu'un nombre limit\xE9 de fois !"
   - text: "Une fois l'objectif atteind, tu peux continuer \xE0 essayer d'attraper
-      des poissons pour te faire plus d'argent,\npuis tu peux rentrer au camping.
-      Il est sur la colline, la haut !"
+      des poissons pour te faire plus d'argent,"
+  - text: puis tu peux rentrer au camping. Il est sur la colline, la haut !

@@ -88,14 +88,17 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
         currentLines = null;
         isInDialogue = false;
-        if (tutoDialogue)
-        {
-            TutoManager.Instance.EndOfFirstDialogue();
-        }
-        else if (openShop)
+        
+        if (openShop)
         {
             openShop = false;
             Shop.Instance.OpenShop(true);
+        }
+        else if (TutoManager.Instance.tuto)
+        {
+            TutoManager.Instance.dialogueCounter++;
+            TutoManager.Instance.endOfDialogue = true;
+            Debug.Log("DialogueManager check tuto manager.tuto");
         }
         else
         {

@@ -36,7 +36,8 @@ public class DayManager : MonoBehaviour
         //StartCoroutine(DayPassing());
         Instance = this;
         //actualThrow = totalThrow;
-        StartOfDay();
+
+        //StartOfDay();
     }
 
     // Update is called once per frame

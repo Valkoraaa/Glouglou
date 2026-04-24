@@ -272,7 +272,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: EpicFish
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8044563188608038775, guid: 463d6d0f11fa34440be72012b6bbc2e1, type: 3}
+      propertyPath: m_TagString
+      value: tutoFish
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5061364859426776924, guid: 463d6d0f11fa34440be72012b6bbc2e1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
