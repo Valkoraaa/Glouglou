@@ -42,6 +42,10 @@ public class FishingLasso : MonoBehaviour
                 StartCoroutine(getFishToPlayer(fishScript));
             }
         }
+        else if (other.gameObject.CompareTag("tutoFish"))
+        {
+            StartCoroutine(TutoManager.Instance.TutoFishing(other.gameObject));
+        }
     }
 
     private IEnumerator getFishToPlayer(Fish fish)

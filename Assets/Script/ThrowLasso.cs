@@ -11,6 +11,7 @@ public class ThrowLasso : MonoBehaviour
     public Camera cam;
     private BoxCollider boxCollider;
     private Rigidbody rbPlayer;
+    private CharacterController chaControll;
 
     [Header("Paramètres")]
     public float force = 15f;
@@ -33,10 +34,13 @@ public class ThrowLasso : MonoBehaviour
         rb.isKinematic = true;
         boxCollider = lasso.GetComponent<BoxCollider>();
         canThrow = true;
+        chaControll = GetComponent<CharacterController>();
     }
 
     void Update()
     {
+        if(chaControll.isGrounded) {canThrow = true;}
+        else { canThrow = false; }
         if(Keyboard.current.rKey.wasPressedThisFrame) //temp
         {
             hasLasso();

@@ -25,6 +25,7 @@ public class DialogueManager : MonoBehaviour
     private bool isTyping;
     public bool isInDialogue;
     public bool openShop;
+    [SerializeField] private bool tutoDialogue;
 
     private void Awake()
     {
@@ -87,7 +88,11 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
         currentLines = null;
         isInDialogue = false;
-        if (openShop)
+        if (tutoDialogue)
+        {
+            TutoManager.Instance.EndOfFirstDialogue();
+        }
+        else if (openShop)
         {
             openShop = false;
             Shop.Instance.OpenShop(true);

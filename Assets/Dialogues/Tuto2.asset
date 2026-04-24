@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4215b2633c1f06f4fa8e2b46a201c92b, type: 3}
+  m_Name: Tuto2
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  speakerName: Marchant de poisson
+  lines:
+  - text: "Pour t'entra\xEEner, essaie d'aller p\xEAcher un poisson derri\xE8re toi
+      !"
+  - text: "Tu peux maintenir CLIC DROIT pour avoir un apper\xE7u de ton lanc\xE9,
+      et appuyer sur A DEFINIR pour lancer"
+  - text: "En haut \xE0 gauche (A VERIF) se trouve ton compteur de rat\xE9; si il
+      est vide, c'est perdu ! (A REFORMULER)"
+  - text: Aller, bonne chance !

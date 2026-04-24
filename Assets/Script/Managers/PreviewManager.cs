@@ -11,7 +11,7 @@ public class PreviewManager : MonoBehaviour
         {
             preview.SetActive(true);
         }
-        else if (Mouse.current.rightButton.wasReleasedThisFrame || ThrowLasso.Instance.hasThrown)
+        else if (Mouse.current.rightButton.wasReleasedThisFrame || ThrowLasso.Instance.hasThrown || !ThrowLasso.Instance.canThrow)
         {
             preview.SetActive(false);
         }
