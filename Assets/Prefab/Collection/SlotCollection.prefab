@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3380199166692016254}
   - component: {fileID: 1125416913244444873}
+  - component: {fileID: 3449081835512708249}
   m_Layer: 5
   m_Name: SlotCollection
   m_TagString: Untagged
@@ -54,6 +55,14 @@ MonoBehaviour:
   displayIcon: {fileID: 5477934967544784911}
   displayName: {fileID: 8124641895614529638}
   unknownSprite: {fileID: 21300000, guid: 92bec7986e53df54c8f67ce3f0cd03fa, type: 3}
+--- !u!222 &3449081835512708249
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3124951669952376308}
+  m_CullTransparentMesh: 1
 --- !u!1 &6379972797995371549
 GameObject:
   m_ObjectHideFlags: 0

@@ -76,7 +76,6 @@ public class FishingLasso : MonoBehaviour
         //DayManager.Instance.actualThrow--;
         DayManager.Instance.fishCaught++;
         DayManager.Instance.CountdownThrow();
-        BookGenerator.Instance.RefreshBook();
 
     }
     private IEnumerator MissedThrow()
