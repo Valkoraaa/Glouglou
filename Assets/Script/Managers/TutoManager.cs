@@ -7,6 +7,8 @@ public class TutoManager : MonoBehaviour
     public bool tuto;
     public int dialogueCounter;
     public bool endOfDialogue = false;
+    [SerializeField] private GameObject tutoFish;
+    [SerializeField] private GameObject player;
     
     [Header("Dialogues")]
     [SerializeField] private DialogueData tutoDialogue;
@@ -28,6 +30,7 @@ public class TutoManager : MonoBehaviour
         if(tuto)
         {
             DialogueManager.Instance.StartDialogue(tutoDialogue);
+            tutoFish.SetActive(true);
         }
     }
 
@@ -45,10 +48,7 @@ public class TutoManager : MonoBehaviour
             }
             else if (dialogueCounter == 3)
             {
-                UiFadeManager.Instance.FadeTp(new Vector3(1478.14f, 180.59f, 1102.03f)); //mouvement de cam?
-                DayManager.Instance.isNight = true;
-                tuto = false;
-                DialogueManager.Instance.StartDialogue(tutoDialogue3);
+                StartCoroutine(WaitABit());
             }
         }
     }
@@ -87,11 +87,11 @@ public class TutoManager : MonoBehaviour
 
     private IEnumerator ShowCamping()
     {
-        startPos = transform.position;
-        startRot = transform.rotation;
+        startPos = transform.localPosition;
+        startRot = transform.localRotation;
 
-        Vector3 targetPos = startPos + transform.forward * offset.z;
-        Quaternion targetRot = Quaternion.Euler(startRot.eulerAngles + new Vector3(0, 30, 0));
+        Vector3 targetPos = new Vector3(17.38f, 65.36f, 74.84f);
+        Quaternion targetRot = Quaternion.Euler(2.455f, 17.205f, -0.108f);
 
         // Aller
         float t = 0;
@@ -100,12 +100,13 @@ public class TutoManager : MonoBehaviour
             t += Time.deltaTime;
             float lerp = t / duration;
 
-            transform.position = Vector3.Lerp(startPos, targetPos, lerp);
-            transform.rotation = Quaternion.Slerp(startRot, targetRot, lerp);
+            playerCamera.transform.localPosition = Vector3.Lerp(startPos, targetPos, lerp);
+            playerCamera.transform.localRotation = Quaternion.Slerp(startRot, targetRot, lerp);
 
             yield return null;
         }
 
+        yield return new WaitForSeconds(1.5f);
         // Retour
         t = 0;
         while (t < duration)
@@ -113,11 +114,27 @@ public class TutoManager : MonoBehaviour
             t += Time.deltaTime;
             float lerp = t / duration;
 
-            transform.position = Vector3.Lerp(targetPos, startPos, lerp);
-            transform.rotation = Quaternion.Slerp(targetRot, startRot, lerp);
+            playerCamera.transform.localPosition = Vector3.Lerp(targetPos, startPos, lerp);
+            playerCamera.transform.localRotation = Quaternion.Slerp(targetRot, startRot, lerp);
 
             yield return null;
         }
         DialogueManager.Instance.StartDialogue(tutoDialogue2);
+    }
+
+    private IEnumerator WaitABit()
+    {
+        UiFadeManager.Instance.FadeTp(new Vector3(1478.14f, 180.59f, 1102.03f)); //mouvement de cam?
+        yield return new WaitForSeconds(0.5f);
+        player.transform.rotation = Quaternion.Euler(0, -180, 0);
+        yield return new WaitForSeconds(0.5f);
+        
+                
+        DayManager.Instance.isNight = true;
+        tuto = false;
+        Character.Instance.canMove = false;
+        Character.Instance.canMoveCam = false;
+                
+        DialogueManager.Instance.StartDialogue(tutoDialogue3);
     }
 }

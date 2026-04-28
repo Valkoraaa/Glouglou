@@ -14,9 +14,9 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
 
     [Header("Typing Settings")]
-    public float typingSpeed = 0.1f;
-    public float fastTypingSpeed = 0.03f;
-    public float defaultTypingSpeed = 0.1f;
+    public float typingSpeed; //0.08f
+    public float fastTypingSpeed; //0.04f
+    public float defaultTypingSpeed; //0.08f
 
     private List<DialogueLine> currentLines;
     private int index;

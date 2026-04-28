@@ -96,6 +96,7 @@ public class DayManager : MonoBehaviour
         EffectManager.Instance.ApplyEffect();
         //StartCoroutine(DayPassing());
         isNight = false;
+        SpawnFish.Instance.SpawningFish();
     }
 
     private void DayEffect()
