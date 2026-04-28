@@ -7,40 +7,29 @@ using Cursor = UnityEngine.Cursor;
 public class DisplayBook : MonoBehaviour
 {
     [Header("Références")]
-    [SerializeField] private List<Transform> pages; // Glisse Page1, Page2... ici
+    [SerializeField] private List<Transform> pages;
     [SerializeField] private GameObject slotPrefab;
     [SerializeField] private List<FishData> allFishes;
 
     [Header("Réglages")]
     [SerializeField] private int slotsPerPage = 9;
-    [SerializeField] private float pageSpeed;
+    [SerializeField] private float pageSpeed = 1f;
 
     [Header("UI Buttons")]
     [SerializeField] private GameObject backButton;
     [SerializeField] private GameObject nextButton;
 
     private int index = 0;
-    private bool rotate = false;
+    private bool rotating = false;
 
-    public void Start()
+    private void Start()
     {
         pages[0].SetAsLastSibling();
-
-        Debug.Log("--- Démarrage DisplayBook ---");
-        backButton.SetActive(false);
-
-        if (pages.Count > 0)
-        {
-            Debug.Log("Start: Peuplement de la page 0");
-            PopulatePage(0);
-        }
-        else
-        {
-            Debug.LogError("Start: La liste 'pages' est vide !");
-        }
-        DisplayMouse(true);
+        PopulatePage(0);
+        UpdateButtons();
     }
-    public void DisplayMouse(bool open) //true to open, false to close
+
+    public void DisplayMouse(bool open)
     {
         Cursor.visible = open;
         if (open)
@@ -59,90 +48,45 @@ public class DisplayBook : MonoBehaviour
 
     private void PopulatePage(int pageIndex)
     {
-        Transform grid = pages[pageIndex].Find("FaceBefore/GridContainer");
+        if (pageIndex < 0 || pageIndex >= pages.Count) return;
 
+        Transform grid = pages[pageIndex].Find("FaceBefore/GridContainer");
         if (grid == null)
         {
-            Debug.LogError($"PopulatePage: GridContainer introuvable sur {pages[pageIndex].name}. Vérifie le chemin 'FaceBefore/GridContainer'");
+            Debug.LogError($"GridContainer introuvable sur {pages[pageIndex].name}");
             return;
         }
-
-        Debug.Log($"PopulatePage: Remplissage de {pages[pageIndex].name} (Index: {pageIndex})");
 
         foreach (Transform child in grid) Destroy(child.gameObject);
 
         int startIdx = pageIndex * slotsPerPage;
-        int endIdx = startIdx + slotsPerPage;
-
-        Debug.Log($"PopulatePage: Génération des slots de {startIdx} à {Mathf.Min(endIdx, allFishes.Count)}");
-
-        for (int i = startIdx; i < endIdx; i++)
+        for (int i = startIdx; i < startIdx + slotsPerPage; i++)
         {
             if (i >= allFishes.Count) break;
-
             GameObject slot = Instantiate(slotPrefab, grid);
             bool isCaught = FishingBookManager.Instance.IsFishCaught(allFishes[i].id);
             slot.GetComponent<Collection_Slot>().SetUp(allFishes[i], isCaught);
-            Debug.Log($"Slot ajouté : {allFishes[i].species} (Caught: {isCaught})");
         }
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(grid.GetComponent<RectTransform>());
     }
 
-    private void PopulateCurrentPage()
-    {
-        if (FishingBookManager.Instance == null)
-        {
-            Debug.LogError("FishingBookManager.Instance est NULL !");
-            return;
-        }
-        Transform grid = pages[index].Find("FaceBefore/GridContainer");
-        if (grid == null)
-        {
-            Debug.LogError("Erreur : GridContainer non trouvé");
-        }
-        if (grid != null)
-        {
-            PopulatePage(index);
-        }
-        else
-        {
-            Debug.LogError("GridContainer introuvable sur la page " + index);
-        }
-        LayoutRebuilder.ForceRebuildLayoutImmediate(grid.GetComponent<RectTransform>());
-        Canvas.ForceUpdateCanvases();
-    }
     public void RotateNext()
     {
-        if (rotate || index >= pages.Count - 1) return;
-
+        if (rotating || index >= pages.Count - 1) return;
         index++;
-        PopulateCurrentPage();
+        PopulatePage(index);
         pages[index].SetAsLastSibling();
-        StartCoroutine(Rotate(pages[index], 180, true));
-
+        StartCoroutine(Rotate(pages[index], true));
         UpdateButtons();
-    }
-
-    public void ForwardButtonActions()
-    {
-        if (backButton.activeInHierarchy == false)
-        {
-            backButton.SetActive(true);
-        }
-        if (index == pages.Count - 1)
-        {
-            nextButton.SetActive(false);
-        }
     }
 
     public void RotateBack()
     {
-        if (rotate || index <= 0) return;
-
-        // On affiche le contenu de la page qu'on révèle
+        if (rotating || index <= 0) return;
         PopulatePage(index - 1);
-
-        pages[index + 1].SetAsLastSibling(); // La page qui revient vers l'arrière
-        StartCoroutine(Rotate(pages[index + 1], 0, false));
+        pages[index].SetAsLastSibling(); 
+        StartCoroutine(Rotate(pages[index], false));
         index--;
         UpdateButtons();
     }
@@ -150,24 +94,12 @@ public class DisplayBook : MonoBehaviour
     private void UpdateButtons()
     {
         backButton.SetActive(index > 0);
-        nextButton.SetActive(index < pages.Count - 2);
+        nextButton.SetActive(index < pages.Count - 1); 
     }
 
-    public void BackButtonActions()
+    IEnumerator Rotate(Transform pageToRotate, bool forward)
     {
-        if (nextButton.activeInHierarchy == false)
-        {
-            nextButton.SetActive(true);
-        }
-        if (index - 1 == 1)
-        {
-            backButton.SetActive(false);
-        }
-    }
-
-    IEnumerator Rotate(Transform pageToRotate, float targetYAngle, bool forward)
-    {
-        rotate = true;
+        rotating = true;
         float halfDuration = (1.0f / pageSpeed) / 2f;
         float elapsed = 0f;
 
@@ -177,34 +109,34 @@ public class DisplayBook : MonoBehaviour
         while (elapsed < halfDuration)
         {
             elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / halfDuration);
-            pageToRotate.rotation = Quaternion.Slerp(startRot, midRot, t);
+            pageToRotate.rotation = Quaternion.Slerp(startRot, midRot,
+                                        Mathf.Clamp01(elapsed / halfDuration));
             yield return null;
         }
         pageToRotate.rotation = midRot;
 
+
+        float scaleX = forward ? -1f : 1f;
+
         pageToRotate.localScale = new Vector3(
-            -pageToRotate.localScale.x,
-            pageToRotate.localScale.y,
-            pageToRotate.localScale.z);
+            scaleX, pageToRotate.localScale.y, pageToRotate.localScale.z);
 
         Transform faceBefore = pageToRotate.Find("FaceBefore");
         if (faceBefore != null)
-        {
-            Vector3 s = faceBefore.localScale;
-            faceBefore.localScale = new Vector3(-s.x, s.y, s.z);
-        }
+            faceBefore.localScale = new Vector3(
+                scaleX, faceBefore.localScale.y, faceBefore.localScale.z);
+
 
         elapsed = 0f;
         while (elapsed < halfDuration)
         {
             elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / halfDuration);
-            pageToRotate.rotation = Quaternion.Slerp(midRot, Quaternion.identity, t);
+            pageToRotate.rotation = Quaternion.Slerp(midRot, Quaternion.identity,
+                                        Mathf.Clamp01(elapsed / halfDuration));
             yield return null;
         }
 
         pageToRotate.rotation = Quaternion.identity;
-        rotate = false;
+        rotating = false;
     }
 }
