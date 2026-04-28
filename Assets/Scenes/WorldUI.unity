@@ -1235,11 +1235,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DisplayBook
   pages:
   - {fileID: 303235797669602764}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1464008984}
+  - {fileID: 1110811574}
+  - {fileID: 1662899465}
+  - {fileID: 1554450811}
+  - {fileID: 1956982380}
   slotPrefab: {fileID: 3124951669952376308, guid: 6780fa65fc971314bb4f9382482730ea, type: 3}
   allFishes:
   - {fileID: 11400000, guid: 8c46d3f0d9d4392408ec45a07562208d, type: 2}
@@ -1293,7 +1293,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8c46d3f0d9d4392408ec45a07562208d, type: 2}
   - {fileID: 11400000, guid: 8c46d3f0d9d4392408ec45a07562208d, type: 2}
   slotsPerPage: 9
-  pageSpeed: 0.5
+  pageSpeed: 1
   backButton: {fileID: 1662214840}
   nextButton: {fileID: 1958987093}
 --- !u!224 &1068004625

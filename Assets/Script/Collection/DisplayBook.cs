@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Cursor = UnityEngine.Cursor;
 
 public class DisplayBook : MonoBehaviour
@@ -23,6 +24,8 @@ public class DisplayBook : MonoBehaviour
 
     public void Start()
     {
+        pages[0].SetAsLastSibling();
+
         Debug.Log("--- Démarrage DisplayBook ---");
         backButton.SetActive(false);
 
@@ -56,11 +59,11 @@ public class DisplayBook : MonoBehaviour
 
     private void PopulatePage(int pageIndex)
     {
-        Transform grid = pages[pageIndex].Find("PageSprite/GridContainer");
+        Transform grid = pages[pageIndex].Find("FaceBefore/GridContainer");
 
         if (grid == null)
         {
-            Debug.LogError($"PopulatePage: GridContainer introuvable sur {pages[pageIndex].name}. Vérifie le chemin 'PageSprite/GridContainer'");
+            Debug.LogError($"PopulatePage: GridContainer introuvable sur {pages[pageIndex].name}. Vérifie le chemin 'FaceBefore/GridContainer'");
             return;
         }
 
@@ -86,8 +89,13 @@ public class DisplayBook : MonoBehaviour
 
     private void PopulateCurrentPage()
     {
-        Transform grid = pages[index].Find("PageSprite/GridContainer");
-        if(grid == null)
+        if (FishingBookManager.Instance == null)
+        {
+            Debug.LogError("FishingBookManager.Instance est NULL !");
+            return;
+        }
+        Transform grid = pages[index].Find("FaceBefore/GridContainer");
+        if (grid == null)
         {
             Debug.LogError("Erreur : GridContainer non trouvé");
         }
@@ -99,6 +107,8 @@ public class DisplayBook : MonoBehaviour
         {
             Debug.LogError("GridContainer introuvable sur la page " + index);
         }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(grid.GetComponent<RectTransform>());
+        Canvas.ForceUpdateCanvases();
     }
     public void RotateNext()
     {
@@ -126,10 +136,10 @@ public class DisplayBook : MonoBehaviour
 
     public void RotateBack()
     {
-        if (rotate || index < 0) return;
+        if (rotate || index <= 0) return;
 
         // On affiche le contenu de la page qu'on révèle
-        PopulatePage(index);
+        PopulatePage(index - 1);
 
         pages[index + 1].SetAsLastSibling(); // La page qui revient vers l'arrière
         StartCoroutine(Rotate(pages[index + 1], 0, false));
@@ -139,7 +149,7 @@ public class DisplayBook : MonoBehaviour
 
     private void UpdateButtons()
     {
-        backButton.SetActive(index >= 0);
+        backButton.SetActive(index > 0);
         nextButton.SetActive(index < pages.Count - 2);
     }
 
@@ -158,23 +168,43 @@ public class DisplayBook : MonoBehaviour
     IEnumerator Rotate(Transform pageToRotate, float targetYAngle, bool forward)
     {
         rotate = true;
-        float duration = 1.0f / pageSpeed;
+        float halfDuration = (1.0f / pageSpeed) / 2f;
         float elapsed = 0f;
-        Quaternion startRotation = pageToRotate.rotation;
-        Quaternion targetRotation = Quaternion.Euler(0, targetYAngle, 0);
 
-        while (elapsed < duration)
+        Quaternion startRot = pageToRotate.rotation;
+        Quaternion midRot = Quaternion.Euler(0, 90, 0);
+
+        while (elapsed < halfDuration)
         {
             elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / duration);
+            float t = Mathf.Clamp01(elapsed / halfDuration);
+            pageToRotate.rotation = Quaternion.Slerp(startRot, midRot, t);
+            yield return null;
+        }
+        pageToRotate.rotation = midRot;
 
-            pageToRotate.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
+        pageToRotate.localScale = new Vector3(
+            -pageToRotate.localScale.x,
+            pageToRotate.localScale.y,
+            pageToRotate.localScale.z);
 
+        Transform faceBefore = pageToRotate.Find("FaceBefore");
+        if (faceBefore != null)
+        {
+            Vector3 s = faceBefore.localScale;
+            faceBefore.localScale = new Vector3(-s.x, s.y, s.z);
+        }
+
+        elapsed = 0f;
+        while (elapsed < halfDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / halfDuration);
+            pageToRotate.rotation = Quaternion.Slerp(midRot, Quaternion.identity, t);
             yield return null;
         }
 
-        pageToRotate.rotation = targetRotation;
-
+        pageToRotate.rotation = Quaternion.identity;
         rotate = false;
     }
 }
