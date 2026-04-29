@@ -10,6 +10,7 @@ public class TutoManager : MonoBehaviour
     public bool fadeFinished;
     public bool hasToBack;
     [SerializeField] private GameObject tutoFish;
+    [SerializeField] private GameObject tutoBlock;
     [SerializeField] private GameObject player;
     
     [Header("Dialogues")]
@@ -33,6 +34,11 @@ public class TutoManager : MonoBehaviour
         {
             DialogueManager.Instance.StartDialogue(tutoDialogue);
             tutoFish.SetActive(true);
+            tutoBlock.SetActive(true);
+        }
+        else
+        {
+            DayManager.Instance.StartOfDay();
         }
     }
 
