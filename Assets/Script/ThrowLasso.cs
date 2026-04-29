@@ -21,6 +21,7 @@ public class ThrowLasso : MonoBehaviour
     public bool recallRope;
     private bool isChild;
     public static ThrowLasso Instance { get; private set; }
+    private int layerMask = ~LayerMask.GetMask("Bordure");
 
     void Awake()
     {
@@ -49,11 +50,7 @@ public class ThrowLasso : MonoBehaviour
         }
         if(!hasThrown && !isChild)
         {
-            lasso.transform.SetParent(cam.transform);
-            lasso.transform.localRotation = Quaternion.identity;
-            lasso.transform.localPosition = new Vector3(0.65f, -0.2f, 0.4f);
-            isChild = true;
-            boxCollider.enabled = false;
+            GetLasso();
         }
 
         
@@ -72,7 +69,7 @@ public class ThrowLasso : MonoBehaviour
 
             Vector3 targetPoint;
 
-            if (Physics.Raycast(ray, out hit, 50f))
+            if (Physics.Raycast(ray, out hit, 50f, layerMask))
             {
                 targetPoint = hit.point;
             }
@@ -98,6 +95,15 @@ public class ThrowLasso : MonoBehaviour
         hasThrown = false;
         rb.isKinematic = true;
         isChild = false;
+        boxCollider.enabled = false;
+    }
+
+    public void GetLasso()
+    {
+        lasso.transform.SetParent(cam.transform);
+        lasso.transform.localRotation = Quaternion.identity;
+        lasso.transform.localPosition = new Vector3(0.65f, -0.2f, 0.4f);
+        isChild = true;
         boxCollider.enabled = false;
     }
 

@@ -6,7 +6,9 @@ public class TutoManager : MonoBehaviour
     public static TutoManager Instance;
     public bool tuto;
     public int dialogueCounter;
-    public bool endOfDialogue = false;
+    public bool endOfDialogue;
+    public bool fadeFinished;
+    public bool hasToBack;
     [SerializeField] private GameObject tutoFish;
     [SerializeField] private GameObject player;
     
@@ -40,11 +42,14 @@ public class TutoManager : MonoBehaviour
         {
             endOfDialogue = false;
             if(dialogueCounter == 1) { EndOfFirstDialogue(); Debug.Log("1");}
+            else if (dialogueCounter == 2 && hasToBack)
+            {
+                hasToBack = false;
+            }
             else if (dialogueCounter == 2)
             {
                 Character.Instance.canMove = true;
                 Character.Instance.canMoveCam = true;
-                Debug.Log("2");
             }
             else if (dialogueCounter == 3)
             {
@@ -87,9 +92,11 @@ public class TutoManager : MonoBehaviour
 
     private IEnumerator ShowCamping()
     {
-        startPos = transform.localPosition;
-        startRot = transform.localRotation;
+        playerCamera.transform.GetChild(0).SetParent(null);
 
+        startPos = playerCamera.transform.localPosition;
+        startRot = playerCamera.transform.localRotation;
+        Debug.Log(startPos);
         Vector3 targetPos = new Vector3(17.38f, 65.36f, 74.84f);
         Quaternion targetRot = Quaternion.Euler(2.455f, 17.205f, -0.108f);
 
@@ -119,6 +126,9 @@ public class TutoManager : MonoBehaviour
 
             yield return null;
         }
+        playerCamera.transform.localPosition = startPos;
+        playerCamera.transform.localRotation = startRot;
+        ThrowLasso.Instance.GetLasso();
         DialogueManager.Instance.StartDialogue(tutoDialogue2);
     }
 
@@ -127,7 +137,7 @@ public class TutoManager : MonoBehaviour
         UiFadeManager.Instance.FadeTp(new Vector3(1478.14f, 180.59f, 1102.03f)); //mouvement de cam?
         yield return new WaitForSeconds(0.5f);
         player.transform.rotation = Quaternion.Euler(0, -180, 0);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitUntil(() => fadeFinished);
         
                 
         DayManager.Instance.isNight = true;

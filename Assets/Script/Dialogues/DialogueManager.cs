@@ -25,6 +25,7 @@ public class DialogueManager : MonoBehaviour
     private bool isTyping;
     public bool isInDialogue;
     public bool openShop;
+    public bool skipIncTuto;
     [SerializeField] private bool tutoDialogue;
 
     private void Awake()
@@ -46,6 +47,14 @@ public class DialogueManager : MonoBehaviour
         index = 0;
 
         ShowLine();
+    }
+
+    public IEnumerator WaitForEndOfDialogue(DialogueData dialogue, UnityEngine.Vector3 tpPos)
+    {
+        StartDialogue(dialogue);
+        yield return new WaitUntil(() => !isInDialogue);
+        Debug.Log("tp");
+        UiFadeManager.Instance.FadeTp(tpPos);
     }
 
     public void NextLine()
@@ -87,7 +96,7 @@ public class DialogueManager : MonoBehaviour
     {
         dialoguePanel.SetActive(false);
         currentLines = null;
-        isInDialogue = false;
+        
         
         if (openShop)
         {
@@ -96,7 +105,8 @@ public class DialogueManager : MonoBehaviour
         }
         else if (TutoManager.Instance.tuto)
         {
-            TutoManager.Instance.dialogueCounter++;
+            if(!skipIncTuto) {TutoManager.Instance.dialogueCounter++;}
+            else { skipIncTuto = false; }
             TutoManager.Instance.endOfDialogue = true;
             Debug.Log("DialogueManager check tuto manager.tuto");
         }
@@ -105,6 +115,7 @@ public class DialogueManager : MonoBehaviour
             Character.Instance.canMove = true;
             Character.Instance.canMoveCam = true;
         }
+        isInDialogue = false;
     }
 
     private void Update()

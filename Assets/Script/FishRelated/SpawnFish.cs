@@ -34,6 +34,13 @@ public class SpawnFish : MonoBehaviour
 
     public void SpawningFish()
     {
+        foreach (Transform child in transform)
+        {
+            if (child.GetComponent<Fish>() != null)
+            {
+                Destroy(child.gameObject);
+            }
+        }
         for (int i = 0; i < fishNumber; i++)
         {
             Fish fishToInstantiate = GetRandomFish();
