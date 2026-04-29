@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 6232284073637317873}
   - component: {fileID: 3781790590252967167}
   - component: {fileID: 8114501078006753498}
-  - component: {fileID: 8430250590038103594}
   m_Layer: 5
-  m_Name: BookCollection
+  m_Name: PageSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,28 +76,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8430250590038103594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3470316111310078201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72c25f2c893520b45a69c43db153f92c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BookGenerator
-  allFishes:
-  - {fileID: 11400000, guid: 45fd83eedba16484bb362a30a05e3873, type: 2}
-  - {fileID: 11400000, guid: c61cf2a72202c0c4fbd6a5c4704ab501, type: 2}
-  - {fileID: 11400000, guid: 06e1918def62c764d9966ce99b9e6e6c, type: 2}
-  - {fileID: 11400000, guid: 45bd5f1d2e9e6594a94551772347060d, type: 2}
-  - {fileID: 11400000, guid: 1f42867a732a3344db031ab394a995e2, type: 2}
-  - {fileID: 11400000, guid: 091926f301c5fa542aa5206b03eaaf95, type: 2}
-  - {fileID: 11400000, guid: c8d186c3ee43738498cd3659682672df, type: 2}
-  gridLayoutGroup: {fileID: 537644564177366488}
-  slotPrefab: {fileID: 3124951669952376308, guid: 6780fa65fc971314bb4f9382482730ea, type: 3}
 --- !u!1 &6199969255815737534
 GameObject:
   m_ObjectHideFlags: 0
