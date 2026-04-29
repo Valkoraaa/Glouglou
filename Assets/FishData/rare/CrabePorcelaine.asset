@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CrabePorcelaine
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   id: 9
-  species: 
+  species: 'Crabe '
   currentRarity: 1
   price: 250
   icon: {fileID: 0}

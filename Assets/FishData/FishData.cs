@@ -12,7 +12,7 @@ public class FishData : ScriptableObject
         epic,
         legendary,
     }
-    public rarity currentRarity;
+    [SerializeField] public rarity currentRarity;
     [SerializeField] public int price;
     [SerializeField] public Sprite icon;
 
