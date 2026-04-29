@@ -22,9 +22,26 @@ public class CollectionGestion : MonoBehaviour
         if (Keyboard.current.tabKey.wasPressedThisFrame)
         {
             if (collectionCanva.gameObject.activeSelf)
+            {
                 CloseCollection();
+                DisplayMouse(false);
+            }
+
             else
                 OpenCollection();
+                DisplayMouse(true);
+
+        }
+    }
+
+    public void DisplayMouse(bool open)
+    {
+        Cursor.visible = open;
+        Cursor.lockState = open ? CursorLockMode.None : CursorLockMode.Locked;
+        if (Character.Instance != null)
+        {
+            Character.Instance.canMove = !open;
+            Character.Instance.canMoveCam = !open;
         }
     }
 

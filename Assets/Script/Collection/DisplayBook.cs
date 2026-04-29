@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Cursor = UnityEngine.Cursor;
 
 public class DisplayBook : MonoBehaviour
 {
@@ -13,130 +12,111 @@ public class DisplayBook : MonoBehaviour
 
     [Header("Réglages")]
     [SerializeField] private int slotsPerPage = 9;
-    [SerializeField] private float pageSpeed = 1f;
+    [SerializeField] private float pageSpeed = 2f;
 
     [Header("UI Buttons")]
     [SerializeField] private GameObject backButton;
     [SerializeField] private GameObject nextButton;
 
-    private int index = 0;
+    private int currentPageIndex = 0; // On suit l'index de la PAGE (0, 1, 2...)
     private bool rotating = false;
 
     private void Start()
     {
-        pages[0].SetAsLastSibling();
-        PopulatePage(0);
+        // Initialisation propre de toutes les pages au démarrage
+        for (int i = 0; i < pages.Count; i++)
+        {
+            pages[i].rotation = Quaternion.identity;
+
+            Transform fb = pages[i].Find("FaceBefore");
+            Transform fa = pages[i].Find("FaceAfter");
+
+            if (fb) fb.gameObject.SetActive(true);
+            if (fa)
+            {
+                fa.gameObject.SetActive(false);
+                fa.localScale = new Vector3(-1, 1, 1); // Correction miroir
+            }
+
+            // On remplit les deux faces de chaque page
+            PopulateFace(pages[i].Find("FaceBefore"), i * 2);
+            PopulateFace(pages[i].Find("FaceAfter"), (i * 2) + 1);
+        }
+
         UpdateButtons();
     }
 
-    public void DisplayMouse(bool open)
-    {
-        Cursor.visible = open;
-        if (open)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Character.Instance.canMove = false;
-            Character.Instance.canMoveCam = false;
-        }
-        else
-        {
-            Character.Instance.canMove = true;
-            Character.Instance.canMoveCam = true;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-    }
 
-    private void PopulatePage(int pageIndex)
-    {
-        if (pageIndex < 0 || pageIndex >= pages.Count) return;
 
-        Transform grid = pages[pageIndex].Find("FaceBefore/GridContainer");
-        if (grid == null)
-        {
-            Debug.LogError($"GridContainer introuvable sur {pages[pageIndex].name}");
-            return;
-        }
+    private void PopulateFace(Transform face, int faceIdx)
+    {
+        if (face == null) return;
+        Transform grid = face.Find("GridContainer");
+        if (grid == null) return;
 
         foreach (Transform child in grid) Destroy(child.gameObject);
 
-        int startIdx = pageIndex * slotsPerPage;
-        for (int i = startIdx; i < startIdx + slotsPerPage; i++)
+        int startIdx = faceIdx * slotsPerPage;
+        for (int i = startIdx; i < startIdx + slotsPerPage && i < allFishes.Count; i++)
         {
-            if (i >= allFishes.Count) break;
             GameObject slot = Instantiate(slotPrefab, grid);
             bool isCaught = FishingBookManager.Instance.IsFishCaught(allFishes[i].id);
             slot.GetComponent<Collection_Slot>().SetUp(allFishes[i], isCaught);
         }
-
-        LayoutRebuilder.ForceRebuildLayoutImmediate(grid.GetComponent<RectTransform>());
     }
 
     public void RotateNext()
     {
-        if (rotating || index >= pages.Count - 1) return;
-        index++;
-        PopulatePage(index);
-        pages[index].SetAsLastSibling();
-        StartCoroutine(Rotate(pages[index], true));
+        if (rotating || currentPageIndex >= pages.Count) return;
+
+        StartCoroutine(AnimateRotation(pages[currentPageIndex], 0f, 180f, true));
+        currentPageIndex++;
         UpdateButtons();
     }
 
     public void RotateBack()
     {
-        if (rotating || index <= 0) return;
-        PopulatePage(index - 1);
-        pages[index].SetAsLastSibling(); 
-        StartCoroutine(Rotate(pages[index], false));
-        index--;
+        if (rotating || currentPageIndex <= 0) return;
+
+        currentPageIndex--;
+        StartCoroutine(AnimateRotation(pages[currentPageIndex], 180f, 0f, false));
         UpdateButtons();
     }
 
     private void UpdateButtons()
     {
-        backButton.SetActive(index > 0);
-        nextButton.SetActive(index < pages.Count - 1); 
+        backButton.SetActive(currentPageIndex > 0);
+        nextButton.SetActive(currentPageIndex < pages.Count);
     }
 
-    IEnumerator Rotate(Transform pageToRotate, bool forward)
+    IEnumerator AnimateRotation(Transform page, float startAngle, float endAngle, bool forward)
     {
         rotating = true;
-        float halfDuration = (1.0f / pageSpeed) / 2f;
+        page.SetAsLastSibling(); // Met la page au-dessus des autres pendant qu'elle tourne
+
+        Transform fb = page.Find("FaceBefore");
+        Transform fa = page.Find("FaceAfter");
+
         float elapsed = 0f;
+        float duration = 1f / pageSpeed;
 
-        Quaternion startRot = pageToRotate.rotation;
-        Quaternion midRot = Quaternion.Euler(0, 90, 0);
-
-        while (elapsed < halfDuration)
+        while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            pageToRotate.rotation = Quaternion.Slerp(startRot, midRot,
-                                        Mathf.Clamp01(elapsed / halfDuration));
-            yield return null;
-        }
-        pageToRotate.rotation = midRot;
+            float t = elapsed / duration;
+            float angle = Mathf.Lerp(startAngle, endAngle, t);
+            page.rotation = Quaternion.Euler(0, angle, 0);
 
-
-        float scaleX = forward ? -1f : 1f;
-
-        pageToRotate.localScale = new Vector3(
-            scaleX, pageToRotate.localScale.y, pageToRotate.localScale.z);
-
-        Transform faceBefore = pageToRotate.Find("FaceBefore");
-        if (faceBefore != null)
-            faceBefore.localScale = new Vector3(
-                scaleX, faceBefore.localScale.y, faceBefore.localScale.z);
-
-
-        elapsed = 0f;
-        while (elapsed < halfDuration)
-        {
-            elapsed += Time.deltaTime;
-            pageToRotate.rotation = Quaternion.Slerp(midRot, Quaternion.identity,
-                                        Mathf.Clamp01(elapsed / halfDuration));
+            // LE FIX : Au milieu de la rotation (90°), on switch les faces
+            if (t >= 0.5f)
+            {
+                fb.gameObject.SetActive(!forward);
+                fa.gameObject.SetActive(forward);
+            }
             yield return null;
         }
 
-        pageToRotate.rotation = Quaternion.identity;
+        page.rotation = Quaternion.Euler(0, endAngle, 0);
         rotating = false;
     }
 }
