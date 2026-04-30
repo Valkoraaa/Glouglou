@@ -38,7 +38,7 @@ public class TutoManager : MonoBehaviour
         }
         else
         {
-            DayManager.Instance.StartOfDay();
+            StartCoroutine(StartTheDay());
         }
     }
 
@@ -152,5 +152,11 @@ public class TutoManager : MonoBehaviour
         Character.Instance.canMoveCam = false;
                 
         DialogueManager.Instance.StartDialogue(tutoDialogue3);
+    }
+
+    private IEnumerator StartTheDay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        DayManager.Instance.StartOfDay();
     }
 }
