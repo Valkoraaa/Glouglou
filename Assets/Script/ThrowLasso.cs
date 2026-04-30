@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -57,13 +58,19 @@ public class ThrowLasso : MonoBehaviour
         
         if (!hasThrown && Keyboard.current.eKey.wasPressedThisFrame && canThrow)//Mouse.current.leftButton.isPressed)
         {
+            Character.Instance.stopChara = true;
+            rbPlayer.linearVelocity = Vector3.zero;
             rbPlayer.isKinematic = true;
             Character.Instance.canMove = false;
             //Character.Instance.canMoveCam = false; ?
             lasso.transform.SetParent(null);
+            
             rb.isKinematic = false;
+
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
             hasThrown = true;
-            boxCollider.enabled = true;
+            
             // Raycast depuis le centre de l'écran
             Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
             RaycastHit hit;
@@ -81,8 +88,8 @@ public class ThrowLasso : MonoBehaviour
 
             // Direction corrigée depuis la position réelle du lasso
             Vector3 direction = (targetPoint - lasso.transform.position).normalized;
-
             rb.AddForce(direction * force, ForceMode.Impulse);
+            boxCollider.enabled = true;
             //isFishing = false;
         }
     }
@@ -90,6 +97,7 @@ public class ThrowLasso : MonoBehaviour
 
     public void hasLasso()
     {
+        
         Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
         Character.Instance.canMove = true;
         recallRope = false;
@@ -97,6 +105,7 @@ public class ThrowLasso : MonoBehaviour
         rb.isKinematic = true;
         isChild = false;
         boxCollider.enabled = false;
+        Character.Instance.stopChara = false;
     }
 
     public void GetLasso()
@@ -116,4 +125,5 @@ public class ThrowLasso : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawRay(ray.origin, ray.direction * 50f);
     }
+    
 }
