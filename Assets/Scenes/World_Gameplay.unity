@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &41657783
 Transform:
   m_ObjectHideFlags: 0
@@ -6320,7 +6320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &888388244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12369,7 +12369,7 @@ MonoBehaviour:
   fadeFinished: 0
   hasToBack: 0
   tutoFish: {fileID: 934411152}
-  tutoBlock: {fileID: 0}
+  tutoBlock: {fileID: 41657782}
   player: {fileID: 72077350}
   tutoDialogue: {fileID: 11400000, guid: 2ce06c12d7afac14c9f375cbaadb52a0, type: 2}
   tutoDialogue2: {fileID: 11400000, guid: 04adc7593eda2ee4fa1036efdefb9a98, type: 2}
