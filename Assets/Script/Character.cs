@@ -27,6 +27,7 @@ public class Character : MonoBehaviour
     public bool canMoveCam = true;
     private Vector3 move;
     public bool stopChara;
+    public bool cinematic;
 
     private void Awake()
     {
@@ -93,7 +94,10 @@ public class Character : MonoBehaviour
 
     private void ApplyCameraPosition()
     {
-        cameraTransform.localPosition = fpsOffset;
+        if(!cinematic)
+        {
+            cameraTransform.localPosition = fpsOffset;
+        }
     }
 
     #region Inputs

@@ -47,8 +47,8 @@ public class ThrowLasso : MonoBehaviour
         if(Keyboard.current.rKey.wasPressedThisFrame) //temp
         {
             hasLasso();
-            Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            Character.Instance.canMove = true;
+            // Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            // Character.Instance.canMove = true;
         }
         if(!hasThrown && !isChild)
         {

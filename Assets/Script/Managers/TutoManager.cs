@@ -99,6 +99,7 @@ public class TutoManager : MonoBehaviour
     private IEnumerator ShowCamping()
     {
         playerCamera.transform.GetChild(0).SetParent(null);
+        Character.Instance.cinematic = true;
 
         startPos = playerCamera.transform.localPosition;
         startRot = playerCamera.transform.localRotation;
@@ -134,7 +135,8 @@ public class TutoManager : MonoBehaviour
         }
         playerCamera.transform.localPosition = startPos;
         playerCamera.transform.localRotation = startRot;
-        ThrowLasso.Instance.GetLasso();
+        Character.Instance.cinematic = false;
+        ThrowLasso.Instance.hasLasso();
         DialogueManager.Instance.StartDialogue(tutoDialogue2);
     }
 
@@ -143,6 +145,7 @@ public class TutoManager : MonoBehaviour
         UiFadeManager.Instance.FadeTp(new Vector3(1478.14f, 180.59f, 1102.03f)); //mouvement de cam?
         yield return new WaitForSeconds(0.5f);
         player.transform.rotation = Quaternion.Euler(0, -180, 0);
+        ThrowLasso.Instance.hasLasso();
         yield return new WaitUntil(() => fadeFinished);
         
                 
