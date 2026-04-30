@@ -11,7 +11,6 @@ public class Collection_Slot : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private Sprite unknownSprite;
 
-
     public void SetUp(FishData data, bool isCaught)
     {
         if (isCaught)

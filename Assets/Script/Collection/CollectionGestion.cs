@@ -8,6 +8,7 @@ public class CollectionGestion : MonoBehaviour
 {
     [SerializeField]
     private Canvas collectionCanva;
+    [SerializeField] private DisplayBook displayBook;
 
     private Rigidbody characterRigidbody;
 
@@ -53,6 +54,8 @@ public class CollectionGestion : MonoBehaviour
         Character.Instance.canMoveCam = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        displayBook.RefreshBook();
+
     }
 
     public void CloseCollection()
@@ -62,6 +65,5 @@ public class CollectionGestion : MonoBehaviour
         Character.Instance.canMove = true;
         Character.Instance.canMoveCam = true;
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 }

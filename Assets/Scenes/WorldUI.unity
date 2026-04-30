@@ -769,6 +769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectionGestion
   collectionCanva: {fileID: 1832423848}
+  displayBook: {fileID: 1068004624}
 --- !u!224 &787990591
 RectTransform:
   m_ObjectHideFlags: 0

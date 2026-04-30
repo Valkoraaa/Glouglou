@@ -23,7 +23,13 @@ public class DisplayBook : MonoBehaviour
 
     private void Start()
     {
-        // Initialisation propre de toutes les pages au démarrage
+
+    }
+
+    public void RefreshBook()
+    {
+        currentPageIndex = 0;
+
         for (int i = 0; i < pages.Count; i++)
         {
             pages[i].rotation = Quaternion.identity;
@@ -35,12 +41,11 @@ public class DisplayBook : MonoBehaviour
             if (fa)
             {
                 fa.gameObject.SetActive(false);
-                fa.localScale = new Vector3(-1, 1, 1); // Correction miroir
+                fa.localScale = new Vector3(-1, 1, 1);
             }
 
-            // On remplit les deux faces de chaque page
-            PopulateFace(pages[i].Find("FaceBefore"), i * 2);
-            PopulateFace(pages[i].Find("FaceAfter"), (i * 2) + 1);
+            PopulateFace(fb, i * 2);
+            PopulateFace(fa, (i * 2) + 1);
         }
 
         UpdateButtons();

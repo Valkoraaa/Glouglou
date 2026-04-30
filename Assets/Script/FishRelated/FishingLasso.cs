@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class FishingLasso : MonoBehaviour
 {
@@ -32,13 +33,21 @@ public class FishingLasso : MonoBehaviour
     private void OnTriggerEnter(Collider other) //to check if you hit a fish
     {
         Fish fishScript = other.gameObject.GetComponent<Fish>();
+        float randWeight = Random.Range(0.8f ,1.2f);
+        float fishWeight = other.gameObject.GetComponent<Fish>().Weight;
+
         if (other.gameObject.CompareTag("fish") && fishScript != null && fishScript.data != null)
         {
             int fishRarityValue = (int)fishScript.data.currentRarity;
 
             if (strenght >= fishRarityValue && !ThrowLasso.Instance.recallRope)
             {
+
                 FishingBookManager.Instance.RegisterCatch(fishScript.data.id);
+                Debug.Log("poid random " + randWeight);
+                fishWeight = fishWeight * randWeight;
+                Debug.Log("poid du poisson : " + (fishWeight * randWeight).ToString("F2"));
+
                 StartCoroutine(getFishToPlayer(fishScript));
             }
         }
@@ -74,7 +83,6 @@ public class FishingLasso : MonoBehaviour
         //animation?
         EffectManager.Instance.ChooseEffect(fish.TemporaryEffect);
         Shop.Instance.playerMoney += fish.data.price * Shop.Instance.moneyMultiplier;
-        FishingBookManager.Instance.RegisterCatch(fish.data.id);
         Destroy(fish.gameObject);
         ThrowLasso.Instance.hasLasso();
         //DayManager.Instance.actualThrow--;
