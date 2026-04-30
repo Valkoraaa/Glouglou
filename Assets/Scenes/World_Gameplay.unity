@@ -12369,6 +12369,7 @@ MonoBehaviour:
   fadeFinished: 0
   hasToBack: 0
   tutoFish: {fileID: 934411152}
+  tutoBlock: {fileID: 0}
   player: {fileID: 72077350}
   tutoDialogue: {fileID: 11400000, guid: 2ce06c12d7afac14c9f375cbaadb52a0, type: 2}
   tutoDialogue2: {fileID: 11400000, guid: 04adc7593eda2ee4fa1036efdefb9a98, type: 2}

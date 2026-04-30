@@ -21,7 +21,7 @@ public class ThrowLasso : MonoBehaviour
     public bool recallRope;
     private bool isChild;
     public static ThrowLasso Instance { get; private set; }
-    private int layerMask = ~LayerMask.GetMask("Bordure");
+    private int layerMask;
 
     void Awake()
     {
@@ -36,6 +36,7 @@ public class ThrowLasso : MonoBehaviour
         boxCollider = lasso.GetComponent<BoxCollider>();
         canThrow = true;
         chaControll = GetComponent<CharacterController>();
+        layerMask = ~LayerMask.GetMask("Bordure");
     }
 
     void Update()
