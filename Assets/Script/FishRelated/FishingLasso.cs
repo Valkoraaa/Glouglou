@@ -42,6 +42,10 @@ public class FishingLasso : MonoBehaviour
                 StartCoroutine(getFishToPlayer(fishScript));
             }
         }
+        else if (other.gameObject.CompareTag("tutoFish"))
+        {
+            StartCoroutine(TutoManager.Instance.TutoFishing(other.gameObject));
+        }
     }
 
     private IEnumerator getFishToPlayer(Fish fish)
@@ -76,7 +80,6 @@ public class FishingLasso : MonoBehaviour
         //DayManager.Instance.actualThrow--;
         DayManager.Instance.fishCaught++;
         DayManager.Instance.CountdownThrow();
-        BookGenerator.Instance.RefreshBook();
 
     }
     private IEnumerator MissedThrow()

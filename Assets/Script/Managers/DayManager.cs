@@ -36,7 +36,8 @@ public class DayManager : MonoBehaviour
         //StartCoroutine(DayPassing());
         Instance = this;
         //actualThrow = totalThrow;
-        StartOfDay();
+
+        //StartOfDay();
     }
 
     // Update is called once per frame
@@ -95,6 +96,7 @@ public class DayManager : MonoBehaviour
         EffectManager.Instance.ApplyEffect();
         //StartCoroutine(DayPassing());
         isNight = false;
+        SpawnFish.Instance.SpawningFish();
     }
 
     private void DayEffect()

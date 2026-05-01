@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 
 public class SpawnFish : MonoBehaviour
 {
+    public static SpawnFish Instance { get; private set; }
     [SerializeField]
     private FishDatabaseSO fishDatabase;
 
@@ -18,6 +19,12 @@ public class SpawnFish : MonoBehaviour
     [Header("NavMesh Reference")]
     [SerializeField] private Transform navMeshSurface;
 
+
+
+    void Start()
+    {
+        Instance = this;
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -25,8 +32,15 @@ public class SpawnFish : MonoBehaviour
         Gizmos.DrawWireCube(Vector3.zero, zoneSize);
     }
 
-    private void Start()
+    public void SpawningFish()
     {
+        foreach (Transform child in transform)
+        {
+            if (child.GetComponent<Fish>() != null)
+            {
+                Destroy(child.gameObject);
+            }
+        }
         for (int i = 0; i < fishNumber; i++)
         {
             Fish fishToInstantiate = GetRandomFish();

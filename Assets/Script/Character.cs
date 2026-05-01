@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,7 +11,7 @@ public class Character : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] private float gravity = -20; 
 
-    [Header("Caméra FPS")]
+    [Header("Camï¿½ra FPS")]
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float mouseSensitivity = 15f;
     [SerializeField] private Vector3 fpsOffset = new Vector3(0f, 1.6f, 0f);
@@ -24,6 +25,9 @@ public class Character : MonoBehaviour
     private float xRotation = 0f;
     public bool canMove = true;
     public bool canMoveCam = true;
+    private Vector3 move;
+    public bool stopChara;
+    public bool cinematic;
 
     private void Awake()
     {
@@ -40,13 +44,15 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
+        ApplyCameraPosition();
+        HandleGravity(stopChara);
         if(canMove)
         {
             
             HandleMovement();
 
 
-            ApplyCameraPosition();
+            
         }
         if(canMoveCam) { HandleRotation(); }
         
@@ -66,22 +72,32 @@ public class Character : MonoBehaviour
 
     private void HandleMovement()
     {
-        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
-        controller.Move(move * speed * Time.deltaTime);
+        move = transform.right * moveInput.x + transform.forward * moveInput.y;
+        
+    }
 
+    private void HandleGravity(bool hasToStop)
+    {
         if (controller.isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
 
         velocity.y += gravity * Time.deltaTime;
+        if(hasToStop) {move = Vector3.zero;}
+        controller.Move(move * speed * Time.deltaTime);
+
+        
 
         controller.Move(velocity * Time.deltaTime);
     }
 
     private void ApplyCameraPosition()
     {
-        cameraTransform.position = transform.position + (transform.rotation * fpsOffset);
+        if(!cinematic)
+        {
+            cameraTransform.localPosition = fpsOffset;
+        }
     }
 
     #region Inputs

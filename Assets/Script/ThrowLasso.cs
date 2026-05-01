@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,14 +12,17 @@ public class ThrowLasso : MonoBehaviour
     public Camera cam;
     private BoxCollider boxCollider;
     private Rigidbody rbPlayer;
+    private CharacterController chaControll;
 
     [Header("Paramètres")]
     public float force = 15f;
 
     public bool hasThrown;
+    public bool canThrow;
     public bool recallRope;
     private bool isChild;
     public static ThrowLasso Instance { get; private set; }
+    private int layerMask;
 
     void Awake()
     {
@@ -31,42 +35,49 @@ public class ThrowLasso : MonoBehaviour
         rb = lasso.GetComponent<Rigidbody>();
         rb.isKinematic = true;
         boxCollider = lasso.GetComponent<BoxCollider>();
+        canThrow = true;
+        chaControll = GetComponent<CharacterController>();
+        layerMask = ~LayerMask.GetMask("Bordure");
     }
 
     void Update()
     {
+        if(chaControll.isGrounded) {canThrow = true;}
+        else { canThrow = false; }
         if(Keyboard.current.rKey.wasPressedThisFrame) //temp
         {
             hasLasso();
-            Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            Character.Instance.canMove = true;
+            // Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            // Character.Instance.canMove = true;
         }
         if(!hasThrown && !isChild)
         {
-            lasso.transform.SetParent(cam.transform);
-            lasso.transform.localRotation = Quaternion.identity;
-            lasso.transform.localPosition = new Vector3(0.65f, -0.2f, 0.4f);
-            isChild = true;
-            boxCollider.enabled = false;
+            GetLasso();
         }
 
         
-        if (!hasThrown && Keyboard.current.eKey.wasPressedThisFrame)//Mouse.current.leftButton.isPressed)
+        if (!hasThrown && Keyboard.current.eKey.wasPressedThisFrame && canThrow)//Mouse.current.leftButton.isPressed)
         {
+            Character.Instance.stopChara = true;
+            rbPlayer.linearVelocity = Vector3.zero;
             rbPlayer.isKinematic = true;
             Character.Instance.canMove = false;
             //Character.Instance.canMoveCam = false; ?
             lasso.transform.SetParent(null);
+            
             rb.isKinematic = false;
+
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
             hasThrown = true;
-            boxCollider.enabled = true;
+            
             // Raycast depuis le centre de l'écran
             Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
             RaycastHit hit;
 
             Vector3 targetPoint;
 
-            if (Physics.Raycast(ray, out hit, 50f))
+            if (Physics.Raycast(ray, out hit, 50f, layerMask))
             {
                 targetPoint = hit.point;
             }
@@ -77,8 +88,8 @@ public class ThrowLasso : MonoBehaviour
 
             // Direction corrigée depuis la position réelle du lasso
             Vector3 direction = (targetPoint - lasso.transform.position).normalized;
-
             rb.AddForce(direction * force, ForceMode.Impulse);
+            boxCollider.enabled = true;
             //isFishing = false;
         }
     }
@@ -86,12 +97,23 @@ public class ThrowLasso : MonoBehaviour
 
     public void hasLasso()
     {
+        
         Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
         Character.Instance.canMove = true;
         recallRope = false;
         hasThrown = false;
         rb.isKinematic = true;
         isChild = false;
+        boxCollider.enabled = false;
+        Character.Instance.stopChara = false;
+    }
+
+    public void GetLasso()
+    {
+        lasso.transform.SetParent(cam.transform);
+        lasso.transform.localRotation = Quaternion.identity;
+        lasso.transform.localPosition = new Vector3(0.65f, -0.2f, 0.4f);
+        isChild = true;
         boxCollider.enabled = false;
     }
 
@@ -103,4 +125,5 @@ public class ThrowLasso : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawRay(ray.origin, ray.direction * 50f);
     }
+    
 }

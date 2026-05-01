@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4215b2633c1f06f4fa8e2b46a201c92b, type: 3}
+  m_Name: Tuto3
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  speakerName: Marchant de poisson
+  lines:
+  - text: "Voil\xE0 le camping ! Chaque poisson que tu m'apportera te rapportera
+      de l'argent, que tu pourras utiliser en allant voir le marchant !\n"
+  - text: "Il te permettra d'acheter des am\xE9liorations pour ton lasso."
+  - text: "Si ton lasso n'est pas assez am\xE9lior\xE9, tu risque de ne pas r\xE9ussir
+      \xE0 attraper les poissons les plus rares, qui rapportent le plus !\n"
+  - text: "Alors pense a r\xE9guli\xE8rement aller le voir."
+  - text: "Chaque fin de journ\xE9e, tu peux aller dormir dans ta tente pour passer
+      \xE0 la journ\xE9e suivante."
+  - text: "Ah, et une derni\xE8re chose ! Fais attention, les eaux de cette \xEEle
+      sont... sp\xE9ciales."
+  - text: "Regarde le tableau sur la plage ! Chaque jour, tu auras 2 (A VERIFIER)
+      poissons affich\xE9s dessus, tu ne dois surtout pas les attraper !"
+  - text: Ca signifie qu'ils sont toxiques, ils risqueraient de te donner des effets
+      bien embetant le lendemain !
+  - text: SI REQUIN, EN PARLER ICI
+  - text: "Aller, ca sera tout ! Tu peux aller te reposer dans ta tente, pense \xE0
+      passer me voir demain avant de partir. Bon courage !"

@@ -14,9 +14,9 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
 
     [Header("Typing Settings")]
-    public float typingSpeed = 0.1f;
-    public float fastTypingSpeed = 0.03f;
-    public float defaultTypingSpeed = 0.1f;
+    public float typingSpeed; //0.08f
+    public float fastTypingSpeed; //0.04f
+    public float defaultTypingSpeed; //0.08f
 
     private List<DialogueLine> currentLines;
     private int index;
@@ -25,6 +25,8 @@ public class DialogueManager : MonoBehaviour
     private bool isTyping;
     public bool isInDialogue;
     public bool openShop;
+    public bool skipIncTuto;
+    [SerializeField] private bool tutoDialogue;
 
     private void Awake()
     {
@@ -45,6 +47,14 @@ public class DialogueManager : MonoBehaviour
         index = 0;
 
         ShowLine();
+    }
+
+    public IEnumerator WaitForEndOfDialogue(DialogueData dialogue, UnityEngine.Vector3 tpPos)
+    {
+        StartDialogue(dialogue);
+        yield return new WaitUntil(() => !isInDialogue);
+        Debug.Log("tp");
+        UiFadeManager.Instance.FadeTp(tpPos);
     }
 
     public void NextLine()
@@ -86,17 +96,26 @@ public class DialogueManager : MonoBehaviour
     {
         dialoguePanel.SetActive(false);
         currentLines = null;
-        isInDialogue = false;
+        
+        
         if (openShop)
         {
             openShop = false;
             Shop.Instance.OpenShop(true);
+        }
+        else if (TutoManager.Instance.tuto)
+        {
+            if(!skipIncTuto) {TutoManager.Instance.dialogueCounter++;}
+            else { skipIncTuto = false; }
+            TutoManager.Instance.endOfDialogue = true;
+            Debug.Log("DialogueManager check tuto manager.tuto");
         }
         else
         {
             Character.Instance.canMove = true;
             Character.Instance.canMoveCam = true;
         }
+        isInDialogue = false;
     }
 
     private void Update()

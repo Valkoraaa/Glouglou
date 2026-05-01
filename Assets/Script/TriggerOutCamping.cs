@@ -22,18 +22,22 @@ public class TriggerOutCamping : MonoBehaviour
         if(!other.CompareTag("Player")) return;
         if (DayManager.Instance.isNight)
         {
-            StartCoroutine(WaitForEndOfDialogue(ChoseDialogue(), isCampTp ? tpPos.position : otherTp.position));
+            StartCoroutine(DialogueManager.Instance.WaitForEndOfDialogue(ChoseDialogue(), isCampTp ? tpPos.position : otherTp.position));
+            ThrowLasso.Instance.canThrow = false;
         }
         else if ((DayManager.Instance.fishCaught < DayManager.Instance.numberOfFishToCatch) && hasToCheck)
         {
-            StartCoroutine(WaitForEndOfDialogue(ChoseDialogue(), isCampTp ? otherTp.position : tpPos.position));
+            StartCoroutine(DialogueManager.Instance.WaitForEndOfDialogue(ChoseDialogue(), isCampTp ? otherTp.position : tpPos.position));
+            ThrowLasso.Instance.canThrow = true;
         }
         
         else if (!DayManager.Instance.isNight && DayManager.Instance.fishCaught >= DayManager.Instance.numberOfFishToCatch && isCampTp)
         {
             DayManager.Instance.isNight = true;
+            ThrowLasso.Instance.canThrow = false;
             Debug.Log("2");
         }
+        else { ThrowLasso.Instance.canThrow = true; }
     }
 
     private void OnTriggerExit(Collider other)
@@ -57,11 +61,5 @@ public class TriggerOutCamping : MonoBehaviour
         else return dialogueNotEnoughFish;
     }
 
-    private IEnumerator WaitForEndOfDialogue(DialogueData dialogue, UnityEngine.Vector3 tpPos)
-    {
-        DialogueManager.Instance.StartDialogue(dialogue);
-        yield return new WaitUntil(() => !DialogueManager.Instance.isInDialogue);
-        Debug.Log("tp");
-        UiFadeManager.Instance.FadeTp(tpPos);
-    }
+    
 }
