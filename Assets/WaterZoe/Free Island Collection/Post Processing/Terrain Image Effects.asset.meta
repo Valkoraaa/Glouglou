@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 49afab70d90943947b8e1ba6b2ec8033
+timeCreated: 1503114515
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: -1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 104753
+  packageName: Free Island Collection
+  packageVersion: 1.0
+  assetPath: Assets/Free Island Collection/Post Processing/Terrain Image Effects.asset
+  uploadId: 215789
