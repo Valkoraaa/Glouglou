@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Water
-  m_Shader: {fileID: -6465566751694194690, guid: 72b4859e99f6d374e9bd5c83f4bb7c29, type: 3}
+  m_Name: Water_Final
+  m_Shader: {fileID: -6465566751694194690, guid: d6b0139a0ce77b84abf77b714452ca42, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -121,7 +121,7 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _Transparancy: 2
+    - _Transparancy: 1.4
     - _Water_Depth: 0.01
     - _WaveAmplitude: 0.02
     - _WaveFrequency: 3.8
