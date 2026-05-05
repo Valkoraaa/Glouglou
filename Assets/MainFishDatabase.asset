@@ -13,22 +13,26 @@ MonoBehaviour:
   m_Name: MainFishDatabase
   m_EditorClassIdentifier: Assembly-CSharp::FishDatabaseSO
   commonFish:
-  - {fileID: -7861193620136895478, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
-  - {fileID: -7861193620136895478, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
-  - {fileID: -7861193620136895478, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
-  - {fileID: -7861193620136895478, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
-  - {fileID: -7861193620136895478, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
-  - {fileID: -7861193620136895478, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
-  - {fileID: -7861193620136895478, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
-  - {fileID: -7861193620136895478, guid: 9894f93dc699ddd4b888d7bc4ce4ee2a, type: 3}
+  - {fileID: -2179692988413188748, guid: 4f955e69e6c766547b33a3fd2d023c60, type: 3}
+  - {fileID: 6275063868221167762, guid: edf3c328ce3ce0b4a81a1a552c32de5c, type: 3}
+  - {fileID: -952179220927610953, guid: 1d73f90ddadfc2146af531173b52155b, type: 3}
+  - {fileID: 8328535553147996971, guid: cf88041596e929b4ea7cff5799b82e18, type: 3}
+  - {fileID: -6619488536429971099, guid: ecbcc40fd6ffc6441bc88e30ea009f7e, type: 3}
+  - {fileID: -8516088474683941104, guid: f3a15601d3dc875478027b79b56336ef, type: 3}
+  - {fileID: 3049765331688111706, guid: e860150aa11a7054b882e378542a8b57, type: 3}
+  - {fileID: -3118508961017851224, guid: ce9631fc51cb87e40996b044aaa07f21, type: 3}
   rareFish:
-  - {fileID: 5066551190558095704, guid: 1e4653db3e72fd24aa401ab3decc586f, type: 3}
-  - {fileID: 5066551190558095704, guid: 1e4653db3e72fd24aa401ab3decc586f, type: 3}
-  - {fileID: 5066551190558095704, guid: 1e4653db3e72fd24aa401ab3decc586f, type: 3}
-  - {fileID: 5066551190558095704, guid: 1e4653db3e72fd24aa401ab3decc586f, type: 3}
+  - {fileID: -7778354297497282052, guid: ef5e21b6c0c3d21448c79e82667ab087, type: 3}
+  - {fileID: 3592586329528818296, guid: 1e52d45d365e55b4f809b3293fb2b800, type: 3}
+  - {fileID: -7004959573696191954, guid: 82a8aea4566bf1d4dade85768d9fcf51, type: 3}
+  - {fileID: -1182456600341249957, guid: 55cc496a83d573b4c80d82ee40fe0126, type: 3}
   epicFish:
-  - {fileID: -7447151795869194389, guid: 463d6d0f11fa34440be72012b6bbc2e1, type: 3}
-  - {fileID: 1123780083190515803, guid: 0b9e1463d44451644906dbcca2280ecd, type: 3}
-  - {fileID: 7815976910691026810, guid: db02a9d8d0bad7248a395ff842b45566, type: 3}
+  - {fileID: -1946385412877317612, guid: b34adc1e212c8ff42a5c17e7bf8e2455, type: 3}
+  - {fileID: 6768790583085210301, guid: c3092d1274ed6814b8b30ecf2902a987, type: 3}
+  - {fileID: 3574508715420029245, guid: dfe1a23da1480b844b7fb81b8a8afa9b, type: 3}
+  - {fileID: -115867467971163754, guid: 7a8f3cfd155c2634aabc69d5a45cb00b, type: 3}
+  - {fileID: 6408823217712028986, guid: 5fb1c6c8ff49bac41b4a4cca2de7819e, type: 3}
   legendaryFish:
-  - {fileID: 8386891196216287471, guid: fbcbc2a1e8b98054a8c422256aa657d1, type: 3}
+  - {fileID: 1543608040973547618, guid: eb8a1b2bdf95c9c478f6ba15befc3e44, type: 3}
+  - {fileID: 977620716405169912, guid: ca9b2aabe9c46c746895b505137ec6aa, type: 3}
+  - {fileID: 2391094258938393962, guid: 7de3e91ac081e5c40a4a11d4d2dcdf15, type: 3}

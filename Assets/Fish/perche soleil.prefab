@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a289857051f37b4590305dfa82f0f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishPatrol
-  range: 0
+  range: 10
   fishSpeed: 3
 --- !u!114 &2989843518110504711
 MonoBehaviour:

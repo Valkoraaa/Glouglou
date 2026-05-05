@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "T\xE9tra Bleu de Cochu"
+  m_Name: "Poisson Porc \xE9pic"
   m_Shader: {fileID: -6465566751694194690, guid: 9c7e2e4ec94b7c74e95c67db8a3e2b1a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
