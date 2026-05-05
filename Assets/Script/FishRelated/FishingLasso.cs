@@ -34,7 +34,11 @@ public class FishingLasso : MonoBehaviour
     {
         Fish fishScript = other.gameObject.GetComponent<Fish>();
         float randWeight = Random.Range(0.8f ,1.2f);
+        float randSize = Random.Range(0.8f, 1.2f);
+
         float fishWeight = other.gameObject.GetComponent<Fish>().Weight;
+        float fishSize = other.gameObject.GetComponent<Fish>().Size;
+
 
         if (other.gameObject.CompareTag("fish") && fishScript != null && fishScript.data != null)
         {
@@ -45,8 +49,13 @@ public class FishingLasso : MonoBehaviour
 
                 FishingBookManager.Instance.RegisterCatch(fishScript.data.id);
                 Debug.Log("poid random " + randWeight);
+                Debug.Log("taille random " + randSize);
+
                 fishWeight = fishWeight * randWeight;
-                Debug.Log("poid du poisson : " + (fishWeight * randWeight).ToString("F2"));
+                fishSize = fishSize * randSize;
+                Debug.Log("poid du poisson : " + fishWeight.ToString("F2"));
+                Debug.Log("taille du poisson : " + fishSize.ToString("F2"));
+
 
                 StartCoroutine(getFishToPlayer(fishScript));
             }
