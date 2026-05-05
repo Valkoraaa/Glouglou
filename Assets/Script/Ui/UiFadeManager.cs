@@ -114,7 +114,7 @@ public class UiFadeManager : MonoBehaviour
         Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
         Character.Instance.canMove = true;
         Character.Instance.canMoveCam = true;
-        if(TutoManager.Instance.tuto) { TutoManager.Instance.fadeFinished = true; }
+        if(TutoManager.Instance.tuto) { TutoManager.Instance.fadeFinished = true; TutoManager.Instance.blockActive = true; }
     }
 
 }

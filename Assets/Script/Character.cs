@@ -25,7 +25,7 @@ public class Character : MonoBehaviour
     private float xRotation = 0f;
     public bool canMove = true;
     public bool canMoveCam = true;
-    private Vector3 move;
+    public Vector3 move;
     public bool stopChara;
     public bool cinematic;
 

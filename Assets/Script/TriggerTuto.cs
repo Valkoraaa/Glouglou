@@ -22,6 +22,7 @@ public class TriggerTuto : MonoBehaviour
             TutoManager.Instance.hasToBack = true;
             DialogueManager.Instance.skipIncTuto = true;
             StartCoroutine(DialogueManager.Instance.WaitForEndOfDialogue(blockDialogue, new Vector3(transform.position.x + 10, transform.position.y, transform.position.z)));
+            gameObject.SetActive(false);
         }
     }
 }

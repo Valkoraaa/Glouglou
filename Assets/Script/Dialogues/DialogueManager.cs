@@ -1,8 +1,9 @@
-using UnityEngine;
-using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -37,9 +38,9 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(DialogueData data)
     {
         isInDialogue = true;
-        Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         Character.Instance.canMove = false;
         Character.Instance.canMoveCam = false;
+        Character.Instance.stopChara = true;
         dialoguePanel.SetActive(true);
         speakerText.text = data.speakerName;
 
@@ -114,6 +115,7 @@ public class DialogueManager : MonoBehaviour
         {
             Character.Instance.canMove = true;
             Character.Instance.canMoveCam = true;
+            Character.Instance.stopChara = false;
         }
         isInDialogue = false;
     }
