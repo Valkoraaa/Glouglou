@@ -104,20 +104,22 @@ public class DialogueManager : MonoBehaviour
             openShop = false;
             Shop.Instance.OpenShop(true);
         }
-        else if (TutoManager.Instance.tuto)
+        else if (TutoManager.Instance.dialogueCounter !=0)
+        {
+            Character.Instance.canMove = true;
+            Character.Instance.canMoveCam = true;
+            Character.Instance.stopChara = false;
+        }
+        if (TutoManager.Instance.tuto)
         {
             if(!skipIncTuto) {TutoManager.Instance.dialogueCounter++;}
             else { skipIncTuto = false; }
             TutoManager.Instance.endOfDialogue = true;
             Debug.Log("DialogueManager check tuto manager.tuto");
         }
-        else
-        {
-            Character.Instance.canMove = true;
-            Character.Instance.canMoveCam = true;
-            Character.Instance.stopChara = false;
-        }
+        
         isInDialogue = false;
+        Debug.Log(isInDialogue);
     }
 
     private void Update()
