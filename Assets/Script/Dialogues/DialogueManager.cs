@@ -1,8 +1,9 @@
-using UnityEngine;
-using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -37,9 +38,9 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(DialogueData data)
     {
         isInDialogue = true;
-        Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         Character.Instance.canMove = false;
         Character.Instance.canMoveCam = false;
+        Character.Instance.stopChara = true;
         dialoguePanel.SetActive(true);
         speakerText.text = data.speakerName;
 
@@ -103,19 +104,22 @@ public class DialogueManager : MonoBehaviour
             openShop = false;
             Shop.Instance.OpenShop(true);
         }
-        else if (TutoManager.Instance.tuto)
+        else if (TutoManager.Instance.dialogueCounter !=0)
+        {
+            Character.Instance.canMove = true;
+            Character.Instance.canMoveCam = true;
+            Character.Instance.stopChara = false;
+        }
+        if (TutoManager.Instance.tuto)
         {
             if(!skipIncTuto) {TutoManager.Instance.dialogueCounter++;}
             else { skipIncTuto = false; }
             TutoManager.Instance.endOfDialogue = true;
             Debug.Log("DialogueManager check tuto manager.tuto");
         }
-        else
-        {
-            Character.Instance.canMove = true;
-            Character.Instance.canMoveCam = true;
-        }
+        
         isInDialogue = false;
+        Debug.Log(isInDialogue);
     }
 
     private void Update()

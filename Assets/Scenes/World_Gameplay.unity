@@ -12363,11 +12363,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638f501c91c9d3f46869dbc1bf88deea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutoManager
-  tuto: 0
+  tuto: 1
   dialogueCounter: 0
   endOfDialogue: 0
   fadeFinished: 0
   hasToBack: 0
+  blockActive: 0
   tutoFish: {fileID: 934411152}
   tutoBlock: {fileID: 41657782}
   player: {fileID: 72077350}

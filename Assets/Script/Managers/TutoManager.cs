@@ -9,6 +9,7 @@ public class TutoManager : MonoBehaviour
     public bool endOfDialogue;
     public bool fadeFinished;
     public bool hasToBack;
+    public bool blockActive;
     [SerializeField] private GameObject tutoFish;
     [SerializeField] private GameObject tutoBlock;
     [SerializeField] private GameObject player;
@@ -44,6 +45,11 @@ public class TutoManager : MonoBehaviour
 
     void Update()
     {
+        if(blockActive)
+        {
+            blockActive = false;
+            tutoBlock.SetActive(true);
+        }
         if(endOfDialogue)
         {
             endOfDialogue = false;
