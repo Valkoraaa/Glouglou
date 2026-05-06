@@ -22,17 +22,8 @@ MonoBehaviour:
   - {fileID: 3049765331688111706, guid: e860150aa11a7054b882e378542a8b57, type: 3}
   - {fileID: -3118508961017851224, guid: ce9631fc51cb87e40996b044aaa07f21, type: 3}
   rareFish:
-  - {fileID: -7778354297497282052, guid: ef5e21b6c0c3d21448c79e82667ab087, type: 3}
-  - {fileID: 3592586329528818296, guid: 1e52d45d365e55b4f809b3293fb2b800, type: 3}
-  - {fileID: -7004959573696191954, guid: 82a8aea4566bf1d4dade85768d9fcf51, type: 3}
-  - {fileID: -1182456600341249957, guid: 55cc496a83d573b4c80d82ee40fe0126, type: 3}
+  - {fileID: 8328535553147996971, guid: cf88041596e929b4ea7cff5799b82e18, type: 3}
   epicFish:
-  - {fileID: -1946385412877317612, guid: b34adc1e212c8ff42a5c17e7bf8e2455, type: 3}
-  - {fileID: 6768790583085210301, guid: c3092d1274ed6814b8b30ecf2902a987, type: 3}
-  - {fileID: 3574508715420029245, guid: dfe1a23da1480b844b7fb81b8a8afa9b, type: 3}
-  - {fileID: -115867467971163754, guid: 7a8f3cfd155c2634aabc69d5a45cb00b, type: 3}
-  - {fileID: 6408823217712028986, guid: 5fb1c6c8ff49bac41b4a4cca2de7819e, type: 3}
+  - {fileID: 8328535553147996971, guid: cf88041596e929b4ea7cff5799b82e18, type: 3}
   legendaryFish:
-  - {fileID: 1543608040973547618, guid: eb8a1b2bdf95c9c478f6ba15befc3e44, type: 3}
-  - {fileID: 977620716405169912, guid: ca9b2aabe9c46c746895b505137ec6aa, type: 3}
-  - {fileID: 2391094258938393962, guid: 7de3e91ac081e5c40a4a11d4d2dcdf15, type: 3}
+  - {fileID: 8328535553147996971, guid: cf88041596e929b4ea7cff5799b82e18, type: 3}

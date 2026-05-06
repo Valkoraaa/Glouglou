@@ -48,8 +48,7 @@ public class FishingLasso : MonoBehaviour
             {
 
                 FishingBookManager.Instance.RegisterCatch(fishScript.data.id);
-                Debug.Log("poid random " + randWeight);
-                Debug.Log("taille random " + randSize);
+                Debug.Log(fishScript.data.id);
 
                 fishWeight = fishWeight * randWeight;
                 fishSize = fishSize * randSize;

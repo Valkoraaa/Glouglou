@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 7359798902912583160}
   - component: {fileID: 2178926052057192143}
   - component: {fileID: -4555697128006168382}
+  - component: {fileID: -1515688713881232519}
   m_Layer: 0
   m_Name: Gallocaris inermis
-  m_TagString: Untagged
+  m_TagString: fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,3 +151,24 @@ MonoBehaviour:
   baseMaterial: {fileID: 0}
   HookedMaterial: {fileID: 0}
   data: {fileID: 0}
+--- !u!135 &-1515688713881232519
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115668052360501250}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.412298
+  m_Center: {x: -0.20006257, y: 0.20177293, z: 0.000000010643687}

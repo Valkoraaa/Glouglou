@@ -65,5 +65,6 @@ public class CollectionGestion : MonoBehaviour
         Character.Instance.canMove = true;
         Character.Instance.canMoveCam = true;
         Cursor.visible = false;
+        DisplayMouse(true);
     }
 }
