@@ -8,6 +8,8 @@ public class FishingLasso : MonoBehaviour
     //for now lassos collider isnt trigger, can change if needed
     [SerializeField] private GameObject player;
     public int strenght;
+    private MeshRenderer visual;
+    [SerializeField] private Sprite lassoOnFish;
     
 
     private Fish fish;
@@ -17,6 +19,7 @@ public class FishingLasso : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        visual = GetComponent<MeshRenderer>();
     }
 
 
@@ -71,6 +74,19 @@ public class FishingLasso : MonoBehaviour
         float elapsedTime = 0f;
 
         ThrowLasso.Instance.recallRope = true;
+        Rope.Instance.endPoint = fish.GetComponent<Transform>();
+        visual.enabled = false;
+
+        ////
+        GameObject extraSprite = new GameObject("ExtraSprite");
+
+        extraSprite.transform.SetParent(fish.transform);
+
+        extraSprite.transform.localPosition = Vector3.zero;
+
+        SpriteRenderer sr = extraSprite.AddComponent<SpriteRenderer>();
+        sr.sprite = lassoOnFish;
+        ////
 
         Vector3 fishStartPos = fish.transform.position;
         Vector3 thisStartPos = transform.position;
@@ -89,10 +105,12 @@ public class FishingLasso : MonoBehaviour
 
         // raccrocher le lasso au joueur et lui donner le poissson + qte? ;; suite du code temporaire
         //animation?
+        Rope.Instance.endPoint = Rope.Instance.originalEndPoint;
         EffectManager.Instance.ChooseEffect(fish.TemporaryEffect);
         Shop.Instance.playerMoney += fish.data.price * Shop.Instance.moneyMultiplier;
         Destroy(fish.gameObject);
         ThrowLasso.Instance.hasLasso();
+        visual.enabled = true;
         //DayManager.Instance.actualThrow--;
         DayManager.Instance.fishCaught++;
         DayManager.Instance.CountdownThrow();
