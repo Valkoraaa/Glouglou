@@ -19,7 +19,8 @@ public class TriggerOutCamping : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!other.CompareTag("Player")) return;
+        if (!Character.Instance.canMove) return;
+        if (!other.CompareTag("Player")) return;
         if (DayManager.Instance.isNight)
         {
             StartCoroutine(DialogueManager.Instance.WaitForEndOfDialogue(ChoseDialogue(), isCampTp ? tpPos.position : otherTp.position));
