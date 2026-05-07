@@ -33,14 +33,21 @@ public class TutoManager : MonoBehaviour
         Instance = this;
         if(tuto)
         {
-            DialogueManager.Instance.StartDialogue(tutoDialogue);
-            tutoFish.SetActive(true);
-            tutoBlock.SetActive(true);
+            StartCoroutine(tutoEnumerator());
+            
         }
         else
         {
             StartCoroutine(StartTheDay());
         }
+    }
+
+    private IEnumerator tutoEnumerator()
+    {
+        yield return new WaitUntil(() => DialogueManager.Instance != null);
+        DialogueManager.Instance.StartDialogue(tutoDialogue);
+        tutoFish.SetActive(true);
+        tutoBlock.SetActive(true);
     }
 
     void Update()
