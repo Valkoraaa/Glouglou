@@ -109,6 +109,7 @@ public class DialogueManager : MonoBehaviour
             Character.Instance.canMove = true;
             Character.Instance.canMoveCam = true;
             Character.Instance.stopChara = false;
+            Debug.Log("works");
         }
         if (TutoManager.Instance.tuto)
         {

@@ -5,6 +5,7 @@ using System.Collections;
 public class UiFadeManager : MonoBehaviour
 {
     private Image image;
+    [SerializeField] private NPCDialogue dialogueStartOfDay;
     public static UiFadeManager Instance { get; private set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -65,6 +66,7 @@ public class UiFadeManager : MonoBehaviour
 
         color.a = 0f;
         image.color = color;
+        dialogueStartOfDay.StartDialogue();
     }
 
     IEnumerator FadeInAndOut(Vector3 tpPoint)

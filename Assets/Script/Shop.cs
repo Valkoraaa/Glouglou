@@ -40,6 +40,7 @@ public class Shop : MonoBehaviour
         {
             Character.Instance.canMove = true;
             Character.Instance.canMoveCam = true;
+            Character.Instance.stopChara = false;
             Cursor.lockState = CursorLockMode.Locked;
             DialogueManager.Instance.isInDialogue = false;
         }

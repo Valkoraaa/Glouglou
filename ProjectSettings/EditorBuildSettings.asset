@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/World_Gameplay.unity
     guid: 5f3fd78595c9fe04b8983848445ad42a
+  - enabled: 1
+    path: Assets/Scenes/Tom Terrain.unity
+    guid: 2dd80869d28ab1e46b75a22e9c34dcf6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c85c688dc6f2cfd44b91ab5fac5a6e69, type: 3}
   m_UseUCBPForAssetBundles: 0

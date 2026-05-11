@@ -35,14 +35,14 @@ public class ThrowLasso : MonoBehaviour
         rb = lasso.GetComponent<Rigidbody>();
         rb.isKinematic = true;
         boxCollider = lasso.GetComponent<BoxCollider>();
-        canThrow = true;
+        //canThrow = true;
         chaControll = GetComponent<CharacterController>();
         layerMask = ~LayerMask.GetMask("Bordure");
     }
 
     void Update()
     {
-        if(chaControll.isGrounded) {canThrow = true;}
+        if(chaControll.isGrounded && !DialogueManager.Instance.isInDialogue && !Character.Instance.cinematic) {canThrow = true;}
         else { canThrow = false; }
         if(Keyboard.current.rKey.wasPressedThisFrame) //temp
         {
