@@ -50,11 +50,11 @@ public class FishingLasso : MonoBehaviour
             if (strenght >= fishRarityValue && !ThrowLasso.Instance.recallRope)
             {
 
-                FishingBookManager.Instance.RegisterCatch(fishScript.data.id);
-                Debug.Log(fishScript.data.id);
 
-                fishWeight = fishWeight * randWeight;
-                fishSize = fishSize * randSize;
+                float finalWeight = fishScript.Weight * Random.Range(0.8f, 1.2f);
+                float finalSize = fishScript.Size * Random.Range(0.8f, 1.2f);
+                FishingBookManager.Instance.RegisterCatch(fishScript.data.id, finalWeight, finalSize);
+
                 Debug.Log("poid du poisson : " + fishWeight.ToString("F2"));
                 Debug.Log("taille du poisson : " + fishSize.ToString("F2"));
 

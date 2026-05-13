@@ -11,8 +11,6 @@ public class Fish : MonoBehaviour
     [SerializeField] private int isPermanent;
     [SerializeField] private int speed;
     [SerializeField] private bool isBadForToday;
-    [SerializeField] public Material baseMaterial;
-    [SerializeField] private Material HookedMaterial;
     public FishData data;
 
 

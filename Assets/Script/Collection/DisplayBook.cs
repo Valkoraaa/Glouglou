@@ -28,7 +28,11 @@ public class DisplayBook : MonoBehaviour
 
     public void RefreshBook()
     {
+        if (!gameObject.activeInHierarchy) return;
+
+        StopAllCoroutines(); 
         currentPageIndex = 0;
+        rotating = false;
 
         for (int i = 0; i < pages.Count; i++)
         {
@@ -68,6 +72,7 @@ public class DisplayBook : MonoBehaviour
             bool isCaught = FishingBookManager.Instance.IsFishCaught(allFishes[i].id);
             slot.GetComponent<Collection_Slot>().SetUp(allFishes[i], isCaught);
         }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(grid.GetComponent<RectTransform>());
     }
 
     public void RotateNext()

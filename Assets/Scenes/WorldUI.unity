@@ -445,6 +445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCDialogue
   test: 0
   dialogue: {fileID: 11400000, guid: 100ef50c8450c9b4db0fcca396e24ff6, type: 2}
+  nightDialogue: {fileID: 0}
   isMerchant: 0
   isDirector: 1
 --- !u!1 &485947069
@@ -1109,15 +1110,15 @@ MonoBehaviour:
   - {fileID: 1110811574}
   slotPrefab: {fileID: 3124951669952376308, guid: 6780fa65fc971314bb4f9382482730ea, type: 3}
   allFishes:
-  - {fileID: 11400000, guid: 8c46d3f0d9d4392408ec45a07562208d, type: 2}
-  - {fileID: 11400000, guid: 8c46d3f0d9d4392408ec45a07562208d, type: 2}
-  - {fileID: 11400000, guid: 8c46d3f0d9d4392408ec45a07562208d, type: 2}
-  - {fileID: 11400000, guid: 8c46d3f0d9d4392408ec45a07562208d, type: 2}
-  - {fileID: 11400000, guid: 8c46d3f0d9d4392408ec45a07562208d, type: 2}
-  - {fileID: 11400000, guid: 8c46d3f0d9d4392408ec45a07562208d, type: 2}
-  - {fileID: 11400000, guid: 8c46d3f0d9d4392408ec45a07562208d, type: 2}
-  - {fileID: 11400000, guid: 8c46d3f0d9d4392408ec45a07562208d, type: 2}
-  - {fileID: 11400000, guid: 8c46d3f0d9d4392408ec45a07562208d, type: 2}
+  - {fileID: 11400000, guid: ff687bcdb11629e4bbe5102b732e8fb8, type: 2}
+  - {fileID: 11400000, guid: 0d2169deb24539e47b45cf54e2c96fc8, type: 2}
+  - {fileID: 11400000, guid: 0aae8d2f204887d4cb00e364c66e36ea, type: 2}
+  - {fileID: 11400000, guid: 08e33b2f84a586c4cb5b2befa1029258, type: 2}
+  - {fileID: 11400000, guid: b4424b33a91d9784ba0a9dad319dba1c, type: 2}
+  - {fileID: 11400000, guid: e0614e66f6af01a4f9fc42f5bc220ddf, type: 2}
+  - {fileID: 11400000, guid: 0f90f1a94ad8df044ac898213f74aaeb, type: 2}
+  - {fileID: 11400000, guid: b2cece0f8220008449a3f46cbbd1b559, type: 2}
+  - {fileID: 11400000, guid: ee98ffa6e71e15f45a3544fcb71b692c, type: 2}
   - {fileID: 11400000, guid: 8c46d3f0d9d4392408ec45a07562208d, type: 2}
   - {fileID: 11400000, guid: 8c46d3f0d9d4392408ec45a07562208d, type: 2}
   - {fileID: 11400000, guid: 8c46d3f0d9d4392408ec45a07562208d, type: 2}
@@ -1813,7 +1814,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1832423846
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,9 +11,23 @@ public class FishingBookManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+        ResetData();
+
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void ResetData()
+    {
+        caughtFishId.Clear();
+        caughtFishIdDisplay.Clear();
+        Debug.Log("Données du livre de pêche réinitialisées.");
     }
 
     public HashSet<int> getCaughtFishId()
@@ -21,7 +35,7 @@ public class FishingBookManager : MonoBehaviour
         return this.caughtFishId;
     }
 
-    public void RegisterCatch(int id)
+    public void RegisterCatch(int id, float finalWeight, float finalSize)
     {
         if (!caughtFishId.Contains(id))
         {
