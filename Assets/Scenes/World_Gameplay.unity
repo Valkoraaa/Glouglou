@@ -12103,8 +12103,16 @@ PrefabInstance:
       value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4436499326437563666, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
-      propertyPath: canMoveCam
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4436499326437563666, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
+      propertyPath: stopChara
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4436499326437563666, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
+      propertyPath: canMoveCam
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4436499326437563666, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: mouseSensitivity
@@ -12369,7 +12377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638f501c91c9d3f46869dbc1bf88deea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutoManager
-  tuto: 0
+  tuto: 1
   dialogueCounter: 0
   endOfDialogue: 0
   fadeFinished: 0
