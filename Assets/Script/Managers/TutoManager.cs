@@ -40,6 +40,10 @@ public class TutoManager : MonoBehaviour
         else
         {
             StartCoroutine(StartTheDay());
+            Character.Instance.canMove = true;
+            Character.Instance.canMoveCam = true;
+            Character.Instance.stopChara = false;
+            Character.Instance.transform.position = new Vector3(1478.14f, 180.59f, 1102.03f);
         }
     }
 
