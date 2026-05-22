@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering.RenderGraphModule;
@@ -27,4 +27,4 @@ public class MotionBlurFeature : ScriptableRendererFeature
         if (renderingData.cameraData.cameraType != CameraType.Game) return;
         renderer.EnqueuePass(pass);
     }
-}
+}*/
