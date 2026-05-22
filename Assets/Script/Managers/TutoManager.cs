@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutoManager : MonoBehaviour
 {
@@ -44,7 +45,9 @@ public class TutoManager : MonoBehaviour
 
     private IEnumerator tutoEnumerator()
     {
-        yield return new WaitUntil(() => DialogueManager.Instance != null);
+        yield return new WaitUntil(() => DialogueManager.Instance != null && DayManager.Instance != null && !SceneManager.GetSceneByName("Opening").isLoaded);
+        
+
         DialogueManager.Instance.StartDialogue(tutoDialogue);
         tutoFish.SetActive(true);
         tutoBlock.SetActive(true);
@@ -155,18 +158,22 @@ public class TutoManager : MonoBehaviour
 
     private IEnumerator WaitABit()
     {
+        Character.Instance.canMoveCam = false;
+        Character.Instance.stopChara = true;
         fadeFinished = false;
         UiFadeManager.Instance.FadeTp(new Vector3(1478.14f, 180.59f, 1102.03f)); //mouvement de cam?
         yield return new WaitForSeconds(0.5f);
         player.transform.rotation = Quaternion.Euler(0, -180, 0);
         ThrowLasso.Instance.hasLasso();
+        Character.Instance.stopChara = true;
         yield return new WaitUntil(() => fadeFinished);
-        
-                
+
+
         DayManager.Instance.isNight = true;
         tuto = false;
         Character.Instance.canMove = false;
         Character.Instance.canMoveCam = false;
+       
                 
         DialogueManager.Instance.StartDialogue(tutoDialogue3);
     }
