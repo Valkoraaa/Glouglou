@@ -28,6 +28,7 @@ public class Character : MonoBehaviour
     public Vector3 move;
     public bool stopChara;
     public bool cinematic;
+    [SerializeField] private AudioSource footstepAudio;
 
     private void Awake()
     {
@@ -48,14 +49,10 @@ public class Character : MonoBehaviour
         HandleGravity(stopChara);
         if(canMove)
         {
-            
             HandleMovement();
-
-
-            
         }
         if(canMoveCam) { HandleRotation(); }
-        
+        HandleFootsteps();
     }
 
     private void HandleRotation()
@@ -90,6 +87,20 @@ public class Character : MonoBehaviour
         
 
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void HandleFootsteps()
+    {
+        //bool isMoving = moveInput.magnitude > 0.1f;
+
+        if (move!= Vector3.zero && !footstepAudio.isPlaying)
+        {
+            footstepAudio.Play();
+        }
+        else if (move == Vector3.zero && footstepAudio.isPlaying)
+        {
+            footstepAudio.Stop();
+        }
     }
 
     private void ApplyCameraPosition()

@@ -25,10 +25,11 @@ public class FishingLasso : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) //to check if you miss a fish
     {
-
+        
         if(collision.gameObject.tag == "water") //activate anyway when smth hit?
         {
             StartCoroutine(MissedThrow());
+            ThrowLasso.Instance.PlayRandomPlouf();
         }
         //qte ?
     }
@@ -45,6 +46,7 @@ public class FishingLasso : MonoBehaviour
 
         if (other.gameObject.CompareTag("fish") && fishScript != null && fishScript.data != null)
         {
+            ThrowLasso.Instance.PlayRandomPlouf();
             int fishRarityValue = (int)fishScript.data.currentRarity;
 
             if (strenght >= fishRarityValue && !ThrowLasso.Instance.recallRope)

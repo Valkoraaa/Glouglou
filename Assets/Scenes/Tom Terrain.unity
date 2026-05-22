@@ -5273,6 +5273,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2638344014498980756, guid: 066eeef643e51ce4997de032ad615675, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6085796355651573818, guid: 066eeef643e51ce4997de032ad615675, type: 3}
       propertyPath: m_Name
       value: Marchand

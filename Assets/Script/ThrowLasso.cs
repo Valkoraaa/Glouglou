@@ -23,6 +23,11 @@ public class ThrowLasso : MonoBehaviour
     private bool isChild;
     public static ThrowLasso Instance { get; private set; }
     private int layerMask;
+    [SerializeField] private AudioSource lassoAudio;
+    [SerializeField] private AudioClip plouf1;
+    [SerializeField] private AudioClip plouf2;
+    [SerializeField] private AudioClip throw1;
+    [SerializeField] private AudioClip throw2;
 
     void Awake()
     {
@@ -90,6 +95,7 @@ public class ThrowLasso : MonoBehaviour
             Vector3 direction = (targetPoint - lasso.transform.position).normalized;
             rb.AddForce(direction * force, ForceMode.Impulse);
             boxCollider.enabled = true;
+            PlayRandomThrow();
             //isFishing = false;
         }
     }
@@ -124,6 +130,30 @@ public class ThrowLasso : MonoBehaviour
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         Gizmos.color = Color.red;
         Gizmos.DrawRay(ray.origin, ray.direction * 50f);
+    }
+
+    public void PlayRandomPlouf()
+    {
+        if (Random.value < 0.5f)
+        {
+            lassoAudio.PlayOneShot(plouf1);
+        }
+        else
+        {
+            lassoAudio.PlayOneShot(plouf2);
+        }
+    }
+
+    private void PlayRandomThrow()
+    {
+        if (Random.value < 0.5f)
+        {
+            lassoAudio.PlayOneShot(throw1);
+        }
+        else
+        {
+            lassoAudio.PlayOneShot(throw2);
+        }
     }
     
 }
