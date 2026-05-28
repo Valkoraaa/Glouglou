@@ -12,6 +12,7 @@ public class EffectManager : MonoBehaviour
 
     [SerializeField] private ParticleSystem rain;
     [SerializeField] private Volume depressionEffect;
+    [SerializeField] private GameObject windZone;
 
 
     [SerializeField] private GameObject player;
@@ -133,6 +134,7 @@ public class EffectManager : MonoBehaviour
     {
         isWindy = wantToActivate;
         activateWind = false;
+        windZone.SetActive(wantToActivate);
     }
 
     private void Drunk (bool wantToActivate)
