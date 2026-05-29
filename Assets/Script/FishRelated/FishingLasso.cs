@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -11,7 +12,7 @@ public class FishingLasso : MonoBehaviour
     private MeshRenderer visual;
     [SerializeField] private Sprite lassoOnFish;
     
-
+    public bool hasToPlaySound;
     private Fish fish;
 
     public static FishingLasso Instance;
@@ -28,8 +29,12 @@ public class FishingLasso : MonoBehaviour
         
         if(collision.gameObject.tag == "water") //activate anyway when smth hit?
         {
-            StartCoroutine(MissedThrow());
-            ThrowLasso.Instance.PlayRandomPlouf();
+            StartCoroutine(MissedThrow(true));
+        }
+        else
+        {
+            StartCoroutine(MissedThrow(false));
+            //sound floor
         }
         //qte ?
     }
@@ -37,21 +42,18 @@ public class FishingLasso : MonoBehaviour
     private void OnTriggerEnter(Collider other) //to check if you hit a fish
     {
         Fish fishScript = other.gameObject.GetComponent<Fish>();
-        float randWeight = Random.Range(0.8f ,1.2f);
-        float randSize = Random.Range(0.8f, 1.2f);
 
-        float fishWeight = other.gameObject.GetComponent<Fish>().Weight;
-        float fishSize = other.gameObject.GetComponent<Fish>().Size;
+        
 
 
         if (other.gameObject.CompareTag("fish") && fishScript != null && fishScript.data != null)
         {
-            ThrowLasso.Instance.PlayRandomPlouf();
             int fishRarityValue = (int)fishScript.data.currentRarity;
 
             if (strenght >= fishRarityValue && !ThrowLasso.Instance.recallRope)
             {
-
+                float fishWeight = other.gameObject.GetComponent<Fish>().Weight;
+                float fishSize = other.gameObject.GetComponent<Fish>().Size;
 
                 float finalWeight = fishScript.Weight * Random.Range(0.8f, 1.2f);
                 float finalSize = fishScript.Size * Random.Range(0.8f, 1.2f);
@@ -68,10 +70,15 @@ public class FishingLasso : MonoBehaviour
         {
             StartCoroutine(TutoManager.Instance.TutoFishing(other.gameObject));
         }
+        else if (other.gameObject.CompareTag("waterZone") && hasToPlaySound)
+        {
+            ThrowLasso.Instance.PlayRandomPlouf();
+        }
     }
 
     private IEnumerator getFishToPlayer(Fish fish)
     {
+        hasToPlaySound = false;
         float duration = 1f;
         float elapsedTime = 0f;
 
@@ -118,8 +125,9 @@ public class FishingLasso : MonoBehaviour
         DayManager.Instance.CountdownThrow();
 
     }
-    private IEnumerator MissedThrow()
+    private IEnumerator MissedThrow(bool water)
     {
+        hasToPlaySound = false;
         float duration = 1f;
         float elapsedTime = 0f;
 
@@ -141,9 +149,12 @@ public class FishingLasso : MonoBehaviour
         ThrowLasso.Instance.hasLasso();
 
         //DayManager.Instance.actualThrow --;
-        DayManager.Instance.numberOfFails++;
-        DayManager.Instance.CountdownThrow();
-
+        if (water)
+        {
+            DayManager.Instance.numberOfFails++;
+            DayManager.Instance.CountdownThrow();
+        }
+        
         //smoother way to get the lasso back in hand?
     }
 }

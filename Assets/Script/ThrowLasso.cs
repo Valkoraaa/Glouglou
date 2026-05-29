@@ -112,6 +112,7 @@ public class ThrowLasso : MonoBehaviour
         isChild = false;
         boxCollider.enabled = false;
         Character.Instance.stopChara = false;
+        FishingLasso.Instance.hasToPlaySound = true;
     }
 
     public void GetLasso()
