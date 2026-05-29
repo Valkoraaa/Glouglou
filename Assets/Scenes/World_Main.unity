@@ -1846,8 +1846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shop
   shopCanvas: {fileID: 1240668740}
   notEnoughMoneyCanvas: {fileID: 828158984}
-  MarchandController: {fileID: 0}
-  playerMoney: 0
+  playerMoney: 1000
   moneyMultiplier: 1
 --- !u!114 &1707720382
 MonoBehaviour:

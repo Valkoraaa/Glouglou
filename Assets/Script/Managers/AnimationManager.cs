@@ -4,9 +4,9 @@ public enum EmoteType
 {
     Idle = 0,
     Discussion = 1,
-    Rire = 2,
+    SautDeJoie = 2,
     Coucou = 3,
-    SautDeJoie = 4
+    Rire = 4,
 }
 
 public class AnimationManager : MonoBehaviour

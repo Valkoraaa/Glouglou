@@ -33,13 +33,27 @@ public class Shop : MonoBehaviour
         marchandController = marchand;
     }
 
-    public void OpenShop(bool open) //true to open, false to close
+    public void OpenShop(bool open) // true to open, false to close
     {
         shopCanvas.SetActive(open);
-        marchandController.AskEmote(EmoteType.Discussion);
+        if (marchandController != null)
+        {
+            if (open)
+            {
+                marchandController.AskEmote(EmoteType.Discussion);
+            }
+            else
+            {
+                marchandController.AskEmote(EmoteType.Idle);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Shop : Impossible de jouer l'animation, marchandController est null !");
+        }
 
         Cursor.visible = open;
-        if(open)
+        if (open)
         {
             Cursor.lockState = CursorLockMode.None;
         }
@@ -65,8 +79,9 @@ public class Shop : MonoBehaviour
             //DayManager.Instance.totalThrow += 1;
             DayManager.Instance.numberOfFailsAllowed += 1;
             priceThrow += 50;
-            OpenShop(false);
             marchandController.AskEmote(EmoteType.SautDeJoie);
+
+            OpenShop(false);
         }
         else { NotEnoughMoney(); }
     }
@@ -78,8 +93,9 @@ public class Shop : MonoBehaviour
             playerMoney -= priceForce;
             FishingLasso.Instance.strenght += 1;
             priceForce += 50;
-            OpenShop(false);
             marchandController.AskEmote(EmoteType.SautDeJoie);
+
+            OpenShop(false);
 
         }
         else { NotEnoughMoney(); }
@@ -92,8 +108,8 @@ public class Shop : MonoBehaviour
             moneyMultiplier += 0.1f;
             playerMoney -= priceMoney;
             priceMoney += 100;
-            OpenShop(false);
             marchandController.AskEmote(EmoteType.SautDeJoie);
+            OpenShop(false);
 
         }
         else { NotEnoughMoney(); }
