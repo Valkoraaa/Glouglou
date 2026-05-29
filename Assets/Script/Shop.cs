@@ -8,7 +8,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private GameObject shopCanvas;
     [SerializeField] private GameObject notEnoughMoneyCanvas;
 
-
+    private MarchandController marchandController;
     public float playerMoney;
     public float moneyMultiplier = 1;
 
@@ -28,11 +28,32 @@ public class Shop : MonoBehaviour
         
     }
 
-    public void OpenShop(bool open) //true to open, false to close
+    public void InitialiserBoutique(MarchandController marchand)
+    {
+        marchandController = marchand;
+    }
+
+    public void OpenShop(bool open) // true to open, false to close
     {
         shopCanvas.SetActive(open);
+        if (marchandController != null)
+        {
+            if (open)
+            {
+                marchandController.AskEmote(EmoteType.Discussion);
+            }
+            else
+            {
+                marchandController.AskEmote(EmoteType.Idle);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Shop : Impossible de jouer l'animation, marchandController est null !");
+        }
+
         Cursor.visible = open;
-        if(open)
+        if (open)
         {
             Cursor.lockState = CursorLockMode.None;
         }
@@ -58,6 +79,8 @@ public class Shop : MonoBehaviour
             //DayManager.Instance.totalThrow += 1;
             DayManager.Instance.numberOfFailsAllowed += 1;
             priceThrow += 50;
+            marchandController.AskEmote(EmoteType.SautDeJoie);
+
             OpenShop(false);
         }
         else { NotEnoughMoney(); }
@@ -70,7 +93,10 @@ public class Shop : MonoBehaviour
             playerMoney -= priceForce;
             FishingLasso.Instance.strenght += 1;
             priceForce += 50;
+            marchandController.AskEmote(EmoteType.SautDeJoie);
+
             OpenShop(false);
+
         }
         else { NotEnoughMoney(); }
     }
@@ -82,7 +108,9 @@ public class Shop : MonoBehaviour
             moneyMultiplier += 0.1f;
             playerMoney -= priceMoney;
             priceMoney += 100;
+            marchandController.AskEmote(EmoteType.SautDeJoie);
             OpenShop(false);
+
         }
         else { NotEnoughMoney(); }
     }
@@ -90,6 +118,7 @@ public class Shop : MonoBehaviour
     private void NotEnoughMoney()
     {
         notEnoughMoneyCanvas.SetActive(true);
+        marchandController.AskEmote(EmoteType.Rire);
         //ajouter son
     }
 }

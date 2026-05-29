@@ -1830,6 +1830,7 @@ MonoBehaviour:
   defaultTypingSpeed: 0.001
   isInDialogue: 0
   openShop: 0
+  skipIncTuto: 0
   tutoDialogue: 0
 --- !u!114 &1707720379
 MonoBehaviour:
@@ -1845,7 +1846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shop
   shopCanvas: {fileID: 1240668740}
   notEnoughMoneyCanvas: {fileID: 828158984}
-  playerMoney: 0
+  playerMoney: 1000
   moneyMultiplier: 1
 --- !u!114 &1707720382
 MonoBehaviour:
@@ -1862,7 +1863,12 @@ MonoBehaviour:
   tuto: 0
   dialogueCounter: 0
   endOfDialogue: 0
+  fadeFinished: 0
+  hasToBack: 0
+  blockActive: 0
   tutoFish: {fileID: 0}
+  tutoBlock: {fileID: 0}
+  player: {fileID: 0}
   tutoDialogue: {fileID: 11400000, guid: 2ce06c12d7afac14c9f375cbaadb52a0, type: 2}
   tutoDialogue2: {fileID: 11400000, guid: 04adc7593eda2ee4fa1036efdefb9a98, type: 2}
   caughtDialogue: {fileID: 11400000, guid: 67a017fda7ae93546b2c8a44b8e095dc, type: 2}
