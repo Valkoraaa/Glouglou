@@ -16999,7 +16999,7 @@ PrefabInstance:
     - target: {fileID: 8248928185420256525, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: lassoOnFish
       value: 
-      objectReference: {fileID: 21300000, guid: 6632a3fd4fa76c1448b1405637281807, type: 3}
+      objectReference: {fileID: 7482667652216324306, guid: 326a12ef157e08e41b8b1de86783be58, type: 3}
     - target: {fileID: 8714941135216383834, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: m_CameraType
       value: 0
