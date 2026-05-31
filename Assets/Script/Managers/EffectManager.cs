@@ -23,6 +23,10 @@ public class EffectManager : MonoBehaviour
     public float windStrength = 2f;
     public Coroutine exhaustEnumerator;
 
+    [SerializeField] private AudioSource musiqueAudio;
+    [SerializeField] private AudioClip depressionMusique;
+
+
     [Header("Tests")]
     public bool activateExhaust;
     public bool desactivateExhaust;
@@ -101,6 +105,7 @@ public class EffectManager : MonoBehaviour
                 break;
             case "depression":
                 effects[4] = true;
+                Debug.Log("depression");
                 break;
             case "none":
                 Debug.Log("no effect");
@@ -169,10 +174,14 @@ public class EffectManager : MonoBehaviour
 
     private void Depression(bool wantToActivate)
     {
-        if(wantToActivate)
+        if (wantToActivate)
         {
             rain.gameObject.SetActive(true);
-            depressionEffect.gameObject.SetActive(true);   
+            depressionEffect.gameObject.SetActive(true);
+
+            musiqueAudio.gameObject.SetActive(true); // force l'activation
+            musiqueAudio.clip = depressionMusique;
+            musiqueAudio.Play();
         }
     }
 

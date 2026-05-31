@@ -2205,7 +2205,7 @@ PrefabInstance:
       objectReference: {fileID: 1484203320}
     - target: {fileID: 5893804085302651769, guid: 80b53c04572427e48b436dad6481bd98, type: 3}
       propertyPath: numberOfFishToCatch
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5893804085302651769, guid: 80b53c04572427e48b436dad6481bd98, type: 3}
       propertyPath: numberOfFailsAllowed

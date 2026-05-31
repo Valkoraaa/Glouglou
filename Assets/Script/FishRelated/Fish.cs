@@ -6,8 +6,7 @@ public class Fish : MonoBehaviour
     [SerializeField] private float size;
     [SerializeField] private float weight;
     //wind, drunk, ...
-    [SerializeField] private string temporaryEffect;
-    [SerializeField] private string permanentEffect;
+    [SerializeField] private string effect;
     [SerializeField] private int isPermanent;
     [SerializeField] private int speed;
     [SerializeField] private bool isBadForToday;
@@ -40,16 +39,10 @@ public class Fish : MonoBehaviour
         set { weight = value; }
     }
 
-    public string TemporaryEffect
+    public string Effect
     {
-        get { return temporaryEffect; }
-        set { temporaryEffect = value; }
-    }
-
-    public string PermanentEffect
-    {
-        get { return permanentEffect; }
-        set { permanentEffect = value; }
+        get { return effect; }
+        set { effect = value; }
     }
 
     public int IsPermanent

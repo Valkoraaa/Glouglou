@@ -143,13 +143,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Fish
   size: 10
   weight: 50
-  temporaryEffect: 
-  permanentEffect: 
+  effect: depression
   isPermanent: 0
   speed: 0
   isBadForToday: 0
-  baseMaterial: {fileID: 0}
-  HookedMaterial: {fileID: 0}
   data: {fileID: 11400000, guid: 0f90f1a94ad8df044ac898213f74aaeb, type: 2}
 --- !u!135 &4277683323382380919
 SphereCollider:
