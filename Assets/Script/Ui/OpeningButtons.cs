@@ -33,4 +33,10 @@ public class OpeningButtons : MonoBehaviour
         yield return null;
         yield return SceneManager.UnloadSceneAsync("Opening");
     }
+
+    public void LeaveClick()
+    {
+        Application.Quit();
+    }
+    
 }
