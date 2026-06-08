@@ -137,11 +137,11 @@ public class ThrowLasso : MonoBehaviour
     {
         if (Random.value < 0.5f)
         {
-            lassoAudio.PlayOneShot(plouf1);
+            lassoAudio.PlayOneShot(plouf1, 1.5f);
         }
         else
         {
-            lassoAudio.PlayOneShot(plouf2);
+            lassoAudio.PlayOneShot(plouf2, 1.5f);
         }
     }
 
@@ -149,11 +149,11 @@ public class ThrowLasso : MonoBehaviour
     {
         if (Random.value < 0.5f)
         {
-            lassoAudio.PlayOneShot(throw1);
+            lassoAudio.PlayOneShot(throw1, 1.5f);
         }
         else
         {
-            lassoAudio.PlayOneShot(throw2);
+            lassoAudio.PlayOneShot(throw2, 1.5f);
         }
     }
     

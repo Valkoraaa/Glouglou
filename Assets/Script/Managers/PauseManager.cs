@@ -55,6 +55,17 @@ public class PauseManager : MonoBehaviour
             Character.Instance.stopChara = false;
             canPause = false;
         }
+
+        else if(mainPause.activeSelf && Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            OnPlay();
+        }
+
+        else if(settingsCanvas.activeSelf && Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            settingsCanvas.SetActive(false);
+            mainPause.SetActive(true);
+        }
     }
 
     public void OnPlay()

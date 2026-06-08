@@ -1,3 +1,4 @@
+using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,8 +9,10 @@ public class Character : MonoBehaviour
     public static Character Instance;
 
     [Header("Physique & Mouvement")]
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float speed = 20f;
+    [SerializeField] private float speedRun = 35f;
     [SerializeField] private float gravity = -20; 
+    private bool isRunning;
 
     [Header("Cam�ra FPS")]
     [SerializeField] private Transform cameraTransform;
@@ -29,6 +32,8 @@ public class Character : MonoBehaviour
     public bool stopChara;
     public bool cinematic;
     [SerializeField] private AudioSource footstepAudio;
+    [SerializeField] private AudioClip[] footstepClip;
+    private bool runSound = true;
 
     private void Awake()
     {
@@ -47,6 +52,14 @@ public class Character : MonoBehaviour
     {
         ApplyCameraPosition();
         HandleGravity(stopChara);
+        if(Keyboard.current.shiftKey.isPressed)
+        {
+            isRunning = true;
+        }
+        else
+        {
+            isRunning = false;
+        }
         if(canMove)
         {
             HandleMovement();
@@ -82,7 +95,15 @@ public class Character : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         if(hasToStop) {move = Vector3.zero;}
-        controller.Move(move * speed * Time.deltaTime);
+        if(isRunning)
+        {
+            controller.Move(move * speedRun * Time.deltaTime);
+        }
+        else
+        {
+            controller.Move(move * speed * Time.deltaTime);
+        }
+        
 
         
 
@@ -93,14 +114,37 @@ public class Character : MonoBehaviour
     {
         //bool isMoving = moveInput.magnitude > 0.1f;
 
-        if (move!= Vector3.zero && !footstepAudio.isPlaying)
+        /*if (move!= Vector3.zero && !footstepAudio.isPlaying)
         {
-            footstepAudio.Play();
+            AudioClip clip = footstepClip[Random.Range(0, footstepClip.Length)];
+            footstepAudio.PlayOneShot(clip, 1f);
+        }*/
+        if (move!= Vector3.zero && runSound)
+        {
+            AudioClip clip = footstepClip[Random.Range(0, footstepClip.Length)];
+            footstepAudio.PlayOneShot(clip, 2f);
+            runSound = false;
+            StartCoroutine(WaitRunSound());
         }
         else if (move == Vector3.zero && footstepAudio.isPlaying)
         {
             footstepAudio.Stop();
         }
+    }
+
+    private IEnumerator WaitRunSound()
+    {
+        if(isRunning)
+        {
+           yield return new WaitForSeconds(0.35f); 
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        AudioClip clip = footstepClip[Random.Range(0, footstepClip.Length)];
+        footstepAudio.PlayOneShot(clip, 2f);
+        runSound = true;
     }
 
     private void ApplyCameraPosition()
