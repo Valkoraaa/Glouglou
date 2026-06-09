@@ -8,7 +8,7 @@ public class CollectionGestion : MonoBehaviour
 {
     [SerializeField]
     private Canvas collectionCanva;
-    [SerializeField] private DisplayBook displayBook;
+    [SerializeField] private DisplayScrollCollection displayScrollCollection;
 
     private Rigidbody characterRigidbody;
 
@@ -26,7 +26,7 @@ public class CollectionGestion : MonoBehaviour
             {
                 CloseCollection();
                 DisplayMouse(false);
-                displayBook.RefreshBook();
+                displayScrollCollection.RefreshCollection();
             }
 
             else
@@ -42,7 +42,9 @@ public class CollectionGestion : MonoBehaviour
     public void DisplayMouse(bool open)
     {
         Cursor.visible = open;
+
         Cursor.lockState = open ? CursorLockMode.None : CursorLockMode.Locked;
+
         if (Character.Instance != null)
         {
             Character.Instance.canMove = !open;
@@ -53,16 +55,11 @@ public class CollectionGestion : MonoBehaviour
     // Dans CollectionGestion.cs
     public void OpenCollection()
     {
-        // 1. Activer le GameObject du Canvas en premier
         collectionCanva.gameObject.SetActive(true);
 
-        // 2. S'assurer que le script DisplayBook est actif aussi
-        displayBook.gameObject.SetActive(true);
 
-        // 3. Appeler le refresh
-        displayBook.RefreshBook();
+        displayScrollCollection.RefreshCollection();
 
-        // 4. Gérer le reste
         characterRigidbody.isKinematic = true;
         DisplayMouse(true);
     }
@@ -72,7 +69,6 @@ public class CollectionGestion : MonoBehaviour
         collectionCanva.gameObject.SetActive(false);
         characterRigidbody.isKinematic = false;
 
-        // CORRECTION ICI : on passe false pour cacher la souris et libérer le perso
         DisplayMouse(false);
     }
 }
