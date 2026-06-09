@@ -15,9 +15,11 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
 
     [Header("Typing Settings")]
-    public float typingSpeed; //0.08f
-    public float fastTypingSpeed; //0.04f
-    public float defaultTypingSpeed; //0.08f
+    public float typingSpeed; //0.06f
+    public float fastTypingSpeed; //0.02f
+    public float defaultTypingSpeed; //0.06f
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip dialogueSound;
 
     private List<DialogueLine> currentLines;
     private int index;
@@ -81,12 +83,15 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator TypeLine(string line)
     {
+        bool hasPlayed = false;
         isTyping = true;
         dialogueText.text = "";
 
         foreach (char letter in line)
         {
             dialogueText.text += letter;
+            if(hasPlayed) audioSource.PlayOneShot(dialogueSound);
+            hasPlayed = !hasPlayed;
             yield return new WaitForSeconds(typingSpeed);
         }
 

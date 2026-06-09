@@ -39,6 +39,11 @@ public class FishPatrol : MonoBehaviour
         }
     }
 
+    void LateUpdate()
+    {
+        //canva regarde toujours la cam malgre les rotations
+        transform.LookAt(transform.position + Camera.main.transform.forward);
+    }
     void Patrol()
     {
         if (fish == null) return;

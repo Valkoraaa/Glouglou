@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using Mono.Cecil.Cil;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -9,12 +12,16 @@ public class FishingLasso : MonoBehaviour
     [SerializeField] private GameObject player;
     public int strenght;
     private MeshRenderer visual;
-    [SerializeField] private Sprite lassoOnFish;
     
-
+    public bool hasToPlaySound;
     private Fish fish;
 
     public static FishingLasso Instance;
+
+    [Header("LassoImage")]
+    [SerializeField] private Transform canvasLasso;
+    [SerializeField] private Sprite lassoImage;
+
 
     private void Awake()
     {
@@ -28,8 +35,12 @@ public class FishingLasso : MonoBehaviour
         
         if(collision.gameObject.tag == "water") //activate anyway when smth hit?
         {
-            StartCoroutine(MissedThrow());
-            ThrowLasso.Instance.PlayRandomPlouf();
+            StartCoroutine(MissedThrow(true));
+        }
+        else
+        {
+            StartCoroutine(MissedThrow(false));
+            //sound floor
         }
         //qte ?
     }
@@ -37,21 +48,18 @@ public class FishingLasso : MonoBehaviour
     private void OnTriggerEnter(Collider other) //to check if you hit a fish
     {
         Fish fishScript = other.gameObject.GetComponent<Fish>();
-        float randWeight = Random.Range(0.8f ,1.2f);
-        float randSize = Random.Range(0.8f, 1.2f);
 
-        float fishWeight = other.gameObject.GetComponent<Fish>().Weight;
-        float fishSize = other.gameObject.GetComponent<Fish>().Size;
+        
 
 
         if (other.gameObject.CompareTag("fish") && fishScript != null && fishScript.data != null)
         {
-            ThrowLasso.Instance.PlayRandomPlouf();
             int fishRarityValue = (int)fishScript.data.currentRarity;
 
             if (strenght >= fishRarityValue && !ThrowLasso.Instance.recallRope)
             {
-
+                float fishWeight = other.gameObject.GetComponent<Fish>().Weight;
+                float fishSize = other.gameObject.GetComponent<Fish>().Size;
 
                 float finalWeight = fishScript.Weight * Random.Range(0.8f, 1.2f);
                 float finalSize = fishScript.Size * Random.Range(0.8f, 1.2f);
@@ -68,10 +76,15 @@ public class FishingLasso : MonoBehaviour
         {
             StartCoroutine(TutoManager.Instance.TutoFishing(other.gameObject));
         }
+        else if (other.gameObject.CompareTag("waterZone") && hasToPlaySound)
+        {
+            ThrowLasso.Instance.PlayRandomPlouf();
+        }
     }
 
     private IEnumerator getFishToPlayer(Fish fish)
     {
+        hasToPlaySound = false;
         float duration = 1f;
         float elapsedTime = 0f;
 
@@ -80,14 +93,31 @@ public class FishingLasso : MonoBehaviour
         visual.enabled = false;
 
         ////
-        GameObject extraSprite = new GameObject("ExtraSprite");
+        canvasLasso.SetParent(fish.transform);
+        canvasLasso.localPosition = Vector3.zero;
+        canvasLasso.localRotation = Quaternion.identity;
+        /*GameObject leftObj = new GameObject("LassoLeft");
+        leftObj.transform.SetParent(canvasLasso, false);
 
-        extraSprite.transform.SetParent(fish.transform);
+        Image left = leftObj.AddComponent<Image>();
+        left.sprite = lassoImage;
 
-        extraSprite.transform.localPosition = Vector3.zero;
+        RectTransform leftRect = left.rectTransform;
+        leftRect.sizeDelta = new Vector2(64, 64); // taille souhaitée
+        leftRect.localPosition = new Vector3(-32f, 0f, 0.1f);
 
-        SpriteRenderer sr = extraSprite.AddComponent<SpriteRenderer>();
-        sr.sprite = lassoOnFish;
+        GameObject rightObj = new GameObject("LassoRight");
+        rightObj.transform.SetParent(canvasLasso, false);
+
+        Image right = rightObj.AddComponent<Image>();
+        right.sprite = lassoImage;
+
+        RectTransform rightRect = right.rectTransform;
+        rightRect.sizeDelta = new Vector2(64, 64);
+        rightRect.localPosition = new Vector3(32f, 0f, -0.1f);
+
+        // miroir horizontal
+        rightRect.localScale = new Vector3(-1f, 1f, 1f);*/
         ////
 
         Vector3 fishStartPos = fish.transform.position;
@@ -107,6 +137,8 @@ public class FishingLasso : MonoBehaviour
 
         // raccrocher le lasso au joueur et lui donner le poissson + qte? ;; suite du code temporaire
         //animation?
+        canvasLasso.SetParent(null);
+        canvasLasso.position = Vector3.zero;
         Rope.Instance.endPoint = Rope.Instance.originalEndPoint;
         EffectManager.Instance.ChooseEffect(fish.Effect);
         Shop.Instance.playerMoney += fish.data.price * Shop.Instance.moneyMultiplier;
@@ -118,8 +150,9 @@ public class FishingLasso : MonoBehaviour
         DayManager.Instance.CountdownThrow();
 
     }
-    private IEnumerator MissedThrow()
+    private IEnumerator MissedThrow(bool water)
     {
+        hasToPlaySound = false;
         float duration = 1f;
         float elapsedTime = 0f;
 
@@ -141,9 +174,12 @@ public class FishingLasso : MonoBehaviour
         ThrowLasso.Instance.hasLasso();
 
         //DayManager.Instance.actualThrow --;
-        DayManager.Instance.numberOfFails++;
-        DayManager.Instance.CountdownThrow();
-
+        if (water)
+        {
+            DayManager.Instance.numberOfFails++;
+            DayManager.Instance.CountdownThrow();
+        }
+        
         //smoother way to get the lasso back in hand?
     }
 }
