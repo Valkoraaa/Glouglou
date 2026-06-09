@@ -22,6 +22,7 @@ public class DayManager : MonoBehaviour
     [SerializeField]
     private GameObject BadFishTwoDisplay;
     public bool isNight;
+    [SerializeField] private AudioSource windAudioSource;
 
 
 
@@ -48,7 +49,7 @@ public class DayManager : MonoBehaviour
 
     public void CountdownThrow()
     {
-        if (numberOfFails >= numberOfFailsAllowed /*|| fishCaught >= numberOfFishToCatch || actualThrow <= 0 ?????*/) //changer numberOfFish... en nombre de rat�
+        if (numberOfFails >= numberOfFailsAllowed && !TutoManager.Instance.tuto/*|| fishCaught >= numberOfFishToCatch || actualThrow <= 0 ?????*/) //changer numberOfFish... en nombre de rat�
         {
             EndOfDay();
         }
@@ -72,13 +73,13 @@ public class DayManager : MonoBehaviour
         Debug.Log("End Of Day");
         EffectManager.Instance.ResetEffect();
         
-        if (fishCaught < numberOfFishToCatch)
+        if (fishCaught < numberOfFishToCatch && !TutoManager.Instance.tuto)
         {
             GameOver();
         }
         else
         {
-            DialogueManager.Instance.StartDialogue(dialogue);
+            DialogueManager.Instance.StartDialogue(dialogue, false);
             isNight = true;
         } //+ ouvrir la zone etc
         
@@ -101,16 +102,18 @@ public class DayManager : MonoBehaviour
 
     private void DayEffect()
     {
-        if (Random.value <= 0.2f)
+        if (Random.value <= 0.33f)
         {
             EffectManager.Instance.effects[0] = true;
             Debug.Log("wind");
+            windAudioSource.Play();
         }
+        else {windAudioSource.Stop();}
     }
 
     private void GameOver() //a completer //////////
     {
-        DialogueManager.Instance.StartDialogue(lostDialogue);
+        DialogueManager.Instance.StartDialogue(lostDialogue, false);
     }
 
     private void DefineBadFish()

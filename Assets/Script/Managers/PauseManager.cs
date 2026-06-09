@@ -5,6 +5,8 @@ using TMPro;
 
 public class PauseManager : MonoBehaviour
 {
+    [SerializeField] private bool homePage;
+
     [SerializeField] private GameObject pauseCanvas;
     [SerializeField] private GameObject settingsCanvas;
     [SerializeField] private GameObject mainPause;
@@ -15,6 +17,8 @@ public class PauseManager : MonoBehaviour
 
     void Start()
     {
+        if(homePage) canPause = false;
+
         Resolution[] resolutions = Screen.resolutions;
 
         List<string> options = new List<string>();
@@ -56,15 +60,22 @@ public class PauseManager : MonoBehaviour
             canPause = false;
         }
 
-        else if(mainPause.activeSelf && Keyboard.current.escapeKey.wasPressedThisFrame)
+        else if(!homePage && mainPause.activeSelf && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             OnPlay();
         }
 
         else if(settingsCanvas.activeSelf && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            settingsCanvas.SetActive(false);
-            mainPause.SetActive(true);
+            if(!homePage)
+            {
+                mainPause.SetActive(true);
+                settingsCanvas.SetActive(false);
+            }
+            else
+            {
+                pauseCanvas.SetActive(false);
+            }
         }
     }
 
@@ -77,9 +88,9 @@ public class PauseManager : MonoBehaviour
             Character.Instance.canMove = true;
             Character.Instance.canMoveCam = true;
             Character.Instance.stopChara = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
         }
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         canPause = true;
     }
 

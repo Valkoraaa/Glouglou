@@ -51,10 +51,10 @@ public class NPCDialogue : MonoBehaviour
     public void StartDialogue()
     {
         DialogueManager.Instance.openShop = isMerchant;
-        DialogueManager.Instance.StartDialogue(dialogue);
+        DialogueManager.Instance.StartDialogue(dialogue, isDirector);
         if (isDirector && DayManager.Instance.isNight)
         {
-            DialogueManager.Instance.StartDialogue(nightDialogue);
+            DialogueManager.Instance.StartDialogue(nightDialogue, false);
         }
         else if (isDirector)
         {
