@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4215b2633c1f06f4fa8e2b46a201c92b, type: 3}
   m_Name: TutoCaught
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  speakerName: Marchant de poisson
+  speakerName: Directeur
   lines:
   - text: "Bien jou\xE9 ! Maintenant, rentrons au camping pour que je t'explique
       le d\xE9roulement d'une journ\xE9e"

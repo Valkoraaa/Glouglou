@@ -11,6 +11,8 @@ public class DialogueManager : MonoBehaviour
 
     [Header("UI")]
     public GameObject dialoguePanel;
+    [SerializeField] private GameObject horseBubble;
+    [SerializeField] private GameObject catBubble;
     public TextMeshProUGUI speakerText;
     public TextMeshProUGUI dialogueText;
 
@@ -37,13 +39,18 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
     }
 
-    public void StartDialogue(DialogueData data)
+    public void StartDialogue(DialogueData data, bool isHorse)
     {
         isInDialogue = true;
         Character.Instance.canMove = false;
         Character.Instance.canMoveCam = false;
         Character.Instance.stopChara = true;
         dialoguePanel.SetActive(true);
+        if(isHorse)
+        {
+            horseBubble.SetActive(true);
+        }
+        else { catBubble.SetActive(true); }
         speakerText.text = data.speakerName;
 
         currentLines = data.lines;
@@ -51,10 +58,24 @@ public class DialogueManager : MonoBehaviour
 
         ShowLine();
     }
+    // public void StartDialogue(DialogueData data)
+    // {
+    //     isInDialogue = true;
+    //     Character.Instance.canMove = false;
+    //     Character.Instance.canMoveCam = false;
+    //     Character.Instance.stopChara = true;
+    //     dialoguePanel.SetActive(true);
+    //     speakerText.text = data.speakerName;
+
+    //     currentLines = data.lines;
+    //     index = 0;
+
+    //     ShowLine();
+    // }
 
     public IEnumerator WaitForEndOfDialogue(DialogueData dialogue, UnityEngine.Vector3 tpPos)
     {
-        StartDialogue(dialogue);
+        StartDialogue(dialogue, false);
         yield return new WaitUntil(() => !isInDialogue);
         Debug.Log("tp");
         UiFadeManager.Instance.FadeTp(tpPos);
@@ -114,18 +135,18 @@ public class DialogueManager : MonoBehaviour
             Character.Instance.canMove = true;
             Character.Instance.canMoveCam = true;
             Character.Instance.stopChara = false;
-            Debug.Log("works");
         }
         if (TutoManager.Instance.tuto)
         {
             if(!skipIncTuto) {TutoManager.Instance.dialogueCounter++;}
             else { skipIncTuto = false; }
             TutoManager.Instance.endOfDialogue = true;
-            Debug.Log("DialogueManager check tuto manager.tuto");
         }
+
+        catBubble.SetActive(false);
+        horseBubble.SetActive(false);
         
         isInDialogue = false;
-        Debug.Log(isInDialogue);
     }
 
     private void Update()

@@ -11233,6 +11233,7 @@ MonoBehaviour:
   dialogueOutWhileNight: {fileID: 11400000, guid: 6d6d38f40dc360e49b94920143edc8f1, type: 2}
   dialogueNotEnoughFish: {fileID: 11400000, guid: a29c23e7d6b94f04e89e1424150cfd5d, type: 2}
   dialogueGoToWork: {fileID: 0}
+  windDay: {fileID: 0}
   tpPos: {fileID: 427189726}
   otherTp: {fileID: 0}
   isCampTp: 0
@@ -11973,6 +11974,7 @@ MonoBehaviour:
   dialogueOutWhileNight: {fileID: 11400000, guid: 6d6d38f40dc360e49b94920143edc8f1, type: 2}
   dialogueNotEnoughFish: {fileID: 11400000, guid: a29c23e7d6b94f04e89e1424150cfd5d, type: 2}
   dialogueGoToWork: {fileID: 11400000, guid: ab29a831be853a44981e1133e41e0f9f, type: 2}
+  windDay: {fileID: 11400000, guid: a929839f1cedb6c4c96fb76e2b8bb352, type: 2}
   tpPos: {fileID: 1120097518}
   otherTp: {fileID: 427189726}
   isCampTp: 1
@@ -17334,6 +17336,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2232895181529008253, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 2322684986545666516, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: m_ClearFlags
       value: 1
@@ -17715,7 +17721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638f501c91c9d3f46869dbc1bf88deea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutoManager
-  tuto: 0
+  tuto: 1
   dialogueCounter: 0
   endOfDialogue: 0
   fadeFinished: 0

@@ -42,7 +42,7 @@ public class ThrowLasso : MonoBehaviour
         boxCollider = lasso.GetComponent<BoxCollider>();
         //canThrow = true;
         chaControll = GetComponent<CharacterController>();
-        layerMask = ~LayerMask.GetMask("Bordure");
+        layerMask = ~LayerMask.GetMask("Bordure", "Player");
     }
 
     void Update()

@@ -8,6 +8,7 @@ public class TriggerOutCamping : MonoBehaviour
     [SerializeField] private DialogueData dialogueOutWhileNight;
     [SerializeField] private DialogueData dialogueNotEnoughFish;
     [SerializeField] private DialogueData dialogueGoToWork;
+    [SerializeField] private DialogueData windDay;
     [SerializeField] private Transform tpPos;
     [SerializeField] private Transform otherTp;
     [SerializeField] private bool isCampTp;
@@ -46,8 +47,10 @@ public class TriggerOutCamping : MonoBehaviour
         else if ((DayManager.Instance.fishCaught < DayManager.Instance.numberOfFishToCatch) && hasToCheck)
         {
             StartCoroutine(DialogueManager.Instance.WaitForEndOfDialogue(ChoseDialogue(), isCampTp ? otherTp.position : tpPos.position));
+            
             ThrowLasso.Instance.canThrow = true;
             StartCoroutine(SwitchMusic(musicBeach));
+            
         }
         
         else if (!DayManager.Instance.isNight && DayManager.Instance.fishCaught >= DayManager.Instance.numberOfFishToCatch && isCampTp)
@@ -74,6 +77,11 @@ public class TriggerOutCamping : MonoBehaviour
     private DialogueData ChoseDialogue()
     {
         if(DayManager.Instance.isNight) return dialogueOutWhileNight;
+        else if (isCampTp && EffectManager.Instance.effects[0] == true)
+        {
+            hasToCheck = false;
+            return windDay;
+        }
         else if (isCampTp)
         {
             hasToCheck = false;

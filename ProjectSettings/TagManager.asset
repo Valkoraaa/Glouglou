@@ -8,6 +8,7 @@ TagManager:
   - fish
   - tutoFish
   - waterZone
+  - lasso
   layers:
   - Default
   - TransparentFX
