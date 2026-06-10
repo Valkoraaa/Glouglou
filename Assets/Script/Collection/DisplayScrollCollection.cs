@@ -8,6 +8,7 @@ public class DisplayScrollCollection : MonoBehaviour
     [SerializeField] private Transform content;   
     [SerializeField] private GameObject slotPrefab;
     [SerializeField] private List<FishData> allFishes;
+    [SerializeField] private CollectionGestion collectionGestion;
 
     public void RefreshCollection()
     {
@@ -18,7 +19,7 @@ public class DisplayScrollCollection : MonoBehaviour
         {
             GameObject slot = Instantiate(slotPrefab, content);
             bool isCaught = FishingBookManager.Instance.IsFishCaught(fish.id);
-            slot.GetComponent<Collection_Slot>().SetUp(fish, isCaught);
+            slot.GetComponent<Collection_Slot>().SetUp(fish, isCaught, collectionGestion);
         }
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());

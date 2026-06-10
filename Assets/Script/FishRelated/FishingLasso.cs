@@ -65,8 +65,8 @@ public class FishingLasso : MonoBehaviour
                 float finalSize = fishScript.Size * Random.Range(0.8f, 1.2f);
                 FishingBookManager.Instance.RegisterCatch(fishScript.data.id, finalWeight, finalSize);
 
-                Debug.Log("poid du poisson : " + fishWeight.ToString("F2"));
-                Debug.Log("taille du poisson : " + fishSize.ToString("F2"));
+                Debug.Log("poid du poisson : " + finalWeight.ToString("F2"));
+                Debug.Log("taille du poisson : " + finalSize.ToString("F2"));
 
 
                 StartCoroutine(getFishToPlayer(fishScript));
