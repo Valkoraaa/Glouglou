@@ -154,7 +154,7 @@ public class DialogueManager : MonoBehaviour
         if (!isInDialogue)
             return;
 
-        if (Keyboard.current.spaceKey.isPressed && isTyping)
+        if (Keyboard.current.spaceKey.isPressed && isTyping && PauseManager.Instance.canPause)
         {
             
                 /*StopCoroutine(typingCoroutine);
@@ -170,7 +170,7 @@ public class DialogueManager : MonoBehaviour
         }
         else { typingSpeed = defaultTypingSpeed; }
 
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && !isTyping)
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && !isTyping && PauseManager.Instance.canPause)
         {
             NextLine();
             typingSpeed = defaultTypingSpeed;
