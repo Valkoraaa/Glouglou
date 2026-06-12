@@ -46,6 +46,7 @@ public class Shop : MonoBehaviour
         }
         else
         {
+            notEnoughMoneyCanvas.SetActive(false);
             Character.Instance.canMove = true;
             Character.Instance.canMoveCam = true;
             Character.Instance.stopChara = false;
@@ -55,7 +56,7 @@ public class Shop : MonoBehaviour
     }
 
 
-    //scaling de prix et prix de base a définir //////////////////////////////////////////////////////
+    //scaling de prix et prix de base a dï¿½finir //////////////////////////////////////////////////////
 
     //upgrades
     public void upgradeThrowNumber()

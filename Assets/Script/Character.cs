@@ -25,7 +25,7 @@ public class Character : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 lookInput;
     private Vector3 velocity; 
-    private float xRotation = 0f;
+    public float xRotation = 0f;
     public bool canMove = true;
     public bool canMoveCam = true;
     public Vector3 move;

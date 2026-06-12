@@ -10,13 +10,17 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private GameObject pauseCanvas;
     [SerializeField] private GameObject settingsCanvas;
     [SerializeField] private GameObject mainPause;
-    private bool canPause = true;
+    public bool canPause = true;
 
     [SerializeField] private TMP_Dropdown dropdownResolution;
+
+    public static PauseManager Instance;
 
 
     void Start()
     {
+        Instance = this;
+
         if(homePage) canPause = false;
 
         Resolution[] resolutions = Screen.resolutions;

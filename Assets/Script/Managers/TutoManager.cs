@@ -168,6 +168,8 @@ public class TutoManager : MonoBehaviour
         UiFadeManager.Instance.FadeTp(new Vector3(1478.14f, 180.59f, 1102.03f)); //mouvement de cam?
         yield return new WaitForSeconds(0.5f);
         player.transform.rotation = Quaternion.Euler(0, -180, 0);
+        Character.Instance.xRotation = 0;
+        playerCamera.transform.localRotation = Quaternion.Euler(0, 0, 0);
         ThrowLasso.Instance.hasLasso();
         Character.Instance.stopChara = true;
         yield return new WaitUntil(() => fadeFinished);
