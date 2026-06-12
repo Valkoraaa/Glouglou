@@ -50,7 +50,14 @@ public class DialogueManager : MonoBehaviour
         {
             horseBubble.SetActive(true);
         }
-        else { catBubble.SetActive(true); }
+        else
+        {
+            catBubble.SetActive(true);
+            if (Shop.Instance != null && Shop.Instance.MarchandController != null)
+            {
+                Shop.Instance.MarchandController.AskEmote(EmoteType.Discussion);
+            }
+        }
         speakerText.text = data.speakerName;
 
         currentLines = data.lines;
@@ -123,29 +130,37 @@ public class DialogueManager : MonoBehaviour
     {
         dialoguePanel.SetActive(false);
         currentLines = null;
-        
-        
+
+        bool wasCatTalking = catBubble.activeSelf;
+        bool willOpenShop = openShop;
+
         if (openShop)
         {
             openShop = false;
             Shop.Instance.OpenShop(true);
         }
-        else if (TutoManager.Instance.dialogueCounter !=0)
+        else if (TutoManager.Instance.dialogueCounter != 0)
         {
             Character.Instance.canMove = true;
             Character.Instance.canMoveCam = true;
             Character.Instance.stopChara = false;
         }
+
+        if (wasCatTalking)
+        {
+            Shop.Instance.MarchandController.AskEmote(EmoteType.Idle);
+        }
+
         if (TutoManager.Instance.tuto)
         {
-            if(!skipIncTuto) {TutoManager.Instance.dialogueCounter++;}
+            if (!skipIncTuto) { TutoManager.Instance.dialogueCounter++; }
             else { skipIncTuto = false; }
             TutoManager.Instance.endOfDialogue = true;
         }
 
         catBubble.SetActive(false);
         horseBubble.SetActive(false);
-        
+
         isInDialogue = false;
     }
 

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
@@ -9,6 +10,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private GameObject notEnoughMoneyCanvas;
 
     private MarchandController marchandController;
+    public MarchandController MarchandController => marchandController;
     public float playerMoney;
     public float moneyMultiplier = 1;
 
@@ -36,21 +38,6 @@ public class Shop : MonoBehaviour
     public void OpenShop(bool open) // true to open, false to close
     {
         shopCanvas.SetActive(open);
-        if (marchandController != null)
-        {
-            if (open)
-            {
-                marchandController.AskEmote(EmoteType.Discussion);
-            }
-            else
-            {
-                marchandController.AskEmote(EmoteType.Idle);
-            }
-        }
-        else
-        {
-            Debug.LogWarning("Shop : Impossible de jouer l'animation, marchandController est null !");
-        }
 
         Cursor.visible = open;
         if (open)
@@ -73,15 +60,12 @@ public class Shop : MonoBehaviour
     //upgrades
     public void upgradeThrowNumber()
     {
-        if(playerMoney >= priceThrow)
+        if (playerMoney >= priceThrow)
         {
             playerMoney -= priceThrow;
-            //DayManager.Instance.totalThrow += 1;
             DayManager.Instance.numberOfFailsAllowed += 1;
             priceThrow += 50;
             marchandController.AskEmote(EmoteType.SautDeJoie);
-
-            OpenShop(false);
         }
         else { NotEnoughMoney(); }
     }

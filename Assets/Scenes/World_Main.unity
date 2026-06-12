@@ -5964,7 +5964,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shop
   shopCanvas: {fileID: 1240668740}
   notEnoughMoneyCanvas: {fileID: 828158984}
-  playerMoney: 1000
+  playerMoney: 0
   moneyMultiplier: 1
 --- !u!82 &1707720382
 AudioSource:

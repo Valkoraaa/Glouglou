@@ -25,7 +25,7 @@ public class AnimationManager : MonoBehaviour
     }
     public void DeclencherAnimation(Animator targetAnimator, EmoteType emote)
     {
-        targetAnimator.SetInteger("AnimationID", (int)emote);
+        targetAnimator.SetInteger("AnimationId", (int)emote);
         targetAnimator.SetTrigger("Action");
     }
 }
