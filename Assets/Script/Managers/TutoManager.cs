@@ -52,7 +52,7 @@ public class TutoManager : MonoBehaviour
         yield return new WaitUntil(() => DialogueManager.Instance != null && DayManager.Instance != null && !SceneManager.GetSceneByName("Opening").isLoaded);
         
 
-        DialogueManager.Instance.StartDialogue(tutoDialogue, false);
+        DialogueManager.Instance.StartDialogue(tutoDialogue, true);
         tutoFish.SetActive(true);
         tutoBlock.SetActive(true);
     }
@@ -111,7 +111,7 @@ public class TutoManager : MonoBehaviour
             yield return null;
         }
         //move player vers pnj
-        DialogueManager.Instance.StartDialogue(caughtDialogue, false);
+        DialogueManager.Instance.StartDialogue(caughtDialogue, true);
         Character.Instance.canMove = false;
         Character.Instance.canMoveCam = false;
     }
@@ -157,7 +157,7 @@ public class TutoManager : MonoBehaviour
         playerCamera.transform.localRotation = startRot;
         Character.Instance.cinematic = false;
         ThrowLasso.Instance.hasLasso();
-        DialogueManager.Instance.StartDialogue(tutoDialogue2, false);
+        DialogueManager.Instance.StartDialogue(tutoDialogue2, true);
     }
 
     private IEnumerator WaitABit()
@@ -181,7 +181,7 @@ public class TutoManager : MonoBehaviour
         Character.Instance.canMoveCam = false;
        
                 
-        DialogueManager.Instance.StartDialogue(tutoDialogue3, false);
+        DialogueManager.Instance.StartDialogue(tutoDialogue3, true);
     }
 
     private IEnumerator StartTheDay()
