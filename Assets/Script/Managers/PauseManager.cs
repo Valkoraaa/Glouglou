@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.InputSystem.LowLevel;
 
 public class PauseManager : MonoBehaviour
 {
@@ -80,6 +81,11 @@ public class PauseManager : MonoBehaviour
             {
                 pauseCanvas.SetActive(false);
             }
+        }
+
+        else if (!canPause && Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            AudioManager.Instance.AudioClick(true);
         }
     }
 
