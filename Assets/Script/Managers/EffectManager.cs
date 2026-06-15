@@ -10,8 +10,7 @@ public class EffectManager : MonoBehaviour
     [SerializeField] private RectTransform upExhaust;
     [SerializeField] private RectTransform downExhaust;
 
-    [SerializeField] private ParticleSystem rain;
-    [SerializeField] private Volume depressionEffect;
+    [SerializeField] private GameObject depressionEffect;
     [SerializeField] private GameObject windZone;
 
 
@@ -44,8 +43,7 @@ public class EffectManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        rain.gameObject.SetActive(false);
-        depressionEffect.gameObject.SetActive(false);
+        depressionEffect.SetActive(false);
         effects = new bool[] { false, false, false, false, false };
         //volume.profile.TryGet(out lens); //drunk effect test
         //volume.profile.TryGet(out chroma);
@@ -171,8 +169,7 @@ public class EffectManager : MonoBehaviour
     {
         if(wantToActivate)
         {
-            rain.gameObject.SetActive(true);
-            depressionEffect.gameObject.SetActive(true);   
+            depressionEffect.SetActive(true);   
         }
     }
 
