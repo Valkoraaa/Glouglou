@@ -4,13 +4,19 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager Instance;
     [SerializeField] private AudioMixer mixerMusic;
     [SerializeField] private AudioMixer mixerEffect;
     [SerializeField] private Slider sliderMusic;
     [SerializeField] private Slider sliderEffect;
+    [SerializeField] private AudioSource clickUI;
+    [SerializeField] private AudioClip clickGood;
+    [SerializeField] private AudioClip clickBad;
 
     private void Start()
     {
+        Instance = this;
+
         float dB;
 
         if (mixerMusic.GetFloat("MyExposedParam", out dB))
@@ -34,5 +40,15 @@ public class AudioManager : MonoBehaviour
         if(audioType == "music") mixerMusic.SetFloat("MyExposedParam", dB);
 
         else mixerEffect.SetFloat("MyExposedParam", dB);
+    }
+
+    public void AudioClick(bool confirm)
+    {
+        if(confirm)
+        {
+            clickUI.PlayOneShot(clickGood);
+        }
+        else { clickUI.PlayOneShot(clickBad); }
+        
     }
 }

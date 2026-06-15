@@ -54,7 +54,7 @@ public class NPCDialogue : MonoBehaviour
         DialogueManager.Instance.StartDialogue(dialogue, isDirector);
         if (isDirector && DayManager.Instance.isNight)
         {
-            DialogueManager.Instance.StartDialogue(nightDialogue, false);
+            DialogueManager.Instance.StartDialogue(nightDialogue, isDirector);
         }
         else if (isDirector)
         {
