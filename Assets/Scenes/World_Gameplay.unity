@@ -5653,6 +5653,11 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 2322684986545666516, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
   m_PrefabInstance: {fileID: 1679058581}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &161820705 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3993218873932648763, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
+  m_PrefabInstance: {fileID: 1679058581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &177805671
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6534,7 +6539,7 @@ GameObject:
   - component: {fileID: 482277557}
   - component: {fileID: 482277556}
   m_Layer: 0
-  m_Name: VisualEffectDrunk
+  m_Name: DrugEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12086,6 +12091,81 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 479274642}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &624310134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 624310137}
+  - component: {fileID: 624310136}
+  - component: {fileID: 624310135}
+  m_Layer: 0
+  m_Name: DrunkEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &624310135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624310134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbd91cddf8cf13248b14ca1b8aba2d8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  volume: {fileID: 624310136}
+  camera: {fileID: 161820705}
+  vitesse: 1
+  intensiteGlobale: 1
+  lensDistortionMin: 0.4
+  lensDistortionMax: 0.7
+  chromaticAberrationMin: 0.5
+  chromaticAberrationMax: 1
+  vignetteMin: 0
+  vignetteMax: 0.3
+  rouletteAmplitude: 5
+  tangageAmplitude: 5
+  vitesseTangage: 0.6
+--- !u!114 &624310136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624310134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 7eb0c6a0aa9123b4d9b6af3ebccdd676, type: 2}
+--- !u!4 &624310137
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624310134}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1470.73, y: 180.59, z: 1097.56}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &690454580
 GameObject:
@@ -25657,6 +25737,7 @@ SceneRoots:
   - {fileID: 177805671}
   - {fileID: 574681021}
   - {fileID: 479274642}
+  - {fileID: 624310137}
   - {fileID: 482277558}
   - {fileID: 2138451173}
   - {fileID: 232200921}
