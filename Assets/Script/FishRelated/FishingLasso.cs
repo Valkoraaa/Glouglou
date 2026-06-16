@@ -92,6 +92,11 @@ public class FishingLasso : MonoBehaviour
         float elapsedTime = 0f;
 
         ThrowLasso.Instance.recallRope = true;
+
+        if (ThrowLasso.Instance.GetComponentInChildren<Animator>() != null)
+        {
+            ThrowLasso.Instance.GetComponentInChildren<Animator>().SetTrigger("TriggerRetour");
+        }
         Rope.Instance.endPoint = fish.GetComponent<Transform>();
         visual.enabled = false;
 
@@ -178,6 +183,11 @@ public class FishingLasso : MonoBehaviour
         float elapsedTime = 0f;
 
         ThrowLasso.Instance.recallRope = true;
+
+        if (ThrowLasso.Instance.GetComponentInChildren<Animator>() != null)
+        {
+            ThrowLasso.Instance.GetComponentInChildren<Animator>().SetTrigger("TriggerRetour");
+        }
 
         Vector3 thisStartPos = transform.position;
         Vector3 targetPos = player.transform.position;

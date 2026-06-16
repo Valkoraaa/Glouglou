@@ -118,11 +118,11 @@ public class ThrowLasso : MonoBehaviour
 
     public void hasLasso()
     {
-        // ANIMATION : On prévient l'animator que le lasso est réinitialisé/rangé
+        /* ANIMATION : On prévient l'animator que le lasso est réinitialisé/rangé
         if (animator != null)
         {
             animator.SetTrigger("TriggerRetour");
-        }
+        }*/
 
         Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
         Character.Instance.canMove = true;

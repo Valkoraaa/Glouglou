@@ -6722,7 +6722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7920d28b43e8bb41b36e6754e34ad6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HueShiftLoop
-  volume: {fileID: 0}
+  volume: {fileID: 482277557}
   speed: 20
 --- !u!114 &482277557
 MonoBehaviour:
@@ -12291,12 +12291,12 @@ MonoBehaviour:
   camera: {fileID: 0}
   vitesse: 0.5
   intensiteGlobale: 1
-  lensDistortionMin: 0.9
-  lensDistortionMax: 1
+  lensDistortionMin: 0.5
+  lensDistortionMax: 0.7
   chromaticAberrationMin: 0.3
   chromaticAberrationMax: 1
   vignetteMin: 0.25
-  vignetteMax: 0.55
+  vignetteMax: 0.35
   rouletteAmplitude: 8
   tangageAmplitude: 4
   vitesseTangage: 0.7
@@ -25254,7 +25254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638f501c91c9d3f46869dbc1bf88deea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutoManager
-  tuto: 1
+  tuto: 0
   dialogueCounter: 0
   endOfDialogue: 0
   fadeFinished: 0
