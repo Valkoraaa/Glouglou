@@ -18,7 +18,7 @@ public class TutoManager : MonoBehaviour
     [Header("Dialogues")]
     [SerializeField] private DialogueData tutoDialogue;
     [SerializeField] private DialogueData tutoDialogue2;
-    [SerializeField] private DialogueData caughtDialogue;
+    //[SerializeField] private DialogueData caughtDialogue;
     [SerializeField] private DialogueData tutoDialogue3;
 
     [Header("Camera")]
@@ -89,32 +89,42 @@ public class TutoManager : MonoBehaviour
         StartCoroutine(ShowCamping());
     }
 
-    public IEnumerator TutoFishing(GameObject fish)
-    {
-        float duration = 1f;
-        float elapsedTime = 0f;
+    // public IEnumerator TutoFishing(GameObject fish)
+    // {
+    //     float duration = 1f;
+    //     float elapsedTime = 0f;
 
-        ThrowLasso.Instance.recallRope = true;
+    //     ThrowLasso.Instance.recallRope = true;
 
-        Vector3 fishStartPos = fish.transform.position;
-        Vector3 thisStartPos = transform.position;
-        Vector3 targetPos = Character.Instance.GetComponent<Transform>().transform.position;
+    //     Vector3 fishStartPos = fish.transform.position;
+    //     Vector3 thisStartPos = transform.position;
+    //     Vector3 targetPos = Character.Instance.GetComponent<Transform>().transform.position;
+    //     Transform lassoTransform = FishingLasso.Instance.GetComponent<Transform>();
+    //     while (elapsedTime < duration)
+    //     {
+    //         float t = elapsedTime / duration;
 
-        while (elapsedTime < duration)
-        {
-            float t = elapsedTime / duration;
+    //         if (fish != null)
+    //         {
+    //             Vector3 pos = Vector3.Lerp(fishStartPos, targetPos, t);
 
-            if(fish != null) fish.transform.position = Vector3.Lerp(fishStartPos, targetPos, t);
-            transform.position = Vector3.Lerp(thisStartPos, targetPos, t);
 
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-        //move player vers pnj
-        DialogueManager.Instance.StartDialogue(caughtDialogue, true);
-        Character.Instance.canMove = false;
-        Character.Instance.canMoveCam = false;
-    }
+    //             // Parabole : 0 → 1 → 0
+    //             pos.y += 7 * 4f * t * (1f - t);
+
+    //             fish.transform.position = pos;
+    //         }
+
+    //         lassoTransform.position = Vector3.Lerp(thisStartPos, targetPos, t);
+
+    //         elapsedTime += Time.deltaTime;
+    //         yield return null;
+    //     }
+    //     //move player vers pnj
+    //     DialogueManager.Instance.StartDialogue(caughtDialogue, true);
+    //     Character.Instance.canMove = false;
+    //     Character.Instance.canMoveCam = false;
+    // }
 
     private IEnumerator ShowCamping()
     {
@@ -171,14 +181,15 @@ public class TutoManager : MonoBehaviour
         Character.Instance.xRotation = 0;
         playerCamera.transform.localRotation = Quaternion.Euler(0, 0, 0);
         ThrowLasso.Instance.hasLasso();
-        //Character.Instance.stopChara = true;
+        Character.Instance.stopChara = true;
+        Character.Instance.canMove = false;
+        Character.Instance.canMoveCam = false;
         yield return new WaitUntil(() => fadeFinished);
 
 
         DayManager.Instance.isNight = true;
-        tuto = false;
-        // Character.Instance.canMove = false;
-        // Character.Instance.canMoveCam = false;
+        
+        
        
                 
         DialogueManager.Instance.StartDialogue(tutoDialogue3, true);

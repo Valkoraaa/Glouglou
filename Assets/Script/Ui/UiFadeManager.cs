@@ -118,7 +118,7 @@ public class UiFadeManager : MonoBehaviour
 
         color.a = 0f;
         image.color = color;
-        if(TutoManager.Instance.tuto) { TutoManager.Instance.fadeFinished = true; TutoManager.Instance.blockActive = true; }
+        if(TutoManager.Instance.tuto) { TutoManager.Instance.fadeFinished = true; TutoManager.Instance.blockActive = true; TutoManager.Instance.tuto = false;}
         else
         {
             Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;

@@ -10,6 +10,7 @@ public class FishingLasso : MonoBehaviour
 {
     //for now lassos collider isnt trigger, can change if needed
     [SerializeField] private GameObject player;
+    [SerializeField] private DialogueData caughtDialogue;
     public int strenght;
     private SpriteRenderer visual;
     
@@ -52,7 +53,6 @@ public class FishingLasso : MonoBehaviour
 
         
 
-
         if (other.gameObject.CompareTag("fish") && fishScript != null && fishScript.data != null)
         {
             int fishRarityValue = (int)fishScript.data.currentRarity;
@@ -73,10 +73,10 @@ public class FishingLasso : MonoBehaviour
                 StartCoroutine(getFishToPlayer(fishScript));
             }
         }
-        else if (other.gameObject.CompareTag("tutoFish"))
-        {
-            StartCoroutine(TutoManager.Instance.TutoFishing(other.gameObject));
-        }
+        // else if (other.gameObject.CompareTag("tutoFish"))
+        // {
+        //     StartCoroutine(TutoManager.Instance.TutoFishing(other.gameObject));
+        // }
         else if (other.gameObject.CompareTag("waterZone") && hasToPlaySound)
         {
             ThrowLasso.Instance.PlayRandomPlouf();
@@ -85,6 +85,8 @@ public class FishingLasso : MonoBehaviour
 
     private IEnumerator getFishToPlayer(Fish fish)
     {
+        fish.gameObject.GetComponent<SphereCollider>().enabled = false;
+        GetComponent<BoxCollider>().enabled = false;
         hasToPlaySound = false;
         float duration = 1f;
         float elapsedTime = 0f;
@@ -151,10 +153,18 @@ public class FishingLasso : MonoBehaviour
         canvasLasso.SetParent(null);
         canvasLasso.position = Vector3.zero;
         Rope.Instance.endPoint = Rope.Instance.originalEndPoint;
-        EffectManager.Instance.ChooseEffect(fish.TemporaryEffect);
-        Shop.Instance.playerMoney += fish.data.price * Shop.Instance.moneyMultiplier;
-        Destroy(fish.gameObject);
-        ThrowLasso.Instance.hasLasso();
+        if(!TutoManager.Instance.tuto)
+        {
+            EffectManager.Instance.ChooseEffect(fish.TemporaryEffect);
+            Shop.Instance.playerMoney += fish.data.price * Shop.Instance.moneyMultiplier;
+            Destroy(fish.gameObject);
+            ThrowLasso.Instance.hasLasso();
+        }
+        else
+        {
+            DialogueManager.Instance.StartDialogue(caughtDialogue, true);
+        }
+        
         visual.enabled = true;
         //DayManager.Instance.actualThrow--;
         DayManager.Instance.fishCaught++;
