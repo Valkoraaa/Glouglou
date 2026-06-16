@@ -6552,6 +6552,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7920d28b43e8bb41b36e6754e34ad6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HueShiftLoop
+  volume: {fileID: 0}
+  speed: 20
 --- !u!114 &482277557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18635,6 +18637,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c61b85a0dea8cd419683d0417153a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  scrollSpeed: {x: 0, y: 0.08}
+  alpha: 0.4
 --- !u!114 &1277085059
 MonoBehaviour:
   m_ObjectHideFlags: 0
