@@ -171,14 +171,14 @@ public class TutoManager : MonoBehaviour
         Character.Instance.xRotation = 0;
         playerCamera.transform.localRotation = Quaternion.Euler(0, 0, 0);
         ThrowLasso.Instance.hasLasso();
-        Character.Instance.stopChara = true;
+        //Character.Instance.stopChara = true;
         yield return new WaitUntil(() => fadeFinished);
 
 
         DayManager.Instance.isNight = true;
         tuto = false;
-        Character.Instance.canMove = false;
-        Character.Instance.canMoveCam = false;
+        // Character.Instance.canMove = false;
+        // Character.Instance.canMoveCam = false;
        
                 
         DialogueManager.Instance.StartDialogue(tutoDialogue3, true);

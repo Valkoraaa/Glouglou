@@ -32,6 +32,10 @@ public class UiFadeManager : MonoBehaviour
 
     IEnumerator FadeInAndOutEndDay()
     {
+        Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = true; ///////////
+        Character.Instance.canMove = false;
+        Character.Instance.canMoveCam = false;
+        PauseManager.Instance.canPause = false;
         float time = 0f;
         Color color = image.color;
 
@@ -74,6 +78,7 @@ public class UiFadeManager : MonoBehaviour
         Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         Character.Instance.canMove = false;
         Character.Instance.canMoveCam = false;
+        PauseManager.Instance.canPause = false;
         float time = 0f;
         Color color = image.color;
 
@@ -113,10 +118,16 @@ public class UiFadeManager : MonoBehaviour
 
         color.a = 0f;
         image.color = color;
-        Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-        Character.Instance.canMove = true;
-        Character.Instance.canMoveCam = true;
         if(TutoManager.Instance.tuto) { TutoManager.Instance.fadeFinished = true; TutoManager.Instance.blockActive = true; }
+        else
+        {
+            Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            Character.Instance.canMove = true;
+            Character.Instance.canMoveCam = true;
+        }
+        PauseManager.Instance.canPause = true; 
+        
+        
     }
 
 }

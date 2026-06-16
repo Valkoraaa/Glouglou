@@ -15,6 +15,7 @@ public class FishingLasso : MonoBehaviour
     
     public bool hasToPlaySound;
     private Fish fish;
+    [SerializeField] private float arcHeight;
 
     public static FishingLasso Instance;
 
@@ -128,7 +129,17 @@ public class FishingLasso : MonoBehaviour
         {
             float t = elapsedTime / duration;
 
-            if(fish != null) fish.transform.position = Vector3.Lerp(fishStartPos, targetPos, t);
+            if (fish != null)
+            {
+                Vector3 pos = Vector3.Lerp(fishStartPos, targetPos, t);
+
+
+                // Parabole : 0 → 1 → 0
+                pos.y += arcHeight * 4f * t * (1f - t);
+
+                fish.transform.position = pos;
+            }
+
             transform.position = Vector3.Lerp(thisStartPos, targetPos, t);
 
             elapsedTime += Time.deltaTime;
