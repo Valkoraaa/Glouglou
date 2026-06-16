@@ -118,8 +118,8 @@ public class ThrowLasso : MonoBehaviour
     public void GetLasso()
     {
         lasso.transform.SetParent(cam.transform);
-        lasso.transform.localRotation = Quaternion.identity;
-        lasso.transform.localPosition = new Vector3(0.65f, -0.2f, 0.4f);
+        lasso.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
+        lasso.transform.localPosition = new Vector3(0.61f, -0.24f, 0.6f);
         isChild = true;
         boxCollider.enabled = false;
     }

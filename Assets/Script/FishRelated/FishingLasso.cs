@@ -11,7 +11,7 @@ public class FishingLasso : MonoBehaviour
     //for now lassos collider isnt trigger, can change if needed
     [SerializeField] private GameObject player;
     public int strenght;
-    private MeshRenderer visual;
+    private SpriteRenderer visual;
     
     public bool hasToPlaySound;
     private Fish fish;
@@ -26,7 +26,7 @@ public class FishingLasso : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        visual = GetComponent<MeshRenderer>();
+        visual = GetComponent<SpriteRenderer>();
     }
 
 
