@@ -119,6 +119,176 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &22625628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 22625635}
+  - component: {fileID: 22625634}
+  - component: {fileID: 22625633}
+  - component: {fileID: 22625632}
+  - component: {fileID: 22625631}
+  - component: {fileID: 22625630}
+  - component: {fileID: 22625629}
+  m_Layer: 0
+  m_Name: TutoFish
+  m_TagString: fish
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!135 &22625629
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22625628}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.412298
+  m_Center: {x: -0.20006257, y: 0.20177293, z: 0.000000014901161}
+--- !u!114 &22625630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22625628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af443ed027608c4f9d3da032d35f7f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Fish
+  size: 12
+  weight: 100
+  temporaryEffect: 
+  permanentEffect: 
+  isPermanent: 0
+  speed: 0
+  isBadForToday: 0
+  data: {fileID: 11400000, guid: ff687bcdb11629e4bbe5102b732e8fb8, type: 2}
+--- !u!114 &22625631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22625628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a289857051f37b4590305dfa82f0f11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FishPatrol
+  range: 10
+  fishSpeed: 0
+--- !u!195 &22625632
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22625628}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.50000006
+  m_Speed: 3
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!23 &22625633
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22625628}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 8f357385deb2c0b47843601a5680af69, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &22625634
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22625628}
+  m_Mesh: {fileID: 4300000, guid: cce71255a9d5bdd41a2c26ca010d3568, type: 2}
+--- !u!4 &22625635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22625628}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.061750136, y: 0.6896949, z: -0.0592311, w: 0.71902686}
+  m_LocalPosition: {x: 1747.11, y: 130.88333, z: 1070.08}
+  m_LocalScale: {x: 0.99855995, y: 0.98696, z: 0.56448}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &23430685
 GameObject:
   m_ObjectHideFlags: 0
@@ -18094,11 +18264,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!1 &934411152 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8044563188608038775, guid: 463d6d0f11fa34440be72012b6bbc2e1, type: 3}
-  m_PrefabInstance: {fileID: 232200921}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1011591771
 GameObject:
   m_ObjectHideFlags: 0
@@ -24818,6 +24983,10 @@ PrefabInstance:
       propertyPath: lassoOnFish
       value: 
       objectReference: {fileID: 7482667652216324306, guid: 326a12ef157e08e41b8b1de86783be58, type: 3}
+    - target: {fileID: 8248928185420256525, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
+      propertyPath: caughtDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 67a017fda7ae93546b2c8a44b8e095dc, type: 2}
     - target: {fileID: 8714941135216383834, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: m_CameraType
       value: 0
@@ -25085,18 +25254,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638f501c91c9d3f46869dbc1bf88deea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutoManager
-  tuto: 0
+  tuto: 1
   dialogueCounter: 0
   endOfDialogue: 0
   fadeFinished: 0
   hasToBack: 0
   blockActive: 0
-  tutoFish: {fileID: 934411152}
+  tutoFish: {fileID: 22625628}
   tutoBlock: {fileID: 41657782}
   player: {fileID: 72077350}
   tutoDialogue: {fileID: 11400000, guid: 2ce06c12d7afac14c9f375cbaadb52a0, type: 2}
   tutoDialogue2: {fileID: 11400000, guid: 04adc7593eda2ee4fa1036efdefb9a98, type: 2}
-  caughtDialogue: {fileID: 11400000, guid: 67a017fda7ae93546b2c8a44b8e095dc, type: 2}
   tutoDialogue3: {fileID: 11400000, guid: f78f360057b91da4184c6f0b62912a3e, type: 2}
   playerCamera: {fileID: 161820698}
   offset: {x: 0, y: 0, z: 5}
@@ -26084,6 +26252,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1793630007}
+  - {fileID: 22625635}
   - {fileID: 1811794530}
   - {fileID: 159649772}
   - {fileID: 1679058581}
