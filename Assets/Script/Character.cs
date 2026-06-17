@@ -35,6 +35,9 @@ public class Character : MonoBehaviour
     [SerializeField] private AudioClip[] footstepClip;
     private bool runSound = true;
 
+    [Header("Animations")]
+    [SerializeField] private Animator animator;
+
     private void Awake()
     {
         Instance = this;
@@ -66,6 +69,11 @@ public class Character : MonoBehaviour
         }
         if(canMoveCam) { HandleRotation(); }
         HandleFootsteps();
+        if (animator != null)
+        {
+            float currentSpeed = canMove ? moveInput.magnitude : 0f;
+            animator.SetFloat("Speed", currentSpeed);
+        }
     }
 
     private void HandleRotation()

@@ -24,6 +24,10 @@ public class FishingLasso : MonoBehaviour
     [SerializeField] private Transform canvasLasso;
     [SerializeField] private Sprite lassoImage;
 
+    [Header("Instantiation Poisson")]
+    [SerializeField] private GameObject fishPrefab; // Le prefab du poisson à faire apparaître
+    [SerializeField] private Transform spawnPoint;   // L'objet Empty qui sert de repère de position
+
 
     private void Awake()
     {
@@ -162,6 +166,8 @@ public class FishingLasso : MonoBehaviour
         {
             EffectManager.Instance.ChooseEffect(fish.TemporaryEffect);
             Shop.Instance.playerMoney += fish.data.price * Shop.Instance.moneyMultiplier;
+
+
             Destroy(fish.gameObject);
             ThrowLasso.Instance.hasLasso();
         }
@@ -169,7 +175,37 @@ public class FishingLasso : MonoBehaviour
         {
             DialogueManager.Instance.StartDialogue(caughtDialogue, true);
         }
-        
+
+        Debug.Log("--- TENTATIVE D'INSTANCIATION FORCEE ---");
+        if (fishPrefab == null) Debug.LogError("ERREUR : fishPrefab est VIDE dans l'inspecteur !");
+        if (spawnPoint == null) Debug.LogError("ERREUR : spawnPoint est VIDE dans l'inspecteur !");
+        if (fishPrefab != null && spawnPoint != null)
+        {
+            // 1. On instancie le poisson dans le monde
+            GameObject nouveauPoisson = Instantiate(fishPrefab, spawnPoint.position, spawnPoint.rotation);
+
+            // 2. On le définit comme enfant du spawnPoint de manière sécurisée
+            nouveauPoisson.transform.SetParent(spawnPoint);
+            nouveauPoisson.transform.localPosition = Vector3.zero;
+
+            Debug.Log("Succès ! Le poisson est maintenant l'enfant de : " + spawnPoint.name);
+        }
+        // =================================================================
+
+        if (!TutoManager.Instance.tuto)
+        {
+            Debug.Log("Mode Hors-Tutoriel détecté.");
+            EffectManager.Instance.ChooseEffect(fish.TemporaryEffect);
+            Shop.Instance.playerMoney += fish.data.price * Shop.Instance.moneyMultiplier;
+            Destroy(fish.gameObject);
+            ThrowLasso.Instance.hasLasso();
+        }
+        else
+        {
+            Debug.Log("Mode Tutoriel détecté.");
+            DialogueManager.Instance.StartDialogue(caughtDialogue, true);
+        }
+
         visual.enabled = true;
         //DayManager.Instance.actualThrow--;
         DayManager.Instance.fishCaught++;
