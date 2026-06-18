@@ -75,7 +75,7 @@ public class DayManager : MonoBehaviour
         
         if (fishCaught < numberOfFishToCatch && !TutoManager.Instance.tuto)
         {
-            GameOver();
+            GameLost();
         }
         else
         {
@@ -111,9 +111,10 @@ public class DayManager : MonoBehaviour
         else {windAudioSource.Stop();}
     }
 
-    private void GameOver() //a completer //////////
+    private void GameLost() //a completer //////////
     {
-        DialogueManager.Instance.StartDialogue(lostDialogue, false);
+        //DialogueManager.Instance.StartDialogue(lostDialogue, false);
+        GameOver.Instance.OnGameOver();
     }
 
     private void DefineBadFish()
