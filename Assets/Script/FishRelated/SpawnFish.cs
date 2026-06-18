@@ -19,6 +19,13 @@ public class SpawnFish : MonoBehaviour
     [Header("NavMesh Reference")]
     [SerializeField] private Transform navMeshSurface;
 
+    [Header("Aura Fish")]
+    private GameObject aura;
+    [SerializeField] private GameObject commonAura;
+    [SerializeField] private GameObject rareAura;
+    [SerializeField] private GameObject epicAura;
+    [SerializeField] private GameObject lengendaryAura;
+
 
 
     void Start()
@@ -62,11 +69,14 @@ public class SpawnFish : MonoBehaviour
                 Quaternion.identity,
                 this.transform
             );
+            GameObject tempAura = Instantiate(aura, new Vector3(instantiated.transform.position.x, instantiated.transform.position.y, instantiated.transform.position.z + 0.1f ), Quaternion.identity, instantiated.transform);
+            //tempAura.transform.SetParent(instantiated.transform);
             NavMeshAgent agent = instantiated.GetComponent<NavMeshAgent>();
             if (agent != null)
             {
                 agent.Warp(spawnPos);
             }
+            
         }
     }
 
@@ -78,18 +88,22 @@ public class SpawnFish : MonoBehaviour
         if (randRarity < 50)
         {
             targetList = fishDatabase.commonFish;
+            aura = commonAura;
         }
         else if (randRarity < 80)
         {
             targetList = fishDatabase.rareFish; 
+            aura = rareAura;
         }
         else if (randRarity < 95)
         { 
             targetList = fishDatabase.epicFish;
+            aura = epicAura;
         }
         else
         { 
             targetList = fishDatabase.legendaryFish;
+            aura = lengendaryAura;
         }
         return targetList[Random.Range(0, targetList.Count)];
     }

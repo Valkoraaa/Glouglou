@@ -25643,6 +25643,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1567695671545713875, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ea01c6b017c8e994483bb8693c710e69, type: 2}
+    - target: {fileID: 1567695671545713875, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
+      propertyPath: m_Parameters.textureScale.y
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1714561661238382032, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: plouf1
       value: 

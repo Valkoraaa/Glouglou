@@ -16,6 +16,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private TMP_Dropdown dropdownResolution;
 
     public static PauseManager Instance;
+    [SerializeField] private Transform tpCamping;
 
 
     void Start()
@@ -24,7 +25,7 @@ public class PauseManager : MonoBehaviour
 
         if(homePage) canPause = false;
 
-        Resolution[] resolutions = Screen.resolutions;
+        /*Resolution[] resolutions = Screen.resolutions;
 
         List<string> options = new List<string>();
         List<Resolution> validResolutions = new List<Resolution>();
@@ -49,7 +50,7 @@ public class PauseManager : MonoBehaviour
         {
             Resolution selected = validResolutions[index];
             Screen.SetResolution(selected.width, selected.height, FullScreenMode.FullScreenWindow);
-        });
+        });*/
     }
     void Update()
     {
@@ -72,15 +73,7 @@ public class PauseManager : MonoBehaviour
 
         else if(settingsCanvas.activeSelf && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            if(!homePage)
-            {
-                mainPause.SetActive(true);
-                settingsCanvas.SetActive(false);
-            }
-            else
-            {
-                pauseCanvas.SetActive(false);
-            }
+            BackButton();
         }
 
         else if (!canPause && Mouse.current.leftButton.wasPressedThisFrame)
@@ -122,7 +115,34 @@ public class PauseManager : MonoBehaviour
 
     public void ToogleDisplayMode(int index)
     {
-        if(index == 0) Screen.fullScreen = true;
-        else Screen.fullScreen = false;
+        if(index == 0)
+        {
+            Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+            Screen.fullScreen = true;
+        }
+        else
+        {
+            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+            Screen.fullScreen = true;
+        }
+    }
+
+    public void BackToCamping()
+    {
+        OnPlay();
+        UiFadeManager.Instance.FadeTp(tpCamping.position);
+    }
+
+    public void BackButton()
+    {
+        if(!homePage)
+        {
+            mainPause.SetActive(true);
+            settingsCanvas.SetActive(false);
+        }
+        else
+        {
+            pauseCanvas.SetActive(false);
+        }
     }
 }
