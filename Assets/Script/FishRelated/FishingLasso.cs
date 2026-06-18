@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Rendering;
+using Unity.VisualScripting;
 
 public class FishingLasso : MonoBehaviour
 {
@@ -211,6 +212,11 @@ public class FishingLasso : MonoBehaviour
         DayManager.Instance.fishCaught++;
         DayManager.Instance.CountdownThrow();
 
+    }
+
+    public void LaunchMissedThrow(bool water)
+    {
+        StartCoroutine(MissedThrow(water));
     }
     private IEnumerator MissedThrow(bool water)
     {
