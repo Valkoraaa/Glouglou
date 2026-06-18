@@ -12072,6 +12072,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4363949066925832875, guid: 1895a44e91ddc73449406df9147effd0, type: 3}
+      propertyPath: epicAura
+      value: 
+      objectReference: {fileID: 4178522494401904570, guid: 3ec3ed448bedb2c469188120fed78fdb, type: 3}
+    - target: {fileID: 4363949066925832875, guid: 1895a44e91ddc73449406df9147effd0, type: 3}
+      propertyPath: rareAura
+      value: 
+      objectReference: {fileID: 7541121404671106580, guid: 69751edbb34ccaa44ae93b3ce1a83312, type: 3}
+    - target: {fileID: 4363949066925832875, guid: 1895a44e91ddc73449406df9147effd0, type: 3}
+      propertyPath: commonAura
+      value: 
+      objectReference: {fileID: 8632516830948128621, guid: 5f97d55572d97e545b51d903f21154ef, type: 3}
+    - target: {fileID: 4363949066925832875, guid: 1895a44e91ddc73449406df9147effd0, type: 3}
       propertyPath: fishNumber
       value: 150
       objectReference: {fileID: 0}
@@ -12087,6 +12099,10 @@ PrefabInstance:
       propertyPath: fishDatabase
       value: 
       objectReference: {fileID: 11400000, guid: b1c07f89227da844f99c67d34ee5df2a, type: 2}
+    - target: {fileID: 4363949066925832875, guid: 1895a44e91ddc73449406df9147effd0, type: 3}
+      propertyPath: lengendaryAura
+      value: 
+      objectReference: {fileID: 105462009045419922, guid: e85462cd64256e74eb0c2abc40152725, type: 3}
     - target: {fileID: 4363949066925832875, guid: 1895a44e91ddc73449406df9147effd0, type: 3}
       propertyPath: navMeshSurface
       value: 
@@ -26198,7 +26214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638f501c91c9d3f46869dbc1bf88deea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutoManager
-  tuto: 0
+  tuto: 1
   dialogueCounter: 0
   endOfDialogue: 0
   fadeFinished: 0
@@ -26207,6 +26223,8 @@ MonoBehaviour:
   tutoFish: {fileID: 22625628}
   tutoBlock: {fileID: 41657782}
   player: {fileID: 72077350}
+  canvaInGame: {fileID: 1440240954}
+  playerArms: {fileID: 1679058582}
   tutoDialogue: {fileID: 11400000, guid: 2ce06c12d7afac14c9f375cbaadb52a0, type: 2}
   tutoDialogue2: {fileID: 11400000, guid: 04adc7593eda2ee4fa1036efdefb9a98, type: 2}
   tutoDialogue3: {fileID: 11400000, guid: f78f360057b91da4184c6f0b62912a3e, type: 2}

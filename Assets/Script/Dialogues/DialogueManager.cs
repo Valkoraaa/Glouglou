@@ -144,6 +144,7 @@ public class DialogueManager : MonoBehaviour
             Character.Instance.canMove = true;
             Character.Instance.canMoveCam = true;
             Character.Instance.stopChara = false;
+            Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
         }
 
         if (wasCatTalking)

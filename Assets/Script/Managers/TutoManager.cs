@@ -14,7 +14,11 @@ public class TutoManager : MonoBehaviour
     [SerializeField] private GameObject tutoFish;
     [SerializeField] private GameObject tutoBlock;
     [SerializeField] private GameObject player;
-    
+    [SerializeField] private Canvas canvaInGame;
+    [SerializeField] private GameObject playerArms;
+
+
+
     [Header("Dialogues")]
     [SerializeField] private DialogueData tutoDialogue;
     [SerializeField] private DialogueData tutoDialogue2;
@@ -59,7 +63,25 @@ public class TutoManager : MonoBehaviour
 
     void Update()
     {
-        if(blockActive)
+        if (DialogueManager.Instance.isInDialogue || Character.Instance.cinematic)
+        {
+            canvaInGame.gameObject.SetActive(false);
+        }
+        else
+        {
+            canvaInGame.gameObject.SetActive(true);
+        }
+
+        if(Character.Instance.cinematic)
+        {
+            playerArms.SetActive(false);
+        }
+        else
+        {
+            playerArms.SetActive(true);
+        }
+
+        if (blockActive)
         {
             blockActive = false;
             tutoBlock.SetActive(true);
@@ -128,6 +150,7 @@ public class TutoManager : MonoBehaviour
 
     private IEnumerator ShowCamping()
     {
+
         playerCamera.transform.GetChild(0).SetParent(null);
         Character.Instance.cinematic = true;
 
@@ -168,10 +191,12 @@ public class TutoManager : MonoBehaviour
         Character.Instance.cinematic = false;
         ThrowLasso.Instance.hasLasso();
         DialogueManager.Instance.StartDialogue(tutoDialogue2, true);
+
     }
 
     private IEnumerator WaitABit()
     {
+        tutoBlock.SetActive(false);
         Character.Instance.canMoveCam = false;
         Character.Instance.stopChara = true;
         fadeFinished = false;

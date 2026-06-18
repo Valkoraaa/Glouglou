@@ -5769,6 +5769,7 @@ MonoBehaviour:
   canPause: 1
   dropdownResolution: {fileID: 0}
   tpCamping: {fileID: 2102123950}
+  buttonCamping: {fileID: 2041915134}
 --- !u!4 &1283118815
 Transform:
   m_ObjectHideFlags: 0
@@ -9350,7 +9351,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2041915135
 RectTransform:
   m_ObjectHideFlags: 0
