@@ -172,6 +172,7 @@ public class TutoManager : MonoBehaviour
 
     private IEnumerator WaitABit()
     {
+        tutoBlock.SetActive(false);
         Character.Instance.canMoveCam = false;
         Character.Instance.stopChara = true;
         fadeFinished = false;

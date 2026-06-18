@@ -87,6 +87,7 @@ public class DayManager : MonoBehaviour
 
     public void StartOfDay()
     {
+        PauseManager.Instance.canPause = true;
         Debug.Log("Start Of Day");
         DefineBadFish();
         DayEffect();

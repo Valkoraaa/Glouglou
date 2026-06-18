@@ -17,6 +17,7 @@ public class PauseManager : MonoBehaviour
 
     public static PauseManager Instance;
     [SerializeField] private Transform tpCamping;
+    [SerializeField] private GameObject buttonCamping;
 
 
     void Start()
@@ -64,6 +65,10 @@ public class PauseManager : MonoBehaviour
             Character.Instance.canMoveCam = false;
             Character.Instance.stopChara = false;
             canPause = false;
+            if(!TutoManager.Instance.tuto)
+            {
+                buttonCamping.SetActive(true);
+            }
         }
 
         else if(!homePage && mainPause.activeSelf && Keyboard.current.escapeKey.wasPressedThisFrame)
@@ -130,6 +135,7 @@ public class PauseManager : MonoBehaviour
     public void BackToCamping()
     {
         OnPlay();
+        ThrowLasso.Instance.GetLasso();
         UiFadeManager.Instance.FadeTp(tpCamping.position);
     }
 
