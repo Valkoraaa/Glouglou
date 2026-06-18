@@ -35,7 +35,6 @@ public class DayManager : MonoBehaviour
     {
         //StartOfDay(); ?
         //StartCoroutine(DayPassing());
-        Instance = this;
         //actualThrow = totalThrow;
 
         //StartOfDay();
@@ -47,6 +46,11 @@ public class DayManager : MonoBehaviour
         
     }
 
+    private void Awake()
+    {
+        Instance = this;
+
+    }
     public void CountdownThrow()
     {
         if (numberOfFails >= numberOfFailsAllowed && !TutoManager.Instance.tuto/*|| fishCaught >= numberOfFishToCatch || actualThrow <= 0 ?????*/) //changer numberOfFish... en nombre de rat�
