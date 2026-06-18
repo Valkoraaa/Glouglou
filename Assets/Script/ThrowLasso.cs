@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -66,6 +67,7 @@ public class ThrowLasso : MonoBehaviour
         if (!hasThrown && !isChild)
         {
             GetLasso();
+            
         }
 
 
@@ -111,6 +113,7 @@ public class ThrowLasso : MonoBehaviour
             rb.AddForce(direction * force, ForceMode.Impulse);
             boxCollider.enabled = true;
             PlayRandomThrow();
+            StartCoroutine(TimerLasso());
             //isFishing = false;
         }
     }
@@ -123,7 +126,7 @@ public class ThrowLasso : MonoBehaviour
         {
             animator.SetTrigger("TriggerRetour");
         }*/
-
+        StopAllCoroutines();
         Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
         Character.Instance.canMove = true;
         recallRope = false;
@@ -175,6 +178,16 @@ public class ThrowLasso : MonoBehaviour
         {
             lassoAudio.PlayOneShot(throw2, 1.5f);
         }
+    }
+
+    private IEnumerator TimerLasso()
+    {
+        yield return new WaitForSeconds(3.5f);
+        if (hasThrown && isChild)
+        {
+            FishingLasso.Instance.LaunchMissedThrow(false);
+        }
+        
     }
 
 }

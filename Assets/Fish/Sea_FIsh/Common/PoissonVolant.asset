@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c0e0c3cba303d84aafcc092cf50054e, type: 3}
   m_Name: PoissonVolant
   m_EditorClassIdentifier: Assembly-CSharp::FishData
-  id: 8
+  id: 30
   species: Poisson volant
   currentRarity: 0
   price: 10

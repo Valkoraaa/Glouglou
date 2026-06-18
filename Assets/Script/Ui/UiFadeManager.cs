@@ -121,12 +121,11 @@ public class UiFadeManager : MonoBehaviour
         if(TutoManager.Instance.tuto) { TutoManager.Instance.fadeFinished = true; }
         if(TutoManager.Instance.tuto && TutoManager.Instance.dialogueCounter>=3) { TutoManager.Instance.tuto = false; }
         else if (TutoManager.Instance.tuto) { TutoManager.Instance.blockActive = true; }
-        else
-        {
-            Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            Character.Instance.canMove = true;
-            Character.Instance.canMoveCam = true;
-        }
+        
+        Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        Character.Instance.canMove = true;
+        Character.Instance.canMoveCam = true;
+        
         PauseManager.Instance.canPause = true; 
         
         
