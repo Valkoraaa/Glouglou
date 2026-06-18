@@ -135,7 +135,7 @@ public class PauseManager : MonoBehaviour
     public void BackToCamping()
     {
         OnPlay();
-        ThrowLasso.Instance.GetLasso();
+        ThrowLasso.Instance.hasLasso();
         UiFadeManager.Instance.FadeTp(tpCamping.position);
     }
 
