@@ -209,6 +209,7 @@ public class DayManager : MonoBehaviour
         numberOfFishToCatch = totalFishToCatch; // a regler
 
         EffectManager.Instance.ApplyEffect();
+        EffectManager.Instance.ResetEffect();
 
         //StartCoroutine(DayPassing());
 

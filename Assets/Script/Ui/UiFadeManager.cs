@@ -55,7 +55,6 @@ public class UiFadeManager : MonoBehaviour
         color.a = 1f;
         image.color = color;
         yield return new WaitForSeconds(0.5f);
-        EffectManager.Instance.ResetEffect();
         DayManager.Instance.StartOfDay();
         // Fade OUT (1 → 0)
         time = 0f;
