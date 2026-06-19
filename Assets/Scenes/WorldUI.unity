@@ -204,7 +204,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 540404126054851867, guid: e940a0fff9b8118498da37907d5b72ce, type: 3}
       propertyPath: m_text
-      value: 'Weight :'
+      value: 'Poid :'
       objectReference: {fileID: 0}
     - target: {fileID: 540404126054851867, guid: e940a0fff9b8118498da37907d5b72ce, type: 3}
       propertyPath: m_VerticalAlignment
@@ -942,6 +942,30 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 585768448615290584, guid: 52e1f1a212d581649a6b130a5307112f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 101
+      objectReference: {fileID: 0}
+    - target: {fileID: 585768448615290584, guid: 52e1f1a212d581649a6b130a5307112f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 186
+      objectReference: {fileID: 0}
+    - target: {fileID: 585768448615290584, guid: 52e1f1a212d581649a6b130a5307112f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 585768448615290584, guid: 52e1f1a212d581649a6b130a5307112f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 585768448615290584, guid: 52e1f1a212d581649a6b130a5307112f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 585768448615290584, guid: 52e1f1a212d581649a6b130a5307112f, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3991459993707107917, guid: 52e1f1a212d581649a6b130a5307112f, type: 3}
       propertyPath: m_Name
       value: SlotBigFish
@@ -1038,10 +1062,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7047034305864445162, guid: 52e1f1a212d581649a6b130a5307112f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 47df2c7b86d6d0a4aaa724324dac640a, type: 3}
     - target: {fileID: 7166401130185684821, guid: 52e1f1a212d581649a6b130a5307112f, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 7bca66c88e8d666479bafdb3050913e0, type: 3}
+    - target: {fileID: 8992778756803736961, guid: 52e1f1a212d581649a6b130a5307112f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1584,7 +1616,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 540404126054851867, guid: e940a0fff9b8118498da37907d5b72ce, type: 3}
       propertyPath: m_text
-      value: 'Size :'
+      value: 'Taille :'
       objectReference: {fileID: 0}
     - target: {fileID: 540404126054851867, guid: e940a0fff9b8118498da37907d5b72ce, type: 3}
       propertyPath: m_VerticalAlignment
@@ -2179,7 +2211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1832423846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2415,6 +2447,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1217411061}
     m_Modifications:
+    - target: {fileID: 540404126054851867, guid: e940a0fff9b8118498da37907d5b72ce, type: 3}
+      propertyPath: m_text
+      value: 'Nom :'
+      objectReference: {fileID: 0}
     - target: {fileID: 540404126054851867, guid: e940a0fff9b8118498da37907d5b72ce, type: 3}
       propertyPath: m_VerticalAlignment
       value: 512
