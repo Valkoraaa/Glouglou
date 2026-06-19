@@ -106,7 +106,7 @@ public class DayManager : MonoBehaviour
 
     {
 
-        if (numberOfFails >= numberOfFailsAllowed && !TutoManager.Instance.tuto/*|| fishCaught >= numberOfFishToCatch || actualThrow <= 0 ?????*/) //changer numberOfFish... en nombre de rat�
+        if ((numberOfFails >= numberOfFailsAllowed && !TutoManager.Instance.tuto) || fishCaught >= numberOfFishToCatch && !TutoManager.Instance.tuto) //changer numberOfFish... en nombre de rat�
 
         {
 
@@ -144,13 +144,13 @@ public class DayManager : MonoBehaviour
 
 
 
-    private void EndOfDay()
+    public void EndOfDay()
 
     {
 
         Debug.Log("End Of Day");
 
-        EffectManager.Instance.ResetEffect();
+        
 
 
 

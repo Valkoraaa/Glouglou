@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speakerName: Directeur
   lines:
-  - text: "C'EST LA FIN DE LA JOURN\xC9E, TU PEUX REVENIR !!!"
+  - text: "C'EST LA FIN DE LA JOURN\xC9E, TU PEUX REVENIR QUAND TU VEUX!!!"
