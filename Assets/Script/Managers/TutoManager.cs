@@ -16,6 +16,7 @@ public class TutoManager : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private Canvas canvaInGame;
     [SerializeField] private GameObject playerArms;
+    [SerializeField] private GameObject canvasKeys;
 
 
 
@@ -96,8 +97,12 @@ public class TutoManager : MonoBehaviour
             }
             else if (dialogueCounter == 2)
             {
-                Character.Instance.canMove = true;
-                Character.Instance.canMoveCam = true;
+                canvasKeys.SetActive(true);
+                Character.Instance.canMove = false;
+                Character.Instance.stopChara = true;
+                Character.Instance.canMoveCam = false;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
             else if (dialogueCounter == 3)
             {

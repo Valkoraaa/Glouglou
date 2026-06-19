@@ -106,6 +106,7 @@ public class Shop : MonoBehaviour
         if(playerMoney >= priceMoney)
         {
             moneyMultiplier += 0.3f;
+            UiGestion.Instance.multText.text = ($"x{moneyMultiplier.ToString()}");
             playerMoney -= priceMoney;
             priceMoney += 50;
             moneyText.text = priceMoney.ToString();
