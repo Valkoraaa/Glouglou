@@ -5,6 +5,7 @@ public class NPCDialogue : MonoBehaviour
 {
     public bool test;
     public DialogueData dialogue;
+    [SerializeField] private DialogueData nightDialogue;
     private bool canInteract;
     private bool isInDialogue;
     [SerializeField] private bool isMerchant;
@@ -16,12 +17,7 @@ public class NPCDialogue : MonoBehaviour
         {
             //test = false;
             //Interact();
-            DialogueManager.Instance.openShop = isMerchant;
-            DialogueManager.Instance.StartDialogue(dialogue);
-            if(isDirector)
-            {
-                DialogueManager.Instance.AppendText(" " + DayManager.Instance.numberOfFishToCatch.ToString() + " poissons. Bonne chance !");
-            }
+            StartDialogue();
         }
     }
     //public void Interact()
@@ -49,6 +45,20 @@ public class NPCDialogue : MonoBehaviour
         {
             canInteract = false;
             TextInteract.Instance.txtInteract.gameObject.SetActive(false);
+        }
+    }
+
+    public void StartDialogue()
+    {
+        DialogueManager.Instance.openShop = isMerchant;
+        DialogueManager.Instance.StartDialogue(dialogue, isDirector);
+        if (isDirector && DayManager.Instance.isNight)
+        {
+            DialogueManager.Instance.StartDialogue(nightDialogue, isDirector);
+        }
+        else if (isDirector)
+        {
+            DialogueManager.Instance.AppendText(" " + DayManager.Instance.numberOfFishToCatch.ToString() + " poissons. Bonne chance !");
         }
     }
 }

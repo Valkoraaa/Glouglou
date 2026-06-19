@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 public class MotionBlurController : MonoBehaviour
@@ -25,4 +25,4 @@ public class MotionBlurController : MonoBehaviour
         if (motionBlurFeature != null)
             motionBlurFeature.SetActive(enabled);
     }
-}
+}*/

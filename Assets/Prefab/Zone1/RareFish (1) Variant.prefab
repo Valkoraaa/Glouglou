@@ -13,6 +13,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 8c46d3f0d9d4392408ec45a07562208d, type: 2}
     - target: {fileID: -6511046390730039640, guid: ca0386b58e133c14fa21b0f541baeb2d, type: 3}
+      propertyPath: size
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -6511046390730039640, guid: ca0386b58e133c14fa21b0f541baeb2d, type: 3}
+      propertyPath: weight
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -6511046390730039640, guid: ca0386b58e133c14fa21b0f541baeb2d, type: 3}
       propertyPath: species
       value: Merlu
       objectReference: {fileID: 0}

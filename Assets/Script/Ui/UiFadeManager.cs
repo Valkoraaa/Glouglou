@@ -5,6 +5,7 @@ using System.Collections;
 public class UiFadeManager : MonoBehaviour
 {
     private Image image;
+    [SerializeField] private NPCDialogue dialogueStartOfDay;
     public static UiFadeManager Instance { get; private set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,6 +32,10 @@ public class UiFadeManager : MonoBehaviour
 
     IEnumerator FadeInAndOutEndDay()
     {
+        Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = true; ///////////
+        Character.Instance.canMove = false;
+        Character.Instance.canMoveCam = false;
+        PauseManager.Instance.canPause = false;
         float time = 0f;
         Color color = image.color;
 
@@ -65,6 +70,7 @@ public class UiFadeManager : MonoBehaviour
 
         color.a = 0f;
         image.color = color;
+        dialogueStartOfDay.StartDialogue();
     }
 
     IEnumerator FadeInAndOut(Vector3 tpPoint)
@@ -72,6 +78,7 @@ public class UiFadeManager : MonoBehaviour
         Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         Character.Instance.canMove = false;
         Character.Instance.canMoveCam = false;
+        PauseManager.Instance.canPause = false;
         float time = 0f;
         Color color = image.color;
 
@@ -111,10 +118,17 @@ public class UiFadeManager : MonoBehaviour
 
         color.a = 0f;
         image.color = color;
+        if(TutoManager.Instance.tuto) { TutoManager.Instance.fadeFinished = true; }
+        if(TutoManager.Instance.tuto && TutoManager.Instance.dialogueCounter>=3) { TutoManager.Instance.tuto = false; }
+        else if (TutoManager.Instance.tuto) { TutoManager.Instance.blockActive = true; }
+        
         Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
         Character.Instance.canMove = true;
         Character.Instance.canMoveCam = true;
-        if(TutoManager.Instance.tuto) { TutoManager.Instance.fadeFinished = true; }
+        
+        PauseManager.Instance.canPause = true; 
+        
+        
     }
 
 }

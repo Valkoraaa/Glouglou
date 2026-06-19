@@ -1,3 +1,4 @@
+using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,8 +9,10 @@ public class Character : MonoBehaviour
     public static Character Instance;
 
     [Header("Physique & Mouvement")]
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float speed = 20f;
+    [SerializeField] private float speedRun = 35f;
     [SerializeField] private float gravity = -20; 
+    private bool isRunning;
 
     [Header("Cam�ra FPS")]
     [SerializeField] private Transform cameraTransform;
@@ -22,12 +25,18 @@ public class Character : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 lookInput;
     private Vector3 velocity; 
-    private float xRotation = 0f;
+    public float xRotation = 0f;
     public bool canMove = true;
     public bool canMoveCam = true;
-    private Vector3 move;
+    public Vector3 move;
     public bool stopChara;
     public bool cinematic;
+    [SerializeField] private AudioSource footstepAudio;
+    [SerializeField] private AudioClip[] footstepClip;
+    private bool runSound = true;
+
+    [Header("Animations")]
+    [SerializeField] private Animator animator;
 
     private void Awake()
     {
@@ -46,16 +55,25 @@ public class Character : MonoBehaviour
     {
         ApplyCameraPosition();
         HandleGravity(stopChara);
+        if(Keyboard.current.shiftKey.isPressed)
+        {
+            isRunning = true;
+        }
+        else
+        {
+            isRunning = false;
+        }
         if(canMove)
         {
-            
             HandleMovement();
-
-
-            
         }
         if(canMoveCam) { HandleRotation(); }
-        
+        HandleFootsteps();
+        if (animator != null)
+        {
+            float currentSpeed = canMove ? moveInput.magnitude : 0f;
+            animator.SetFloat("Speed", currentSpeed);
+        }
     }
 
     private void HandleRotation()
@@ -85,11 +103,56 @@ public class Character : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         if(hasToStop) {move = Vector3.zero;}
-        controller.Move(move * speed * Time.deltaTime);
+        if(isRunning)
+        {
+            controller.Move(move * speedRun * Time.deltaTime);
+        }
+        else
+        {
+            controller.Move(move * speed * Time.deltaTime);
+        }
+        
 
         
 
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void HandleFootsteps()
+    {
+        //bool isMoving = moveInput.magnitude > 0.1f;
+
+        /*if (move!= Vector3.zero && !footstepAudio.isPlaying)
+        {
+            AudioClip clip = footstepClip[Random.Range(0, footstepClip.Length)];
+            footstepAudio.PlayOneShot(clip, 1f);
+        }*/
+        if (move!= Vector3.zero && runSound)
+        {
+            AudioClip clip = footstepClip[Random.Range(0, footstepClip.Length)];
+            footstepAudio.PlayOneShot(clip, 2f);
+            runSound = false;
+            StartCoroutine(WaitRunSound());
+        }
+        else if (move == Vector3.zero && footstepAudio.isPlaying)
+        {
+            footstepAudio.Stop();
+        }
+    }
+
+    private IEnumerator WaitRunSound()
+    {
+        if(isRunning)
+        {
+           yield return new WaitForSeconds(0.35f); 
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        AudioClip clip = footstepClip[Random.Range(0, footstepClip.Length)];
+        footstepAudio.PlayOneShot(clip, 2f);
+        runSound = true;
     }
 
     private void ApplyCameraPosition()

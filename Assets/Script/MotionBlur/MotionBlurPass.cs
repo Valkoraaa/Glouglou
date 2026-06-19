@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -54,4 +54,4 @@ public class MotionBlurPass : ScriptableRenderPass
     }
 
     public override void OnCameraCleanup(CommandBuffer cmd) { }
-}
+}*/

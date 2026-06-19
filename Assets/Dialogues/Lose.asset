@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4215b2633c1f06f4fa8e2b46a201c92b, type: 3}
   m_Name: Lose
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
-  speakerName: Patron
+  speakerName: Directeur
   lines:
   - text: Tu ne ma pas ramener assez de poisson je doit fermer le restaurant

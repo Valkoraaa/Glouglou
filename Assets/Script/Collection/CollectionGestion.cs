@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -8,6 +9,12 @@ public class CollectionGestion : MonoBehaviour
 {
     [SerializeField]
     private Canvas collectionCanva;
+    [SerializeField] private DisplayScrollCollection displayScrollCollection;
+
+    [SerializeField] private Image fishImage;
+    [SerializeField] private TMP_Text fishName;
+    [SerializeField] private TMP_Text fishSize;
+    [SerializeField] private TMP_Text fishWeight;
 
     private Rigidbody characterRigidbody;
 
@@ -25,11 +32,15 @@ public class CollectionGestion : MonoBehaviour
             {
                 CloseCollection();
                 DisplayMouse(false);
+                displayScrollCollection.RefreshCollection();
             }
 
             else
+            {
                 OpenCollection();
                 DisplayMouse(true);
+            }
+
 
         }
     }
@@ -37,7 +48,9 @@ public class CollectionGestion : MonoBehaviour
     public void DisplayMouse(bool open)
     {
         Cursor.visible = open;
+
         Cursor.lockState = open ? CursorLockMode.None : CursorLockMode.Locked;
+
         if (Character.Instance != null)
         {
             Character.Instance.canMove = !open;
@@ -45,23 +58,31 @@ public class CollectionGestion : MonoBehaviour
         }
     }
 
+    // Dans CollectionGestion.cs
     public void OpenCollection()
     {
         collectionCanva.gameObject.SetActive(true);
+
+
+        displayScrollCollection.RefreshCollection();
+
         characterRigidbody.isKinematic = true;
-        Character.Instance.canMove = false;
-        Character.Instance.canMoveCam = false;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        DisplayMouse(true);
     }
 
     public void CloseCollection()
     {
-        collectionCanva.gameObject.SetActive(false); 
-        characterRigidbody.isKinematic = false;     
-        Character.Instance.canMove = true;
-        Character.Instance.canMoveCam = true;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        collectionCanva.gameObject.SetActive(false);
+        characterRigidbody.isKinematic = false;
+
+        DisplayMouse(false);
+    }
+
+    public void DisplayFishInfo(FishData data)
+    {
+        fishImage.sprite = data.icon;
+        fishName.text = "Nom : " + data.species;
+        fishSize.text = "Taille : " + FishingBookManager.Instance.GetBestSize(data.id).ToString("F2") + " cm";
+        fishWeight.text = "Poids : " + FishingBookManager.Instance.GetBestWeight(data.id).ToString("F2") + " kg";
     }
 }

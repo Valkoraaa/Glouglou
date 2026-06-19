@@ -4,8 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class Rope : MonoBehaviour
 {
+    public static Rope Instance { get; private set; }
     [SerializeField] private Transform startPoint;
-    [SerializeField] private Transform endPoint;
+    public Transform endPoint;
+    public Transform originalEndPoint;
     
 
     [Header("Rope Settings")]
@@ -24,6 +26,8 @@ public class Rope : MonoBehaviour
     {
         line = GetComponent<LineRenderer>();
         line.positionCount = segments;
+        Instance = this;
+        originalEndPoint = endPoint;
     }
 
     void FixedUpdate()

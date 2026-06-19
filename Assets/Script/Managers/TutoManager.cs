@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutoManager : MonoBehaviour
 {
@@ -9,14 +10,20 @@ public class TutoManager : MonoBehaviour
     public bool endOfDialogue;
     public bool fadeFinished;
     public bool hasToBack;
+    public bool blockActive;
     [SerializeField] private GameObject tutoFish;
     [SerializeField] private GameObject tutoBlock;
     [SerializeField] private GameObject player;
-    
+    [SerializeField] private Canvas canvaInGame;
+    [SerializeField] private GameObject playerArms;
+    [SerializeField] private GameObject canvasKeys;
+
+
+
     [Header("Dialogues")]
     [SerializeField] private DialogueData tutoDialogue;
     [SerializeField] private DialogueData tutoDialogue2;
-    [SerializeField] private DialogueData caughtDialogue;
+    //[SerializeField] private DialogueData caughtDialogue;
     [SerializeField] private DialogueData tutoDialogue3;
 
     [Header("Camera")]
@@ -32,30 +39,70 @@ public class TutoManager : MonoBehaviour
         Instance = this;
         if(tuto)
         {
-            DialogueManager.Instance.StartDialogue(tutoDialogue);
-            tutoFish.SetActive(true);
-            tutoBlock.SetActive(true);
+            StartCoroutine(tutoEnumerator());
+            
         }
         else
         {
             StartCoroutine(StartTheDay());
+            Character.Instance.canMove = true;
+            Character.Instance.canMoveCam = true;
+            Character.Instance.stopChara = false;
+            Character.Instance.transform.position = new Vector3(1478.14f, 180.59f, 1102.03f);
         }
+    }
+
+    private IEnumerator tutoEnumerator()
+    {
+        yield return new WaitUntil(() => DialogueManager.Instance != null && DayManager.Instance != null && !SceneManager.GetSceneByName("Opening").isLoaded);
+        
+
+        DialogueManager.Instance.StartDialogue(tutoDialogue, true);
+        tutoFish.SetActive(true);
+        tutoBlock.SetActive(true);
     }
 
     void Update()
     {
+        if (DialogueManager.Instance.isInDialogue || Character.Instance.cinematic)
+        {
+            canvaInGame.gameObject.SetActive(false);
+        }
+        else
+        {
+            canvaInGame.gameObject.SetActive(true);
+        }
+
+        if(Character.Instance.cinematic)
+        {
+            playerArms.SetActive(false);
+        }
+        else
+        {
+            playerArms.SetActive(true);
+        }
+
+        if (blockActive)
+        {
+            blockActive = false;
+            tutoBlock.SetActive(true);
+        }
         if(endOfDialogue)
         {
             endOfDialogue = false;
-            if(dialogueCounter == 1) { EndOfFirstDialogue(); Debug.Log("1");}
+            if(dialogueCounter == 1) { EndOfFirstDialogue();}
             else if (dialogueCounter == 2 && hasToBack)
             {
                 hasToBack = false;
             }
             else if (dialogueCounter == 2)
             {
-                Character.Instance.canMove = true;
-                Character.Instance.canMoveCam = true;
+                canvasKeys.SetActive(true);
+                Character.Instance.canMove = false;
+                Character.Instance.stopChara = true;
+                Character.Instance.canMoveCam = false;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
             else if (dialogueCounter == 3)
             {
@@ -69,35 +116,46 @@ public class TutoManager : MonoBehaviour
         StartCoroutine(ShowCamping());
     }
 
-    public IEnumerator TutoFishing(GameObject fish)
-    {
-        float duration = 1f;
-        float elapsedTime = 0f;
+    // public IEnumerator TutoFishing(GameObject fish)
+    // {
+    //     float duration = 1f;
+    //     float elapsedTime = 0f;
 
-        ThrowLasso.Instance.recallRope = true;
+    //     ThrowLasso.Instance.recallRope = true;
 
-        Vector3 fishStartPos = fish.transform.position;
-        Vector3 thisStartPos = transform.position;
-        Vector3 targetPos = Character.Instance.GetComponent<Transform>().transform.position;
+    //     Vector3 fishStartPos = fish.transform.position;
+    //     Vector3 thisStartPos = transform.position;
+    //     Vector3 targetPos = Character.Instance.GetComponent<Transform>().transform.position;
+    //     Transform lassoTransform = FishingLasso.Instance.GetComponent<Transform>();
+    //     while (elapsedTime < duration)
+    //     {
+    //         float t = elapsedTime / duration;
 
-        while (elapsedTime < duration)
-        {
-            float t = elapsedTime / duration;
+    //         if (fish != null)
+    //         {
+    //             Vector3 pos = Vector3.Lerp(fishStartPos, targetPos, t);
 
-            if(fish != null) fish.transform.position = Vector3.Lerp(fishStartPos, targetPos, t);
-            transform.position = Vector3.Lerp(thisStartPos, targetPos, t);
 
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-        //move player vers pnj
-        DialogueManager.Instance.StartDialogue(caughtDialogue);
-        Character.Instance.canMove = false;
-        Character.Instance.canMoveCam = false;
-    }
+    //             // Parabole : 0 → 1 → 0
+    //             pos.y += 7 * 4f * t * (1f - t);
+
+    //             fish.transform.position = pos;
+    //         }
+
+    //         lassoTransform.position = Vector3.Lerp(thisStartPos, targetPos, t);
+
+    //         elapsedTime += Time.deltaTime;
+    //         yield return null;
+    //     }
+    //     //move player vers pnj
+    //     DialogueManager.Instance.StartDialogue(caughtDialogue, true);
+    //     Character.Instance.canMove = false;
+    //     Character.Instance.canMoveCam = false;
+    // }
 
     private IEnumerator ShowCamping()
     {
+
         playerCamera.transform.GetChild(0).SetParent(null);
         Character.Instance.cinematic = true;
 
@@ -137,24 +195,34 @@ public class TutoManager : MonoBehaviour
         playerCamera.transform.localRotation = startRot;
         Character.Instance.cinematic = false;
         ThrowLasso.Instance.hasLasso();
-        DialogueManager.Instance.StartDialogue(tutoDialogue2);
+        DialogueManager.Instance.StartDialogue(tutoDialogue2, true);
+
     }
 
     private IEnumerator WaitABit()
     {
+        tutoBlock.SetActive(false);
+        Character.Instance.canMoveCam = false;
+        Character.Instance.stopChara = true;
+        fadeFinished = false;
         UiFadeManager.Instance.FadeTp(new Vector3(1478.14f, 180.59f, 1102.03f)); //mouvement de cam?
         yield return new WaitForSeconds(0.5f);
         player.transform.rotation = Quaternion.Euler(0, -180, 0);
+        Character.Instance.xRotation = 0;
+        playerCamera.transform.localRotation = Quaternion.Euler(0, 0, 0);
         ThrowLasso.Instance.hasLasso();
-        yield return new WaitUntil(() => fadeFinished);
-        
-                
-        DayManager.Instance.isNight = true;
-        tuto = false;
+        Character.Instance.stopChara = true;
         Character.Instance.canMove = false;
         Character.Instance.canMoveCam = false;
+        yield return new WaitUntil(() => fadeFinished);
+
+
+        DayManager.Instance.isNight = true;
+        
+        
+       
                 
-        DialogueManager.Instance.StartDialogue(tutoDialogue3);
+        DialogueManager.Instance.StartDialogue(tutoDialogue3, true);
     }
 
     private IEnumerator StartTheDay()

@@ -18,7 +18,7 @@ public class CampingZone : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            ThrowLasso.Instance.canThrow = false;
+            //ThrowLasso.Instance.canThrow = false;
             Debug.Log("playerInCamping");
         }
     }
@@ -27,7 +27,7 @@ public class CampingZone : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            ThrowLasso.Instance.canThrow = true;
+            //ThrowLasso.Instance.canThrow = true;
             Debug.Log("playerOutCamping");
         }
     }

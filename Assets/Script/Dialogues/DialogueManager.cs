@@ -1,8 +1,9 @@
-using UnityEngine;
-using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -10,13 +11,17 @@ public class DialogueManager : MonoBehaviour
 
     [Header("UI")]
     public GameObject dialoguePanel;
+    [SerializeField] private GameObject horseBubble;
+    [SerializeField] private GameObject catBubble;
     public TextMeshProUGUI speakerText;
     public TextMeshProUGUI dialogueText;
 
     [Header("Typing Settings")]
-    public float typingSpeed; //0.08f
-    public float fastTypingSpeed; //0.04f
-    public float defaultTypingSpeed; //0.08f
+    public float typingSpeed; //0.06f
+    public float fastTypingSpeed; //0.02f
+    public float defaultTypingSpeed; //0.06f
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip dialogueSound;
 
     private List<DialogueLine> currentLines;
     private int index;
@@ -34,13 +39,25 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
     }
 
-    public void StartDialogue(DialogueData data)
+    public void StartDialogue(DialogueData data, bool isHorse)
     {
         isInDialogue = true;
-        Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         Character.Instance.canMove = false;
         Character.Instance.canMoveCam = false;
+        Character.Instance.stopChara = true;
         dialoguePanel.SetActive(true);
+        if(isHorse)
+        {
+            horseBubble.SetActive(true);
+        }
+        else
+        {
+            catBubble.SetActive(true);
+            if (Shop.Instance != null && Shop.Instance.MarchandController != null)
+            {
+                Shop.Instance.MarchandController.AskEmote(EmoteType.Discussion);
+            }
+        }
         speakerText.text = data.speakerName;
 
         currentLines = data.lines;
@@ -48,10 +65,24 @@ public class DialogueManager : MonoBehaviour
 
         ShowLine();
     }
+    // public void StartDialogue(DialogueData data)
+    // {
+    //     isInDialogue = true;
+    //     Character.Instance.canMove = false;
+    //     Character.Instance.canMoveCam = false;
+    //     Character.Instance.stopChara = true;
+    //     dialoguePanel.SetActive(true);
+    //     speakerText.text = data.speakerName;
+
+    //     currentLines = data.lines;
+    //     index = 0;
+
+    //     ShowLine();
+    // }
 
     public IEnumerator WaitForEndOfDialogue(DialogueData dialogue, UnityEngine.Vector3 tpPos)
     {
-        StartDialogue(dialogue);
+        StartDialogue(dialogue, false);
         yield return new WaitUntil(() => !isInDialogue);
         Debug.Log("tp");
         UiFadeManager.Instance.FadeTp(tpPos);
@@ -80,12 +111,15 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator TypeLine(string line)
     {
+        bool hasPlayed = false;
         isTyping = true;
         dialogueText.text = "";
 
         foreach (char letter in line)
         {
             dialogueText.text += letter;
+            if(hasPlayed) audioSource.PlayOneShot(dialogueSound);
+            hasPlayed = !hasPlayed;
             yield return new WaitForSeconds(typingSpeed);
         }
 
@@ -96,26 +130,41 @@ public class DialogueManager : MonoBehaviour
     {
         dialoguePanel.SetActive(false);
         currentLines = null;
-        
-        
+
+        bool wasCatTalking = catBubble.activeSelf;
+        bool willOpenShop = openShop;
+
         if (openShop)
         {
             openShop = false;
             Shop.Instance.OpenShop(true);
         }
-        else if (TutoManager.Instance.tuto)
-        {
-            if(!skipIncTuto) {TutoManager.Instance.dialogueCounter++;}
-            else { skipIncTuto = false; }
-            TutoManager.Instance.endOfDialogue = true;
-            Debug.Log("DialogueManager check tuto manager.tuto");
-        }
-        else
+        else if (TutoManager.Instance.dialogueCounter != 0)
         {
             Character.Instance.canMove = true;
             Character.Instance.canMoveCam = true;
+            Character.Instance.stopChara = false;
+            Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            isInDialogue = false;
         }
-        isInDialogue = false;
+
+        if (wasCatTalking)
+        {
+            Shop.Instance.MarchandController.AskEmote(EmoteType.Idle);
+        }
+
+        if (TutoManager.Instance.tuto)
+        {
+            if (!skipIncTuto) { TutoManager.Instance.dialogueCounter++; }
+            else { skipIncTuto = false; }
+            TutoManager.Instance.endOfDialogue = true;
+            isInDialogue = false;
+        }
+
+        catBubble.SetActive(false);
+        horseBubble.SetActive(false);
+
+        
     }
 
     private void Update()
@@ -123,7 +172,7 @@ public class DialogueManager : MonoBehaviour
         if (!isInDialogue)
             return;
 
-        if (Keyboard.current.spaceKey.isPressed && isTyping)
+        if (Keyboard.current.spaceKey.isPressed && isTyping && PauseManager.Instance.canPause)
         {
             
                 /*StopCoroutine(typingCoroutine);
@@ -139,7 +188,7 @@ public class DialogueManager : MonoBehaviour
         }
         else { typingSpeed = defaultTypingSpeed; }
 
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && !isTyping)
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && !isTyping && PauseManager.Instance.canPause)
         {
             NextLine();
             typingSpeed = defaultTypingSpeed;
