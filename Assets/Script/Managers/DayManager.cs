@@ -99,6 +99,7 @@ public class DayManager : MonoBehaviour
         DefineBadFish();
         DayEffect();
         //actualThrow = totalThrow;
+        FishingLasso.Instance.fishNet.Clear();
         dayCount++;
         numberOfFails = 0;
         fishCaught = 0;

@@ -28,6 +28,7 @@ public class FishingLasso : MonoBehaviour
     [Header("Instantiation Poisson")]
     [SerializeField] private GameObject fishPrefab; // Le prefab du poisson à faire apparaître
     [SerializeField] private Transform spawnPoint;   // L'objet Empty qui sert de repère de position
+    public List<GameObject> fishNet = new();
 
 
     private void Awake()
@@ -145,6 +146,7 @@ public class FishingLasso : MonoBehaviour
                 GameObject nouveauPoisson = Instantiate(fishPrefab, spawnPoint.position, spawnPoint.rotation);
                 nouveauPoisson.transform.SetParent(spawnPoint);
                 nouveauPoisson.transform.localPosition = Vector3.zero;
+                fishNet.Add(nouveauPoisson);
             }
 
             Destroy(fish.gameObject);

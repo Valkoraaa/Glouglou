@@ -1,6 +1,7 @@
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 public class UiGestion : MonoBehaviour
 {
@@ -8,9 +9,6 @@ public class UiGestion : MonoBehaviour
     [SerializeField] private TextMeshProUGUI fishCountText;
     [SerializeField] private Slider failSlider;
     public TextMeshProUGUI multText;
-
-    private int lastFishCaught = -1;
-    private int lastNumberOfFails = -1;
 
     [Header("Icône débuff")]
     [SerializeField] private Image debuffIcon;
@@ -20,6 +18,9 @@ public class UiGestion : MonoBehaviour
     [SerializeField] private Sprite sleepSprite;
     [SerializeField] private Sprite noStrengthSprite;
     [SerializeField] private Sprite depressionSprite;
+
+    private int lastFishCaught = -1;
+    private int lastNumberOfFails = -1;
 
     void Start()
     {
@@ -43,10 +44,18 @@ public class UiGestion : MonoBehaviour
         UpdateDebuffIcon();
 
     }
+
     private void UpdateFishCountText()
     {
         lastFishCaught = DayManager.Instance.fishCaught;
         fishCountText.text = lastFishCaught.ToString();
+    }
+
+    private void InitFailSlider()
+    {
+        failSlider.minValue = 0;
+        failSlider.maxValue = DayManager.Instance.numberOfFailsAllowed;
+        UpdateFailSlider();
     }
 
     private void UpdateDebuffIcon()
@@ -60,13 +69,6 @@ public class UiGestion : MonoBehaviour
         else if (effects[4]) { debuffIcon.sprite = noStrengthSprite; debuffIcon.gameObject.SetActive(true); }
         else if (effects[5]) { debuffIcon.sprite = depressionSprite; debuffIcon.gameObject.SetActive(true); }
         else { debuffIcon.gameObject.SetActive(false); }
-    }
-
-    private void InitFailSlider()
-    {
-        failSlider.minValue = 0;
-        failSlider.maxValue = DayManager.Instance.numberOfFailsAllowed;
-        UpdateFailSlider();
     }
 
     private void UpdateFailSlider()
