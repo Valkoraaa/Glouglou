@@ -148,9 +148,7 @@ MonoBehaviour:
   isPermanent: 0
   speed: 0
   isBadForToday: 0
-  baseMaterial: {fileID: 0}
-  HookedMaterial: {fileID: 0}
-  data: {fileID: 0}
+  data: {fileID: 11400000, guid: e57b4c256a816ee429e82d744774aa8b, type: 2}
 --- !u!135 &-353429806433349719
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8046484822211629268
+--- !u!1 &554368764289283830
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,50 +8,50 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1073782417693771048}
-  - component: {fileID: 5583232864372453502}
-  - component: {fileID: 4850708836747213691}
-  - component: {fileID: 5482560218887924831}
-  - component: {fileID: -7541069527608698641}
-  - component: {fileID: -1487049571981183652}
-  - component: {fileID: -2187549937915043413}
+  - component: {fileID: 7451212347472887366}
+  - component: {fileID: 6233453255453528021}
+  - component: {fileID: 49878438164555890}
+  - component: {fileID: 8778370715720799867}
+  - component: {fileID: 5822899570924949188}
+  - component: {fileID: 6408823217712028986}
+  - component: {fileID: -458760599677023409}
   m_Layer: 0
-  m_Name: Grenouille verte
+  m_Name: lampris royal
   m_TagString: fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1073782417693771048
+--- !u!4 &7451212347472887366
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8046484822211629268}
+  m_GameObject: {fileID: 554368764289283830}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.32, y: 3.21, z: -16.73}
+  m_LocalPosition: {x: -14.29, y: 2.817, z: -15.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5583232864372453502
+--- !u!33 &6233453255453528021
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8046484822211629268}
-  m_Mesh: {fileID: 4300000, guid: 901ae38659c44b1408efd006259333f6, type: 2}
---- !u!23 &4850708836747213691
+  m_GameObject: {fileID: 554368764289283830}
+  m_Mesh: {fileID: 4300000, guid: 135f4b06dabc3854ea1c8476f4629d64, type: 2}
+--- !u!23 &49878438164555890
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8046484822211629268}
+  m_GameObject: {fileID: 554368764289283830}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -70,7 +70,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d7648970f9b15ba49bedc3ed613c5552, type: 2}
+  - {fileID: 2100000, guid: 10a3b2732aff0e24c923990c11bd0b61, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,13 +93,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!195 &5482560218887924831
+--- !u!195 &8778370715720799867
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8046484822211629268}
+  m_GameObject: {fileID: 554368764289283830}
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.50000006
@@ -115,13 +115,13 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-7541069527608698641
+--- !u!114 &5822899570924949188
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8046484822211629268}
+  m_GameObject: {fileID: 554368764289283830}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a289857051f37b4590305dfa82f0f11, type: 3}
@@ -129,35 +129,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FishPatrol
   range: 10
   fishSpeed: 3
---- !u!114 &-1487049571981183652
+--- !u!114 &6408823217712028986
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8046484822211629268}
+  m_GameObject: {fileID: 554368764289283830}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0af443ed027608c4f9d3da032d35f7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fish
-  size: 0
-  weight: 0
+  size: 150
+  weight: 40
   temporaryEffect: 
   permanentEffect: 
   isPermanent: 0
   speed: 0
   isBadForToday: 0
-  baseMaterial: {fileID: 0}
-  HookedMaterial: {fileID: 0}
-  data: {fileID: 0}
---- !u!135 &-2187549937915043413
+  data: {fileID: 11400000, guid: 92ef788e6ccb6cc4cbf16135af8459b3, type: 2}
+--- !u!135 &-458760599677023409
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8046484822211629268}
+  m_GameObject: {fileID: 554368764289283830}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
