@@ -37,6 +37,7 @@ public class ThrowLasso : MonoBehaviour
     }
     void Start()
     {
+        lasso.gameObject.SetActive(false);
         rbPlayer = Character.Instance.gameObject.GetComponent<Rigidbody>();
         force = 15; //usefull ? 
         rb = lasso.GetComponent<Rigidbody>();
@@ -76,6 +77,7 @@ public class ThrowLasso : MonoBehaviour
             // ANIMATION : On déclenche le lancer visuel des bras
             if (animator != null)
             {
+                lasso.gameObject.SetActive(true);
                 animator.SetTrigger("TriggerLasso");
             }
 
@@ -116,6 +118,7 @@ public class ThrowLasso : MonoBehaviour
             StartCoroutine(TimerLasso());
             //isFishing = false;
         }
+
     }
 
 
@@ -132,6 +135,7 @@ public class ThrowLasso : MonoBehaviour
         recallRope = false;
         hasThrown = false;
         rb.isKinematic = true;
+        lasso.gameObject.SetActive(false);
         isChild = false;
         boxCollider.enabled = false;
         Character.Instance.stopChara = false;
@@ -145,6 +149,7 @@ public class ThrowLasso : MonoBehaviour
         lasso.transform.localPosition = new Vector3(0.61f, -0.24f, 0.6f);
         isChild = true;
         boxCollider.enabled = false;
+        lasso.gameObject.SetActive(false);
     }
 
     void OnDrawGizmos()

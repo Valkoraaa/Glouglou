@@ -107,7 +107,12 @@ public class DayManager : MonoBehaviour
         EffectManager.Instance.ApplyEffect();
         //StartCoroutine(DayPassing());
         isNight = false;
-        SpawnFish.Instance.SpawningFish();
+
+        DayEffect();
+        EffectManager.Instance.ApplyEffect();
+        SpawnFish.Instance.ResetFishDatabase(); // 1. reset
+        DefineBadFish();                        // 2. marque les prefabs
+        SpawnFish.Instance.SpawningFish();      // 3. spawn + copie
     }
 
     private void DayEffect()
@@ -129,44 +134,28 @@ public class DayManager : MonoBehaviour
 
     private void DefineBadFish()
     {
-        int chooseRarity;
+        string[] possibleEffects = { "drunk", "exhaust", "sick", "depression" };
 
-        for(int i = 0; i < numberOfBadFish; i++)
+        for (int i = 0; i < numberOfBadFish; i++)
         {
-            chooseRarity = Random.Range(0, 4);
-            switch (chooseRarity)
+            int chooseRarity = Random.Range(0, 4);
+            List<Fish> rarityList = chooseRarity switch
             {
-                case 0:
-                    ChangeStatus(fishDatabaseSO.commonFish, i);
-                    break;
-                case 1:
-                    ChangeStatus(fishDatabaseSO.rareFish, i);
-                    break;
-                case 2:
-                    ChangeStatus(fishDatabaseSO.epicFish, i);
-                    break;
-                case 3:
-                    ChangeStatus(fishDatabaseSO.legendaryFish, i);
-                    break;
-            }
-            
+                0 => fishDatabaseSO.commonFish,
+                1 => fishDatabaseSO.rareFish,
+                2 => fishDatabaseSO.epicFish,
+                _ => fishDatabaseSO.legendaryFish
+            };
+            ChangeStatus(rarityList, possibleEffects);
         }
     }
 
-    private void ChangeStatus(List<Fish> rarityList, int i)
+    private void ChangeStatus(List<Fish> rarityList, string[] possibleEffects)
     {
-        /*int chooseFish;
-        chooseFish = Random.Range(0, rarityList.Count);
+        int chooseFish = Random.Range(0, rarityList.Count);
+        string chosenEffect = possibleEffects[Random.Range(0, possibleEffects.Length)];
         rarityList[chooseFish].IsBadForToday = true;
-        Debug.Log(rarityList[chooseFish].data.species);
-        if (i % 2 == 0)
-        {
-            BadFishOneDisplay.GetComponent<MeshRenderer>().material = rarityList[chooseFish].baseMaterial;
-        }
-        else
-        {
-            BadFishTwoDisplay.GetComponent<MeshRenderer>().material = rarityList[chooseFish].baseMaterial;
-        }*/
-
+        rarityList[chooseFish].FishEffect = chosenEffect;
+        Debug.Log($"{rarityList[chooseFish].data.species} → effet : {chosenEffect}");
     }
 }

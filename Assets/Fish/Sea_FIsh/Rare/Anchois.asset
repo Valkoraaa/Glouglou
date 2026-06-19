@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Anchois
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   id: 8
-  species: 
+  species: Anchois
   currentRarity: 1
-  price: 250
-  icon: {fileID: 0}
+  price: 20
+  icon: {fileID: 21300000, guid: ca3cf2c4e91907a4890e9993555549c0, type: 3}

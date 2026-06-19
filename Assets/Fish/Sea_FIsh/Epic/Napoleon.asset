@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Napoleon
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   id: 14
-  species: 
+  species: "Napol\xE9on"
   currentRarity: 2
-  price: 0
-  icon: {fileID: 0}
+  price: 50
+  icon: {fileID: 21300000, guid: 144f2c81cf8f7d24a8ea6f6ed43b7fe5, type: 3}

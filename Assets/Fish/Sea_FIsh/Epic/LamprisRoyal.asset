@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LamprisRoyal
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   id: 12
-  species: 
+  species: Lampris royal
   currentRarity: 2
-  price: 0
-  icon: {fileID: 0}
+  price: 50
+  icon: {fileID: 21300000, guid: 5d48a22072ab0e749b5cab7efd937edf, type: 3}

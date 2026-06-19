@@ -165,7 +165,11 @@ public class FishingLasso : MonoBehaviour
         Rope.Instance.endPoint = Rope.Instance.originalEndPoint;
         if(!TutoManager.Instance.tuto)
         {
-            EffectManager.Instance.ChooseEffect(fish.TemporaryEffect);
+            if (fish.IsBadForToday)
+            {
+                EffectManager.Instance.ChooseEffect(fish.FishEffect);
+                EffectManager.Instance.ApplyEffect();
+            }
             Shop.Instance.playerMoney += fish.data.price * Shop.Instance.moneyMultiplier;
 
 
@@ -196,7 +200,7 @@ public class FishingLasso : MonoBehaviour
         if (!TutoManager.Instance.tuto)
         {
             Debug.Log("Mode Hors-Tutoriel détecté.");
-            EffectManager.Instance.ChooseEffect(fish.TemporaryEffect);
+            EffectManager.Instance.ChooseEffect(fish.FishEffect);
             Shop.Instance.playerMoney += fish.data.price * Shop.Instance.moneyMultiplier;
             Destroy(fish.gameObject);
             ThrowLasso.Instance.hasLasso();

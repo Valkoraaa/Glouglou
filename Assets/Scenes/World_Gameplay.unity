@@ -176,10 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Fish
   size: 12
   weight: 100
-  temporaryEffect: 
-  permanentEffect: 
-  isPermanent: 0
-  speed: 0
+  fishEffect: 
   isBadForToday: 0
   data: {fileID: 11400000, guid: ff687bcdb11629e4bbe5102b732e8fb8, type: 2}
 --- !u!114 &22625631
@@ -25729,7 +25726,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2789220459319605105, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.47
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 2789220459319605105, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: m_LocalPosition.y
@@ -25737,7 +25734,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2789220459319605105, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.4
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 2789220459319605105, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: m_LocalRotation.w
