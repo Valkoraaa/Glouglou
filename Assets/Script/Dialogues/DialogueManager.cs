@@ -145,6 +145,7 @@ public class DialogueManager : MonoBehaviour
             Character.Instance.canMoveCam = true;
             Character.Instance.stopChara = false;
             Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            isInDialogue = false;
         }
 
         if (wasCatTalking)
@@ -157,12 +158,13 @@ public class DialogueManager : MonoBehaviour
             if (!skipIncTuto) { TutoManager.Instance.dialogueCounter++; }
             else { skipIncTuto = false; }
             TutoManager.Instance.endOfDialogue = true;
+            isInDialogue = false;
         }
 
         catBubble.SetActive(false);
         horseBubble.SetActive(false);
 
-        isInDialogue = false;
+        
     }
 
     private void Update()

@@ -4,14 +4,17 @@ using TMPro;
 
 public class UiGestion : MonoBehaviour
 {
+    public static UiGestion Instance;
     [SerializeField] private TextMeshProUGUI fishCountText;
     [SerializeField] private Slider failSlider;
+    public TextMeshProUGUI multText;
 
     private int lastFishCaught = -1;
     private int lastNumberOfFails = -1;
 
     void Start()
     {
+        Instance = this;
         UpdateFishCountText();
         InitFailSlider();
     }
