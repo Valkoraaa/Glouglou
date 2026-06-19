@@ -66,8 +66,6 @@ public class SpawnFish : MonoBehaviour
             spawnPos.y = navMeshSurface.position.y;
 
             Fish instantiated = Instantiate(fishToInstantiate,spawnPos,Quaternion.identity,this.transform);
-            instantiated.IsBadForToday = fishToInstantiate.IsBadForToday;
-            instantiated.FishEffect = fishToInstantiate.FishEffect;
             GameObject tempAura = Instantiate(aura, new Vector3(instantiated.transform.position.x, instantiated.transform.position.y, instantiated.transform.position.z + 0.1f ), Quaternion.identity, instantiated.transform);
             //tempAura.transform.SetParent(instantiated.transform);
             NavMeshAgent agent = instantiated.GetComponent<NavMeshAgent>();

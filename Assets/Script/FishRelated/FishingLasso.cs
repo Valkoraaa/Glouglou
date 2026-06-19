@@ -99,39 +99,14 @@ public class FishingLasso : MonoBehaviour
         ThrowLasso.Instance.recallRope = true;
 
         if (ThrowLasso.Instance.GetComponentInChildren<Animator>() != null)
-        {
             ThrowLasso.Instance.GetComponentInChildren<Animator>().SetTrigger("TriggerRetour");
-        }
+
         Rope.Instance.endPoint = fish.GetComponent<Transform>();
         visual.enabled = false;
 
-        ////
         canvasLasso.SetParent(fish.transform);
         canvasLasso.localPosition = Vector3.zero;
         canvasLasso.localRotation = Quaternion.identity;
-        /*GameObject leftObj = new GameObject("LassoLeft");
-        leftObj.transform.SetParent(canvasLasso, false);
-
-        Image left = leftObj.AddComponent<Image>();
-        left.sprite = lassoImage;
-
-        RectTransform leftRect = left.rectTransform;
-        leftRect.sizeDelta = new Vector2(64, 64); // taille souhaitée
-        leftRect.localPosition = new Vector3(-32f, 0f, 0.1f);
-
-        GameObject rightObj = new GameObject("LassoRight");
-        rightObj.transform.SetParent(canvasLasso, false);
-
-        Image right = rightObj.AddComponent<Image>();
-        right.sprite = lassoImage;
-
-        RectTransform rightRect = right.rectTransform;
-        rightRect.sizeDelta = new Vector2(64, 64);
-        rightRect.localPosition = new Vector3(32f, 0f, -0.1f);
-
-        // miroir horizontal
-        rightRect.localScale = new Vector3(-1f, 1f, 1f);*/
-        ////
 
         Vector3 fishStartPos = fish.transform.position;
         Vector3 thisStartPos = transform.position;
@@ -140,82 +115,47 @@ public class FishingLasso : MonoBehaviour
         while (elapsedTime < duration)
         {
             float t = elapsedTime / duration;
-
             if (fish != null)
             {
                 Vector3 pos = Vector3.Lerp(fishStartPos, targetPos, t);
-
-
-                // Parabole : 0 → 1 → 0
                 pos.y += arcHeight * 4f * t * (1f - t);
-
                 fish.transform.position = pos;
             }
-
             transform.position = Vector3.Lerp(thisStartPos, targetPos, t);
-
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        // raccrocher le lasso au joueur et lui donner le poissson + qte? ;; suite du code temporaire
-        //animation?
         canvasLasso.SetParent(null);
         canvasLasso.position = Vector3.zero;
         Rope.Instance.endPoint = Rope.Instance.originalEndPoint;
-        if(!TutoManager.Instance.tuto)
-        {
-            if (fish.IsBadForToday)
-            {
-                EffectManager.Instance.ChooseEffect(fish.FishEffect);
-                EffectManager.Instance.ApplyEffect();
-            }
-            Shop.Instance.playerMoney += fish.data.price * Shop.Instance.moneyMultiplier;
-
-
-            Destroy(fish.gameObject);
-            ThrowLasso.Instance.hasLasso();
-        }
-        else
-        {
-            DialogueManager.Instance.StartDialogue(caughtDialogue, true);
-        }
-
-        Debug.Log("--- TENTATIVE D'INSTANCIATION FORCEE ---");
-        if (fishPrefab == null) Debug.LogError("ERREUR : fishPrefab est VIDE dans l'inspecteur !");
-        if (spawnPoint == null) Debug.LogError("ERREUR : spawnPoint est VIDE dans l'inspecteur !");
-        if (fishPrefab != null && spawnPoint != null)
-        {
-            // 1. On instancie le poisson dans le monde
-            GameObject nouveauPoisson = Instantiate(fishPrefab, spawnPoint.position, spawnPoint.rotation);
-
-            // 2. On le définit comme enfant du spawnPoint de manière sécurisée
-            nouveauPoisson.transform.SetParent(spawnPoint);
-            nouveauPoisson.transform.localPosition = Vector3.zero;
-
-            Debug.Log("Succès ! Le poisson est maintenant l'enfant de : " + spawnPoint.name);
-        }
-        // =================================================================
 
         if (!TutoManager.Instance.tuto)
         {
-            Debug.Log("Mode Hors-Tutoriel détecté.");
-            EffectManager.Instance.ChooseEffect(fish.FishEffect);
+            // Stocke l'effet pour la prochaine journée
+            if (DayManager.Instance.badFishEffects.TryGetValue(fish.data.id, out string effect))
+                EffectManager.Instance.ChooseEffect(effect);
+
             Shop.Instance.playerMoney += fish.data.price * Shop.Instance.moneyMultiplier;
+
+            if (fishPrefab != null && spawnPoint != null)
+            {
+                GameObject nouveauPoisson = Instantiate(fishPrefab, spawnPoint.position, spawnPoint.rotation);
+                nouveauPoisson.transform.SetParent(spawnPoint);
+                nouveauPoisson.transform.localPosition = Vector3.zero;
+            }
+
             Destroy(fish.gameObject);
             ThrowLasso.Instance.hasLasso();
         }
         else
         {
-            Debug.Log("Mode Tutoriel détecté.");
             DialogueManager.Instance.StartDialogue(caughtDialogue, true);
         }
 
         visual.enabled = true;
-        //DayManager.Instance.actualThrow--;
         DayManager.Instance.fishCaught++;
         DayManager.Instance.CountdownThrow();
-
     }
 
     public void LaunchMissedThrow(bool water)
