@@ -41,8 +41,6 @@ public class UiGestion : MonoBehaviour
         {
             UpdateFailSlider();
         }
-        UpdateDebuffIcon();
-
     }
 
     private void UpdateFishCountText()
@@ -58,7 +56,7 @@ public class UiGestion : MonoBehaviour
         UpdateFailSlider();
     }
 
-    private void UpdateDebuffIcon()
+    public void UpdateDebuffIcon()
     {
         bool[] effects = EffectManager.Instance.effects;
 
