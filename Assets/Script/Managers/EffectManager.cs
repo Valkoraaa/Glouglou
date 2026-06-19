@@ -123,7 +123,10 @@ public class EffectManager : MonoBehaviour
     public void ApplyEffect()
 
     {
-
+        for (int i = 0; i <= effects.Length-1; i++)
+        {
+            Debug.Log(effects[i]);
+        }
         Drunk(effects[0]);
 
         Drug(effects[1]);
@@ -148,7 +151,7 @@ public class EffectManager : MonoBehaviour
 
             effects[i] = false;
 
-        ApplyEffect();
+        
 
     }
 

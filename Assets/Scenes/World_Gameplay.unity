@@ -13807,7 +13807,7 @@ MonoBehaviour:
   dialogueGoToWork: {fileID: 0}
   windDay: {fileID: 0}
   tpPos: {fileID: 427189726}
-  otherTp: {fileID: 0}
+  otherTp: {fileID: 1629533264}
   isCampTp: 0
   musicSource: {fileID: 1392625502}
   musicBeach: {fileID: 8300000, guid: 26dbb666a646d194a987288d4758bfa2, type: 3}
@@ -28184,6 +28184,10 @@ PrefabInstance:
     - target: {fileID: 2789220459319605105, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2953612433558617607, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3604271844963311478, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: m_Name
