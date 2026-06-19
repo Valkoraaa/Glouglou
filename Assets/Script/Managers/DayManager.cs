@@ -9,7 +9,9 @@ public class DayManager : MonoBehaviour
     public static DayManager Instance { get; private set; }
     [SerializeField] private DialogueData dialogue;
     [SerializeField] private DialogueData lostDialogue;
+    private int dayCount;
     public int numberOfFishToCatch;
+    private int totalFishToCatch;
     public int numberOfFailsAllowed;
     public int fishCaught;
     public int numberOfFails;
@@ -33,11 +35,9 @@ public class DayManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //StartOfDay(); ?
-        //StartCoroutine(DayPassing());
-        //actualThrow = totalThrow;
-
-        //StartOfDay();
+        totalFishToCatch = 7;
+        numberOfFailsAllowed = 7;
+        dayCount = 1;
     }
 
     // Update is called once per frame
@@ -91,14 +91,19 @@ public class DayManager : MonoBehaviour
 
     public void StartOfDay()
     {
+        if(dayCount%3==0 || dayCount ==1)
+        {
+            totalFishToCatch += 1;
+        }
         PauseManager.Instance.canPause = true;
         Debug.Log("Start Of Day");
         DefineBadFish();
         DayEffect();
         //actualThrow = totalThrow;
+        dayCount++;
         numberOfFails = 0;
         fishCaught = 0;
-        numberOfFishToCatch = 10; // a regler
+        numberOfFishToCatch = totalFishToCatch; // a regler
         EffectManager.Instance.ApplyEffect();
         //StartCoroutine(DayPassing());
         isNight = false;
