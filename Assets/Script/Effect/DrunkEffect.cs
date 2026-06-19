@@ -52,7 +52,6 @@ public class DrunkEffect : MonoBehaviour
         float noise = Mathf.PerlinNoise(t, 0f);
         float wave = (Mathf.Sin(t) * 0.5f + 0.5f);
         float blend = Mathf.Lerp(wave, noise, 0.5f) * intensiteGlobale;
-        Debug.Log("blend = " + blend); // juste après le calcul de blend
 
         if (lensDistortion != null)
             lensDistortion.intensity.value = Mathf.Lerp(lensDistortionMin, lensDistortionMax, blend);
