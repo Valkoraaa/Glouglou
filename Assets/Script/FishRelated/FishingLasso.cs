@@ -134,8 +134,10 @@ public class FishingLasso : MonoBehaviour
         {
             // Stocke l'effet pour la prochaine journée
             if (DayManager.Instance.badFishEffects.TryGetValue(fish.data.id, out string effect))
-                EffectManager.Instance.ChooseEffect(effect);
-
+            {
+                if (!EffectManager.Instance.HasActiveEffect())
+                    EffectManager.Instance.ChooseEffect(effect);
+            }
             Shop.Instance.playerMoney += fish.data.price * Shop.Instance.moneyMultiplier;
 
             if (fishPrefab != null && spawnPoint != null)

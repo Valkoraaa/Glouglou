@@ -38,6 +38,12 @@ public class EffectManager : MonoBehaviour
         ThrowLasso.Instance.rb.AddForce(windDirection * windStrength, ForceMode.Force);
     }
 
+    public bool HasActiveEffect()
+    {
+        for (int i = 0; i < effects.Length; i++)
+            if (effects[i]) return true;
+        return false;
+    }
     public void ChooseEffect(string effect)
     {
         switch (effect)
