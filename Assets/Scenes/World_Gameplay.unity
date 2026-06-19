@@ -23148,9 +23148,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1661955495}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.15524824, y: -0.028703008, z: -0.0045127347, w: 0.9874481}
-  m_LocalPosition: {x: 0.32995614, y: -0.2, z: 0.27}
-  m_LocalScale: {x: 1.641076, y: 0.5874718, z: 0.25969902}
+  m_LocalRotation: {x: -0.15524821, y: -0.028703026, z: -0.0045127263, w: 0.98744816}
+  m_LocalPosition: {x: 0.3299561, y: -0.19999695, z: 0.2700195}
+  m_LocalScale: {x: 1.6410767, y: 0.5874718, z: 0.259699}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 161820705}
@@ -28426,7 +28426,7 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1562036057}
     - targetCorrespondingSourceObject: {fileID: 3993218873932648763, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
-      insertIndex: 0
+      insertIndex: -1
       addedObject: {fileID: 1661955496}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3604271844963311478, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
@@ -28896,7 +28896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638f501c91c9d3f46869dbc1bf88deea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutoManager
-  tuto: 0
+  tuto: 1
   dialogueCounter: 0
   endOfDialogue: 0
   fadeFinished: 0
