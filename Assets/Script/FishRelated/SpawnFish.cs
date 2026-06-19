@@ -48,6 +48,8 @@ public class SpawnFish : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
+        ResetFishDatabase();
+
         for (int i = 0; i < fishNumber; i++)
         {
             Fish fishToInstantiate = GetRandomFish();
@@ -63,12 +65,9 @@ public class SpawnFish : MonoBehaviour
             // On force la hauteur du NavMesh
             spawnPos.y = navMeshSurface.position.y;
 
-            Fish instantiated = Instantiate(
-                fishToInstantiate,
-                spawnPos,
-                Quaternion.identity,
-                this.transform
-            );
+            Fish instantiated = Instantiate(fishToInstantiate,spawnPos,Quaternion.identity,this.transform);
+            instantiated.IsBadForToday = fishToInstantiate.IsBadForToday;
+            instantiated.FishEffect = fishToInstantiate.FishEffect;
             GameObject tempAura = Instantiate(aura, new Vector3(instantiated.transform.position.x, instantiated.transform.position.y, instantiated.transform.position.z + 0.1f ), Quaternion.identity, instantiated.transform);
             //tempAura.transform.SetParent(instantiated.transform);
             NavMeshAgent agent = instantiated.GetComponent<NavMeshAgent>();
@@ -78,6 +77,14 @@ public class SpawnFish : MonoBehaviour
             }
             
         }
+    }
+
+    public void ResetFishDatabase()
+    {
+        foreach (var f in fishDatabase.commonFish) { f.IsBadForToday = false; f.FishEffect = "none"; }
+        foreach (var f in fishDatabase.rareFish) { f.IsBadForToday = false; f.FishEffect = "none"; }
+        foreach (var f in fishDatabase.epicFish) { f.IsBadForToday = false; f.FishEffect = "none"; }
+        foreach (var f in fishDatabase.legendaryFish) { f.IsBadForToday = false; f.FishEffect = "none"; }
     }
 
     private Fish GetRandomFish()

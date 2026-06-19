@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LuneDeMer
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   id: 10
-  species: 
+  species: Lune de mer
   currentRarity: 1
-  price: 250
-  icon: {fileID: 0}
+  price: 20
+  icon: {fileID: 21300000, guid: 1921f955590014b41b1093fd001584aa, type: 3}

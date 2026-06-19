@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: requinMarteau
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   id: 0
-  species: 
+  species: Requin marteau
   currentRarity: 0
-  price: 0
-  icon: {fileID: 0}
+  price: 50
+  icon: {fileID: 21300000, guid: 2d65613c93f9b5140906f6d8c9617d78, type: 3}

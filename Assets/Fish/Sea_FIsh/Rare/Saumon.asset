@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Saumon
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   id: 11
-  species: 
+  species: Saumon
   currentRarity: 1
-  price: 250
-  icon: {fileID: 0}
+  price: 20
+  icon: {fileID: 21300000, guid: cb4012f3830f45a42bbfc216a248da7a, type: 3}

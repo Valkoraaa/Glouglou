@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PoissonRuban
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   id: 15
-  species: 
+  species: Poisson Ruban
   currentRarity: 3
-  price: 500
-  icon: {fileID: 0}
+  price: 100
+  icon: {fileID: 21300000, guid: 9365909bb1a998d4bb6cd69a893e5b08, type: 3}
