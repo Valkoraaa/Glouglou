@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speakerName: Directeur
   lines:
-  - text: "Aller courage, entra\xEEne toi sur le poisson qui se trouve au bout du
+  - text: "Aller courage, entra\xEEne-toi sur le poisson qui se trouve au bout du
       pont !"

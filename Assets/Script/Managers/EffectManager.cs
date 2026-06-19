@@ -1,219 +1,115 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
 
 public class EffectManager : MonoBehaviour
 {
-    [Header("Références")]
-    [SerializeField] private RectTransform upExhaust;
-    [SerializeField] private RectTransform downExhaust;
-
+    [Header("Références effets")]
+    [SerializeField] private GameObject drunkEffect;
+    [SerializeField] private GameObject drugEffect;
+    [SerializeField] private GameObject sickEffect;
+    [SerializeField] private GameObject sleepEffect;
     [SerializeField] private GameObject depressionEffect;
     [SerializeField] private GameObject windZone;
 
 
-    [SerializeField] private GameObject player;
-    private float originalThrowForce;
-    public bool[] effects; //more false if more effects
+    public bool[] effects;
     public static EffectManager Instance { get; private set; }
+
     public Vector3 windDirection = Vector3.right;
-    public float windStrength = 2f;
-    public Coroutine exhaustEnumerator;
-
-    [Header("Tests")]
-    public bool activateExhaust;
-    public bool desactivateExhaust;
-    public bool activateWind;
-    public bool activateDrunk;
-    public float exhaustRange = 0.34f;
+    public float windStrength = 4f;
     public bool isWindy;
-    public float lensStrengh;
-    public float chromStrengh;
-    private bool checkForDrunk;
-    [Header("TestsCam")]
-    public Volume volume;
 
-    LensDistortion lens;
-    ChromaticAberration chroma;
-
-
+    private int originalStrength;
 
     void Awake()
     {
         Instance = this;
-        depressionEffect.SetActive(false);
-        effects = new bool[] { false, false, false, false, false };
-        //volume.profile.TryGet(out lens); //drunk effect test
-        //volume.profile.TryGet(out chroma);
+        effects = new bool[] { false, false, false, false, false, false };
     }
 
     private void Start()
     {
-        originalThrowForce = ThrowLasso.Instance.force;
-    }
-
-    public void Update() //temp
-    {
-        if (activateExhaust) { Exhaust(true); }
-        if (desactivateExhaust) { Exhaust(false); }
-        if (activateWind) { Wind(true); }
-        if (activateDrunk) { Drunk(true); }
-
-
-        if (checkForDrunk) { DrunkEffect(); }
+        originalStrength = FishingLasso.Instance.strenght;
     }
 
     void FixedUpdate()
     {
         if (!isWindy) return;
-        ThrowLasso.Instance.rb.AddForce(EffectManager.Instance.windDirection * EffectManager.Instance.windStrength, ForceMode.Force);
+        ThrowLasso.Instance.rb.AddForce(windDirection * windStrength, ForceMode.Force);
     }
-    
-    public void ResetEffect()
+
+    public bool HasActiveEffect()
     {
         for (int i = 0; i < effects.Length; i++)
-        {
-            effects[i] = false;
-        }
-        if(exhaustEnumerator != null)
-            StopCoroutine(exhaustEnumerator);
-        ApplyEffect();
+            if (effects[i]) return true;
+        return false;
     }
     public void ChooseEffect(string effect)
     {
         switch (effect)
         {
-            case "drunk":
-                effects[1] = true;
-                Debug.Log("drunk");
-                break;
-            case "exhaust":
-                effects[2] = true;
-                Debug.Log("exhaust");
-                break;
-            case "sick":
-                effects[3] = true;
-                Debug.Log("sick");
-                break;
-            case "depression":
-                effects[4] = true;
-                break;
-            case "none":
-                Debug.Log("no effect");
-
-                break;
-            default:
-                Debug.Log("default");
-
-                break;
+            case "drunk": effects[0] = true; Debug.Log("drunk"); break;
+            case "drug": effects[1] = true; Debug.Log("drug"); break;
+            case "sick": effects[2] = true; Debug.Log("sick"); break;
+            case "sleep": effects[3] = true; Debug.Log("sleep"); break;
+            case "nostrength": effects[4] = true; Debug.Log("nostrength"); break;
+            case "depression": effects[5] = true; Debug.Log("depression"); break;
+            case "none": Debug.Log("no effect"); break;
+            default: Debug.Log("default"); break;
         }
     }
 
     public void ApplyEffect()
     {
-        /*for (int i = 0; i < effects.Length; i++)
-        {
-            if (effects[i])
-            {
-                Debug.Log("Effect " + i + " is active");
-                //appeler un void qui active l effet
-            }
-        }*/
-        Wind(effects[0]);
-        Drunk(effects[1]);
-        Exhaust(effects[2]);
-        Sick(effects[3]);
-        Depression(effects[4]);
+        Drunk(effects[0]);
+        Drug(effects[1]);
+        Sick(effects[2]);
+        Sleep(effects[3]);
+        NoStrength(effects[4]);
+        Depression(effects[5]);
     }
 
-    private void Wind(bool wantToActivate)
+    public void ResetEffect()
+    {
+        for (int i = 0; i < effects.Length; i++)
+            effects[i] = false;
+        ApplyEffect();
+    }
+
+    public void SetWind(bool wantToActivate)
     {
         isWindy = wantToActivate;
-        activateWind = false;
         windZone.SetActive(wantToActivate);
     }
 
-    private void Drunk (bool wantToActivate)
+    private void Drunk(bool wantToActivate)
     {
-        if(wantToActivate) { checkForDrunk = true; }
-        else { checkForDrunk = false; }
-        //a ameliorer
+        drunkEffect.SetActive(wantToActivate);
     }
 
-    public void Exhaust (bool wantToActivate)
+    private void Drug(bool wantToActivate)
     {
-        if (upExhaust == null)
-        {
-            return;
-        }
-        else
-        {
-            exhaustEnumerator = StartCoroutine(EyesClosing(wantToActivate));
-        }
-        activateExhaust = false;
-        desactivateExhaust = false;
-        //tous les poissons sont les memes?
+        drugEffect.SetActive(wantToActivate);
     }
 
-    private void Sick (bool wantToActivate)
+    private void Sick(bool wantToActivate)
     {
-        if (wantToActivate) { ThrowLasso.Instance.force = ThrowLasso.Instance.force * 0.66f; }
-        else { ThrowLasso.Instance.force = originalThrowForce; }
-        //leger canvas vert?
+        sickEffect.SetActive(wantToActivate);
     }
 
+    private void Sleep(bool wantToActivate)
+    {
+        sleepEffect.SetActive(wantToActivate);
+    }
 
     private void Depression(bool wantToActivate)
     {
-        if(wantToActivate)
-        {
-            depressionEffect.SetActive(true);   
-        }
+        depressionEffect.SetActive(wantToActivate);
     }
 
-    private IEnumerator EyesClosing(bool opening)
+    private void NoStrength(bool wantToActivate)
     {
-
-        float duration = 1f;
-        float elapsed = 0f;
-        float actualRange = exhaustRange;
-
-        Vector2 startPosUp = upExhaust.anchoredPosition;
-        Vector2 startPosDown = downExhaust.anchoredPosition;
-        if (!opening) { actualRange = exhaustRange * 3; }
-        float targetYUp = -Screen.height * actualRange;
-        float targetYDown = Screen.height * actualRange;
-        Vector2 targetPosUp = new Vector2(startPosUp.x, targetYUp);
-        Vector2 targetPosDown = new Vector2(startPosDown.x, targetYDown);
-
-        while (elapsed < duration)
-        {
-            float t = elapsed / duration;
-            upExhaust.anchoredPosition = Vector2.Lerp(startPosUp, targetPosUp, t);
-            downExhaust.anchoredPosition = Vector2.Lerp(startPosDown, targetPosDown, t);
-
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        upExhaust.anchoredPosition = targetPosUp;
-        downExhaust.anchoredPosition = targetPosDown;
-        //rajouter un canvas noir avec l opacite qui varie?
-        yield return new WaitForSeconds(2f);
-        StartCoroutine(EyesClosing(false));
-        while (true)
-        {
-            yield return new WaitForSeconds(Random.value * 20);
-            StartCoroutine(EyesClosing(true));
-        }
-    }
-
-    private void DrunkEffect() //a ameliorer
-    {
-        float t = Time.time;
-        lens.intensity.value = Mathf.Sin(t * 0.7f) * lensStrengh;
-        chroma.intensity.value = Mathf.Abs(Mathf.Sin(t * 0.9f)) * chromStrengh;
+        if (wantToActivate) FishingLasso.Instance.strenght = 1;
+        else FishingLasso.Instance.strenght = originalStrength;
     }
 }

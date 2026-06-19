@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DayManager : MonoBehaviour
@@ -19,12 +20,10 @@ public class DayManager : MonoBehaviour
     [SerializeField] 
     private FishDatabaseSO fishDatabaseSO;
 
-    [SerializeField]
-    private GameObject BadFishOneDisplay;
-    [SerializeField]
-    private GameObject BadFishTwoDisplay;
+    [SerializeField] private GameObject[] badFishDisplays; 
     public bool isNight;
     [SerializeField] private AudioSource windAudioSource;
+    public Dictionary<int, string> badFishEffects = new Dictionary<int, string>();
 
 
 
@@ -100,6 +99,7 @@ public class DayManager : MonoBehaviour
         DefineBadFish();
         DayEffect();
         //actualThrow = totalThrow;
+        FishingLasso.Instance.fishNet.Clear();
         dayCount++;
         numberOfFails = 0;
         fishCaught = 0;
@@ -107,19 +107,19 @@ public class DayManager : MonoBehaviour
         EffectManager.Instance.ApplyEffect();
         //StartCoroutine(DayPassing());
         isNight = false;
-
-        DayEffect();
-        EffectManager.Instance.ApplyEffect();
         SpawnFish.Instance.ResetFishDatabase(); // 1. reset
         DefineBadFish();                        // 2. marque les prefabs
         SpawnFish.Instance.SpawningFish();      // 3. spawn + copie
+
+        DayEffect();
+        EffectManager.Instance.ApplyEffect();
     }
 
     private void DayEffect()
     {
         if (Random.value <= 0.33f)
         {
-            EffectManager.Instance.effects[0] = true;
+            EffectManager.Instance.SetWind(true);
             Debug.Log("wind");
             windAudioSource.Play();
         }
@@ -131,12 +131,14 @@ public class DayManager : MonoBehaviour
         //DialogueManager.Instance.StartDialogue(lostDialogue, false);
         GameOver.Instance.OnGameOver();
     }
-
-    private void DefineBadFish()
+    public void DefineBadFish()
     {
-        string[] possibleEffects = { "drunk", "exhaust", "sick", "depression" };
+        badFishEffects.Clear();
+        string[] possibleEffects = { "drunk", "drug", "sick", "sleep", "nostrength", "depression" };
+        HashSet<int> alreadyChosen = new HashSet<int>();
+        int i = 0;
 
-        for (int i = 0; i < numberOfBadFish; i++)
+        while (i < numberOfBadFish)
         {
             int chooseRarity = Random.Range(0, 4);
             List<Fish> rarityList = chooseRarity switch
@@ -146,16 +148,22 @@ public class DayManager : MonoBehaviour
                 2 => fishDatabaseSO.epicFish,
                 _ => fishDatabaseSO.legendaryFish
             };
-            ChangeStatus(rarityList, possibleEffects);
-        }
-    }
 
-    private void ChangeStatus(List<Fish> rarityList, string[] possibleEffects)
-    {
-        int chooseFish = Random.Range(0, rarityList.Count);
-        string chosenEffect = possibleEffects[Random.Range(0, possibleEffects.Length)];
-        rarityList[chooseFish].IsBadForToday = true;
-        rarityList[chooseFish].FishEffect = chosenEffect;
-        Debug.Log($"{rarityList[chooseFish].data.species} → effet : {chosenEffect}");
+            Fish candidate = rarityList[Random.Range(0, rarityList.Count)];
+            if (!alreadyChosen.Contains(candidate.data.id))
+            {
+                string chosenEffect = possibleEffects[Random.Range(0, possibleEffects.Length)];
+                badFishEffects[candidate.data.id] = chosenEffect;
+                alreadyChosen.Add(candidate.data.id);
+                Debug.Log($"{candidate.data.species} → effet : {chosenEffect}");
+
+                if (i < badFishDisplays.Length && badFishDisplays[i] != null)
+                {
+                    SpriteRenderer sr = badFishDisplays[i].GetComponent<SpriteRenderer>();
+                    if (sr != null) sr.sprite = candidate.data.icon;
+                }
+                i++;
+            }
+        }
     }
 }
