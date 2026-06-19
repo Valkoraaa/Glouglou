@@ -22292,6 +22292,13 @@ MonoBehaviour:
   fishCountText: {fileID: 2103825090}
   failSlider: {fileID: 1221071306}
   multText: {fileID: 1681731765}
+  debuffIcon: {fileID: 1834627563}
+  drunkSprite: {fileID: 21300000, guid: 44afab6713d5243459c74e6fbcee1dd7, type: 3}
+  drugSprite: {fileID: 21300000, guid: c7c6a6071bbdd3646a885ebee07582d4, type: 3}
+  sickSprite: {fileID: 21300000, guid: e8cf74602cc89ca43abf875a79e19c74, type: 3}
+  sleepSprite: {fileID: 21300000, guid: 32eb8ea5c2395384bb2bfef3b7c0cb4b, type: 3}
+  noStrengthSprite: {fileID: 21300000, guid: 21b221ccdbd90d2468f44b3946a7b055, type: 3}
+  depressionSprite: {fileID: 21300000, guid: 39c254c3bb6d1e545897f60ef167a0af, type: 3}
 --- !u!1 &1519762492
 GameObject:
   m_ObjectHideFlags: 0
