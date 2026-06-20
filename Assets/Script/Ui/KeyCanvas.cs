@@ -18,6 +18,7 @@ public class KeyCanvas : MonoBehaviour
     public void OnBackClick()
     {
         canvas.SetActive(false);
+        PauseManager.Instance.canPause = true;
         Character.Instance.canMove = true;
         Character.Instance.stopChara = false;
         Character.Instance.canMoveCam = true;
