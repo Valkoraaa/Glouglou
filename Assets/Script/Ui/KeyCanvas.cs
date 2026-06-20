@@ -13,7 +13,7 @@ public class KeyCanvas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Keyboard.current.escapeKey.wasPressedThisFrame)
+        if(Keyboard.current.escapeKey.wasPressedThisFrame && canvas.activeSelf)
         {
             OnBackClick();
         }
@@ -21,12 +21,13 @@ public class KeyCanvas : MonoBehaviour
 
     public void OnBackClick()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         canvas.SetActive(false);
         PauseManager.Instance.canPause = true;
         Character.Instance.canMove = true;
         Character.Instance.stopChara = false;
         Character.Instance.canMoveCam = true;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        
     }
 }

@@ -197,6 +197,13 @@ public class DayManager : MonoBehaviour
         DayEffect();
 
         //actualThrow = totalThrow;
+        foreach (GameObject fish in FishingLasso.Instance.fishNet)
+        {
+            if (fish != null)
+            {
+                Destroy(fish);
+            }
+        }
 
         FishingLasso.Instance.fishNet.Clear();
 
