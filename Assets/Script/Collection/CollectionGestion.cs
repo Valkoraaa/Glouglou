@@ -81,6 +81,10 @@ public class CollectionGestion : MonoBehaviour
     public void DisplayFishInfo(FishData data)
     {
         fishImage.sprite = data.icon;
+        fishImage.color = Color.white;
+        fishImage.preserveAspect = true;
+        RectTransform rt = fishImage.GetComponent<RectTransform>();
+        rt.sizeDelta = new Vector2(200f, 200f); 
         fishName.text = "Nom : " + data.species;
         fishSize.text = "Taille : " + FishingBookManager.Instance.GetBestSize(data.id).ToString("F2") + " cm";
         fishWeight.text = "Poids : " + FishingBookManager.Instance.GetBestWeight(data.id).ToString("F2") + " kg";

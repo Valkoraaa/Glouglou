@@ -7377,7 +7377,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 479274636}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -13112,7 +13112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4363949066925832875, guid: 1895a44e91ddc73449406df9147effd0, type: 3}
       propertyPath: zoneSize.x
-      value: 129.5
+      value: 70.1
       objectReference: {fileID: 0}
     - target: {fileID: 4363949066925832875, guid: 1895a44e91ddc73449406df9147effd0, type: 3}
       propertyPath: zoneSize.z
@@ -13136,7 +13136,7 @@ PrefabInstance:
       objectReference: {fileID: 23800000, guid: a878539a0ce1b4f488a28882f14c63b9, type: 2}
     - target: {fileID: 5529720455534624902, guid: 1895a44e91ddc73449406df9147effd0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1768.2
+      value: 1754.35
       objectReference: {fileID: 0}
     - target: {fileID: 5529720455534624902, guid: 1895a44e91ddc73449406df9147effd0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -13144,7 +13144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5529720455534624902, guid: 1895a44e91ddc73449406df9147effd0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1095.4
+      value: 1095.58
       objectReference: {fileID: 0}
     - target: {fileID: 5529720455534624902, guid: 1895a44e91ddc73449406df9147effd0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13963,6 +13963,7 @@ MonoBehaviour:
   musicBeach: {fileID: 8300000, guid: 26dbb666a646d194a987288d4758bfa2, type: 3}
   musicCamp: {fileID: 8300000, guid: 2056d24da916d0a47b9f8e9ee1f6c56c, type: 3}
   duration: 0
+  dayMusicAudioSource: {fileID: 1392625502}
 --- !u!65 &706977200
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20833,7 +20834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1120097518
 Transform:
   m_ObjectHideFlags: 0
@@ -21885,6 +21886,7 @@ MonoBehaviour:
   musicBeach: {fileID: 8300000, guid: 26dbb666a646d194a987288d4758bfa2, type: 3}
   musicCamp: {fileID: 8300000, guid: 2056d24da916d0a47b9f8e9ee1f6c56c, type: 3}
   duration: 1.5
+  dayMusicAudioSource: {fileID: 1392625502}
 --- !u!65 &1392625499
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28547,7 +28549,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: a9cdf26703df292408032cd164c4f1cf, type: 3}
     - target: {fileID: 5995406920284088990, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1729
+      value: 1726.26
       objectReference: {fileID: 0}
     - target: {fileID: 5995406920284088990, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: m_LocalPosition.y
@@ -28595,7 +28597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8248928185420256525, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: strenght
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8248928185420256525, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: arcHeight
@@ -29007,8 +29009,8 @@ Transform:
   m_GameObject: {fileID: 1766579419}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7097335, z: -0, w: 0.70447034}
-  m_LocalPosition: {x: 2.611189, y: -0.3, z: 0.28094503}
-  m_LocalScale: {x: 24.645147, y: 1, z: 12.765823}
+  m_LocalPosition: {x: -0.3, y: -0.3, z: 0.3}
+  m_LocalScale: {x: 24.645147, y: 1, z: 6.73}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 304794157}
