@@ -7,10 +7,11 @@ public class UiGestion : MonoBehaviour
 {
     public static UiGestion Instance;
     [SerializeField] private TextMeshProUGUI fishCountText;
+    public TextMeshProUGUI moneyText;
     [SerializeField] private Slider failSlider;
     public TextMeshProUGUI multText;
 
-    [Header("Icône débuff")]
+    [Header("Icï¿½ne dï¿½buff")]
     [SerializeField] private Image debuffIcon;
     [SerializeField] private Sprite drunkSprite;
     [SerializeField] private Sprite drugSprite;
@@ -28,10 +29,13 @@ public class UiGestion : MonoBehaviour
         UpdateFishCountText();
         InitFailSlider();
         debuffIcon.gameObject.SetActive(false);
+        moneyText.text = "0";
+        fishCountText.text = "0";
     }
 
     void Update()
     {
+        moneyText.text = Shop.Instance.playerMoney.ToString();
         if (DayManager.Instance.fishCaught != lastFishCaught)
         {
             UpdateFishCountText();

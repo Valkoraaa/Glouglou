@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: cherax quadricarinatus
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   id: 11
-  species: Cherax quadricarinatus
+  species: "\xC9crevisse \xE0 pinces bleues"
   currentRarity: 2
   price: 20
   icon: {fileID: 21300000, guid: ade8f84c854e0a04d8054f9f58aa76d1, type: 3}

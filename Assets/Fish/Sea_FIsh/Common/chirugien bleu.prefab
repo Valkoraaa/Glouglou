@@ -141,15 +141,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af443ed027608c4f9d3da032d35f7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fish
-  size: 28
-  weight: 600
-  temporaryEffect: 
-  permanentEffect: 
-  isPermanent: 0
-  speed: 0
+  size: 0.28
+  weight: 0.6
+  fishEffect: 
   isBadForToday: 0
-  baseMaterial: {fileID: 0}
-  HookedMaterial: {fileID: 0}
   data: {fileID: 11400000, guid: 0aae8d2f204887d4cb00e364c66e36ea, type: 2}
 --- !u!135 &-515182708861955028
 SphereCollider:

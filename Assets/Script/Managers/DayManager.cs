@@ -70,9 +70,9 @@ public class DayManager : MonoBehaviour
 
     {
 
-        totalFishToCatch = 7;
+        totalFishToCatch = 6;
 
-        numberOfFailsAllowed = 7;
+        numberOfFailsAllowed = 6;
 
         dayCount = 1;
 
@@ -106,7 +106,7 @@ public class DayManager : MonoBehaviour
 
     {
 
-        if ((numberOfFails >= numberOfFailsAllowed && !TutoManager.Instance.tuto) || fishCaught >= numberOfFishToCatch && !TutoManager.Instance.tuto) //changer numberOfFish... en nombre de rat�
+        if ((numberOfFails >= numberOfFailsAllowed && !TutoManager.Instance.tuto) || fishCaught >= numberOfFishToCatch && !TutoManager.Instance.tuto && !isNight) //changer numberOfFish... en nombre de rat�
 
         {
 
@@ -225,7 +225,13 @@ public class DayManager : MonoBehaviour
         DayEffect();
 
         EffectManager.Instance.ApplyEffect();
+        UiGestion.Instance.UpdateDebuffIcon();
+        if (!EffectManager.Instance.HasActiveEffect())
+            TriggerOutCamping.Instance.dayMusicAudioSource.Play();
+        else
+            TriggerOutCamping.Instance.dayMusicAudioSource.Stop();
         EffectManager.Instance.ResetEffect();
+
 
     }
 

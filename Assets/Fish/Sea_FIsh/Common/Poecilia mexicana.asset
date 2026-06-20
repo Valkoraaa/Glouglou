@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Poecilia mexicana
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   id: 24
-  species: Poecilia mexicana
+  species: Molly mexicain
   currentRarity: 0
   price: 10
   icon: {fileID: 21300000, guid: 6bcc0180cb528cf45accaf08ab1ac513, type: 3}

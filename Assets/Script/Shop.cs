@@ -13,6 +13,7 @@ public class Shop : MonoBehaviour
     private MarchandController marchandController;
     public MarchandController MarchandController => marchandController;
     public float playerMoney;
+    public float playerStackMoney;
     public float moneyMultiplier = 1;
     [SerializeField] private AudioClip cashClip;
     [SerializeField] private AudioSource audioSource;
@@ -91,7 +92,7 @@ public class Shop : MonoBehaviour
         {
             playerMoney -= priceForce;
             FishingLasso.Instance.strenght += 1;
-            priceForce += 50;
+            priceForce += priceForce;
             forceText.text = priceForce.ToString();
             marchandController.AskEmote(EmoteType.SautDeJoie);
 
@@ -108,7 +109,7 @@ public class Shop : MonoBehaviour
             moneyMultiplier += 0.3f;
             UiGestion.Instance.multText.text = ($"x{moneyMultiplier.ToString()}");
             playerMoney -= priceMoney;
-            priceMoney += 50;
+            priceMoney += 75;
             moneyText.text = priceMoney.ToString();
             marchandController.AskEmote(EmoteType.SautDeJoie);
             OpenShop(false);

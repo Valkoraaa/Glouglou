@@ -90,8 +90,10 @@ public class Character : MonoBehaviour
 
     private void HandleMovement()
     {
-        move = transform.right * moveInput.x + transform.forward * moveInput.y;
-        
+        if (moveInput != Vector2.zero)
+            move = transform.right * moveInput.x + transform.forward * moveInput.y;
+        else
+            move = Vector3.zero; // ← important
     }
 
     private void HandleGravity(bool hasToStop)

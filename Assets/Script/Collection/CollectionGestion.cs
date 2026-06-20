@@ -7,8 +7,9 @@ using Cursor = UnityEngine.Cursor;
 
 public class CollectionGestion : MonoBehaviour
 {
+    public static CollectionGestion Instance;
     [SerializeField]
-    private Canvas collectionCanva;
+    public Canvas collectionCanva;
     [SerializeField] private DisplayScrollCollection displayScrollCollection;
 
     [SerializeField] private Image fishImage;
@@ -20,13 +21,14 @@ public class CollectionGestion : MonoBehaviour
 
     void Start()
     {
+        Instance = this;
         collectionCanva.gameObject.SetActive(false);
         characterRigidbody = Character.Instance.gameObject.GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        if (Keyboard.current.tabKey.wasPressedThisFrame)
+        if (Keyboard.current.tabKey.wasPressedThisFrame && PauseManager.Instance.canPause && !DialogueManager.Instance.isInDialogue && !Character.Instance.cinematic)
         {
             if (collectionCanva.gameObject.activeSelf)
             {
@@ -51,11 +53,9 @@ public class CollectionGestion : MonoBehaviour
 
         Cursor.lockState = open ? CursorLockMode.None : CursorLockMode.Locked;
 
-        if (Character.Instance != null)
-        {
-            Character.Instance.canMove = !open;
-            Character.Instance.canMoveCam = !open;
-        }
+        Character.Instance.canMove = !open;
+        Character.Instance.canMoveCam = !open;
+        ThrowLasso.Instance.canThrow = !open;
     }
 
     // Dans CollectionGestion.cs
@@ -81,6 +81,10 @@ public class CollectionGestion : MonoBehaviour
     public void DisplayFishInfo(FishData data)
     {
         fishImage.sprite = data.icon;
+        fishImage.color = Color.white;
+        fishImage.preserveAspect = true;
+        RectTransform rt = fishImage.GetComponent<RectTransform>();
+        rt.sizeDelta = new Vector2(200f, 200f); 
         fishName.text = "Nom : " + data.species;
         fishSize.text = "Taille : " + FishingBookManager.Instance.GetBestSize(data.id).ToString("F2") + " cm";
         fishWeight.text = "Poids : " + FishingBookManager.Instance.GetBestWeight(data.id).ToString("F2") + " kg";

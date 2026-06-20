@@ -572,6 +572,7 @@ MonoBehaviour:
   test: 0
   dialogue: {fileID: 11400000, guid: 100ef50c8450c9b4db0fcca396e24ff6, type: 2}
   nightDialogue: {fileID: 0}
+  soldDialogue: {fileID: 0}
   isMerchant: 0
   isDirector: 1
 --- !u!1 &485947069
@@ -1072,7 +1073,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 7bca66c88e8d666479bafdb3050913e0, type: 3}
     - target: {fileID: 8992778756803736961, guid: 52e1f1a212d581649a6b130a5307112f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1843,7 +1844,7 @@ RectTransform:
   m_Father: {fileID: 1687948555}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.3, y: 52.9}
   m_SizeDelta: {x: 15.0093, y: -90.6885}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2211,7 +2212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1832423846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2273,7 +2274,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &1832423849
 RectTransform:
@@ -2372,7 +2373,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ecf25e62b54e7d49baf5f72f3e993f2, type: 2}
   - {fileID: 11400000, guid: 0c34f89ca1234ba4aaa128acfea6d218, type: 2}
   - {fileID: 11400000, guid: e57b4c256a816ee429e82d744774aa8b, type: 2}
-  - {fileID: 11400000, guid: 8c46d3f0d9d4392408ec45a07562208d, type: 2}
   - {fileID: 11400000, guid: e50017a428ebfd64a8c058199534c25d, type: 2}
   - {fileID: 11400000, guid: 856e66d931318fa418c379c59ae8c879, type: 2}
   - {fileID: 11400000, guid: 468cb55f7c50be34790034bf62f2c733, type: 2}

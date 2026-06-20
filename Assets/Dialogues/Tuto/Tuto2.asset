@@ -16,10 +16,8 @@ MonoBehaviour:
   lines:
   - text: "Pour t'entra\xEEner, essaie d'aller p\xEAcher un poisson derri\xE8re toi
       !"
-  - text: "En bas \xE0 gauche se trouve ton compteur de lanc\xE9s, il se videra d\xE8s
-      que ton lasso finit \xE0 la mer sans rapporter de poisson."
-  - text: "En bas \xE0 droite se trouve ton filet, il t'indiquera lorsque l'objectif
-      sera atteint."
+  - text: "En bas \xE0 gauche se trouvera ton compteur de lanc\xE9s, il se videra
+      d\xE8s que ton lasso finit \xE0 la mer sans rapporter de poisson."
   - text: "Ne t'inqui\xE8te pas, pour aujourd'hui tu peux rater autant que tu veux
       !"
   - text: Aller, bonne chance !

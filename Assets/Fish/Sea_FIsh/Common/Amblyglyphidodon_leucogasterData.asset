@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Amblyglyphidodon_leucogasterData
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   id: 1
-  species: Amblyglyphidodon leucogaster
+  species: Demoiselle a ventre jaune
   currentRarity: 0
   price: 10
   icon: {fileID: 21300000, guid: 82e9c3f7e2f3270438aae735d0825e05, type: 3}
