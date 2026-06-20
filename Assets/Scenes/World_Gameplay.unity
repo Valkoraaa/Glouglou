@@ -7376,7 +7376,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 479274636}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -13962,6 +13962,7 @@ MonoBehaviour:
   musicBeach: {fileID: 8300000, guid: 26dbb666a646d194a987288d4758bfa2, type: 3}
   musicCamp: {fileID: 8300000, guid: 2056d24da916d0a47b9f8e9ee1f6c56c, type: 3}
   duration: 0
+  dayMusicAudioSource: {fileID: 0}
 --- !u!65 &706977200
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20832,7 +20833,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1120097518
 Transform:
   m_ObjectHideFlags: 0
@@ -21884,6 +21885,7 @@ MonoBehaviour:
   musicBeach: {fileID: 8300000, guid: 26dbb666a646d194a987288d4758bfa2, type: 3}
   musicCamp: {fileID: 8300000, guid: 2056d24da916d0a47b9f8e9ee1f6c56c, type: 3}
   duration: 1.5
+  dayMusicAudioSource: {fileID: 1392625502}
 --- !u!65 &1392625499
 BoxCollider:
   m_ObjectHideFlags: 0

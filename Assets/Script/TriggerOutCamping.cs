@@ -18,9 +18,16 @@ public class TriggerOutCamping : MonoBehaviour
     [SerializeField] private AudioClip musicBeach;
     [SerializeField] private AudioClip musicCamp;
     [SerializeField] private float duration;
+    public AudioSource dayMusicAudioSource; 
+    public static TriggerOutCamping Instance { get; private set; }
+
     void Start()
     {
         
+    }
+    private void Awake()
+    {
+        Instance = this;
     }
 
     private void OnTriggerEnter(Collider other)
