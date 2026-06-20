@@ -15,6 +15,7 @@ public class ThrowLasso : MonoBehaviour
     private BoxCollider boxCollider;
     private Rigidbody rbPlayer;
     private CharacterController chaControll;
+    private bool waitLag = false;
 
     [Header("Paramètres")]
     public float force = 15f;
@@ -25,11 +26,12 @@ public class ThrowLasso : MonoBehaviour
     private bool isChild;
     public static ThrowLasso Instance { get; private set; }
     private int layerMask;
-    [SerializeField] private AudioSource lassoAudio;
+    public AudioSource lassoAudio;
     [SerializeField] private AudioClip plouf1;
     [SerializeField] private AudioClip plouf2;
     [SerializeField] private AudioClip throw1;
     [SerializeField] private AudioClip throw2;
+    public AudioClip getLasso;
 
     void Awake()
     {
@@ -46,7 +48,7 @@ public class ThrowLasso : MonoBehaviour
         //canThrow = true;
         chaControll = GetComponent<CharacterController>();
         layerMask = ~LayerMask.GetMask("Bordure", "Player");
-
+        StartCoroutine(WaitForLag());
         // ANIMATION : Sécurité si tu oublies de glisser l'animator dans l'inspecteur
         if (animator == null)
         {
@@ -56,7 +58,7 @@ public class ThrowLasso : MonoBehaviour
 
     void Update()
     {
-        if (chaControll.isGrounded && !DialogueManager.Instance.isInDialogue && !Character.Instance.cinematic) { canThrow = true; }
+        if (chaControll.isGrounded && !DialogueManager.Instance.isInDialogue && !Character.Instance.cinematic && waitLag) { canThrow = true; }
         else { canThrow = false; }
 
         // if (Keyboard.current.rKey.wasPressedThisFrame) //temp
@@ -193,6 +195,12 @@ public class ThrowLasso : MonoBehaviour
             FishingLasso.Instance.LaunchMissedThrow(false);
         }
         
+    }
+
+    private IEnumerator WaitForLag()
+    {
+        yield return new WaitForSeconds(1);
+        waitLag = true;
     }
 
 }

@@ -160,6 +160,7 @@ public class FishingLasso : MonoBehaviour
         visual.enabled = true;
         DayManager.Instance.fishCaught++;
         DayManager.Instance.CountdownThrow();
+        ThrowLasso.Instance.lassoAudio.PlayOneShot(ThrowLasso.Instance.getLasso);
     }
 
     public void LaunchMissedThrow(bool water)
@@ -200,7 +201,7 @@ public class FishingLasso : MonoBehaviour
             DayManager.Instance.numberOfFails++;
             DayManager.Instance.CountdownThrow();
         }
-        
+        ThrowLasso.Instance.lassoAudio.PlayOneShot(ThrowLasso.Instance.getLasso);
         //smoother way to get the lasso back in hand?
     }
 }

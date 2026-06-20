@@ -572,6 +572,7 @@ MonoBehaviour:
   test: 0
   dialogue: {fileID: 11400000, guid: 100ef50c8450c9b4db0fcca396e24ff6, type: 2}
   nightDialogue: {fileID: 0}
+  soldDialogue: {fileID: 0}
   isMerchant: 0
   isDirector: 1
 --- !u!1 &485947069
