@@ -28433,7 +28433,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: a9cdf26703df292408032cd164c4f1cf, type: 3}
     - target: {fileID: 5995406920284088990, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1729
+      value: 1726.26
       objectReference: {fileID: 0}
     - target: {fileID: 5995406920284088990, guid: 8381b2b3c329dcd47bf6b791e51edbcf, type: 3}
       propertyPath: m_LocalPosition.y
@@ -29038,7 +29038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638f501c91c9d3f46869dbc1bf88deea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutoManager
-  tuto: 1
+  tuto: 0
   dialogueCounter: 0
   endOfDialogue: 0
   fadeFinished: 0
