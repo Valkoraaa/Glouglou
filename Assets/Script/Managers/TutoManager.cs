@@ -18,7 +18,7 @@ public class TutoManager : MonoBehaviour
     [SerializeField] private Canvas canvaInGame;
     [SerializeField] private GameObject playerArms;
     [SerializeField] private GameObject canvasKeys;
-
+    [SerializeField] private Transform playerTpTarget;
     [SerializeField] private GameObject director;
     [SerializeField] private GameObject directorTargetPosition;
     [SerializeField] private Animator directorAnimator;
@@ -234,27 +234,26 @@ public class TutoManager : MonoBehaviour
         Character.Instance.canMoveCam = false;
         Character.Instance.stopChara = true;
         fadeFinished = false;
-        UiFadeManager.Instance.FadeTp(directorTargetPosition.transform.position + directorTargetPosition.transform.forward * 7f);
+        UiFadeManager.Instance.FadeTp(playerTpTarget.position);
         yield return new WaitForSeconds(0.5f);
+
         director.transform.position = directorTargetPosition.transform.position;
-        director.transform.rotation = Quaternion.Euler(0, 0, 0);
-        player.transform.rotation = Quaternion.Euler(0, -180, 0);
+        director.transform.rotation = Quaternion.Euler(0, -45, 0);
+
+        player.transform.rotation = Quaternion.Euler(0, 135, 0);
         Character.Instance.xRotation = 0;
         playerCamera.transform.localRotation = Quaternion.Euler(0, 0, 0);
+
         ThrowLasso.Instance.hasLasso();
         Character.Instance.stopChara = true;
         Character.Instance.canMove = false;
         Character.Instance.canMoveCam = false;
         yield return new WaitUntil(() => fadeFinished);
 
-
         DayManager.Instance.isNight = true;
-
-
 
         DialogueManager.Instance.skipIncTuto = false;
         DialogueManager.Instance.StartDialogue(tutoDialogue3, true);
-
     }
 
     private IEnumerator StartTheDay()
