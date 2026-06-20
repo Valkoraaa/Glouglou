@@ -13,6 +13,7 @@ public class Shop : MonoBehaviour
     private MarchandController marchandController;
     public MarchandController MarchandController => marchandController;
     public float playerMoney;
+    public float playerStackMoney;
     public float moneyMultiplier = 1;
     [SerializeField] private AudioClip cashClip;
     [SerializeField] private AudioSource audioSource;

@@ -139,7 +139,7 @@ public class FishingLasso : MonoBehaviour
                 if (!EffectManager.Instance.HasActiveEffect())
                     EffectManager.Instance.ChooseEffect(effect);
             }
-            Shop.Instance.playerMoney += fish.data.price * Shop.Instance.moneyMultiplier;
+            Shop.Instance.playerStackMoney += fish.data.price * Shop.Instance.moneyMultiplier;
 
             if (fishPrefab != null && spawnPoint != null)
             {

@@ -70,9 +70,9 @@ public class DayManager : MonoBehaviour
 
     {
 
-        totalFishToCatch = 7;
+        totalFishToCatch = 6;
 
-        numberOfFailsAllowed = 7;
+        numberOfFailsAllowed = 6;
 
         dayCount = 1;
 

@@ -6,6 +6,7 @@ public class NPCDialogue : MonoBehaviour
     public bool test;
     public DialogueData dialogue;
     [SerializeField] private DialogueData nightDialogue;
+    [SerializeField] private DialogueData soldDialogue;
     private bool canInteract;
     private bool isInDialogue;
     [SerializeField] private bool isMerchant;
@@ -52,7 +53,12 @@ public class NPCDialogue : MonoBehaviour
     {
         DialogueManager.Instance.openShop = isMerchant;
         DialogueManager.Instance.StartDialogue(dialogue, isDirector);
-        if (isDirector && DayManager.Instance.isNight)
+        if(isDirector && Shop.Instance.playerStackMoney>0)
+        {
+            Shop.Instance.playerMoney += Shop.Instance.playerStackMoney;
+            DialogueManager.Instance.StartDialogue(soldDialogue, isDirector);
+        }
+        else if (isDirector && DayManager.Instance.isNight)
         {
             DialogueManager.Instance.StartDialogue(nightDialogue, isDirector);
         }

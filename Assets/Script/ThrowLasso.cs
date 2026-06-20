@@ -59,12 +59,12 @@ public class ThrowLasso : MonoBehaviour
         if (chaControll.isGrounded && !DialogueManager.Instance.isInDialogue && !Character.Instance.cinematic) { canThrow = true; }
         else { canThrow = false; }
 
-        if (Keyboard.current.rKey.wasPressedThisFrame) //temp
-        {
-            hasLasso();
-            // Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            // Character.Instance.canMove = true;
-        }
+        // if (Keyboard.current.rKey.wasPressedThisFrame) //temp
+        // {
+        //     hasLasso();
+        //     // Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        //     // Character.Instance.canMove = true;
+        // }
         if (!hasThrown && !isChild)
         {
             GetLasso();
@@ -72,7 +72,7 @@ public class ThrowLasso : MonoBehaviour
         }
 
 
-        if (!hasThrown && Keyboard.current.eKey.wasPressedThisFrame && canThrow)//Mouse.current.leftButton.isPressed)
+        if (!hasThrown && Mouse.current.leftButton.wasPressedThisFrame && canThrow && PauseManager.Instance.canPause)//Mouse.current.leftButton.isPressed)
         {
             // ANIMATION : On déclenche le lancer visuel des bras
             if (animator != null)

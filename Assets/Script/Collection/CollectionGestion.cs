@@ -26,7 +26,7 @@ public class CollectionGestion : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.tabKey.wasPressedThisFrame)
+        if (Keyboard.current.tabKey.wasPressedThisFrame && PauseManager.Instance.canPause)
         {
             if (collectionCanva.gameObject.activeSelf)
             {
