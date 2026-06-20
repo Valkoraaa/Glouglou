@@ -233,9 +233,9 @@ public class DayManager : MonoBehaviour
 
         EffectManager.Instance.ApplyEffect();
         UiGestion.Instance.UpdateDebuffIcon();
-        if (!EffectManager.Instance.HasActiveEffect())
+        if (!EffectManager.Instance.HasActiveEffect() && !TriggerOutCamping.Instance.dayMusicAudioSource.isPlaying)
             TriggerOutCamping.Instance.dayMusicAudioSource.Play();
-        else
+        else if (EffectManager.Instance.HasActiveEffect())
             TriggerOutCamping.Instance.dayMusicAudioSource.Stop();
         EffectManager.Instance.ResetEffect();
 
