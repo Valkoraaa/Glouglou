@@ -13962,7 +13962,7 @@ MonoBehaviour:
   musicBeach: {fileID: 8300000, guid: 26dbb666a646d194a987288d4758bfa2, type: 3}
   musicCamp: {fileID: 8300000, guid: 2056d24da916d0a47b9f8e9ee1f6c56c, type: 3}
   duration: 0
-  dayMusicAudioSource: {fileID: 0}
+  dayMusicAudioSource: {fileID: 1392625502}
 --- !u!65 &706977200
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29038,7 +29038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638f501c91c9d3f46869dbc1bf88deea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutoManager
-  tuto: 0
+  tuto: 1
   dialogueCounter: 0
   endOfDialogue: 0
   fadeFinished: 0
