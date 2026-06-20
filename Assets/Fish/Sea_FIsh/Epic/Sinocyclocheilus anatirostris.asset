@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sinocyclocheilus anatirostris
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   id: 34
-  species: Sinocyclocheilus anatirostris
+  species: Poisson a bec de canard
   currentRarity: 2
   price: 50
   icon: {fileID: 21300000, guid: 7a79486aee3649f46909ba10e10b6679, type: 3}

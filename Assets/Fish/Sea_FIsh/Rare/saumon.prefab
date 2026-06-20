@@ -141,12 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af443ed027608c4f9d3da032d35f7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fish
-  size: 80
+  size: 1
   weight: 25
-  temporaryEffect: 
-  permanentEffect: 
-  isPermanent: 0
-  speed: 0
+  fishEffect: 
   isBadForToday: 0
   data: {fileID: 11400000, guid: 468cb55f7c50be34790034bf62f2c733, type: 2}
 --- !u!135 &1701204056391146258

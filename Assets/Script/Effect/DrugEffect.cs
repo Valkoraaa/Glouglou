@@ -6,11 +6,13 @@ public class HueShiftLoop : MonoBehaviour
 {
     public Volume volume;
     public float speed = 20f;
-
     private ColorAdjustments colorAdjustments;
+    private float hue = 0f;
 
     void Start()
     {
+        volume.profile = Instantiate(volume.profile);
+
         if (volume.profile.TryGet<ColorAdjustments>(out colorAdjustments) == false)
         {
             Debug.LogError("Color Adjustments not found in profile!");
@@ -21,8 +23,9 @@ public class HueShiftLoop : MonoBehaviour
     {
         if (colorAdjustments != null)
         {
-            // Mathf.PingPong fait un aller-retour entre 0 et 100 selon le temps
-            colorAdjustments.hueShift.value = Mathf.PingPong(Time.time * speed, 100f);
+            hue += Time.deltaTime * speed;
+            if (hue > 180f) hue = -180f;
+            colorAdjustments.hueShift.value = hue;
         }
     }
 }

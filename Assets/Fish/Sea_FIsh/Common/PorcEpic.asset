@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PorcEpic
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   id: 31
-  species: Porc Epic
+  species: Poisson porc epic
   currentRarity: 0
   price: 10
   icon: {fileID: 21300000, guid: fb0a7835b80a6b042903e79c5f8eeeff, type: 3}
