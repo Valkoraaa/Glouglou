@@ -179,7 +179,7 @@ public class DayManager : MonoBehaviour
     public void StartOfDay()
 
     {
-
+        UiGestion.Instance.failSlider.maxValue = numberOfFailsAllowed;
         if (dayCount % 3 == 0 || dayCount == 1)
 
         {
