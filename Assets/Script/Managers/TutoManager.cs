@@ -18,8 +18,12 @@ public class TutoManager : MonoBehaviour
     [SerializeField] private GameObject playerArms;
     [SerializeField] private GameObject canvasKeys;
 
+    [SerializeField] private GameObject director;
+    [SerializeField] private GameObject directorTargetPosition;
+    [SerializeField] private Animator directorAnimator;
+    private bool tutoDialogue3Started;
 
-
+    private bool isPlayingHi;
     [Header("Dialogues")]
     [SerializeField] private DialogueData tutoDialogue;
     [SerializeField] private DialogueData tutoDialogue2;
@@ -54,9 +58,9 @@ public class TutoManager : MonoBehaviour
 
     private IEnumerator tutoEnumerator()
     {
-        yield return new WaitUntil(() => DialogueManager.Instance != null && DayManager.Instance != null && !SceneManager.GetSceneByName("Opening").isLoaded);
-        
-
+        directorAnimator.SetInteger("AnimationId", 1);
+        yield return new WaitForSeconds(directorAnimator.GetCurrentAnimatorStateInfo(0).length);
+        //yield return new WaitUntil(() => DialogueManager.Instance != null && DayManager.Instance != null && !SceneManager.GetSceneByName("Opening").isLoaded);
         DialogueManager.Instance.StartDialogue(tutoDialogue, true);
         tutoFish.SetActive(true);
         tutoBlock.SetActive(true);
@@ -87,10 +91,13 @@ public class TutoManager : MonoBehaviour
             blockActive = false;
             tutoBlock.SetActive(true);
         }
-        if(endOfDialogue)
+        if (endOfDialogue)
         {
+            Debug.Log("counter: " + dialogueCounter);
             endOfDialogue = false;
-            if(dialogueCounter == 1) { EndOfFirstDialogue();}
+            Debug.Log($"endOfDialogue triggered - counter: {dialogueCounter} - tutoDialogue3Started: {tutoDialogue3Started}");
+
+            if (dialogueCounter == 1) { EndOfFirstDialogue(); }
             else if (dialogueCounter == 2 && hasToBack)
             {
                 hasToBack = false;
@@ -98,6 +105,7 @@ public class TutoManager : MonoBehaviour
             else if (dialogueCounter == 2)
             {
                 canvasKeys.SetActive(true);
+                PauseManager.Instance.canPause = false;
                 Character.Instance.canMove = false;
                 Character.Instance.stopChara = true;
                 Character.Instance.canMoveCam = false;
@@ -106,9 +114,35 @@ public class TutoManager : MonoBehaviour
             }
             else if (dialogueCounter == 3)
             {
-                StartCoroutine(WaitABit());
+                if (tutoDialogue3Started)
+                {
+                    isPlayingHi = true;
+                    directorAnimator.SetInteger("AnimationId", 1);
+                    StartCoroutine(ResetHi());
+                }
+                else
+                {
+                    StartCoroutine(WaitABit());
+                }
             }
         }
+
+        
+
+        if (!isPlayingHi)
+        {
+            if (DialogueManager.Instance.isInDialogue)
+                directorAnimator.SetInteger("AnimationId", 2);
+            else
+                directorAnimator.SetInteger("AnimationId", 0);
+        }
+    }
+
+    private IEnumerator ResetHi()
+    {
+        yield return new WaitForSeconds(0.73f);
+        isPlayingHi = false;
+        StartCoroutine(WaitABit());
     }
 
     public void EndOfFirstDialogue()
@@ -201,12 +235,16 @@ public class TutoManager : MonoBehaviour
 
     private IEnumerator WaitABit()
     {
+        yield return new WaitForSeconds(0.73f);
+        isPlayingHi = false;
         tutoBlock.SetActive(false);
         Character.Instance.canMoveCam = false;
         Character.Instance.stopChara = true;
         fadeFinished = false;
-        UiFadeManager.Instance.FadeTp(new Vector3(1478.14f, 180.59f, 1102.03f)); //mouvement de cam?
+        UiFadeManager.Instance.FadeTp(directorTargetPosition.transform.position + directorTargetPosition.transform.forward * 7f);
         yield return new WaitForSeconds(0.5f);
+        director.transform.position = directorTargetPosition.transform.position;
+        director.transform.rotation = Quaternion.Euler(0, 0, 0);
         player.transform.rotation = Quaternion.Euler(0, -180, 0);
         Character.Instance.xRotation = 0;
         playerCamera.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -218,11 +256,12 @@ public class TutoManager : MonoBehaviour
 
 
         DayManager.Instance.isNight = true;
-        
-        
-       
-                
+
+
+
+        DialogueManager.Instance.skipIncTuto = false;
         DialogueManager.Instance.StartDialogue(tutoDialogue3, true);
+
     }
 
     private IEnumerator StartTheDay()
