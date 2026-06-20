@@ -31,6 +31,7 @@ public class ThrowLasso : MonoBehaviour
     [SerializeField] private AudioClip plouf2;
     [SerializeField] private AudioClip throw1;
     [SerializeField] private AudioClip throw2;
+    [SerializeField] private AudioClip noThrow;
     public AudioClip getLasso;
 
     void Awake()
@@ -74,7 +75,7 @@ public class ThrowLasso : MonoBehaviour
         }
 
 
-        if (!hasThrown && Mouse.current.leftButton.wasPressedThisFrame && canThrow && PauseManager.Instance.canPause)//Mouse.current.leftButton.isPressed)
+        if (!hasThrown && Mouse.current.leftButton.wasPressedThisFrame && canThrow && PauseManager.Instance.canPause && DayManager.Instance.numberOfFails < DayManager.Instance.numberOfFailsAllowed && !CollectionGestion.Instance.collectionCanva.gameObject.activeSelf)//Mouse.current.leftButton.isPressed)
         {
             // ANIMATION : On déclenche le lancer visuel des bras
             if (animator != null)
@@ -119,6 +120,10 @@ public class ThrowLasso : MonoBehaviour
             PlayRandomThrow();
             StartCoroutine(TimerLasso());
             //isFishing = false;
+        }
+        else if (!hasThrown && Mouse.current.leftButton.wasPressedThisFrame && canThrow && PauseManager.Instance.canPause && DayManager.Instance.numberOfFails >= DayManager.Instance.numberOfFailsAllowed && !CollectionGestion.Instance.collectionCanva.gameObject.activeSelf)
+        {
+            lassoAudio.PlayOneShot(noThrow);
         }
 
     }

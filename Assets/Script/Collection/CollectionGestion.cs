@@ -7,8 +7,9 @@ using Cursor = UnityEngine.Cursor;
 
 public class CollectionGestion : MonoBehaviour
 {
+    public static CollectionGestion Instance;
     [SerializeField]
-    private Canvas collectionCanva;
+    public Canvas collectionCanva;
     [SerializeField] private DisplayScrollCollection displayScrollCollection;
 
     [SerializeField] private Image fishImage;
@@ -20,6 +21,7 @@ public class CollectionGestion : MonoBehaviour
 
     void Start()
     {
+        Instance = this;
         collectionCanva.gameObject.SetActive(false);
         characterRigidbody = Character.Instance.gameObject.GetComponent<Rigidbody>();
     }
@@ -51,11 +53,9 @@ public class CollectionGestion : MonoBehaviour
 
         Cursor.lockState = open ? CursorLockMode.None : CursorLockMode.Locked;
 
-        if (Character.Instance != null)
-        {
-            Character.Instance.canMove = !open;
-            Character.Instance.canMoveCam = !open;
-        }
+        Character.Instance.canMove = !open;
+        Character.Instance.canMoveCam = !open;
+        ThrowLasso.Instance.canThrow = !open;
     }
 
     // Dans CollectionGestion.cs

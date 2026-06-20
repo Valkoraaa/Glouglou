@@ -106,7 +106,7 @@ public class DayManager : MonoBehaviour
 
     {
 
-        if ((numberOfFails >= numberOfFailsAllowed && !TutoManager.Instance.tuto) || fishCaught >= numberOfFishToCatch && !TutoManager.Instance.tuto) //changer numberOfFish... en nombre de rat�
+        if ((numberOfFails >= numberOfFailsAllowed && !TutoManager.Instance.tuto) || fishCaught >= numberOfFishToCatch && !TutoManager.Instance.tuto && !isNight) //changer numberOfFish... en nombre de rat�
 
         {
 

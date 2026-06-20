@@ -8393,7 +8393,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: f5b4d58b645a12c42a2fee2a5f8df288, type: 2}
     - target: {fileID: 5893804085302651769, guid: 80b53c04572427e48b436dad6481bd98, type: 3}
       propertyPath: numberOfFails
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5893804085302651769, guid: 80b53c04572427e48b436dad6481bd98, type: 3}
       propertyPath: fishDatabaseSO
