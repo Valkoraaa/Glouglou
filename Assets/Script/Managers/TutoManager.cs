@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -68,11 +69,11 @@ public class TutoManager : MonoBehaviour
 
     void Update()
     {
-        if (DialogueManager.Instance.isInDialogue || Character.Instance.cinematic)
+        if (DialogueManager.Instance.isInDialogue || Character.Instance.cinematic || !PauseManager.Instance.canPause && canvaInGame.gameObject.activeSelf)
         {
             canvaInGame.gameObject.SetActive(false);
         }
-        else
+        else if (!canvaInGame.gameObject.activeSelf && !DialogueManager.Instance.isInDialogue && !Character.Instance.cinematic && PauseManager.Instance.canPause)
         {
             canvaInGame.gameObject.SetActive(true);
         }
@@ -118,7 +119,6 @@ public class TutoManager : MonoBehaviour
                 {
                     isPlayingHi = true;
                     directorAnimator.SetInteger("AnimationId", 1);
-                    StartCoroutine(ResetHi());
                 }
                 else
                 {
@@ -136,13 +136,6 @@ public class TutoManager : MonoBehaviour
             else
                 directorAnimator.SetInteger("AnimationId", 0);
         }
-    }
-
-    private IEnumerator ResetHi()
-    {
-        yield return new WaitForSeconds(0.73f);
-        isPlayingHi = false;
-        StartCoroutine(WaitABit());
     }
 
     public void EndOfFirstDialogue()
@@ -235,7 +228,7 @@ public class TutoManager : MonoBehaviour
 
     private IEnumerator WaitABit()
     {
-        yield return new WaitForSeconds(0.73f);
+        PauseManager.Instance.canPause = false;
         isPlayingHi = false;
         tutoBlock.SetActive(false);
         Character.Instance.canMoveCam = false;
