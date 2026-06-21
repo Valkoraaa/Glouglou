@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UiGestion : MonoBehaviour
 {
     public static UiGestion Instance;
-    [SerializeField] private TextMeshProUGUI fishCountText;
+    public TextMeshProUGUI fishCountText;
     public TextMeshProUGUI moneyText;
     [SerializeField] public Slider failSlider;
     public TextMeshProUGUI multText;
@@ -26,7 +26,7 @@ public class UiGestion : MonoBehaviour
     void Start()
     {
         Instance = this;
-        UpdateFishCountText();
+        //UpdateFishCountText();
         InitFailSlider();
         debuffIcon.gameObject.SetActive(false);
         moneyText.text = "0";
@@ -36,10 +36,10 @@ public class UiGestion : MonoBehaviour
     void Update()
     {
         moneyText.text = Shop.Instance.playerMoney.ToString();
-        if (DayManager.Instance.fishCaught != lastFishCaught)
-        {
-            UpdateFishCountText();
-        }
+        //if (DayManager.Instance.fishCaught != lastFishCaught)
+        //{
+        //    UpdateFishCountText();
+        //}
 
         if (DayManager.Instance.numberOfFails != lastNumberOfFails)
         {

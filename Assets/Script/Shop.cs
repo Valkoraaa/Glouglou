@@ -18,6 +18,9 @@ public class Shop : MonoBehaviour
     [SerializeField] private AudioClip cashClip;
     [SerializeField] private AudioSource audioSource;
 
+    [SerializeField] private TextMeshProUGUI moneyDisplayText;
+    [SerializeField] private TextMeshProUGUI moneyMultText;
+
     [SerializeField] private TextMeshProUGUI throwText;
     [SerializeField] private TextMeshProUGUI forceText;
     [SerializeField] private TextMeshProUGUI moneyText;
@@ -33,7 +36,8 @@ public class Shop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        moneyDisplayText.text = playerMoney.ToString(); ;
+        moneyMultText.text = moneyMultiplier.ToString();
     }
 
     public void InitialiserBoutique(MarchandController marchand)

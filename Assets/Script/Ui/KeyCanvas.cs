@@ -13,7 +13,7 @@ public class KeyCanvas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Keyboard.current.escapeKey.wasPressedThisFrame)
+        if(Keyboard.current.escapeKey.wasPressedThisFrame && canvas.activeSelf)
         {
             OnBackClick();
         }

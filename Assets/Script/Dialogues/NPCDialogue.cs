@@ -53,6 +53,7 @@ public class NPCDialogue : MonoBehaviour
     {
         DialogueManager.Instance.openShop = isMerchant;
         DialogueManager.Instance.StartDialogue(dialogue, isDirector);
+        Debug.Log(DayManager.Instance.isNight);
         if(isDirector && Shop.Instance.playerStackMoney>0)
         {
             Shop.Instance.playerMoney += Shop.Instance.playerStackMoney;

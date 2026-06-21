@@ -223,9 +223,9 @@ public class EffectManager : MonoBehaviour
 
     {
 
-        if (wantToActivate) FishingLasso.Instance.strenght = 1;
+        if (wantToActivate) ThrowLasso.Instance.force = ThrowLasso.Instance.force-5;
 
-        else FishingLasso.Instance.strenght = originalStrength;
+        else ThrowLasso.Instance.force = ThrowLasso.Instance.force + 5;
 
     }
 
