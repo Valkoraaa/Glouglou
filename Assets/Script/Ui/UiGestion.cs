@@ -8,7 +8,7 @@ public class UiGestion : MonoBehaviour
     public static UiGestion Instance;
     [SerializeField] private TextMeshProUGUI fishCountText;
     public TextMeshProUGUI moneyText;
-    [SerializeField] private Slider failSlider;
+    [SerializeField] public Slider failSlider;
     public TextMeshProUGUI multText;
 
     [Header("Ic�ne d�buff")]

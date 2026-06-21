@@ -3,7 +3,12 @@ guid: 2e345d7e620b9ba4b965f5eb7a0c2475
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TextureCHevla
+    second: {fileID: 2100000, guid: 7e9c6bf8c87f4e346bf15559691d86c8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

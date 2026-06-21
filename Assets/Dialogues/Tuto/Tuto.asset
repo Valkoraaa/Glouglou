@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speakerName: Directeur
   lines:
-  - text: "Bien le bonjour ! Bienvenue pour ton premier jour en tant qu'employ\xE9
+  - text: "Bien le bonjour ! Bienvenue pour ton premier jour en tant \nqu'employ\xE9
       ! Ton but est de remplir ta collection de poisson."
   - text: "Mais tu vas devoir m'aider pour \xE7a ! Je suis vendeur de poisson. Tu
       vas devoir r\xE9ussir \xE0 m'apporter assez de poisson chaque jour pour que
