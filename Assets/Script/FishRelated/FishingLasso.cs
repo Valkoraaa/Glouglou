@@ -14,6 +14,7 @@ public class FishingLasso : MonoBehaviour
     [SerializeField] private DialogueData caughtDialogue;
     public int strenght;
     private SpriteRenderer visual;
+    private int totalFish;
     
     public bool hasToPlaySound;
     private Fish fish;
@@ -35,6 +36,7 @@ public class FishingLasso : MonoBehaviour
     {
         Instance = this;
         visual = GetComponent<SpriteRenderer>();
+        totalFish = 0;
     }
 
 
@@ -157,10 +159,12 @@ public class FishingLasso : MonoBehaviour
             DialogueManager.Instance.StartDialogue(caughtDialogue, true);
         }
 
+        totalFish++;
         visual.enabled = true;
         DayManager.Instance.fishCaught++;
         DayManager.Instance.CountdownThrow();
         ThrowLasso.Instance.lassoAudio.PlayOneShot(ThrowLasso.Instance.getLasso);
+        UiGestion.Instance.fishCountText.text = totalFish.ToString();
     }
 
     public void LaunchMissedThrow(bool water)
