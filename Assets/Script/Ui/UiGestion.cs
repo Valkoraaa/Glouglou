@@ -15,6 +15,7 @@ public class UiGestion : MonoBehaviour
     public GameObject cross1;
     public GameObject cross2;
     public GameObject cross3;
+    private int numberOfFishCaught = 0;
 
 
     [Header("Ic�ne d�buff")]
@@ -124,6 +125,14 @@ public class UiGestion : MonoBehaviour
 
     private IEnumerator ShowFirstCatchPanel()
     {
+        numberOfFishCaught++;
+        if(numberOfFishCaught >= 50)
+        {
+            Character.Instance.stopChara = true;
+            Character.Instance.canMove = false;
+            Character.Instance.canMoveCam = false;
+            DayManager.Instance.winCanvas.SetActive(true);
+        }
         firstCatchPanel.SetActive(true);
         Image panelImage = firstCatchPanel.GetComponent<Image>();
         float elapsed = 0f;
