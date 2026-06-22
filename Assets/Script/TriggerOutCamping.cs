@@ -12,6 +12,8 @@ public class TriggerOutCamping : MonoBehaviour
     [SerializeField] private Transform tpPos;
     [SerializeField] private Transform otherTp;
     [SerializeField] private bool isCampTp;
+
+
     private bool hasToCheck = true;
     
     [SerializeField] private AudioSource musicSource;
@@ -47,9 +49,11 @@ public class TriggerOutCamping : MonoBehaviour
         if (DayManager.Instance.isNight)
         {
             StartCoroutine(DialogueManager.Instance.WaitForEndOfDialogue(ChoseDialogue(), isCampTp ? tpPos.position : otherTp.position));
+
             ThrowLasso.Instance.canThrow = false;
             StartCoroutine(SwitchMusic(musicCamp));
-           
+
+
         }
         else if ((DayManager.Instance.fishCaught < DayManager.Instance.numberOfFishToCatch) && hasToCheck)
         {

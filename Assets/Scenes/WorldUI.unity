@@ -486,6 +486,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UiFadeManager
   dialogueStartOfDay: {fileID: 269420805}
+  skyboxJour: {fileID: 2100000, guid: d5ae4e030c285ea4e9e71d39588be4eb, type: 2}
+  skyboxNuit: {fileID: 0}
 --- !u!114 &269420801
 MonoBehaviour:
   m_ObjectHideFlags: 0
