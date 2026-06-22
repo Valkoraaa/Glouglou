@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c0e0c3cba303d84aafcc092cf50054e, type: 3}
   m_Name: ChirurgienBleu
   m_EditorClassIdentifier: Assembly-CSharp::FishData
-  id: 12
+  id: 7
   species: Chirurgien Bleu
   currentRarity: 0
   price: 10

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c0e0c3cba303d84aafcc092cf50054e, type: 3}
   m_Name: "Esturgeon de Sib\xE9rie"
   m_EditorClassIdentifier: Assembly-CSharp::FishData
-  id: 14
+  id: 36
   species: "Esturgeon de Sib\xE9rie"
   currentRarity: 3
   price: 100

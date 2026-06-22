@@ -24368,9 +24368,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SleepyEffect
   minIntensity: 0.5
   maxIntensity: 1
-  minBlinkSpeed: 0.45
-  maxBlinkSpeed: 0.67
-  speedChangeSmoothness: 0.3
+  minBlinkSpeed: 0.3
+  maxBlinkSpeed: 0.4466666
+  speedChangeSmoothness: 0.2
 --- !u!114 &1562036059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30861,7 +30861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1834627562
 RectTransform:
   m_ObjectHideFlags: 0

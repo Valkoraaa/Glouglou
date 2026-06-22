@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c0e0c3cba303d84aafcc092cf50054e, type: 3}
   m_Name: Garra andruzzii
   m_EditorClassIdentifier: Assembly-CSharp::FishData
-  id: 16
+  id: 28
   species: Le poisson des cavernes de Somalie
   currentRarity: 2
   price: 50

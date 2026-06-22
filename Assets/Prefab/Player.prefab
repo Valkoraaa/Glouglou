@@ -283,11 +283,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishingLasso
   player: {fileID: 3604271844963311478}
+  caughtDialogue: {fileID: 0}
   strenght: 0
   hasToPlaySound: 0
   arcHeight: 0
   canvasLasso: {fileID: 0}
   lassoImage: {fileID: 0}
+  fishPrefab: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  fishNet: []
 --- !u!212 &2950148917596132718
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -491,6 +495,7 @@ MonoBehaviour:
   cinematic: 0
   footstepAudio: {fileID: 0}
   footstepClip: []
+  animator: {fileID: 0}
 --- !u!114 &1714561661238382032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,6 +521,8 @@ MonoBehaviour:
   plouf2: {fileID: 0}
   throw1: {fileID: 0}
   throw2: {fileID: 0}
+  noThrow: {fileID: 0}
+  getLasso: {fileID: 0}
 --- !u!54 &1899367401830419522
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c0e0c3cba303d84aafcc092cf50054e, type: 3}
   m_Name: "L\u2019anguille d_Europe"
   m_EditorClassIdentifier: Assembly-CSharp::FishData
-  id: 18
+  id: 30
   species: "L\u2019anguille d'Europe"
   currentRarity: 1
   price: 20

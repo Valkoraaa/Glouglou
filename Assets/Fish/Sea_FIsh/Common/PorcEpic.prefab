@@ -142,8 +142,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fish
   size: 0.7
-  weight: 2.4
-  fishEffect: 
+  weight: 0.24
+  fishEffect: none
   isBadForToday: 0
   data: {fileID: 11400000, guid: ee98ffa6e71e15f45a3544fcb71b692c, type: 2}
 --- !u!135 &6182506490172149534
