@@ -33,6 +33,7 @@ public class DayManager : MonoBehaviour
     public int fishCaught;
 
     public int numberOfFails;
+    public GameObject winCanvas;
 
 
 
