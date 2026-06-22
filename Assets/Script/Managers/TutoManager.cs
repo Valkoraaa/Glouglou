@@ -270,8 +270,9 @@ public class TutoManager : MonoBehaviour
 
     private IEnumerator FadeCanvasInGame()
     {
-        canvaInGame.gameObject.SetActive(true);
+        
         canvasGroup.alpha = 0;
+        canvaInGame.gameObject.SetActive(true);
         float aimedAlpha = 1;
         Debug.Log(aimedAlpha);
 

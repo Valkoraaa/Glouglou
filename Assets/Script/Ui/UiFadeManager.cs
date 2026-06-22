@@ -85,7 +85,12 @@ public class UiFadeManager : MonoBehaviour
 
         color.a = 0f;
         image.color = color;
-        dialogueStartOfDay.StartDialogue();
+
+        Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = false; ///////////
+        Character.Instance.canMove = true;
+        Character.Instance.canMoveCam = true;
+        PauseManager.Instance.canPause = true;
+        //dialogueStartOfDay.StartDialogue();
     }
 
     IEnumerator FadeInAndOut(Vector3 tpPoint)
