@@ -204,7 +204,6 @@ public class DayManager : MonoBehaviour
                 Destroy(fish);
             }
         }
-
         FishingLasso.Instance.fishNet.Clear();
 
         dayCount++;
@@ -233,9 +232,9 @@ public class DayManager : MonoBehaviour
 
         EffectManager.Instance.ApplyEffect();
         UiGestion.Instance.UpdateDebuffIcon();
-        if (!EffectManager.Instance.HasActiveEffect() && !TriggerOutCamping.Instance.dayMusicAudioSource.isPlaying)
+        if (!EffectManager.Instance.HasActiveEffect())
             TriggerOutCamping.Instance.dayMusicAudioSource.Play();
-        else if (EffectManager.Instance.HasActiveEffect())
+        else
             TriggerOutCamping.Instance.dayMusicAudioSource.Stop();
         EffectManager.Instance.ResetEffect();
 
