@@ -154,6 +154,7 @@ public class FishingLasso : MonoBehaviour
         }
         else
         {
+            TutoManager.Instance.tutoBlock.SetActive(false);
             DialogueManager.Instance.StartDialogue(caughtDialogue, true);
         }
 

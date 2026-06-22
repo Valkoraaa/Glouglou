@@ -13,7 +13,7 @@ public class TutoManager : MonoBehaviour
     public bool hasToBack;
     public bool blockActive;
     [SerializeField] private GameObject tutoFish;
-    [SerializeField] private GameObject tutoBlock;
+    public GameObject tutoBlock;
     [SerializeField] private GameObject player;
     [SerializeField] private Canvas canvaInGame;
     [SerializeField] private GameObject playerArms;
@@ -111,6 +111,7 @@ public class TutoManager : MonoBehaviour
             }
             else if (dialogueCounter == 2)
             {
+                Debug.Log("2");
                 canvasKeys.SetActive(true);
                 PauseManager.Instance.canPause = false;
                 Character.Instance.canMove = false;
@@ -121,6 +122,7 @@ public class TutoManager : MonoBehaviour
             }
             else if (dialogueCounter == 3)
             {
+                Debug.Log("3");
                 if (tutoDialogue3Started)
                 {
                     isPlayingHi = true;

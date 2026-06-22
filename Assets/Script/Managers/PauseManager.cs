@@ -55,7 +55,7 @@ public class PauseManager : MonoBehaviour
     }
     void Update()
     {
-        if(Keyboard.current.escapeKey.wasPressedThisFrame && canPause)
+        if(Keyboard.current.escapeKey.wasPressedThisFrame && canPause && !Shop.Instance.shopOpen)
         {
             canPause = false;
             pauseCanvas.SetActive(true);
@@ -72,7 +72,7 @@ public class PauseManager : MonoBehaviour
             }
         }
 
-        else if(!homePage && mainPause.activeSelf && Keyboard.current.escapeKey.wasPressedThisFrame)
+        else if(!homePage && mainPause && mainPause.activeSelf && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             OnPlay();
         }
