@@ -14,6 +14,7 @@ public class TriggerOutCamping : MonoBehaviour
     [SerializeField] private bool isCampTp;
 
 
+
     private bool hasToCheck = true;
     
     [SerializeField] private AudioSource musicSource;
@@ -48,8 +49,8 @@ public class TriggerOutCamping : MonoBehaviour
 
         if (DayManager.Instance.isNight)
         {
-            StartCoroutine(DialogueManager.Instance.WaitForEndOfDialogue(ChoseDialogue(), isCampTp ? tpPos.position : otherTp.position));
-
+            //StartCoroutine(DialogueManager.Instance.WaitForEndOfDialogue(ChoseDialogue(), isCampTp ? tpPos.position : otherTp.position));
+            UiFadeManager.Instance.FadeTp(tpPos.position);
             ThrowLasso.Instance.canThrow = false;
             StartCoroutine(SwitchMusic(musicCamp));
 
@@ -57,13 +58,12 @@ public class TriggerOutCamping : MonoBehaviour
         }
         else if ((DayManager.Instance.fishCaught < DayManager.Instance.numberOfFishToCatch) && hasToCheck)
         {
-            StartCoroutine(DialogueManager.Instance.WaitForEndOfDialogue(ChoseDialogue(), isCampTp ? otherTp.position : tpPos.position));
-            
+
+            UiFadeManager.Instance.FadeTp(isCampTp ? otherTp.position : tpPos.position); 
             ThrowLasso.Instance.canThrow = true;
             StartCoroutine(SwitchMusic(musicBeach));
-            
         }
-        
+
         else if (!DayManager.Instance.isNight && DayManager.Instance.fishCaught >= DayManager.Instance.numberOfFishToCatch && isCampTp)
         {
             DayManager.Instance.isNight = true;

@@ -55,6 +55,7 @@ public class CollectionGestion : MonoBehaviour
 
         Character.Instance.canMove = !open;
         Character.Instance.canMoveCam = !open;
+        Character.Instance.stopChara = open;
         ThrowLasso.Instance.canThrow = !open;
     }
 
@@ -86,7 +87,7 @@ public class CollectionGestion : MonoBehaviour
         RectTransform rt = fishImage.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(200f, 200f); 
         fishName.text = "Nom : " + data.species;
-        fishSize.text = "Taille : " + FishingBookManager.Instance.GetBestSize(data.id).ToString("F2") + " cm";
+        fishSize.text = "Taille : " + FishingBookManager.Instance.GetBestSize(data.id).ToString("F2") + " m";
         fishWeight.text = "Poids : " + FishingBookManager.Instance.GetBestWeight(data.id).ToString("F2") + " kg";
     }
 }

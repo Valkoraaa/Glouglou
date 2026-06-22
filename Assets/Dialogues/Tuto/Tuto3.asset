@@ -14,12 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speakerName: Directeur
   lines:
-  - text: "Voil\xE0 le camping ! Chaque poisson que tu m'apportera te rapportera
-      de l'argent, que tu pourras utiliser en allant voir le marchant.\n"
-  - text: "Passe le voir quand tu auras le temps, il a plein de choses int\xE9ressantes
-      !"
-  - text: "Chaque fin de journ\xE9e, tu peux aller dormir dans ta tente pour passer
-      \xE0 la journ\xE9e suivante."
+  - text: 'Chaque poisson que tu m''apportera te rapportera de l''argent, que tu
+      pourras utiliser en allant voir le marchant.
+
+'
   - text: "Ah, et une derni\xE8re chose ! En sortant du camping, jette un oeil au
-      tableau, tu comprendras."
+      tableau, tu comprendras. Et n'oublie pas le plus important, complete ta collection
+      !!!"
   - text: Aller, ca sera tout ! Passe une bonne nuit !

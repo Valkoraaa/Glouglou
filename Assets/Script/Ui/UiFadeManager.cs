@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEditor.SpeedTree.Importer;
 
 public class UiFadeManager : MonoBehaviour
 {
@@ -95,10 +94,11 @@ public class UiFadeManager : MonoBehaviour
 
     IEnumerator FadeInAndOut(Vector3 tpPoint)
     {
-        Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         Character.Instance.canMove = false;
         Character.Instance.canMoveCam = false;
         PauseManager.Instance.canPause = false;
+        Character.Instance.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        
         float time = 0f;
         Color color = image.color;
 

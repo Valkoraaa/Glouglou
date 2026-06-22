@@ -9,12 +9,17 @@ public class Shop : MonoBehaviour
     [Header ("References")]
     [SerializeField] private GameObject shopCanvas;
     [SerializeField] private GameObject notEnoughMoneyCanvas;
+    public bool shopOpen;
 
     private MarchandController marchandController;
     public MarchandController MarchandController => marchandController;
     public float playerMoney;
     public float playerStackMoney;
     public float moneyMultiplier = 1;
+    int compteurForce = 0;
+    public GameObject MaxStrenght;
+    public GameObject Strenght;
+
     [SerializeField] private AudioClip cashClip;
     [SerializeField] private AudioSource audioSource;
 
@@ -31,6 +36,8 @@ public class Shop : MonoBehaviour
     void Start()
     {
         Instance = this;
+        MaxStrenght.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -47,6 +54,7 @@ public class Shop : MonoBehaviour
 
     public void OpenShop(bool open) // true to open, false to close
     {
+
         throwText.text = priceThrow.ToString();
         forceText.text = priceForce.ToString();
         moneyText.text = priceMoney.ToString();
@@ -55,6 +63,7 @@ public class Shop : MonoBehaviour
         Cursor.visible = open;
         if (open)
         {
+            shopOpen = true;
             Cursor.lockState = CursorLockMode.None;
             PauseManager.Instance.canPause = false;
             DialogueManager.Instance.isInDialogue = true;
@@ -68,6 +77,7 @@ public class Shop : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             DialogueManager.Instance.isInDialogue = false;
             PauseManager.Instance.canPause = true;
+            shopOpen = false;
         }
     }
 
@@ -92,18 +102,28 @@ public class Shop : MonoBehaviour
 
     public void upgradeForce()
     {
-        if (playerMoney >= priceForce)
+        if (playerMoney >= priceForce && compteurForce < 3)
         {
             playerMoney -= priceForce;
             FishingLasso.Instance.strenght += 1;
             priceForce += priceForce;
             forceText.text = priceForce.ToString();
             marchandController.AskEmote(EmoteType.SautDeJoie);
+            compteurForce++;
 
+            if (compteurForce >= 3)
+            {
+                MaxStrenght.SetActive(true);
+                Strenght.SetActive(false);  // Géré ici, une seule fois, clairement
+            }
+            UiGestion.Instance.CheckStrenght(compteurForce);
             OpenShop(false);
             audioSource.PlayOneShot(cashClip);
         }
-        else { NotEnoughMoney(); }
+        else if (compteurForce < 3)
+        {
+            NotEnoughMoney();
+        }
     }
 
     public void upgradeMoney()

@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speakerName: Directeur
   lines:
-  - text: "Bien jou\xE9 ! Maintenant, rentrons au camping pour que je t'explique
-      le d\xE9roulement d'une journ\xE9e."
+  - text: Bien joue !

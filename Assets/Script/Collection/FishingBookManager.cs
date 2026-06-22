@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ public class FishingBookManager : MonoBehaviour
 
     private Dictionary<int, float> bestWeight = new Dictionary<int, float>();
     private Dictionary<int, float> bestSize = new Dictionary<int, float>();
+    public static event Action<int> OnFirstCatch;
+
 
     private void Awake()
     {
@@ -40,20 +43,23 @@ public class FishingBookManager : MonoBehaviour
         return this.caughtFishId;
     }
 
-    public void RegisterCatch(int id, float finalWeight, float finalSize)
+    public bool RegisterCatch(int id, float finalWeight, float finalSize)
     {
-        if (!caughtFishId.Contains(id))
+        bool isFirstCatch = !caughtFishId.Contains(id);
+
+        if (isFirstCatch)
         {
             caughtFishId.Add(id);
             caughtFishIdDisplay.Add(id);
+            OnFirstCatch?.Invoke(id); 
         }
 
-        // Garder le meilleur score
         if (!bestWeight.ContainsKey(id) || finalWeight > bestWeight[id])
             bestWeight[id] = finalWeight;
-
         if (!bestSize.ContainsKey(id) || finalSize > bestSize[id])
             bestSize[id] = finalSize;
+
+        return isFirstCatch;
     }
 
     public float GetBestWeight(int id) => bestWeight.ContainsKey(id) ? bestWeight[id] : 0f;

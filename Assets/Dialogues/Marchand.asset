@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speakerName: Marchant
   lines:
-  - text: "Bonjour ! Je peux am\xE9liorer ton lasso pour quelque pi\xE8ces."
+  - text: 'Bonjour ! '

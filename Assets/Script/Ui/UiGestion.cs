@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -11,6 +12,12 @@ public class UiGestion : MonoBehaviour
     [SerializeField] public Slider failSlider;
     public TextMeshProUGUI multText;
 
+    public GameObject cross1;
+    public GameObject cross2;
+    public GameObject cross3;
+    private int numberOfFishCaught = 0;
+
+
     [Header("Ic�ne d�buff")]
     [SerializeField] private Image debuffIcon;
     [SerializeField] private Sprite drunkSprite;
@@ -20,11 +27,15 @@ public class UiGestion : MonoBehaviour
     [SerializeField] private Sprite noStrengthSprite;
     [SerializeField] private Sprite depressionSprite;
 
+    [SerializeField] private GameObject firstCatchPanel;
+    [SerializeField] private float displayDuration = 2.5f;
+
     private int lastFishCaught = -1;
     private int lastNumberOfFails = -1;
 
     void Start()
     {
+        firstCatchPanel.SetActive(false);
         Instance = this;
         //UpdateFishCountText();
         InitFailSlider();
@@ -60,6 +71,23 @@ public class UiGestion : MonoBehaviour
         UpdateFailSlider();
     }
 
+
+    public void CheckStrenght(int strenght)
+    {
+        if(strenght == 1)
+        {
+            cross1.SetActive(false);
+        }
+        else if (strenght == 2)
+        {
+            cross2.SetActive(false);
+        }
+        else if (strenght == 3)
+        {
+            cross3.SetActive(false);
+        }
+    }
+
     public void UpdateDebuffIcon()
     {
         bool[] effects = EffectManager.Instance.effects;
@@ -77,5 +105,49 @@ public class UiGestion : MonoBehaviour
     {
         lastNumberOfFails = DayManager.Instance.numberOfFails;
         failSlider.value = failSlider.maxValue - lastNumberOfFails;
+    }
+
+    private void OnEnable()
+    {
+        FishingBookManager.OnFirstCatch += HandleFirstCatch;
+    }
+
+    private void OnDisable()
+    {
+        FishingBookManager.OnFirstCatch -= HandleFirstCatch;
+    }
+
+    private void HandleFirstCatch(int fishId)
+    {
+        StartCoroutine(ShowFirstCatchPanel());
+
+    }
+
+    private IEnumerator ShowFirstCatchPanel()
+    {
+        numberOfFishCaught++;
+        if(numberOfFishCaught >= 50)
+        {
+            Character.Instance.stopChara = true;
+            Character.Instance.canMove = false;
+            Character.Instance.canMoveCam = false;
+            DayManager.Instance.winCanvas.SetActive(true);
+        }
+        firstCatchPanel.SetActive(true);
+        Image panelImage = firstCatchPanel.GetComponent<Image>();
+        float elapsed = 0f;
+        float duration = 2f;
+
+        while (elapsed < duration)
+        {
+            float t = Mathf.PingPong(elapsed * 3f, 1f); // 3f = vitesse du pulse
+            float scale = Mathf.Lerp(2f, 5f, t); // plus agressif
+            firstCatchPanel.transform.localScale = Vector3.one * scale;
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        firstCatchPanel.transform.localScale = Vector3.one;
+        firstCatchPanel.SetActive(false);
     }
 }

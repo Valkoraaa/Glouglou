@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c0e0c3cba303d84aafcc092cf50054e, type: 3}
   m_Name: Payara
   m_EditorClassIdentifier: Assembly-CSharp::FishData
-  id: 21
+  id: 40
   species: Payara
   currentRarity: 2
   price: 50

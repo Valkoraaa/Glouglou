@@ -10,9 +10,9 @@ public class SleepyEffect : MonoBehaviour
     [SerializeField] private float maxIntensity = 1f;
 
     [Header("Vitesse")]
-    [SerializeField] private float minBlinkSpeed = 0.3f;
-    [SerializeField] private float maxBlinkSpeed = 1.2f;
-    [SerializeField] private float speedChangeSmoothness = 1f;
+    [SerializeField] private float minBlinkSpeed = 0.45f;
+    [SerializeField] private float maxBlinkSpeed = 0.67f;
+    [SerializeField] private float speedChangeSmoothness = 0.3f;
 
     private Vignette vignette;
 

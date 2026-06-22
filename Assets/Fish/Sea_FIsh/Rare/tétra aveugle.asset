@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c0e0c3cba303d84aafcc092cf50054e, type: 3}
   m_Name: "t\xE9tra aveugle"
   m_EditorClassIdentifier: Assembly-CSharp::FishData
-  id: 37
+  id: 34
   species: "T\xE9tra aveugle"
   currentRarity: 1
   price: 20
