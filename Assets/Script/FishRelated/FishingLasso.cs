@@ -58,9 +58,6 @@ public class FishingLasso : MonoBehaviour
     private void OnTriggerEnter(Collider other) //to check if you hit a fish
     {
         Fish fishScript = other.gameObject.GetComponent<Fish>();
-
-        
-
         if (other.gameObject.CompareTag("fish") && fishScript != null && fishScript.data != null)
         {
             int fishRarityValue = (int)fishScript.data.currentRarity;
@@ -72,8 +69,9 @@ public class FishingLasso : MonoBehaviour
 
                 float finalWeight = fishScript.Weight * Random.Range(0.8f, 1.2f);
                 float finalSize = fishScript.Size * Random.Range(0.8f, 1.2f);
-                FishingBookManager.Instance.RegisterCatch(fishScript.data.id, finalWeight, finalSize);
-
+                bool isFirstCatch = FishingBookManager.Instance.RegisterCatch(fishScript.data.id, finalWeight, finalSize);
+                if (isFirstCatch)
+                    Debug.Log($"Première capture du poisson ID {fishScript.data.id} !");
                 Debug.Log("poid du poisson : " + finalWeight.ToString("F2"));
                 Debug.Log("taille du poisson : " + finalSize.ToString("F2"));
 
