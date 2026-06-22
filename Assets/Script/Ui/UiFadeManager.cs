@@ -9,11 +9,6 @@ public class UiFadeManager : MonoBehaviour
     public Material skyboxJour;
     public Material skyboxNuit;
 
-    public GameObject brouillard1;
-    public GameObject brouillard2;
-    public GameObject brouillard3;
-    public GameObject brouillard4;
-
     public static UiFadeManager Instance { get; private set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -65,10 +60,6 @@ public class UiFadeManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         DayManager.Instance.StartOfDay();
         RenderSettings.skybox = skyboxJour;
-        brouillard1.gameObject.SetActive(true);
-        brouillard2.gameObject.SetActive(true);
-        brouillard3.gameObject.SetActive(true);
-        brouillard4.gameObject.SetActive(true);
 
         // Fade OUT (1 → 0)
         time = 0f;
@@ -121,10 +112,7 @@ public class UiFadeManager : MonoBehaviour
         if(DayManager.Instance.isNight)
         {
             RenderSettings.skybox = skyboxNuit;
-            brouillard1.gameObject.SetActive(false);
-            brouillard2.gameObject.SetActive(false);
-            brouillard3.gameObject.SetActive(false);
-            brouillard4.gameObject.SetActive(false);
+
         }
 
         controller.enabled = false;

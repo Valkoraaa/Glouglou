@@ -6740,7 +6740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1473693555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8685,7 +8685,7 @@ MonoBehaviour:
   shopCanvas: {fileID: 1240668740}
   notEnoughMoneyCanvas: {fileID: 543384572}
   shopOpen: 0
-  playerMoney: 5000
+  playerMoney: 0
   playerStackMoney: 0
   moneyMultiplier: 1
   MaxStrenght: {fileID: 1722696154}
