@@ -8661,9 +8661,9 @@ MonoBehaviour:
   catBubble: {fileID: 907604976}
   speakerText: {fileID: 1252907082}
   dialogueText: {fileID: 1661704399}
-  typingSpeed: 0.06
-  fastTypingSpeed: 0.015
-  defaultTypingSpeed: -17.38
+  typingSpeed: 0.03
+  fastTypingSpeed: 0.008
+  defaultTypingSpeed: 0.03
   audioSource: {fileID: 1707720382}
   dialogueSound: {fileID: 8300000, guid: 556844df64debf247acbf383d2d74623, type: 3}
   isInDialogue: 0
