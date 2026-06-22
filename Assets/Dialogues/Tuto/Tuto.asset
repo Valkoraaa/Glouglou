@@ -15,7 +15,7 @@ MonoBehaviour:
   speakerName: Directeur
   lines:
   - text: "Bien le bonjour ! Bienvenue pour ton premier jour en tant \nqu'employ\xE9
-      ! Ton but est de remplir ta collection de poisson."
+      ! Ton but est de remplir ta collection de poissons."
   - text: "En bas \xE0 gauche se trouvera ton compteur de lanc\xE9s, il se videra
       d\xE8s que ton lasso finit \xE0 la mer sans rapporter de poisson."
-  - text: Voila la camping, la ou tous se passe.
+  - text: "Voil\xE0 le camping, l\xE0 o\xF9 tout se passe."
