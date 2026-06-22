@@ -82,7 +82,7 @@ public class DialogueManager : MonoBehaviour
 
     public IEnumerator WaitForEndOfDialogue(DialogueData dialogue, UnityEngine.Vector3 tpPos)
     {
-        StartDialogue(dialogue, false);
+        StartDialogue(dialogue, true);
         yield return new WaitUntil(() => !isInDialogue);
         Debug.Log("tp");
         UiFadeManager.Instance.FadeTp(tpPos);
