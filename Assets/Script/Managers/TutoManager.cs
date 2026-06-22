@@ -29,6 +29,8 @@ public class TutoManager : MonoBehaviour
     private bool isWating = true;
 
     private Coroutine fadeCoroutine;
+    [SerializeField] private Light myLight;
+
 
     private bool isPlayingHi;
     [Header("Dialogues")]
@@ -248,6 +250,8 @@ public class TutoManager : MonoBehaviour
         UiFadeManager.Instance.FadeTp(playerTpTarget.position);
         yield return new WaitForSeconds(0.5f);
         RenderSettings.skybox = skyboxNuit;
+        GetComponent<Light>().color = Color.black;
+
 
         director.transform.position = directorTargetPosition.transform.position;
         director.transform.rotation = Quaternion.Euler(0, -45, 0);

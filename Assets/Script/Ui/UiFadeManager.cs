@@ -8,6 +8,8 @@ public class UiFadeManager : MonoBehaviour
     [SerializeField] private NPCDialogue dialogueStartOfDay;
     public Material skyboxJour;
     public Material skyboxNuit;
+    [SerializeField] private Light myLight;
+
 
     public static UiFadeManager Instance { get; private set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -60,6 +62,8 @@ public class UiFadeManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         DayManager.Instance.StartOfDay();
         RenderSettings.skybox = skyboxJour;
+        GetComponent<Light>().color = new Color(255, 240, 196);
+
 
         // Fade OUT (1 → 0)
         time = 0f;
@@ -112,7 +116,7 @@ public class UiFadeManager : MonoBehaviour
         if(DayManager.Instance.isNight)
         {
             RenderSettings.skybox = skyboxNuit;
-
+            GetComponent<Light>().color = Color.black;
         }
 
         controller.enabled = false;
