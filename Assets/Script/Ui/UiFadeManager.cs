@@ -1,11 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEditor.SpeedTree.Importer;
 
 public class UiFadeManager : MonoBehaviour
 {
     private Image image;
     [SerializeField] private NPCDialogue dialogueStartOfDay;
+    public Material skyboxJour;
+    public Material skyboxNuit;
+
     public static UiFadeManager Instance { get; private set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -56,6 +60,8 @@ public class UiFadeManager : MonoBehaviour
         image.color = color;
         yield return new WaitForSeconds(0.5f);
         DayManager.Instance.StartOfDay();
+        RenderSettings.skybox = skyboxJour;
+
         // Fade OUT (1 → 0)
         time = 0f;
 
@@ -98,6 +104,10 @@ public class UiFadeManager : MonoBehaviour
         image.color = color;
 
         CharacterController controller = Character.Instance.GetComponent<CharacterController>();
+        if(DayManager.Instance.isNight)
+        {
+            RenderSettings.skybox = skyboxNuit;
+        }
 
         controller.enabled = false;
         Character.Instance.transform.position = tpPoint;
