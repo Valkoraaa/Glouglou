@@ -72,12 +72,12 @@ public class PauseManager : MonoBehaviour
             }
         }
 
-        else if(!homePage && mainPause && mainPause.activeSelf && Keyboard.current.escapeKey.wasPressedThisFrame)
+        else if(!homePage && mainPause && mainPause.activeSelf && Keyboard.current.escapeKey.wasPressedThisFrame && !Shop.Instance.shopOpen)
         {
             OnPlay();
         }
 
-        else if(settingsCanvas.activeSelf && Keyboard.current.escapeKey.wasPressedThisFrame)
+        else if(settingsCanvas.activeSelf && Keyboard.current.escapeKey.wasPressedThisFrame && !Shop.Instance.shopOpen)
         {
             BackButton();
         }
