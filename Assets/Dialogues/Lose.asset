@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speakerName: Directeur
   lines:
-  - text: Tu ne ma pas ramener assez de poisson je doit fermer le restaurant
+  - text: "Tu ne m'as pas ramen\xE9 assez de poisson, je dois fermer le restaurant"

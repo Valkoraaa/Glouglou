@@ -14,11 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speakerName: Directeur
   lines:
-  - text: 'Chaque poisson que tu m''apportera te rapportera de l''argent, que tu
-      pourras utiliser en allant voir le marchant.
-
-'
+  - text: Chaque poisson que tu m'apporteras te rapportera de l'argent, que tu pourras
+      utiliser en allant voir le marchand.
   - text: "Ah, et une derni\xE8re chose ! En sortant du camping, jette un oeil au
-      tableau, tu comprendras. Et n'oublie pas le plus important, complete ta collection
-      !!!"
-  - text: Aller, ca sera tout ! Passe une bonne nuit !
+      tableau, tu comprendras. Et n'oublie pas le plus important, compl\xE8te ta
+      collection !!!"
+  - text: "Aller, \xE7a sera tout ! Passe une bonne nuit !"
