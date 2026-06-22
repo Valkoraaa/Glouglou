@@ -14,6 +14,7 @@ public class TriggerOutCamping : MonoBehaviour
     [SerializeField] private bool isCampTp;
 
 
+
     private bool hasToCheck = true;
     
     [SerializeField] private AudioSource musicSource;
@@ -49,10 +50,7 @@ public class TriggerOutCamping : MonoBehaviour
         if (DayManager.Instance.isNight)
         {
             //StartCoroutine(DialogueManager.Instance.WaitForEndOfDialogue(ChoseDialogue(), isCampTp ? tpPos.position : otherTp.position));
-            Character.Instance.canMove = false;
-            Character.Instance.canMoveCam = false;
-            Character.Instance.stopChara = true;
-            UiFadeManager.Instance.FadeTp(isCampTp ? tpPos.position : otherTp.position);
+            UiFadeManager.Instance.FadeTp(tpPos.position);
             ThrowLasso.Instance.canThrow = false;
             StartCoroutine(SwitchMusic(musicCamp));
 
