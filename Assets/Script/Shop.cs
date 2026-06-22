@@ -9,6 +9,7 @@ public class Shop : MonoBehaviour
     [Header ("References")]
     [SerializeField] private GameObject shopCanvas;
     [SerializeField] private GameObject notEnoughMoneyCanvas;
+    public bool shopOpen;
 
     private MarchandController marchandController;
     public MarchandController MarchandController => marchandController;
@@ -55,6 +56,7 @@ public class Shop : MonoBehaviour
         Cursor.visible = open;
         if (open)
         {
+            shopOpen = true;
             Cursor.lockState = CursorLockMode.None;
             PauseManager.Instance.canPause = false;
             DialogueManager.Instance.isInDialogue = true;
@@ -68,6 +70,7 @@ public class Shop : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             DialogueManager.Instance.isInDialogue = false;
             PauseManager.Instance.canPause = true;
+            shopOpen = false;
         }
     }
 

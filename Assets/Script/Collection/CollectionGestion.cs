@@ -55,6 +55,7 @@ public class CollectionGestion : MonoBehaviour
 
         Character.Instance.canMove = !open;
         Character.Instance.canMoveCam = !open;
+        Character.Instance.stopChara = open;
         ThrowLasso.Instance.canThrow = !open;
     }
 
