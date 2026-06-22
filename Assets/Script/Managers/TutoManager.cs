@@ -12,6 +12,8 @@ public class TutoManager : MonoBehaviour
     public bool fadeFinished;
     public bool hasToBack;
     public bool blockActive;
+    public Material skyboxNuit;
+
     [SerializeField] private GameObject tutoFish;
     public GameObject tutoBlock;
     [SerializeField] private GameObject player;
@@ -25,6 +27,7 @@ public class TutoManager : MonoBehaviour
     private bool tutoDialogue3Started;
     private CanvasGroup canvasGroup;
     private bool isWating = true;
+
     private Coroutine fadeCoroutine;
 
     private bool isPlayingHi;
@@ -244,6 +247,7 @@ public class TutoManager : MonoBehaviour
         fadeFinished = false;
         UiFadeManager.Instance.FadeTp(playerTpTarget.position);
         yield return new WaitForSeconds(0.5f);
+        RenderSettings.skybox = skyboxNuit;
 
         director.transform.position = directorTargetPosition.transform.position;
         director.transform.rotation = Quaternion.Euler(0, -45, 0);
