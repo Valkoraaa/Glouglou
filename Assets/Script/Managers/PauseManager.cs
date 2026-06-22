@@ -57,6 +57,7 @@ public class PauseManager : MonoBehaviour
     {
         if(Keyboard.current.escapeKey.wasPressedThisFrame && canPause)
         {
+            canPause = false;
             pauseCanvas.SetActive(true);
             mainPause.SetActive(true);
             Cursor.visible = true;
@@ -64,7 +65,7 @@ public class PauseManager : MonoBehaviour
             Character.Instance.canMove = false;
             Character.Instance.canMoveCam = false;
             Character.Instance.stopChara = false;
-            canPause = false;
+            
             if(!TutoManager.Instance.tuto)
             {
                 buttonCamping.SetActive(true);

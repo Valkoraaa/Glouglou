@@ -23,6 +23,9 @@ public class TutoManager : MonoBehaviour
     [SerializeField] private GameObject directorTargetPosition;
     [SerializeField] private Animator directorAnimator;
     private bool tutoDialogue3Started;
+    private CanvasGroup canvasGroup;
+    private bool isWating = true;
+    private Coroutine fadeCoroutine;
 
     private bool isPlayingHi;
     [Header("Dialogues")]
@@ -45,7 +48,7 @@ public class TutoManager : MonoBehaviour
         if(tuto)
         {
             StartCoroutine(tutoEnumerator());
-            
+            StartCoroutine(WaitForDialogue());
         }
         else
         {
@@ -55,6 +58,7 @@ public class TutoManager : MonoBehaviour
             Character.Instance.stopChara = false;
             Character.Instance.transform.position = new Vector3(1478.14f, 180.59f, 1102.03f);
         }
+        canvasGroup = canvaInGame.GetComponent<CanvasGroup>();
     }
 
     private IEnumerator tutoEnumerator()
@@ -69,13 +73,15 @@ public class TutoManager : MonoBehaviour
 
     void Update()
     {
-        if (DialogueManager.Instance.isInDialogue || Character.Instance.cinematic || !PauseManager.Instance.canPause && canvaInGame.gameObject.activeSelf)
+        if ((DialogueManager.Instance.isInDialogue || Character.Instance.cinematic || !PauseManager.Instance.canPause) && canvaInGame.gameObject.activeSelf)
         {
+            Debug.Log("if");
             canvaInGame.gameObject.SetActive(false);
         }
-        else if (!canvaInGame.gameObject.activeSelf && !DialogueManager.Instance.isInDialogue && !Character.Instance.cinematic && PauseManager.Instance.canPause)
+        else if (!DialogueManager.Instance.isInDialogue && !Character.Instance.cinematic && PauseManager.Instance.canPause && !canvaInGame.gameObject.activeSelf && !isWating)
         {
-            canvaInGame.gameObject.SetActive(true);
+            Debug.Log("else");
+            fadeCoroutine = StartCoroutine(FadeCanvasInGame());
         }
 
         if(Character.Instance.cinematic)
@@ -260,5 +266,32 @@ public class TutoManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         DayManager.Instance.StartOfDay();
+    }
+
+    private IEnumerator FadeCanvasInGame()
+    {
+        canvaInGame.gameObject.SetActive(true);
+        canvasGroup.alpha = 0;
+        float aimedAlpha = 1;
+        Debug.Log(aimedAlpha);
+
+        float startAlpha = 0;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            canvasGroup.alpha = Mathf.Lerp(startAlpha, aimedAlpha, elapsed / duration);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        canvasGroup.alpha = aimedAlpha;
+    }
+
+    private IEnumerator WaitForDialogue()
+    {
+        yield return new WaitForSeconds(2);
+        isWating = false;
     }
 }

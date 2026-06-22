@@ -21,12 +21,13 @@ public class KeyCanvas : MonoBehaviour
 
     public void OnBackClick()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         canvas.SetActive(false);
         PauseManager.Instance.canPause = true;
         Character.Instance.canMove = true;
         Character.Instance.stopChara = false;
         Character.Instance.canMoveCam = true;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        
     }
 }
