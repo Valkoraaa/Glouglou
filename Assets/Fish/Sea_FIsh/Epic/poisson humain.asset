@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   id: 41
   species: Poisson humain
-  currentRarity: 3
-  price: 100
+  currentRarity: 2
+  price: 50
   icon: {fileID: 21300000, guid: 26e395babc60b1040a010663986e6555, type: 3}

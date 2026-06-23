@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 6
   species: 'Carpe koi '
   currentRarity: 0
-  price: 50
+  price: 10
   icon: {fileID: 21300000, guid: 5f79a397b736ade42a567f5ad9179b01, type: 3}

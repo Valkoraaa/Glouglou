@@ -46,7 +46,7 @@ public class UiGestion : MonoBehaviour
 
     void Update()
     {
-        moneyText.text = Shop.Instance.playerMoney.ToString();
+        moneyText.text = Mathf.CeilToInt(Shop.Instance.playerMoney).ToString();
         //if (DayManager.Instance.fishCaught != lastFishCaught)
         //{
         //    UpdateFishCountText();

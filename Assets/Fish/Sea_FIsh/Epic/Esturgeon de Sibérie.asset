@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FishData
   id: 36
   species: "Esturgeon de Sib\xE9rie"
-  currentRarity: 3
-  price: 100
+  currentRarity: 2
+  price: 50
   icon: {fileID: 21300000, guid: 5e234fd4abe584f4d993ed1d51f95837, type: 3}
