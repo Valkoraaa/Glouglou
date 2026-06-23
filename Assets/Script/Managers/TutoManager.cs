@@ -1,4 +1,6 @@
 using System.Collections;
+using Unity.VisualScripting;
+
 //using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -250,7 +252,11 @@ public class TutoManager : MonoBehaviour
         UiFadeManager.Instance.FadeTp(playerTpTarget.position);
         yield return new WaitForSeconds(0.5f);
         RenderSettings.skybox = skyboxNuit;
-        GetComponent<Light>().color = Color.black;
+        UnityEngine.ColorUtility.TryParseHtmlString("#000000", out Color black);
+        StartCoroutine(UiFadeManager.Instance.LerpLightColor(black, 0.5f));
+
+
+        Debug.Log(lightInstance.Instance.light.color);
 
 
         director.transform.position = directorTargetPosition.transform.position;
@@ -270,6 +276,7 @@ public class TutoManager : MonoBehaviour
 
         DialogueManager.Instance.skipIncTuto = false;
         DialogueManager.Instance.StartDialogue(tutoDialogue3, true);
+
     }
 
     private IEnumerator StartTheDay()

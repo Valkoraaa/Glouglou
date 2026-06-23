@@ -62,7 +62,10 @@ public class UiFadeManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         DayManager.Instance.StartOfDay();
         RenderSettings.skybox = skyboxJour;
-        GetComponent<Light>().color = new Color(255, 240, 196);
+        UnityEngine.ColorUtility.TryParseHtmlString("#FFF0C4", out Color yellow);
+        StartCoroutine(UiFadeManager.Instance.LerpLightColor(yellow, 0.5f));
+
+        //Debug.Log(lightInstance.Instance.light.color);
 
 
         // Fade OUT (1 → 0)
@@ -113,11 +116,22 @@ public class UiFadeManager : MonoBehaviour
         image.color = color;
 
         CharacterController controller = Character.Instance.GetComponent<CharacterController>();
-        if(DayManager.Instance.isNight)
+        if (DayManager.Instance.isNight)
         {
             RenderSettings.skybox = skyboxNuit;
-            GetComponent<Light>().color = Color.black;
+            ColorUtility.TryParseHtmlString("#000000", out Color black);
+            StartCoroutine(LerpLightColor(black, 0.5f));
         }
+        else
+        {
+            RenderSettings.skybox = skyboxJour;
+            ColorUtility.TryParseHtmlString("#FFF0C4", out Color yellow);
+            StartCoroutine(LerpLightColor(yellow, 0.5f));
+        }
+        
+        
+
+
 
         controller.enabled = false;
         Character.Instance.transform.position = tpPoint;
@@ -149,6 +163,21 @@ public class UiFadeManager : MonoBehaviour
         PauseManager.Instance.canPause = true; 
         
         
+    }
+
+    public IEnumerator LerpLightColor(Color targetColor, float duration)
+    {
+        Color startColor = lightInstance.Instance.light.color;
+        float time = 0f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            lightInstance.Instance.light.color = Color.Lerp(startColor, targetColor, time / duration);
+            yield return null;
+        }
+
+        lightInstance.Instance.light.color = targetColor;
     }
 
 }
