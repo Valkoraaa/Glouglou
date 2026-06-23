@@ -55,7 +55,7 @@ public class PauseManager : MonoBehaviour
     }
     void Update()
     {
-        if(Keyboard.current.escapeKey.wasPressedThisFrame && canPause && !Shop.Instance.shopOpen)
+        if(Keyboard.current.escapeKey.wasPressedThisFrame && canPause && !Shop.Instance.shopOpen && !CollectionGestion.Instance.collectionCanva.gameObject.activeSelf && Character.Instance.move == Vector3.zero)
         {
             canPause = false;
             pauseCanvas.SetActive(true);
@@ -65,19 +65,19 @@ public class PauseManager : MonoBehaviour
             Character.Instance.canMove = false;
             Character.Instance.canMoveCam = false;
             Character.Instance.stopChara = false;
-            
-            if(!TutoManager.Instance.tuto)
+
+            if (!TutoManager.Instance.tuto)
             {
                 buttonCamping.SetActive(true);
             }
         }
 
-        else if(!homePage && mainPause && mainPause.activeSelf && Keyboard.current.escapeKey.wasPressedThisFrame && !Shop.Instance.shopOpen)
+        else if(!homePage && mainPause && mainPause.activeSelf && Keyboard.current.escapeKey.wasPressedThisFrame && !Shop.Instance.shopOpen && !CollectionGestion.Instance.collectionCanva.gameObject.activeSelf)
         {
             OnPlay();
         }
 
-        else if(settingsCanvas.activeSelf && Keyboard.current.escapeKey.wasPressedThisFrame && !Shop.Instance.shopOpen)
+        else if(settingsCanvas.activeSelf && Keyboard.current.escapeKey.wasPressedThisFrame && !Shop.Instance.shopOpen && !CollectionGestion.Instance.collectionCanva.gameObject.activeSelf)
         {
             BackButton();
         }
