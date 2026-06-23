@@ -45,6 +45,8 @@ public class Shop : MonoBehaviour
     {
         moneyDisplayText.text = playerMoney.ToString(); ;
         moneyMultText.text = moneyMultiplier.ToString();
+        moneyDisplayText.text = Mathf.CeilToInt(Shop.Instance.playerMoney).ToString();
+
     }
 
     public void InitialiserBoutique(MarchandController marchand)

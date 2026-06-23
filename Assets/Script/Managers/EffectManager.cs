@@ -37,6 +37,7 @@ public class EffectManager : MonoBehaviour
     public float windStrength = 4f;
 
     public bool isWindy;
+    private float stockedStrenght;
 
 
 
@@ -223,9 +224,17 @@ public class EffectManager : MonoBehaviour
 
     {
 
-        if (wantToActivate) ThrowLasso.Instance.force = ThrowLasso.Instance.force-5;
+        if (wantToActivate)
+        {
+            stockedStrenght = ThrowLasso.Instance.force;
+            ThrowLasso.Instance.force = ThrowLasso.Instance.force - 5;
+        }
+        
+            
 
-        else ThrowLasso.Instance.force = ThrowLasso.Instance.force + 5;
+        else if(stockedStrenght != ThrowLasso.Instance.force)
+        
+            ThrowLasso.Instance.force = stockedStrenght;
 
     }
 
